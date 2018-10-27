@@ -1,30 +1,29 @@
 package domini;
 
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Date;
 
-public class pLect
+public class PeriodeLectiu
 {
     private Date dataIni;
     private Date dataFi;
 
-    public pLect(Date DataIni, Date DateFi) {
-        this.dataIni = dataIni;
-        this.dataFi  = dataFi;
+    public PeriodeLectiu(Date dataIni, Date dataFi) {
+        this.dataIni = new Date(dataIni.getTime());
+        this.dataFi  = new Date(dataFi.getTime());
     }
 
-    public pLect(@NotNull pLect pL) {
-        this.dataIni = pL.getDataIni();
-        this.dataFi  = pL.getDataFi();
+    public PeriodeLectiu(@NotNull PeriodeLectiu pL) {
+        this.dataIni = new Date(pL.getDataIni().getTime());
+        this.dataFi  = new Date(pL.getDataFi().getTime());
     }
 
     public void setDataIni(Date dataIni) {
-        this.dataIni = dataIni;
+        this.dataIni = new Date(dataIni.getTime());
     }
 
     public void setDataFi(Date dataFi) {
-        this.dataFi = dataFi;
+        this.dataFi = new Date(dataFi.getTime());
     }
 
     public Date getDataIni() {
@@ -35,9 +34,9 @@ public class pLect
         return dataFi;
     }
 
-    public void print_pLect() {
-        System.out.println("DataIni: " + this.getDataIni());
-        System.out.println("DataFi : " + this.getDataFi());
+    public void printPeriodeLectiu() {
+        System.out.println(" DataIni: " + this.getDataIni());
+        System.out.println(" DataFi : " + this.getDataFi());
     }
 
 }
