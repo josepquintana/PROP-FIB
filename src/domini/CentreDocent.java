@@ -29,9 +29,9 @@ public class CentreDocent
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());
     }
 
-//    public void AssignarAulaACentreDocent(Aula aula) {
-//
-//    }
+    public void AssignarAulaACentreDocent(Aula aula) {
+        // assignar
+    }
 
     public String getNomCentre() {
         return this.nomCentre;
