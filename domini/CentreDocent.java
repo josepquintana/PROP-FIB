@@ -4,8 +4,8 @@ package domini;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
-import domini.MyException;
 
 public class CentreDocent
 {
@@ -41,14 +41,22 @@ public class CentreDocent
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());
     }
 
-    public void assignarAulaACentreDocent(Aula aula) throws MyException {
+    public void assignarAulaAlCentreDocent(Aula aula) throws MyException {
         this.aules.afegirAula(aula);
     }
 
-    /////////////////////////////////////////////////////////////// liat
-
-    public void desassignarAulaDeCentreDocent(Aula aula) throws MyException{
+    public void desassignarAulaDelCentreDocent(Aula aula) throws MyException{
         this.aules.eliminarAula(aula);
+    }
+
+    public boolean modificarAulaDelCentreDocent(Aula aula, String newCodi) {
+        boolean ret = this.aules.modificarAula(aula, newCodi);
+        return ret;
+    }
+
+    public boolean modificarAulaDelCentreDocent(Aula aula, int newCapacitat) {
+        boolean ret = this.aules.modificarAula(aula, newCapacitat);
+        return ret;
     }
 
     public String getNomCentre() {
@@ -62,6 +70,8 @@ public class CentreDocent
     public JornadaLectiva getJornadaLectiva() {
         return this.jornadaLectiva;
     }
+
+    public Aules getAules() { return this.aules; }
 
     public void setNomCentre(String nomCentre) {
         this.nomCentre = new String(nomCentre);

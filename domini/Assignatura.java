@@ -24,6 +24,7 @@ public class Assignatura {
     }
 
     public Assignatura(Assignatura a) {
+        // clone Assignatura
         this.codi = a.getCodi();
         this.nom = a.getNom();
         this.credits = a.getCredits();
