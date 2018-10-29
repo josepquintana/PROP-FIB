@@ -1,6 +1,8 @@
 package domini;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Assignatura {
@@ -23,13 +25,18 @@ public class Assignatura {
         this.correquisits = corr;
     }
 
-    public Assignatura(Assignatura a) {
+    public Assignatura(@NotNull Assignatura a) {
         // clone Assignatura
         this.codi = a.getCodi();
         this.nom = a.getNom();
         this.credits = a.getCredits();
         this.nivell = a.getNivell();
         this.correquisits = a.getCorrequisits();
+    }
+
+    public boolean equals(Assignatura a) {
+        if (this.codi.equals(a.getCodi())) return true;
+        else return false;
     }
 
     public void setCodi(String codi) {
