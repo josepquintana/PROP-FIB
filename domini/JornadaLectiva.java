@@ -8,6 +8,11 @@ public class JornadaLectiva
     private Time horaIni;
     private Time horaFi;
 
+    public JornadaLectiva() {
+        this.horaIni = new Time(0);
+        this.horaFi  = new Time(0);
+    }
+
     public JornadaLectiva(Time horaIni, Time horaFi) {
         this.horaIni = new Time(horaIni.getTime());
         this.horaFi  = new Time(horaFi.getTime());

@@ -1,38 +1,54 @@
 package domini;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Aula
 {
     private String codi;
     private int capacitat;
+
+    public Aula() {
+        this.codi = "";
+        this.capacitat = 0;
+    }
 
     public Aula(String codi, int capacitat) {
         this.codi = codi;
         this.capacitat = capacitat;
     }
 
-    public Aula(Aula a) {
+    public Aula(@NotNull Aula a) {
         this.codi = a.getCodi();
         this.capacitat = a.getCapacitat();
     }
 
-
-
-
-
-
-    public void setCodi(String codi) {
-        this.codi = codi;
+    public boolean equals(Aula a) {
+        if (this.codi.equals(a.getCodi())) return true;
+        else return false;
     }
 
-    public void setCapacitat(int capacitat) {
+    public boolean setCodi(String codi) {
+        // check if "codi" is valid
+        this.codi = codi;
+        return true;
+    }
+
+    public boolean setCapacitat(int capacitat) {
+        // check if "capacitat" is valid
         this.capacitat = capacitat;
+        return true;
     }
 
     public String getCodi() {
-        return codi;
+        return this.codi;
     }
 
     public int getCapacitat() {
-        return capacitat;
+        return this.capacitat;
+    }
+
+    public void printAula() {
+        System.out.println("\n> Aula:");
+        System.out.println(" codi: " + this.codi + "; capacitat: " + this.capacitat);
     }
 }

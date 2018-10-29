@@ -8,6 +8,11 @@ public class PeriodeLectiu
     private Date dataIni;
     private Date dataFi;
 
+    public PeriodeLectiu() {
+        this.dataIni = new Date();
+        this.dataFi  = new Date();
+    }
+
     public PeriodeLectiu(Date dataIni, Date dataFi) {
         this.dataIni = new Date(dataIni.getTime());
         this.dataFi  = new Date(dataFi.getTime());
