@@ -1,14 +1,21 @@
 package domini;
 
 
+import java.util.ArrayList;
+
 public class Assignatura {
     private String codi;
     private String nom;
     private int credits;
     private int nivell; //a l'esquema no hi és però crec que és necessari per aplicar les restriccions
-    private Assignatura[] correquisits; //no sé si voleu fer-ho així o amb una classe restriccions
-    
-    public Assignatura(String codi, String nom, int credits, int nivell, Assignatura[] corr) {
+    private ArrayList<Assignatura> correquisits;
+
+    public Assignatura(String codi) {
+        this.codi = codi;
+        correquisits = new ArrayList<Assignatura>();
+    }
+
+    public Assignatura(String codi, String nom, int credits, int nivell, ArrayList<Assignatura> corr) {
         this.codi = codi;
         this.nom = nom;
         this.credits = credits;
@@ -17,13 +24,13 @@ public class Assignatura {
     }
 
     public Assignatura(Assignatura a) {
+        // clone Assignatura
         this.codi = a.getCodi();
         this.nom = a.getNom();
         this.credits = a.getCredits();
         this.nivell = a.getNivell();
         this.correquisits = a.getCorrequisits();
     }
-
 
     public void setCodi(String codi) {
         this.codi = codi;
@@ -41,12 +48,12 @@ public class Assignatura {
         this.nivell = nivell;
     }
     
-    public void setCorrequisits(Assignatura[] corr) {
+    public void setCorrequisits(ArrayList<Assignatura> corr) {
         this.correquisits = corr;
     }
 
     public String getCodi() {
-        return codi;
+        return this.codi;
     }
 
     public String getNom() {
@@ -61,7 +68,19 @@ public class Assignatura {
         return nivell;
     }
     
-    public Assignatura[] getCorrequisits() {
+    public ArrayList<Assignatura> getCorrequisits() {
         return correquisits;
+    }
+
+    public void printAssignatura() {
+        System.out.println("\n> Assignatura:");
+        System.out.println(" codi   : " + this.codi);
+        System.out.println(" nom    : " + this.nom);
+        System.out.println(" credits: " + this.credits);
+        System.out.println(" nivell : " + this.nivell);
+        System.out.println(" Correquisits:");
+        for (int i = 0; i < this.correquisits.size(); i++) {
+            System.out.println("  codi: " + this.correquisits.get(i).getCodi());
+        }
     }
 }

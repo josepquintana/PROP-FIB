@@ -2,6 +2,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Date;
 import java.sql.Time;
+import java.lang.Object;
 
 import domini.*;
 
@@ -29,11 +30,11 @@ public class Main
         CentreDocent cd = new CentreDocent(nomCentre, periodeLectiu, jornadaLectiva);
 
         Aula a = new Aula("A5E02", 80);
-        cd.assignarAulaACentreDocent(a);
+        cd.assignarAulaAlCentreDocent(a);
         Aula b = new Aula("C6S308", 25);
-        cd.assignarAulaACentreDocent(b);
-        Aula c = new Aula("C6S308", 30);
-        cd.assignarAulaACentreDocent(c);
+        cd.assignarAulaAlCentreDocent(b);
+        Aula c = new Aula("C6S309", 30);
+        cd.assignarAulaAlCentreDocent(c);
 
         cd.printCentreDocent();
 

@@ -28,51 +28,45 @@ public class Aules
 
     public void afegirAula(Aula a) throws MyException{
         if(existeixAula(a)) {
-            System.out.println("afegirAula(): L'aula " + a.getCodi() + " ja existeix al sistema");
+            System.out.println(">>> afegirAula(): L'aula " + a.getCodi() + " ja existeix al sistema");
             return;
         }
         boolean ret = this.aules.add(a);
-        if(!ret) throw new MyException("Error: Aula no afegida");
+        if(!ret) throw new MyException(">>> Error: Aula no afegida"); // ¿ pot passar ?
     }
 
-    public void eliminarAula(Aula a) throws MyException{
-        if(!existeixAula(a)) {
-            System.out.println("eliminarAula(): L'aula " + a.getCodi() + " no existeix al sistema");
-            return;
-        }
+    public void eliminarAula(Aula a) {
         boolean ret = this.aules.remove(a);
-        if(!ret) throw new MyException("Error: Aula no eliminada");
+        if(!ret) System.out.println(">>> eliminarAula(): L'aula " + a.getCodi() + " no existeix al sistema");
     }
 
-    public Aula eliminarAula(int i) throws MyException{
-        Aula a;
-        if(!existeixAula(this.aules.get(i))) {
+    public Aula eliminarAula(int i) throws MyException {
+        // This class is never used!
+        Aula a = this.aules.remove(i);
+        if (a == null) {
             System.out.println("eliminarAula(): L'aula " + this.aules.get(i).getCodi() + " no existeix al sistema");
-            a = new Aula();
-        }
-        else {
-            a = this.aules.remove(i);
-            if (a == null) throw new MyException("Error: Aula no Eliminada");
         }
         return a;
     }
 
-    public boolean modificarAula(Aula a, int attribute) {
-        if (attribute != 1 || attribute != 2) {
-            System.out.println(">>> !! Error: Wrong attribute value");
-            return false;
-        }
-        boolean ret = false;
-        boolean found = false;
-        for(int i = 0; i < this.aules.size() && !found; ++i) {
+    public boolean modificarAula(Aula a, String newCodi) {
+        for(int i = 0; i < this.aules.size(); ++i) {
             if(this.aules.get(i).equals(a)) {
-                found = true;
-                if      (attribute == 1) ret = this.aules.get(i).setCodi(a.getCodi());
-                else if (attribute == 2) ret = this.aules.get(i).setCapacitat(a.getCapacitat());
+                boolean ret = this.aules.get(i).setCodi(newCodi);
+                return ret;
             }
         }
+        return false;
+    }
 
-        return ret;
+    public boolean modificarAula(Aula a, int newCapacitat) {
+        for(int i = 0; i < this.aules.size(); ++i) {
+            if(this.aules.get(i).equals(a)) {
+                boolean ret = this.aules.get(i).setCapacitat(newCapacitat);
+                return ret;
+            }
+        }
+        return false;
     }
 
     public Aula getAula(int i) {
