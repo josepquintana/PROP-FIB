@@ -32,8 +32,13 @@ public class Main
         cd.assignarAulaACentreDocent(a);
         Aula b = new Aula("C6S308", 25);
         cd.assignarAulaACentreDocent(b);
-        Aula c = new Aula("C6S308", 30);
-        cd.assignarAulaACentreDocent(c);
+        Aula c = new Aula("C6S309", 30);
+        //cd.assignarAulaACentreDocent(c);
+
+        cd.printCentreDocent();
+
+
+        cd.desassignarAulaDeCentreDocent(c);
 
         cd.printCentreDocent();
 

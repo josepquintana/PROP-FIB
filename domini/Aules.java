@@ -36,14 +36,11 @@ public class Aules
     }
 
     public void eliminarAula(Aula a) throws MyException{
-        if(!existeixAula(a)) {
-            System.out.println("eliminarAula(): L'aula " + a.getCodi() + " no existeix al sistema");
-            return;
-        }
         boolean ret = this.aules.remove(a);
-        if(!ret) throw new MyException("Error: Aula no eliminada");
+        if(!ret) System.out.println("eliminarAula(): L'aula " + a.getCodi() + " no existeix al sistema");
     }
 
+    //
     public Aula eliminarAula(int i) throws MyException{
         Aula a;
         if(!existeixAula(this.aules.get(i))) {
@@ -56,6 +53,7 @@ public class Aules
         }
         return a;
     }
+    //
 
     public boolean modificarAula(Aula a, int attribute) {
         if (attribute != 1 || attribute != 2) {

@@ -13,6 +13,7 @@ public class CentreDocent
     private PeriodeLectiu periodeLectiu;
     private JornadaLectiva jornadaLectiva;
     private Aules aules;
+    private PlaEstudis plaEstudis;
 
     public CentreDocent(String nomCentre)
     {
@@ -46,7 +47,7 @@ public class CentreDocent
 
     /////////////////////////////////////////////////////////////// liat
 
-    public void dessasignarAulaDeCentreDocent(Aula aula) throws MyException{
+    public void desassignarAulaDeCentreDocent(Aula aula) throws MyException{
         this.aules.eliminarAula(aula);
     }
 
