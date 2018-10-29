@@ -5,12 +5,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.sql.Time;
 import java.util.Date;
+import domini.MyException;
 
 public class CentreDocent
 {
     private String nomCentre;
     private PeriodeLectiu periodeLectiu;
     private JornadaLectiva jornadaLectiva;
+    private Aules aules;
+
+    public CentreDocent(String nomCentre)
+    {
+        this.nomCentre = nomCentre;
+        this.periodeLectiu = new PeriodeLectiu();
+        this.jornadaLectiva = new JornadaLectiva();
+        this.aules = new Aules();
+    }
 
     /**
      * @param nomCentre
@@ -21,6 +31,7 @@ public class CentreDocent
         this.nomCentre = nomCentre;
         this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
+        this.aules = new Aules();
     }
 
     public CentreDocent(@NotNull CentreDocent cd) {
@@ -29,8 +40,14 @@ public class CentreDocent
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());
     }
 
-    public void AssignarAulaACentreDocent(Aula aula) {
-        // assignar
+    public void assignarAulaACentreDocent(Aula aula) throws MyException {
+        this.aules.afegirAula(aula);
+    }
+
+    /////////////////////////////////////////////////////////////// liat
+
+    public void dessasignarAulaDeCentreDocent(Aula aula) throws MyException{
+        this.aules.eliminarAula(aula);
     }
 
     public String getNomCentre() {
@@ -58,10 +75,11 @@ public class CentreDocent
     }
 
     public void printCentreDocent() {
-        System.out.println("> CentreDocent:");
+        System.out.println("\n> CentreDocent:");
         System.out.println(" nomCentre: " + this.nomCentre);
         this.periodeLectiu.printPeriodeLectiu();
         this.jornadaLectiva.printJornadaLectiva();
+        this.aules.printAules();
     }
 }
 
