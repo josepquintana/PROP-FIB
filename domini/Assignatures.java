@@ -71,17 +71,20 @@ public class Assignatures
     }
 
     public void printAssignaturesLong() {
-        System.out.println(" Assignatures [Long Format]:");
+        System.out.println("   Assignatures [Long Format]:");
         for (int i = 0; i < this.assignatures.size(); i++) {
             this.assignatures.get(i).printAssignatura();
         }
     }
+
     public void printAssignatures() {
-        System.out.println(" Assignatures:");
+        System.out.println("   Assignatures:");
         for (int i = 0; i < this.assignatures.size(); i++) {
-            System.out.println("  codi: " + this.assignatures.get(i).getCodi());
+            System.out.println("    codi: " + this.assignatures.get(i).getCodi() + "\tnRequisits: " + this.assignatures.get(i).getRequisits().size());
         }
     }
+
+
 
 }
 

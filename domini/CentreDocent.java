@@ -118,12 +118,12 @@ public class CentreDocent
 //    }
 
     public void printCentreDocentLong() {
-        System.out.println("\n> CentreDocent [Long Format]:");
-        System.out.println(" nomCentre: " + this.nomCentre);
-        this.periodeLectiu.printPeriodeLectiu();
-        this.jornadaLectiva.printJornadaLectiva();
-        this.aules.printAules();
-        this.plansDeEstudis.printPlansDeEstudisLong();
+        System.out.println("\n> CentreDocent [Long Format]:\n");
+        System.out.println(" nomCentre: " + this.nomCentre + "\n");
+        this.periodeLectiu.printPeriodeLectiu();       System.out.println("");
+        this.jornadaLectiva.printJornadaLectiva();     System.out.println("");
+        this.aules.printAules();                       System.out.println("");
+        this.plansDeEstudis.printPlansDeEstudisLong(); System.out.println("");
     }
 
     public void printCentreDocent() {
