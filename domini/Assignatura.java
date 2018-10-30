@@ -4,16 +4,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class Assignatura {
+public class Assignatura
+{
     private String codi;
     private String nom;
     private int credits;
     private int nivell; //a l'esquema no hi és però crec que és necessari per aplicar les restriccions
     private ArrayList<Assignatura> correquisits;
+    // Requisits as a class?
+    // Seria molt liat fer pre-requisits i cor-requists
 
     public Assignatura(String codi) {
         this.codi = codi;
-        correquisits = new ArrayList<Assignatura>();
+        this.nom = new String();
+        this.credits = 0;
+        this.nivell = 0;
+        correquisits = new ArrayList<>();
     }
 
     public Assignatura(String codi, String nom, int credits, int nivell, ArrayList<Assignatura> corr) {
@@ -21,6 +27,7 @@ public class Assignatura {
         this.nom = nom;
         this.credits = credits;
         this.nivell = nivell;
+        this.correquisits = new ArrayList<>();
         this.correquisits = corr;
     }
 
@@ -30,6 +37,7 @@ public class Assignatura {
         this.nom = a.getNom();
         this.credits = a.getCredits();
         this.nivell = a.getNivell();
+        this.correquisits = new ArrayList<>();
         this.correquisits = a.getCorrequisits();
     }
 

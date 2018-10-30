@@ -13,6 +13,7 @@ public class Main
     static CentreDocent cd;
     static Aules aules;
     static PlansDeEstudis plansDeEstudis;
+    static Assignatures assignatures;
 
 
     // Execution-control variables
@@ -23,7 +24,6 @@ public class Main
         crearCentreDocent();
         crearAules();
         assignarAules();
-        crearTitulacio();
         crearPlansDeEstudis();
         assignarPlansDeEstudis();
         crearAssignatures();
@@ -75,10 +75,6 @@ public class Main
         cd.setAules(aules);
     }
 
-    public static void crearTitulacio() {
-
-    }
-
     public static void crearPlansDeEstudis() {
         PlaEstudis pe;
         Titulacio titulacio;
@@ -98,7 +94,7 @@ public class Main
     }
 
     public static void crearAssignatures() {
-        
+        Assignatura a = new Assignatura();
     }
 
 

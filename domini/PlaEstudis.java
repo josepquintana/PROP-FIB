@@ -55,7 +55,7 @@ public class PlaEstudis
         this.titulacio = pe.getTitulacio();
     }
 
-    public boolean existeixAssignatura(Assignatura a) {
+    public boolean existeixAssignaturaAlPlaEstudis(Assignatura a) {
         return this.assignatures.existeixAssignatura(a);
     }
 
