@@ -1,6 +1,5 @@
 package domini;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,7 +15,7 @@ public class Assignatures
         this.it = assignatures.iterator();
     }
 
-    public Assignatures(@NotNull ArrayList<Assignatura> assignatures) {
+    public Assignatures( ArrayList<Assignatura> assignatures) {
         this.assignatures = new ArrayList<>();
         this.assignatures = assignatures;
         this.it = new ArrayList<Assignatura>().iterator();

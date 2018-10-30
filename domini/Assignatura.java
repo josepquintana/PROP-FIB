@@ -1,7 +1,5 @@
 package domini;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class Assignatura {
@@ -24,7 +22,7 @@ public class Assignatura {
         this.correquisits = corr;
     }
 
-    public Assignatura(@NotNull Assignatura a) {
+    public Assignatura(Assignatura a) {
         // clone Assignatura
         this.codi = a.getCodi();
         this.nom = a.getNom();

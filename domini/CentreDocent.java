@@ -1,7 +1,5 @@
 package domini;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,7 +45,7 @@ public class CentreDocent
         this.plansDeEstudis = plansDeEstudis;
     }
 
-    public CentreDocent(@NotNull CentreDocent cd) {
+    public CentreDocent(CentreDocent cd) {
         this.nomCentre = cd.getNomCentre();
         this.periodeLectiu = new PeriodeLectiu(cd.getPeriodeLectiu());
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());

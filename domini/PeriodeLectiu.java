@@ -1,6 +1,5 @@
 package domini;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Date;
 
 public class PeriodeLectiu
@@ -18,7 +17,7 @@ public class PeriodeLectiu
         this.dataFi  = new Date(dataFi.getTime());
     }
 
-    public PeriodeLectiu(@NotNull PeriodeLectiu pL) {
+    public PeriodeLectiu(PeriodeLectiu pL) {
         this.dataIni = new Date(pL.getDataIni().getTime());
         this.dataFi  = new Date(pL.getDataFi().getTime());
     }

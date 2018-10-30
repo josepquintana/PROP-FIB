@@ -1,7 +1,5 @@
 package domini;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class PlaEstudis
@@ -47,7 +45,7 @@ public class PlaEstudis
         this.titulacio = titulacio;
     }
 
-    public PlaEstudis(@NotNull PlaEstudis pe) {
+    public PlaEstudis(PlaEstudis pe) {
         this.nomPla = pe.getNomPla();
         this.creditsObligatoris = pe.getCreditsObligatoris();
         this.creditsOptatius = pe.getCreditsOptatius();

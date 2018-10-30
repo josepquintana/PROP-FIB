@@ -1,6 +1,6 @@
 package domini;
 
-import org.jetbrains.annotations.NotNull;
+
 import java.sql.Time;
 
 public class JornadaLectiva
@@ -19,7 +19,7 @@ public class JornadaLectiva
         // missing correct time format check (?)
     }
 
-    public JornadaLectiva(@NotNull JornadaLectiva jL) {
+    public JornadaLectiva(JornadaLectiva jL) {
         this.horaIni = new Time(jL.getHoraIni().getTime());
         this.horaFi  = new Time(jL.getHoraFi().getTime());
     }

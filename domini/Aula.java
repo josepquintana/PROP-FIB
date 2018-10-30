@@ -1,6 +1,5 @@
 package domini;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Aula
 {
@@ -17,7 +16,7 @@ public class Aula
         this.capacitat = capacitat;
     }
 
-    public Aula(@NotNull Aula a) {
+    public Aula(Aula a) {
         this.codi = a.getCodi();
         this.capacitat = a.getCapacitat();
     }
