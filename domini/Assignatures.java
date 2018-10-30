@@ -77,6 +77,7 @@ public class Assignatures
             this.assignatures.get(i).printAssignatura();
         }
     }
+
     public void printAssignatures() {
         System.out.println("   Assignatures:");
         for (int i = 0; i < this.assignatures.size(); i++) {

@@ -97,10 +97,10 @@ public class Main
 
     public static void crearAssignatures() throws MyException {
         Assignatura a1 = new Assignatura("PRO1",	"Projectes de Programació",6, 1);
-        Assignatura a2 = new Assignatura("F", 	"Projectes de Programació",6, 1);
+        Assignatura a2 = new Assignatura("F", 	    "Projectes de Programació",6, 1);
         Assignatura a3 = new Assignatura("IC", 	"Projectes de Programació",6, 1);
         Assignatura a4 = new Assignatura("FM", 	"Projectes de Programació",6, 1);
-        Assignatura a5 = new Assignatura("PRO2",  "Projectes de Programació",6, 2);
+        Assignatura a5 = new Assignatura("PRO2",   "Projectes de Programació",6, 2);
         Assignatura a6 = new Assignatura("EC", 	"Projectes de Programació",6, 2);
         Assignatura a7 = new Assignatura("M1", 	"Projectes de Programació",6, 2);
         Assignatura a8 = new Assignatura("M2", 	"Projectes de Programació",6, 2);
@@ -116,6 +116,8 @@ public class Main
         Assignatura a18 = new Assignatura("EEE",	"Projectes de Programació",6, 4);
         Assignatura a19 = new Assignatura("PROP",	"Projectes de Programació",6, 5);
         Assignatura a20 = new Assignatura("PAR",	"Paral·lelisme           ",6, 6);
+
+        Main.assignatures = new Assignatures();
 
         Main.assignatures.afegirAssignatura(a1);
         Main.assignatures.afegirAssignatura(a2);
@@ -138,8 +140,24 @@ public class Main
         Main.assignatures.afegirAssignatura(a19);
         Main.assignatures.afegirAssignatura(a20);
 
-
         ArrayList<Assignatura> reqs = new ArrayList<>();
+        reqs.add(a1);
+        reqs.add(a5);
+        a9.setRequisits(reqs);
+
+        a13.afegirRequisitAssignatura(a7);
+        a13.afegirRequisitAssignatura(a8);
+
+        a9.printAssignatura();
+        a13.printAssignatura();
+
+        assignatures.printAssignaturesLong();
+
+
+        a13.eliminarRequisitAssignatura(a8);
+
+        a13.printAssignatura();
+
     }
 
 
