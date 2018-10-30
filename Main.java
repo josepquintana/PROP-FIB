@@ -4,20 +4,26 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Date;
 import java.sql.Time;
-import java.util.Random;
 
 import domini.*;
+
+///////////////////////////////////////////////////////////////
+// Hi ha molta xixa al main pq ho he fet rapid per debuggar, ya fare una nova classe
+///////////////////////////////////////////////////////////////
 
 public class Main
 {
     // Read Input
-    static String file = "C:\\Users\\josep\\Google Drive\\FIB\\PROP\\Practica\\Codi\\src\\input.txt";
+    private static File file;
+    private static FileInputStream fstream;
+    private static BufferedReader br;
+    private static String op;
 
     // Data Structures to store all the information
-    public static CentreDocent cd;
-    public static Aules aules;
-    public static PlansDeEstudis plansDeEstudis;
-    public static Assignatures assignatures;
+    private static CentreDocent cd;
+    private static Aules aules;
+    private static PlansDeEstudis plansDeEstudis;
+    private static Assignatures assignatures;
 
 
     // Execution-control variables
@@ -27,7 +33,14 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        readFile();
+        openFile();
+
+        while ((op = readNextLine()) != null) {
+            // evaluate command
+            evaluateCommand(op);
+        }
+
+        closeFile();
 
         crearCentreDocent();
         crearAules();
@@ -36,24 +49,36 @@ public class Main
         crearPlansDeEstudis();
         assignarPlansDeEstudis();
 
-//        if (printCentreDocent) cd.printCentreDocentLong();
+        if (printCentreDocent) cd.printCentreDocentLong();
 
     }
 
-    public static void readFile() throws IOException {
+    private static void evaluateCommand(String op) {
 
-        FileInputStream fstream = new FileInputStream(file);
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+    }
 
-        String strLine;
+    public static void openFile() throws IOException {
 
-        while ((strLine = br.readLine()) != null) {
-            System.out.println (strLine);
-            // return strLine;
-        }
+        String workingDirectory = System.getProperty("user.dir");
+        String filename =  "input.txt";
+        file = new File(workingDirectory, filename);
 
-        br.close();
+        System.out.println("Reading file from: " + file.getAbsolutePath());
 
+        fstream = new FileInputStream(file);
+        br = new BufferedReader(new InputStreamReader(fstream));
+
+        op = new String(); // Read line by line
+    }
+
+    public static void closeFile() throws IOException {
+        br.close(); // Close BufferReader
+    }
+
+    public static String readNextLine() throws IOException {
+
+        String strLine = br.readLine();
+        return strLine;
     }
 
     public static void crearCentreDocent() {
