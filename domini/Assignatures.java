@@ -81,9 +81,11 @@ public class Assignatures
     public void printAssignatures() {
         System.out.println("   Assignatures:");
         for (int i = 0; i < this.assignatures.size(); i++) {
-            System.out.println("    codi: " + this.assignatures.get(i).getCodi());
+            System.out.println("    codi: " + this.assignatures.get(i).getCodi() + "\tnRequisits: " + this.assignatures.get(i).getRequisits().size());
         }
     }
+
+
 
 }
 
