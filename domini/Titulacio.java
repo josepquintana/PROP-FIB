@@ -43,8 +43,8 @@ public class Titulacio {
     }
 
     public void printTitulacio() {
-        System.out.println("\n Titulacio:");
-        System.out.println("  nomTitulacio: " + this.nom);
-        System.out.println("  tipus       : " + this.tipus);
+        System.out.println("   Titulacio:");
+        System.out.println("    nomTitulacio: " + this.nom);
+        System.out.println("    tipus       : " + this.tipus);
     }
 }

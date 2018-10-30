@@ -126,10 +126,10 @@ public class PlaEstudis
     }
 
     public void printPlaEstudis() {
-        System.out.println("\n> Pla Estudis;");
-        System.out.println(" nomPla      : " + this.nomPla);
-        System.out.println(" creditsOblig: " + this.creditsObligatoris);
-        System.out.println(" creditsOptat: " + this.creditsOptatius);
+        System.out.println("  Pla d'Estudis:");
+        System.out.println("   nomPlaEstudis: " + this.nomPla);
+        System.out.println("   creditsOblig : " + this.creditsObligatoris);
+        System.out.println("   creditsOptat : " + this.creditsOptatius);
         this.assignatures.printAssignatures();
         this.titulacio.printTitulacio();
     }
