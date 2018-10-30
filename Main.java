@@ -1,49 +1,130 @@
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Date;
+import java.io.*;
+import java.net.Inet4Address;
+import java.util.*;
 import java.sql.Time;
-import java.util.Random;
 
 import domini.*;
 
+///////////////////////////////////////////////////////////////
+// Hi ha molta xixa al main pq ho he fet rapid per debuggar, ya fare una nova classe
+///////////////////////////////////////////////////////////////
+
 public class Main
 {
+    // Read Input
+    private static File file;
+    private static FileInputStream fstream;
+    private static BufferedReader br;
+    private static String op;
+
     // Data Structures to store all the information
-    public static CentreDocent cd;
-    public static Aules aules;
-    public static PlansDeEstudis plansDeEstudis;
-    public static Assignatures assignatures;
+    private static CentreDocent cd;
+    private static Aules aules;
+    private static PlansDeEstudis plansDeEstudis;
+    private static Assignatures assignatures;
 
 
     // Execution-control variables
     public boolean printLongFormat = true;
-    static boolean printCentreDocent = true;
+    static boolean printCentreDocent = false;
     static boolean all = true;
 
     public static void main(String[] args) throws Exception
     {
-        crearCentreDocent();
-        crearAules();
-        assignarAules();
-        crearAssignatures();
-        crearPlansDeEstudis();
-        assignarPlansDeEstudis();
+        openFile();
+
+        while ((op = readNextLine()) != null) { evaluateCommand(op); }
+
+        closeFile();
+
+        //crearCentreDocent();
+        //crearAules();
+        //assignarAules();
+        //crearAssignatures();
+        //crearPlansDeEstudis();
+        //assignarPlansDeEstudis();
 
         if (printCentreDocent) cd.printCentreDocentLong();
 
     }
 
-    public static void crearCentreDocent()
-    {
-        String nomCentre = new String("FIB");
+    private static void evaluateCommand(String op) throws Exception {
 
-        Time horaIni = new Time(8, 0, 0);
-        Time horaFi =  new Time(20, 0, 0);
+        try {
+            System.out.println(op);
+            Scanner s = new Scanner(op).useDelimiter(", ");
+
+            String tipo = s.next();
+            if (tipo.equals("Centre Docent")) {
+                String nomCentre = s.next();
+
+                Time horaIni = new Time(Integer.parseInt(s.next()), Integer.parseInt(s.next()), 0);
+                Time horaFi  = new Time(Integer.parseInt(s.next()), Integer.parseInt(s.next()), 0);
+
+                int day = Integer.parseInt(s.next());
+                String month = s.next(); // !!! Calcular be
+                int year = Integer.parseInt(s.next());
+                Date dataIni = new GregorianCalendar(year, Calendar.SEPTEMBER, day, horaIni.getHours(), horaIni.getMinutes()).getTime();
+
+                day = Integer.parseInt(s.next());
+                month = s.next(); // !!! Calcular be
+                year = Integer.parseInt(s.next());
+                Date dataFi  = new GregorianCalendar(year, Calendar.JANUARY, day, horaIni.getHours(), horaIni.getMinutes()).getTime();
+
+                crearCentreDocent(nomCentre, dataIni, dataFi, horaIni, horaFi);
+                cd.printCentreDocent();
+            }
+            else if (tipo.equals("Aula")) {
+
+            }
+            else if (tipo.equals("Assignatura")) {
+
+            }
+            else if (tipo.equals("Pla Esutdis")) {
+
+            }
+        }
+
+        catch (Exception e) {
+            //System.out.println("> !Error al evaluar comanda del fitxer");
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public static void openFile() throws IOException {
+
+        String workingDirectory = System.getProperty("user.dir");
+        String filename =  "input.txt";
+        file = new File(workingDirectory, filename);
+
+        System.out.println("Reading file from: " + file.getAbsolutePath());
+
+        fstream = new FileInputStream(file);
+        br = new BufferedReader(new InputStreamReader(fstream));
+
+        op = new String(); // Read line by line
+    }
+
+    public static void closeFile() throws IOException {
+        br.close(); // Close BufferReader
+    }
+
+    public static String readNextLine() throws IOException {
+
+        String strLine = br.readLine();
+        return strLine;
+    }
+
+    public static void crearCentreDocent(String nomCentre, Date dataIni, Date dataFi, Time horaIni, Time horaFi) {
+//        String nomCentre = new String("FIB");
+
+//        Time horaIni = new Time(8, 0, 0);
+//        Time horaFi =  new Time(20, 0, 0);
         JornadaLectiva jornadaLectiva = new JornadaLectiva(horaIni, horaFi);
 
-        Date dataIni = new GregorianCalendar(2018, Calendar.SEPTEMBER, 06, horaIni.getHours(), horaIni.getMinutes()).getTime();
-        Date dataFi  = new GregorianCalendar(2019, Calendar.JANUARY, 28, horaFi.getHours(), horaFi.getMinutes()).getTime();
+//        Date dataIni = new GregorianCalendar(2018, Calendar.SEPTEMBER, 06, horaIni.getHours(), horaIni.getMinutes()).getTime();
+//        Date dataFi  = new GregorianCalendar(2019, Calendar.JANUARY, 28, horaFi.getHours(), horaFi.getMinutes()).getTime();
         PeriodeLectiu periodeLectiu = new PeriodeLectiu(dataIni, dataFi);
 
         cd = new CentreDocent(nomCentre, periodeLectiu, jornadaLectiva);

@@ -77,7 +77,7 @@ public class PlansDeEstudis {
     }
 
     public void printPlansDeEstudis() {
-        System.out.println("lsddmnd PlansDeEstudis:");
+        System.out.println(" PlansDeEstudis:");
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
             System.out.println("  nomPlaEstudis: " + this.plansDeEstudis.get(i).getNomPla() + "\t Titulacio: " + this.plansDeEstudis.get(i).getTitulacio().getNomTitulacio());
         }
