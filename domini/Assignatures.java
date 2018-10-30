@@ -62,12 +62,21 @@ public class Assignatures
         return this.assignatures.isEmpty();
     }
 
+    public ArrayList<Assignatura> getAssignatures() {
+        return this.assignatures;
+    }
+
+    public void setAssignatures(ArrayList<Assignatura> assignatures) {
+        this.assignatures = new ArrayList<>();
+        this.assignatures = assignatures;
+    }
+
     public void printAssignaturesLong() {
+        System.out.println(" Assignatures [Long Format]:");
         for (int i = 0; i < this.assignatures.size(); i++) {
             this.assignatures.get(i).printAssignatura();
         }
     }
-
     public void printAssignatures() {
         System.out.println(" Assignatures:");
         for (int i = 0; i < this.assignatures.size(); i++) {

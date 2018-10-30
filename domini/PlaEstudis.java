@@ -13,7 +13,7 @@ public class PlaEstudis
     private Titulacio titulacio;
 
     public PlaEstudis() {
-        nomPla = "";
+        nomPla = new String();
         creditsObligatoris = 0;
         creditsOptatius = 0;
         assignatures = new Assignatures();
@@ -28,12 +28,13 @@ public class PlaEstudis
         this.titulacio = new Titulacio();
     }
 
-    public PlaEstudis(String nomPla, int credOblig, int credOpt) {
+    public PlaEstudis(String nomPla, int credOblig, int credOpt, Titulacio titulacio) {
         this.nomPla = nomPla;
         this.creditsObligatoris = credOblig;
         this.creditsOptatius = credOpt;
         this.assignatures = new Assignatures();
         this.titulacio = new Titulacio();
+        this.titulacio = titulacio;
     }
 
     public PlaEstudis(String nomPla, int credOblig, int credOpt, Assignatures assignatures, Titulacio titulacio) {
@@ -116,6 +117,7 @@ public class PlaEstudis
     }
 
     public void setAssignatures(Assignatures assignatures) {
+        // this.assignatures = new Assignatures();
         this.assignatures = assignatures;
     }
 

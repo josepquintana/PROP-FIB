@@ -75,6 +75,15 @@ public class Aules
         return this.aules.get(i);
     }
 
+    public ArrayList<Aula> getAules() {
+        return this.aules;
+    }
+
+    public void setAules(ArrayList<Aula> aules) {
+        this.aules = new ArrayList<>();
+        this.aules = aules;
+    }
+
     public int mida() {
         return this.aules.size();
     }
@@ -92,7 +101,7 @@ public class Aules
     public void printAules() {
         System.out.println(" Aules:");
         for (int i = 0; i < this.aules.size(); i++) {
-            System.out.println("  codi: " + this.aules.get(i).getCodi() + ", capacitat: " + this.aules.get(i).getCapacitat());
+            System.out.println("  codi: " + this.aules.get(i).getCodi() + ",\t capacitat: " + this.aules.get(i).getCapacitat());
         }
     }
 
