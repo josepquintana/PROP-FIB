@@ -3,19 +3,19 @@ package domini;
 public class Titulacio {
 
     private String nom;
-    private tipusTitulacio tipus;
+    private String tipus;
 
-    public enum tipusTitulacio {
-        GRAU,
-        MASTER;
-    }
+//    public enum tipusTitulacio {
+//        "GRAU",
+//        "MASTER";
+//    }
 
     public Titulacio() {
         this.nom = new String();
         this.tipus = null;
     }
 
-    public Titulacio(String nom, tipusTitulacio tipus) {
+    public Titulacio(String nom, String tipus) {
         this.nom = nom;
         this.tipus = tipus;
     }
@@ -24,7 +24,7 @@ public class Titulacio {
         return this.nom;
     }
 
-    public tipusTitulacio getTipusTitulacio() {
+    public String getTipusTitulacio() {
         return this.tipus;
     }
 
@@ -32,7 +32,7 @@ public class Titulacio {
         this.nom = nom;
     }
 
-    public void setTipus(tipusTitulacio tipus) {
+    public void setTipus(String tipus) {
         this.tipus = tipus;
     }
 
@@ -43,8 +43,8 @@ public class Titulacio {
     }
 
     public void printTitulacio() {
-        System.out.println("\n> Titulacio;");
-        System.out.println(" nomTitulacio: " + this.nom);
-        System.out.println(" tipus       : " + this.tipus.toString());
+        System.out.println("\n Titulacio:");
+        System.out.println("  nomTitulacio: " + this.nom);
+        System.out.println("  tipus       : " + this.tipus);
     }
 }

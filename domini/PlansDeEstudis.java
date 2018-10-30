@@ -54,6 +54,15 @@ public class PlansDeEstudis {
         return this.plansDeEstudis.get(i);
     }
 
+    public ArrayList<PlaEstudis> getPlansDeEstudis() {
+        return this.plansDeEstudis;
+    }
+
+    public void setPlansDeEstudis(ArrayList<PlaEstudis> plansDeEstudis) {
+        this.plansDeEstudis = new ArrayList<>();
+        this.plansDeEstudis = plansDeEstudis;
+    }
+
     public int mida() {
         return this.plansDeEstudis.size();
     }
@@ -71,8 +80,7 @@ public class PlansDeEstudis {
     public void printPlansDeEstudis() {
         System.out.println(" PlansDeEstudis:");
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            System.out.println("  nomPlaEstudis: " + this.plansDeEstudis.get(i).getNomPla());
-            System.out.println("  Titulacio    : " + this.plansDeEstudis.get(i).getTitulacio().getNomTitulacio());
+            System.out.println("  nomPlaEstudis: " + this.plansDeEstudis.get(i).getNomPla() + "\t Titulacio: " + this.plansDeEstudis.get(i).getTitulacio().getNomTitulacio());
         }
     }
 

@@ -37,7 +37,7 @@ public class CentreDocent
      * @param aules
      * @param plansDeEstudis
      */
-    public CentreDocent(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, Aules aules, PlaEstudis plaEstudis) {
+    public CentreDocent(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, Aules aules, PlansDeEstudis plansDeEstudis) {
         this.nomCentre = nomCentre;
         this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
@@ -103,6 +103,29 @@ public class CentreDocent
 
     public void setJornadaLectiva(JornadaLectiva jornadaLectiva) {
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
+    }
+
+    public void setAules(Aules aules) {
+        this.aules = new Aules();
+        this.aules = aules;
+    }
+
+    public void setPlansDeEstudis(PlansDeEstudis plansDeEstudis) {
+        this.plansDeEstudis = plansDeEstudis;
+    }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        return super.equals(obj);
+//    }
+
+    public void printCentreDocentLong() {
+        System.out.println("\n> CentreDocent [Long Format]:");
+        System.out.println(" nomCentre: " + this.nomCentre);
+        this.periodeLectiu.printPeriodeLectiu();
+        this.jornadaLectiva.printJornadaLectiva();
+        this.aules.printAules();
+        this.plansDeEstudis.printPlansDeEstudisLong();
     }
 
     public void printCentreDocent() {
