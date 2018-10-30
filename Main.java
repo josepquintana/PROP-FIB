@@ -94,7 +94,8 @@ public class Main
     }
 
     public static void crearAssignatures() {
-        Assignatura a = new Assignatura();
+        Assignatura a = new Assignatura("PROP");
+
     }
 
 
