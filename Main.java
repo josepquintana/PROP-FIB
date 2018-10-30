@@ -23,6 +23,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
+        readFile();
+
         crearCentreDocent();
         crearAules();
         assignarAules();
@@ -30,12 +32,15 @@ public class Main
         crearPlansDeEstudis();
         assignarPlansDeEstudis();
 
-        if (printCentreDocent) cd.printCentreDocentLong();
+//        if (printCentreDocent) cd.printCentreDocentLong();
 
     }
 
-    public static void crearCentreDocent()
-    {
+    public static void readFile() {
+
+    }
+
+    public static void crearCentreDocent() {
         String nomCentre = new String("FIB");
 
         Time horaIni = new Time(8, 0, 0);
