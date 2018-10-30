@@ -8,15 +8,24 @@ import domini.*;
 
 public class Main
 {
-
-
+    static CentreDocent cd;
 
     public static void main(String[] args) throws Exception
     {
-        createCentreDocent();
+        crearCentreDocent();
+        crearAules();
+        assignarAules();
+        crearPlansDeEstudis();
+        assignarPlansDeEstudis();
+        crearAssignatures();
+        assignarAssignatures();
+
+        cd.printCentreDocent();
+
     }
 
-    public static void createCentreDocent() throws MyException {
+    public static void crearCentreDocent()
+    {
         String nomCentre = new String("FIB");
 
         Time horaIni = new Time(8, 0, 0);
@@ -27,16 +36,32 @@ public class Main
         Date dataFi  = new GregorianCalendar(2019, Calendar.JANUARY, 28, horaFi.getHours(), horaFi.getMinutes()).getTime();
         PeriodeLectiu periodeLectiu = new PeriodeLectiu(dataIni, dataFi);
 
-        CentreDocent cd = new CentreDocent(nomCentre, periodeLectiu, jornadaLectiva);
+        cd = new CentreDocent(nomCentre, periodeLectiu, jornadaLectiva);
+    }
 
-        Aula a = new Aula("A5E02", 80);
-        cd.assignarAulaAlCentreDocent(a);
-        Aula b = new Aula("C6S308", 25);
-        cd.assignarAulaAlCentreDocent(b);
-        Aula c = new Aula("C6S309", 30);
-        cd.assignarAulaAlCentreDocent(c);
+    public static void crearAules() {
 
-        cd.printCentreDocent();
+    }
+
+    public static void assignarAules() {
+
+    }
+
+    public static void crearPlansDeEstudis() {
+
+    }
+
+    public static void assignarPlansDeEstudis() {
+
+    }
+
+    public static void crearAssignatures() {
+
+    }
+
+
+    public static void assignarAssignatures()
+    {
 
     }
 

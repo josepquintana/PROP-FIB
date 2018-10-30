@@ -40,8 +40,8 @@ public class PeriodeLectiu
     }
 
     public void printPeriodeLectiu() {
-        System.out.println(" DataIni: " + this.getDataIni());
-        System.out.println(" DataFi : " + this.getDataFi());
+        System.out.println(" dataIni: " + this.getDataIni());
+        System.out.println(" dataFi : " + this.getDataFi());
     }
 
 }

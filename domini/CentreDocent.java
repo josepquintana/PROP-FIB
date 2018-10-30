@@ -1,6 +1,5 @@
 package domini;
 
-
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Time;
@@ -13,32 +12,49 @@ public class CentreDocent
     private PeriodeLectiu periodeLectiu;
     private JornadaLectiva jornadaLectiva;
     private Aules aules;
-    private PlaEstudis plaEstudis;
+    private PlansDeEstudis plansDeEstudis;
 
-    public CentreDocent(String nomCentre)
-    {
+    public CentreDocent(String nomCentre) {
         this.nomCentre = nomCentre;
         this.periodeLectiu = new PeriodeLectiu();
         this.jornadaLectiva = new JornadaLectiva();
         this.aules = new Aules();
+        this.plansDeEstudis = new PlansDeEstudis();
+    }
+
+    public CentreDocent(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva) {
+        this.nomCentre = nomCentre;
+        this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
+        this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
+        this.aules = new Aules();
+        this.plansDeEstudis = new PlansDeEstudis();
     }
 
     /**
      * @param nomCentre
      * @param periodeLectiu
      * @param jornadaLectiva
+     * @param aules
+     * @param plansDeEstudis
      */
-    public CentreDocent(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva) {
+    public CentreDocent(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, Aules aules, PlaEstudis plaEstudis) {
         this.nomCentre = nomCentre;
         this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
         this.aules = new Aules();
+        this.aules = aules;
+        this.plansDeEstudis = new PlansDeEstudis();
+        this.plansDeEstudis = plansDeEstudis;
     }
 
     public CentreDocent(@NotNull CentreDocent cd) {
         this.nomCentre = cd.getNomCentre();
         this.periodeLectiu = new PeriodeLectiu(cd.getPeriodeLectiu());
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());
+        this.aules = new Aules();
+        this.aules = cd.getAules();
+        this.plansDeEstudis = new PlansDeEstudis();
+        this.plansDeEstudis = cd.getPlansDeEstudis();
     }
 
     public void assignarAulaAlCentreDocent(Aula aula) throws MyException {
@@ -73,6 +89,10 @@ public class CentreDocent
 
     public Aules getAules() { return this.aules; }
 
+    public PlansDeEstudis getPlansDeEstudis() {
+        return this.plansDeEstudis;
+    }
+
     public void setNomCentre(String nomCentre) {
         this.nomCentre = new String(nomCentre);
     }
@@ -91,6 +111,7 @@ public class CentreDocent
         this.periodeLectiu.printPeriodeLectiu();
         this.jornadaLectiva.printJornadaLectiva();
         this.aules.printAules();
+        this.plansDeEstudis.printPlansDeEstudis();
     }
 }
 

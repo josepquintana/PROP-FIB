@@ -2,7 +2,6 @@ package domini;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import domini.MyException;
 
 public class Aules
 {
@@ -11,11 +10,14 @@ public class Aules
 
     public Aules() {
         this.aules = new ArrayList<>();
+        this.it = new ArrayList<Aula>().iterator();
         this.it = aules.iterator();
     }
 
     public Aules(ArrayList<Aula> aules) {
+        this.aules = new ArrayList<>();
         this.aules = aules;
+        this.it = new ArrayList<Aula>().iterator();
         this.it = this.aules.iterator();
     }
 
@@ -70,18 +72,15 @@ public class Aules
     }
 
     public Aula getAula(int i) {
-        Aula a = this.aules.get(i);
-        return a;
+        return this.aules.get(i);
     }
 
     public int mida() {
-        int ret = this.aules.size();
-        return ret;
+        return this.aules.size();
     }
 
     public boolean esBuit() {
-        boolean ret = this.aules.isEmpty();
-        return ret;
+        return this.aules.isEmpty();
     }
 
     public void printAulesLong() {
