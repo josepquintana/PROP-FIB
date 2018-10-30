@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -9,6 +10,9 @@ import domini.*;
 
 public class Main
 {
+    // Read Input
+    static String file = "C:\\Users\\josep\\Google Drive\\FIB\\PROP\\Practica\\Codi\\src\\input.txt";
+
     // Data Structures to store all the information
     public static CentreDocent cd;
     public static Aules aules;
@@ -36,7 +40,19 @@ public class Main
 
     }
 
-    public static void readFile() {
+    public static void readFile() throws IOException {
+
+        FileInputStream fstream = new FileInputStream(file);
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+        String strLine;
+
+        while ((strLine = br.readLine()) != null) {
+            System.out.println (strLine);
+            // return strLine;
+        }
+
+        br.close();
 
     }
 
