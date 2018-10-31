@@ -1,9 +1,5 @@
 package domini;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-
 public class CentreDocent
 {
     private String nomCentre;

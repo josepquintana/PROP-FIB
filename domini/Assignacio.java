@@ -5,12 +5,17 @@ public class Assignacio {
        private String codiAssig;
        private String codiAula;
        
-       
+
+       public Assignacio(){
+           this.codiAssig = new String();
+           this.codiAula = new String();
+       }
+
        public Assignacio(String assignatura, String aula){
            this.codiAssig = assignatura;
            this.codiAula = aula;
        }
-       
+
        public Assignacio(Assignatura assig, Aula aula){
            this.codiAssig = assig.getCodi();
            this.codiAula = aula.getCodi();
@@ -24,11 +29,11 @@ public class Assignacio {
            this.codiAssig = codi;
        } 
        
-       public String getAssignatura(){
+       public String getAssignaturaAssignada(){
            return this.codiAssig;
        }
        
-       public String getAula(){
+       public String getAulaAssignada(){
            return this.codiAula;
        }
 }
