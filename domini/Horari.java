@@ -1,6 +1,7 @@
 package domini;
 
-public class Horari {
+public class Horari
+{
     private HoraLectiva[][] setmana;
     private int hores;
     private static final int dies = 5;

@@ -35,13 +35,6 @@ public class Main
 
         closeFile();
 
-        //crearCentreDocent();
-        //crearAules();
-        //assignarAules();
-        //crearAssignatures();
-        //crearPlansDeEstudis();
-        //assignarPlansDeEstudis();
-
         if (printCentreDocent) {
             if (printLongFormat) cd.printCentreDocentLong();
             else cd.printCentreDocent();
@@ -135,30 +128,5 @@ public class Main
         cd = new CentreDocent(nomCentre, periodeLectiu, jornadaLectiva);
         return cd;
     }
-
-//    public static void crearPlansDeEstudis() {
-//        PlaEstudis pe;
-//        Titulacio titulacio;
-//        plansDeEstudis = new PlansDeEstudis();
-//
-//        titulacio = new Titulacio("Enginyeria Informatica", "GRAU");
-//        pe = new PlaEstudis("Grau EngInformatica [FIB]", 132, 240-132, titulacio);
-//        pe.setAssignatures(assignatures);
-//        plansDeEstudis.afegirPlaEstudis(pe);
-//
-//        titulacio = new Titulacio("Master Inteligencia Artificial", "MASTER");
-//        pe = new PlaEstudis("Master IntelArtif [FIB]", 72, 120-72, titulacio);
-//        Assignatura a = new Assignatura("Master1", "Assig Master 1", 6, 2);
-//        assignatures = new Assignatures();
-//        assignatures.afegirAssignatura(a);
-//        pe.setAssignatures(assignatures);
-//        plansDeEstudis.afegirPlaEstudis(pe);
-//    }
-//
-//    public static void assignarPlansDeEstudis() {
-//        cd.setPlansDeEstudis(plansDeEstudis);
-//    }
-
-
 
 }
