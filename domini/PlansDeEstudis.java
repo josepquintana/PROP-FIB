@@ -52,6 +52,13 @@ public class PlansDeEstudis {
         return this.plansDeEstudis.get(i);
     }
 
+    public PlaEstudis getPlaEstudis(String nomPla) {
+        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
+            if (this.plansDeEstudis.get(i).getNomPla().equals(nomPla)) return this.plansDeEstudis.get(i);
+        }
+        return null;
+    }
+
     public ArrayList<PlaEstudis> getPlansDeEstudis() {
         return this.plansDeEstudis;
     }

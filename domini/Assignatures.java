@@ -53,6 +53,13 @@ public class Assignatures
         return this.assignatures.get(i);
     }
 
+    public Assignatura getAssignatura(String codi) {
+        for (int i = 0; i < this.assignatures.size(); i++) {
+            if(this.assignatures.get(i).getCodi().equals(codi)) return this.assignatures.get(i);
+        }
+        return null;
+    }
+
     public int mida() {
         return this.assignatures.size();
     }
@@ -83,8 +90,6 @@ public class Assignatures
             System.out.println("    codi: " + this.assignatures.get(i).getCodi() + "\tnRequisits: " + this.assignatures.get(i).getRequisits().size());
         }
     }
-
-
 
 }
 

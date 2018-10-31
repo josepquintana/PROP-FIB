@@ -47,7 +47,7 @@ public class Aula
     }
 
     public void printAula() {
-        System.out.println("\n> Aula:");
-        System.out.println(" codi: " + this.codi + "; capacitat: " + this.capacitat);
+        System.out.println(" Aula:");
+        System.out.println("  codi: " + this.codi + "; capacitat: " + this.capacitat);
     }
 }

@@ -73,6 +73,22 @@ public class CentreDocent
         return ret;
     }
 
+    public void afegirPlaDeEstudis(PlaEstudis pe) {
+        this.plansDeEstudis.afegirPlaEstudis(pe);
+    }
+
+    public void eliminarPlaDeEstudis(PlaEstudis pe) {
+        this.plansDeEstudis.eliminarPlaEstudis(pe);
+    }
+
+    public void afegirAssignaturaAlPlaEstudis(String nomPla, Assignatura a) {
+        this.plansDeEstudis.getPlaEstudis(nomPla).afegirAssignaturaAlPlaEstudis(a);
+    }
+
+    public void elimnarAssignaturaDelPlaEstudis(String nomPla, Assignatura a) {
+        this.plansDeEstudis.getPlaEstudis(nomPla).eliminarAssignaturaDelPlaEstudis(a);
+    }
+
     public String getNomCentre() {
         return this.nomCentre;
     }
@@ -87,8 +103,22 @@ public class CentreDocent
 
     public Aules getAules() { return this.aules; }
 
+    public Aula getAula(String codi) {
+        for (int i = 0; i < this.aules.mida(); i++) {
+            if (this.aules.getAula(i).getCodi().equals(codi)) return this.aules.getAula(i);
+        }
+        return null;
+    }
+
     public PlansDeEstudis getPlansDeEstudis() {
         return this.plansDeEstudis;
+    }
+
+    public PlaEstudis getPlaDeEstudis(String nomPla) {
+        for (int i = 0; i < this.plansDeEstudis.mida(); i++) {
+            if (this.plansDeEstudis.getPlaEstudis(i).getNomPla().equals(nomPla)) return this.plansDeEstudis.getPlaEstudis(i);
+        }
+        return null;
     }
 
     public void setNomCentre(String nomCentre) {
@@ -122,6 +152,7 @@ public class CentreDocent
         System.out.println(" nomCentre: " + this.nomCentre + "\n");
         this.periodeLectiu.printPeriodeLectiu();       System.out.println("");
         this.jornadaLectiva.printJornadaLectiva();     System.out.println("");
+        //this.aules.printAulesLong();                   System.out.println("");
         this.aules.printAules();                       System.out.println("");
         this.plansDeEstudis.printPlansDeEstudisLong(); System.out.println("");
     }
