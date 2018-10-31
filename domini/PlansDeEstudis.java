@@ -52,7 +52,7 @@ public class PlansDeEstudis {
         return this.plansDeEstudis.get(i);
     }
 
-    public PlaEstudis getPlaDeEstudis(String nomPla) {
+    public PlaEstudis getPlaEstudis(String nomPla) {
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
             if (this.plansDeEstudis.get(i).getNomPla().equals(nomPla)) return this.plansDeEstudis.get(i);
         }

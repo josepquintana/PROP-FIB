@@ -10,7 +10,14 @@ public class Assignatura
     private int nivell; //a l'esquema no hi és però crec que és necessari per aplicar les restriccions
     private ArrayList<Assignatura> requisits;
     // Requisits as a class?
-    // Seria molt liat fer pre-requisits i cor-requists
+
+    public Assignatura() {
+        this.codi = new String();
+        this.nom = new String();
+        this.credits = 0;
+        this.nivell = 0;
+        requisits = new ArrayList<>();
+    }
 
     public Assignatura(String codi) {
         this.codi = codi;
@@ -55,6 +62,13 @@ public class Assignatura
     public boolean existeixRequisit(Assignatura assig) {
         for (int i = 0; i < this.requisits.size(); i++) {
             if(this.requisits.get(i).equals(assig)) return true;
+        }
+        return false;
+    }
+
+    public boolean existeixRequisit(String codi) {
+        for (int i = 0; i < this.requisits.size(); i++) {
+            if(this.requisits.get(i).getCodi().equals(codi)) return true;
         }
         return false;
     }

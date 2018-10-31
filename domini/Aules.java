@@ -107,9 +107,11 @@ public class Aules
 
     public void printAules() {
         System.out.println(" Aules:");
+        System.out.print("  ");
         for (int i = 0; i < this.aules.size(); i++) {
-            System.out.println("  codi: " + this.aules.get(i).getCodi() + ",\t capacitat: " + this.aules.get(i).getCapacitat());
+            System.out.print(this.aules.get(i).getCodi() + ", ");
         }
+        System.out.println("");
     }
 
 }
