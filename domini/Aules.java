@@ -75,6 +75,13 @@ public class Aules
         return this.aules.get(i);
     }
 
+    public Aula getAula(String codi) {
+        for (int i = 0; i < this.aules.size(); i++) {
+            if (this.aules.get(i).getCodi().equals(codi)) return this.aules.get(i);
+        }
+        return null;
+    }
+
     public ArrayList<Aula> getAules() {
         return this.aules;
     }

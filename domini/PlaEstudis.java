@@ -94,6 +94,13 @@ public class PlaEstudis
         return this.assignatures.getAssignatura(i);
     }
 
+    public Assignatura getAssignatura(String codi) {
+        for (int i = 0; i < this.assignatures.mida(); i++) {
+            if(this.assignatures.getAssignatura(i).getCodi().equals(codi)) return this.assignatures.getAssignatura(i);
+        }
+        return null;
+    }
+
     public boolean hiHaAssignatures() {
         return this.assignatures.esBuit();
     }

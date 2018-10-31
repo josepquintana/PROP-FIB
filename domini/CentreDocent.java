@@ -73,6 +73,14 @@ public class CentreDocent
         return ret;
     }
 
+    public void afegirPlaDeEstudis(PlaEstudis pe) {
+        this.plansDeEstudis.afegirPlaEstudis(pe);
+    }
+
+    public void eliminarPlaDeEstudis(PlaEstudis pe) {
+        this.plansDeEstudis.eliminarPlaEstudis(pe);
+    }
+
     public String getNomCentre() {
         return this.nomCentre;
     }
@@ -87,8 +95,22 @@ public class CentreDocent
 
     public Aules getAules() { return this.aules; }
 
+    public Aula getAula(String codi) {
+        for (int i = 0; i < this.aules.mida(); i++) {
+            if (this.aules.getAula(i).getCodi().equals(codi)) return this.aules.getAula(i);
+        }
+        return null;
+    }
+
     public PlansDeEstudis getPlansDeEstudis() {
         return this.plansDeEstudis;
+    }
+
+    public PlaEstudis getPlaDeEstudis(String nomPla) {
+        for (int i = 0; i < this.plansDeEstudis.mida(); i++) {
+            if (this.plansDeEstudis.getPlaEstudis(i).getNomPla().equals(nomPla)) return this.plansDeEstudis.getPlaEstudis(i);
+        }
+        return null;
     }
 
     public void setNomCentre(String nomCentre) {
