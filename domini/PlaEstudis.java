@@ -5,50 +5,47 @@ import java.util.ArrayList;
 public class PlaEstudis
 {
     private String nomPla;
-    private int creditsObligatoris;
-    private int creditsOptatius;
+    private int credits;
     private Assignatures assignatures;
     private Titulacio titulacio;
 
     public PlaEstudis() {
         nomPla = new String();
-        creditsObligatoris = 0;
-        creditsOptatius = 0;
+        credits = 0;   
         assignatures = new Assignatures();
         titulacio = new Titulacio();
+
     }
 
     public PlaEstudis(String nomPla) {
         this.nomPla = nomPla;
-        this.creditsObligatoris = 0;
-        this.creditsOptatius = 0;
+        this.credits = 0;    
         this.assignatures = new Assignatures();
         this.titulacio = new Titulacio();
+
     }
 
-    public PlaEstudis(String nomPla, int credOblig, int credOpt, Titulacio titulacio) {
+    public PlaEstudis(String nomPla, Titulacio titulacio) {
         this.nomPla = nomPla;
-        this.creditsObligatoris = credOblig;
-        this.creditsOptatius = credOpt;
+        this.credits = 0; 
         this.assignatures = new Assignatures();
         this.titulacio = new Titulacio();
         this.titulacio = titulacio;
     }
 
-    public PlaEstudis(String nomPla, int credOblig, int credOpt, Assignatures assignatures, Titulacio titulacio) {
+    public PlaEstudis(String nomPla, Assignatures assignatures, Titulacio titulacio) {
         this.nomPla = nomPla;
-        this.creditsObligatoris = credOblig;
-        this.creditsOptatius = credOpt;
+        this.calculaCredits();
         this.assignatures = new Assignatures();
         this.assignatures = assignatures;
         this.titulacio = new Titulacio();
         this.titulacio = titulacio;
+        
     }
 
     public PlaEstudis(PlaEstudis pe) {
         this.nomPla = pe.getNomPla();
-        this.creditsObligatoris = pe.getCreditsObligatoris();
-        this.creditsOptatius = pe.getCreditsOptatius();
+        this.credits = pe.getCredits();
         this.assignatures = pe.getAssignatures();
         this.titulacio = pe.getTitulacio();
     }
@@ -58,11 +55,15 @@ public class PlaEstudis
     }
 
     public boolean afegirAssignaturaAlPlaEstudis(Assignatura a) {
-        return this.assignatures.afegirAssignatura(a);
+        boolean ret = this.assignatures.afegirAssignatura(a);
+        if(ret) this.credits += a.getCredits();
+        return ret;
     }
 
     public boolean eliminarAssignaturaDelPlaEstudis(Assignatura a) {
-        return this.assignatures.eliminarAssignatura(a);
+        boolean ret = this.assignatures.eliminarAssignatura(a);
+        if(ret) this.credits -= a.getCredits();
+        return ret;
     }
 
     public boolean equal(PlaEstudis pe) {
@@ -74,12 +75,8 @@ public class PlaEstudis
         return this.nomPla;
     }
 
-    public int getCreditsObligatoris() {
-        return this.creditsObligatoris;
-    }
-
-    public int getCreditsOptatius() {
-        return this.creditsOptatius;
+    public int getCredits() {
+        return this.credits;
     }
 
     public Assignatures getAssignatures() {
@@ -113,14 +110,9 @@ public class PlaEstudis
         this.nomPla = nomPla;
     }
 
-    public void setCreditsObligatoris(int creditsObligatoris) {
-        this.creditsObligatoris = creditsObligatoris;
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
-
-    public void setCreditsOptatius(int creditsOptatius) {
-        this.creditsOptatius = creditsOptatius;
-    }
-
     public void setAssignatures(Assignatures assignatures) {
         // this.assignatures = new Assignatures();
         this.assignatures = assignatures;
@@ -133,8 +125,7 @@ public class PlaEstudis
     public void printPlaEstudisLong() {
         System.out.println("  Pla d'Estudis:");
         System.out.println("   nomPlaEstudis: " + this.nomPla);
-        System.out.println("   creditsOblig : " + this.creditsObligatoris);
-        System.out.println("   creditsOptat : " + this.creditsOptatius);
+        System.out.println("   credits: " + this.credits);
         this.assignatures.printAssignaturesLong();
         this.titulacio.printTitulacio();
     }
@@ -142,9 +133,15 @@ public class PlaEstudis
     public void printPlaEstudis() {
         System.out.println("  Pla d'Estudis:");
         System.out.println("   nomPlaEstudis: " + this.nomPla);
-        System.out.println("   creditsOblig : " + this.creditsObligatoris);
-        System.out.println("   creditsOptat : " + this.creditsOptatius);
+        System.out.println("   credits: " + this.credits);
         this.assignatures.printAssignatures();
         this.titulacio.printTitulacio();
+    }
+    
+    public void calculaCredits(){
+        this.credits = 0;
+        for(int i = 0; i < this.assignatures.mida(); i++){
+            this.credits += this.assignatures.getAssignatura(i).getCredits();
+        }
     }
 }

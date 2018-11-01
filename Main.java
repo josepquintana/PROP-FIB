@@ -22,7 +22,7 @@ public class Main
 
     // Execution-control variables
     private static boolean printInputLines = true; // counter // final #
-    private static boolean printCentreDocent = false;
+    private static boolean printCentreDocent = true;
     private static boolean printLongFormat = false;
 
     public static void main(String[] args) throws Exception
@@ -74,7 +74,7 @@ public class Main
                 t = new Titulacio(s.next(), s.next());
             }
             else if (tipo.equals("Pla Estudis")) {
-                pe = new PlaEstudis(s.next(), Integer.parseInt(s.next()), Integer.parseInt(s.next()), t);
+                pe = new PlaEstudis(s.next(), t);
                 cd.afegirPlaDeEstudis(pe);
             }
             else if (tipo.equals("Assignatura")) {

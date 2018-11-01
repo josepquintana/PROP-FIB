@@ -9,7 +9,7 @@ Aula, B5S102, 25
 Aula, A4105, 60
 Aula, A5001, 90
 Titulacio, Enginyeria Informatica, GRAU
-Pla Estudis, EngInf EEES, 132, 118, 
+Pla Estudis, EngInf EEES
 Assignatura, EngInf EEES, PRO1, Programació I, 6, 1
 Assignatura, EngInf EEES, F, Física, 6, 1
 Assignatura, EngInf EEES, IC, Introducció als Computadors, 6, 1
