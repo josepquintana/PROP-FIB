@@ -23,5 +23,9 @@ public class HoraLectiva
 
         return false;
     }
-    
+
+    public boolean esBuit() {
+        return (this.assignacions.isEmpty());
+    }
+
 }

@@ -79,14 +79,14 @@ public class PlansDeEstudis {
     public void printPlansDeEstudisLong() {
         System.out.println(" Plans de Estudi: [Long Format]");
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudis(); System.out.println("");
+            this.plansDeEstudis.get(i).printPlaEstudisLong(); System.out.println("");
         }
     }
 
     public void printPlansDeEstudis() {
         System.out.println(" PlansDeEstudis:");
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            System.out.println("  nomPlaEstudis: " + this.plansDeEstudis.get(i).getNomPla() + "\t Titulacio: " + this.plansDeEstudis.get(i).getTitulacio().getNomTitulacio());
+            this.plansDeEstudis.get(i).printPlaEstudis(); System.out.println("");
         }
     }
 

@@ -1,5 +1,5 @@
 import java.io.*;
-import java.net.Inet4Address;
+import java.nio.file.Paths;
 import java.util.*;
 import java.sql.Time;
 
@@ -12,8 +12,6 @@ import domini.*;
 public class Main
 {
     // Read Input
-    private static File file;
-    private static FileInputStream fstream;
     private static BufferedReader br;
     private static String op;
 
@@ -23,9 +21,9 @@ public class Main
     private static PlaEstudis pe;
 
     // Execution-control variables
-    static boolean printCentreDocent = true;
-    static public boolean printLongFormat = true;
-    static boolean all = true;
+    private static boolean printInputLines = true; // counter // final #
+    private static boolean printCentreDocent = false;
+    private static boolean printLongFormat = false;
 
     public static void main(String[] args) throws Exception
     {
@@ -45,10 +43,11 @@ public class Main
     private static void evaluateCommand(String op) throws Exception {
 
         try {
-            System.out.println("·Input: " + op);
+            if (printInputLines) System.out.println("·Input: " + op);
             Scanner s = new Scanner(op).useDelimiter(", ");
 
             String tipo = s.next();
+
             if (tipo.equals("Centre Docent")) {
                 String nomCentre = s.next();
 
@@ -68,8 +67,8 @@ public class Main
                 cd = crearCentreDocent(nomCentre, dataIni, dataFi, horaIni, horaFi);
             }
             else if (tipo.equals("Aula")) {
-                Aula a = new Aula(s.next(), Integer.parseInt(s.next()));
-                cd.assignarAulaAlCentreDocent(a);
+                Aula aula = new Aula(s.next(), Integer.parseInt(s.next()));
+                cd.assignarAulaAlCentreDocent(aula);
             }
             else if (tipo.equals("Titulacio")) {
                 t = new Titulacio(s.next(), s.next());
@@ -88,6 +87,7 @@ public class Main
                 }
                 cd.afegirAssignaturaAlPlaEstudis(nomPla, a);
             }
+            else;
         }
 
         catch (Exception e) {
@@ -99,26 +99,27 @@ public class Main
 
     public static void openFile() throws IOException {
 
-        String workingDirectory = System.getProperty("user.dir");
-        String filename =  "input.txt";
-        file = new File(workingDirectory, filename);
+        String workingDirectory = Paths.get(".\\src").toAbsolutePath().normalize().toString();
+
+        String filename = "input.txt";
+        File file = new File(workingDirectory, filename);
 
         System.out.println("Reading file from: " + file.getAbsolutePath());
 
-        fstream = new FileInputStream(file);
+        FileInputStream fstream = new FileInputStream(file);
         br = new BufferedReader(new InputStreamReader(fstream));
 
         op = new String(); // Read line by line
-    }
-
-    public static void closeFile() throws IOException {
-        br.close(); // Close BufferReader
     }
 
     public static String readNextLine() throws IOException {
 
         String strLine = br.readLine();
         return strLine;
+    }
+
+    public static void closeFile() throws IOException {
+        br.close(); // Close BufferReader
     }
 
     public static CentreDocent crearCentreDocent(String nomCentre, Date dataIni, Date dataFi, Time horaIni, Time horaFi) {
