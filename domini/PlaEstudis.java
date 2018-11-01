@@ -130,6 +130,15 @@ public class PlaEstudis
         this.titulacio = titulacio;
     }
 
+    public void printPlaEstudisLong() {
+        System.out.println("  Pla d'Estudis:");
+        System.out.println("   nomPlaEstudis: " + this.nomPla);
+        System.out.println("   creditsOblig : " + this.creditsObligatoris);
+        System.out.println("   creditsOptat : " + this.creditsOptatius);
+        this.assignatures.printAssignaturesLong();
+        this.titulacio.printTitulacio();
+    }
+
     public void printPlaEstudis() {
         System.out.println("  Pla d'Estudis:");
         System.out.println("   nomPlaEstudis: " + this.nomPla);

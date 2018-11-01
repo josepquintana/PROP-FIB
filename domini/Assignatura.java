@@ -89,6 +89,10 @@ public class Assignatura
         return ret;
     }
 
+    public boolean teRequisits() {
+        return (!this.requisits.isEmpty());
+    }
+
     public void setCodi(String codi) {
         this.codi = codi;
     }
@@ -129,15 +133,32 @@ public class Assignatura
         return this.requisits;
     }
 
-    public void printAssignatura() {
-        System.out.println("   Assignatura:");
-        System.out.println("    codi   : " + this.codi);
-        System.out.println("    nom    : " + this.nom);
-        System.out.println("    credits: " + this.credits);
-        System.out.println("    nivell : " + this.nivell);
-        System.out.println("    Requisits:");
+    public Assignatura getRequisit(int i) {
+        return this.requisits.get(i);
+    }
+
+    private void printRequisits(){
         for (int i = 0; i < this.requisits.size(); i++) {
-            System.out.println("     R" + (i+1) + ": codi: " + this.requisits.get(i).getCodi() + "\t nivell: " + this.requisits.get(i).getNivell());
+            System.out.print(this.requisits.get(i).getCodi());
+            if (i < this.requisits.size() - 1) System.out.print(", ");
         }
+        System.out.println("");
+    }
+
+    public void printAssignaturaLong() {
+        System.out.println("    Assignatura:");
+        System.out.println("     codi   : " + this.codi);
+        System.out.println("     nom    : " + this.nom);
+        System.out.println("     credits: " + this.credits);
+        System.out.println("     nivell : " + this.nivell);
+        System.out.println("     Requisits:");
+        for (int i = 0; i < this.requisits.size(); i++) {
+            System.out.println("      R" + (i+1) + ": codi: " + this.requisits.get(i).getCodi() + "  \t nivell: " + this.requisits.get(i).getNivell());
+        }
+    }
+
+    public void printAssignatura() {
+        System.out.print("    codi: " + this.codi + ",\t credits: " + this.credits);
+        if (this.teRequisits()) System.out.print(",\t requisits: "); this.printRequisits();
     }
 }
