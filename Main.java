@@ -1,5 +1,5 @@
 import java.io.*;
-import java.net.Inet4Address;
+import java.nio.file.Paths;
 import java.util.*;
 import java.sql.Time;
 
@@ -21,7 +21,8 @@ public class Main
     private static PlaEstudis pe;
 
     // Execution-control variables
-    private static boolean printCentreDocent = true;
+    private static boolean printInputLines = true; // counter // final #
+    private static boolean printCentreDocent = false;
     private static boolean printLongFormat = false;
 
     public static void main(String[] args) throws Exception
@@ -42,7 +43,7 @@ public class Main
     private static void evaluateCommand(String op) throws Exception {
 
         try {
-            System.out.println("·Input: " + op);
+            if (printInputLines) System.out.println("·Input: " + op);
             Scanner s = new Scanner(op).useDelimiter(", ");
 
             String tipo = s.next();
@@ -98,8 +99,9 @@ public class Main
 
     public static void openFile() throws IOException {
 
-        String workingDirectory = System.getProperty("user.dir");
-        String filename =  "input.txt";
+        String workingDirectory = Paths.get(".\\src").toAbsolutePath().normalize().toString();
+
+        String filename = "input.txt";
         File file = new File(workingDirectory, filename);
 
         System.out.println("Reading file from: " + file.getAbsolutePath());
