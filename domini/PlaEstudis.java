@@ -14,7 +14,6 @@ public class PlaEstudis
         credits = 0;   
         assignatures = new Assignatures();
         titulacio = new Titulacio();
-
     }
 
     public PlaEstudis(String nomPla) {
@@ -22,7 +21,6 @@ public class PlaEstudis
         this.credits = 0;    
         this.assignatures = new Assignatures();
         this.titulacio = new Titulacio();
-
     }
 
     public PlaEstudis(String nomPla, Titulacio titulacio) {
@@ -35,18 +33,19 @@ public class PlaEstudis
 
     public PlaEstudis(String nomPla, Assignatures assignatures, Titulacio titulacio) {
         this.nomPla = nomPla;
-        this.calculaCredits();
         this.assignatures = new Assignatures();
         this.assignatures = assignatures;
         this.titulacio = new Titulacio();
         this.titulacio = titulacio;
-        
+        this.calculaCredits();
     }
 
     public PlaEstudis(PlaEstudis pe) {
         this.nomPla = pe.getNomPla();
         this.credits = pe.getCredits();
+        this.assignatures = new Assignatures();
         this.assignatures = pe.getAssignatures();
+        this.titulacio = new Titulacio();
         this.titulacio = pe.getTitulacio();
     }
 
@@ -110,12 +109,14 @@ public class PlaEstudis
         this.nomPla = nomPla;
     }
 
-    public void setCredits(int credits) {
-        this.credits = credits;
+    // funcio inutil...
+    public void setCredits() {
+        this.calculaCredits();
     }
+
     public void setAssignatures(Assignatures assignatures) {
-        // this.assignatures = new Assignatures();
         this.assignatures = assignatures;
+        this.calculaCredits();
     }
 
     public void setTitulacio(Titulacio titulacio) {

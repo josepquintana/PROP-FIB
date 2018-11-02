@@ -15,12 +15,14 @@ public class Assignatures
         this.it = assignatures.iterator();
     }
 
-    public Assignatures( ArrayList<Assignatura> assignatures) {
+    public Assignatures(ArrayList<Assignatura> assignatures) {
         this.assignatures = new ArrayList<>();
         this.assignatures = assignatures;
         this.it = new ArrayList<Assignatura>().iterator();
         this.it = assignatures.iterator();
     }
+
+    // clone()
 
     public boolean existeixAssignatura(Assignatura assig) {
         for (int i = 0; i < this.assignatures.size(); i++) {

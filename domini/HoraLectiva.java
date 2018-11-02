@@ -25,7 +25,10 @@ public class HoraLectiva
     }
     
     public boolean afegirAssignacio(Assignacio asg){
-        if(existeixAssignacio(asg)) return false;
+        if(existeixAssignacio(asg)) {
+            System.out.println(">>> afegirAssignacio(): L'assignacio " + this.codi + " ja té " + a.getCodi() + "com a requisit");
+            return false;
+        }
         else return this.assignacions.add(asg);
     }
 
