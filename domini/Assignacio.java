@@ -1,52 +1,45 @@
 package domini;
 
-public class Assignacio {
-       
-       private String codiAssig;
-       private String codiAula;
-       private String codiAssignacio;
-       
+public class Assignacio
+{
+    private Grup grup;
+    private String codiAula;
 
-       public Assignacio(){
-           this.codiAssig = new String();
-           this.codiAula = new String();
-           this.codiAssignacio = new String();
-       }
+    public Assignacio(){
+        this.grup = new Grup();
+        this.codiAula = new String();
+    }
 
-       public Assignacio(String assignatura, String aula, String assignacio){
-           this.codiAssig = assignatura;
-           this.codiAula = aula;
-           this.codiAssignacio = assignacio;
-       }
+    public Assignacio(Grup grup, String aula){
+        this.grup = new Grup();
+        this.grup = grup;
+        this.codiAula = aula;
+    }
 
-       public Assignacio(Assignatura assig, Aula aula, String assignacio){
-           this.codiAssig = assig.getCodi();
-           this.codiAula = aula.getCodi();
-           this.codiAssignacio = assignacio;
-       }
-       
-       public void setAssignatura(String codi){
-           this.codiAssig = codi;
-       } 
-       
-       public void setAula(String codi){
-           this.codiAssig = codi;
-       }
-       
-       public void setCodi(String codi){
-           this.codiAssignacio = codi;
-       } 
-       
-       public String getAssignaturaAssignada(){
-           return this.codiAssig;
-       }
-       
-       public String getAulaAssignada(){
-           return this.codiAula;
-       }
-       
-       public String getCodi(){
-           return this.codiAssignacio;
-       }      
-       
+    public Assignacio(Grup grup, Aula aula){
+        this.grup = new Grup();
+        this.grup = grup;
+        this.codiAula = aula.getCodi();
+    }
+
+    public void setGrup(Grup grup){
+        this.grup = new Grup();
+        this.grup = grup;
+    }
+
+    public void setAula(String codi){
+        this.codiAula = codi;
+    }
+
+    public Grup getGrupAssignat(){
+        return this.grup;
+    }
+
+    public String getCodiAulaAssignada(){
+        return this.codiAula;
+    }
+
+    public void printAssignacio() {
+
+    }
 }
