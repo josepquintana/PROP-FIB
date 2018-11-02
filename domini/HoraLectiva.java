@@ -16,17 +16,21 @@ public class HoraLectiva
     }
 
     //Comprova que la Assignació asg no tingui ni l'aula ni l'assignatura assignades
-    public boolean existeixAssignacio(Assignacio asg) {
+    public boolean existeixAssignacio(Assignacio asg, int j) {
         for (int i = 0; i < this.assignacions.size(); i++) {
-            if(this.assignacions.get(i).getGrupAssignat().equals(asg.getGrupAssignat()) || this.assignacions.get(i).getAulaAssignada().equals(asg.getAulaAssignada())) return true;
+            if(this.assignacions.get(i).getAssignaturaAssignada().equals(asg.getAssignaturaAssignada()) || this.assignacions.get(i).getAulaAssignada().equals(asg.getAulaAssignada())){
+                j = i;
+                return true;
+            }
         }
 
         return false;
     }
     
     public boolean afegirAssignacio(Assignacio asg){
-        if(existeixAssignacio(asg)) {
-            System.out.println(">>> afegirAssignacio(): L'assignacio " + this.codi + " ja té " + a.getCodi() + "com a requisit");
+        int i = 0;
+        if(existeixAssignacio(asg, i)) {
+            System.out.println(">>> afegirAssignacio(): L'assignacio " + this.assignacions.get(i).getCodi() + " ja té " + asg.getCodi() + "com a requisit");
             return false;
         }
         else return this.assignacions.add(asg);
