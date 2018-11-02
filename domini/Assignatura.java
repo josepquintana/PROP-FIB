@@ -46,6 +46,7 @@ public class Assignatura
         this.nivell = nivell;
         this.requisits = new ArrayList<>();
         this.requisits = reqs;
+        this.grups = new ArrayList<>();
         this.grups = grups;
     }
 
