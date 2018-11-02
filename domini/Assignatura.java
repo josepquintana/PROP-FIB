@@ -9,6 +9,7 @@ public class Assignatura
     private int credits;
     private int nivell; //a l'esquema no hi és però crec que és necessari per aplicar les restriccions
     private ArrayList<Assignatura> requisits;
+    private ArrayList<String> grups;
     // Requisits as a class?
 
     public Assignatura() {
@@ -17,6 +18,7 @@ public class Assignatura
         this.credits = 0;
         this.nivell = 0;
         requisits = new ArrayList<>();
+        grups = new ArrayList<>();
     }
 
     public Assignatura(String codi) {
@@ -25,6 +27,7 @@ public class Assignatura
         this.credits = 0;
         this.nivell = 0;
         requisits = new ArrayList<>();
+        grups = new ArrayList<>();
     }
 
     public Assignatura(String codi, String nom, int credits, int nivell) {
@@ -33,15 +36,17 @@ public class Assignatura
         this.credits = credits;
         this.nivell = nivell;
         requisits = new ArrayList<>();
+        grups = new ArrayList<>();
     }
 
-    public Assignatura(String codi, String nom, int credits, int nivell, ArrayList<Assignatura> reqs) {
+    public Assignatura(String codi, String nom, int credits, int nivell, ArrayList<Assignatura> reqs, ArrayList<String> grups) {
         this.codi = codi;
         this.nom = nom;
         this.credits = credits;
         this.nivell = nivell;
         this.requisits = new ArrayList<>();
         this.requisits = reqs;
+        this.grups = grups;
     }
 
     public Assignatura(Assignatura a) {
@@ -52,6 +57,8 @@ public class Assignatura
         this.nivell = a.getNivell();
         this.requisits = new ArrayList<>();
         this.requisits = a.getRequisits();
+        this.grups = new ArrayList<>();
+        this.grups = a.getGrups();
     }
 
     public boolean equals(Assignatura a) {
@@ -69,6 +76,13 @@ public class Assignatura
     public boolean existeixRequisit(String codi) {
         for (int i = 0; i < this.requisits.size(); i++) {
             if(this.requisits.get(i).getCodi().equals(codi)) return true;
+        }
+        return false;
+    }
+    
+    public boolean existeixGrup(String codi) {
+        for (int i = 0; i < this.grups.size(); i++) {
+            if(this.grups.get(i).equals(codi)) return true;
         }
         return false;
     }
@@ -92,6 +106,26 @@ public class Assignatura
     public boolean teRequisits() {
         return (!this.requisits.isEmpty());
     }
+    
+    public boolean afegirGrupAssignatura(String s) throws MyException{
+        if(existeixGrup(s)) {
+            System.out.println(">>> afegirGrupAssignatura(): L'assignatura " + this.codi + " ja té " + s + "com a grup");
+            return false;
+        }
+        boolean ret = this.grups.add(s);
+        if(!ret) throw new MyException(">>> Error: Assig.Grup no afegit"); 
+        return ret;
+    }
+
+    public boolean eliminarGrupAssignatura(String s) {
+        boolean ret = this.grups.remove(s);
+        if(!ret) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té " + s + " com a grup");
+        return ret;
+    }
+
+    public boolean teGrups() {
+        return (!this.grups.isEmpty());
+    }
 
     public void setCodi(String codi) {
         this.codi = codi;
@@ -111,6 +145,10 @@ public class Assignatura
     
     public void setRequisits(ArrayList<Assignatura> reqs) {
         this.requisits = reqs;
+    }
+    
+    public void setGrups(ArrayList<String> grups) {
+        this.grups = grups;
     }
 
     public String getCodi() {
@@ -136,11 +174,28 @@ public class Assignatura
     public Assignatura getRequisit(int i) {
         return this.requisits.get(i);
     }
+    
+    
+    public ArrayList<String> getGrups() {
+        return this.grups;
+    }
+
+    public String getGrup(int i) {
+        return this.grups.get(i);
+    }
 
     private void printRequisits(){
         for (int i = 0; i < this.requisits.size(); i++) {
             System.out.print(this.requisits.get(i).getCodi());
             if (i < this.requisits.size() - 1) System.out.print(", ");
+        }
+        System.out.println("");
+    }
+    
+    private void printGrups(){
+        for (int i = 0; i < this.grups.size(); i++) {
+            System.out.print(this.grups.get(i));
+            if (i < this.grups.size() - 1) System.out.print(", ");
         }
         System.out.println("");
     }
@@ -155,10 +210,15 @@ public class Assignatura
         for (int i = 0; i < this.requisits.size(); i++) {
             System.out.println("      R" + (i+1) + ": codi: " + this.requisits.get(i).getCodi() + "  \t nivell: " + this.requisits.get(i).getNivell());
         }
+        System.out.println("     Grups:");
+        for (int i = 0; i < this.grups.size(); i++) {
+            System.out.println("      Grup" + this.grups.get(i));
+        }
     }
 
     public void printAssignatura() {
         System.out.print("    codi: " + this.codi + ",\t credits: " + this.credits);
         if (this.teRequisits()) System.out.print(",\t requisits: "); this.printRequisits();
+        if (this.teGrups()) System.out.print(",\t grups: "); this.printGrups();
     }
 }
