@@ -19,18 +19,25 @@ public class Main
     private static CentreDocent cd;
     private static Titulacio t;
     private static PlaEstudis pe;
+    private static Assignacio asg;
 
     // Execution-control variables
-    private static boolean printInputLines = true; // counter // final #
-    private static boolean printCentreDocent = true;
-    private static boolean printLongFormat = false;
+    private static boolean printInputLines      = !true; // counter // final #
+    private static boolean printCentreDocent    = true;
+    private static boolean printLongFormat      = !true;
 
     public static void main(String[] args) throws Exception
     {
         openFile();
+        int inputCounter = 0;
+        while ((op = readNextLine()) != null) {
+            if (op.charAt(0) == '#') continue; // this input line is a comment
+            if (printInputLines) System.out.println("· Input:   " + op);
+            evaluateCommand(op);
+            ++inputCounter;
+        }
 
-        while ((op = readNextLine()) != null) { evaluateCommand(op); }
-
+        System.out.println("Read " + inputCounter + " from the input file.");
         closeFile();
 
         if (printCentreDocent) {
@@ -43,12 +50,10 @@ public class Main
     private static void evaluateCommand(String op) throws Exception {
 
         try {
-            if (printInputLines) System.out.println("·Input: " + op);
             Scanner s = new Scanner(op).useDelimiter(", ");
+            String categoria = s.next();
 
-            String tipo = s.next();
-
-            if (tipo.equals("Centre Docent")) {
+            if      (categoria.equals("Centre Docent")) {
                 String nomCentre = s.next();
 
                 Time horaIni = new Time(Integer.parseInt(s.next()), Integer.parseInt(s.next()), 0);
@@ -66,36 +71,48 @@ public class Main
 
                 cd = crearCentreDocent(nomCentre, dataIni, dataFi, horaIni, horaFi);
             }
-            else if (tipo.equals("Aula")) {
+            else if (categoria.equals("Aula")) {
                 Aula aula = new Aula(s.next(), Integer.parseInt(s.next()));
                 cd.assignarAulaAlCentreDocent(aula);
             }
-            else if (tipo.equals("Titulacio")) {
+            else if (categoria.equals("Titulacio")) {
                 t = new Titulacio(s.next(), s.next());
             }
-            else if (tipo.equals("Pla Estudis")) {
+            else if (categoria.equals("Pla Estudis")) {
                 pe = new PlaEstudis(s.next(), t);
-                cd.afegirPlaDeEstudis(pe);
+                cd.afegirPlaEstudis(pe);
             }
-            else if (tipo.equals("Assignatura")) {
+            else if (categoria.equals("Assignatura")) {
                 String nomPla = s.next();
-                Assignatura a = new Assignatura(s.next(), s.next(), Integer.parseInt(s.next()), Integer.parseInt(s.next()));
-                Assignatura req = new Assignatura();
+                Assignatura a = new Assignatura(s.next(), s.next(), Double.parseDouble(s.next()), Integer.parseInt(s.next()));
+
+                int ctotal = Integer.parseInt(s.next());
+                int cgrup = Integer.parseInt(s.next());
+                int ngrups = ctotal / cgrup;
+                Grup g;
+                for (int i = 10; i <= ngrups * 10; i = i + 10) {    // grups
+                    g = new Grup(a.getCodi(), i, cgrup);
+                    a.afegirGrupAssignatura(g);
+                }
+
+                Assignatura req;
                 while (s.hasNext()) {   // requisits
-                    req = cd.getPlansDeEstudis().getPlaEstudis(nomPla).getAssignatura(s.next());
+                    req = new Assignatura();
+                    req = cd.getPlaEstudis(nomPla).getAssignatura(s.next());
+                    // TO DO: vigilar que no peti per haver posar una assig no valida!
                     a.afegirRequisitAssignatura(req);
                 }
                 cd.afegirAssignaturaAlPlaEstudis(nomPla, a);
             }
+            
+            else if (categoria.equals("Assignacio")) {  }
             else;
         }
 
         catch (Exception e) {
-            //System.out.println("> !Error al evaluar comanda del fitxer");
-            System.out.println(e.getMessage());
+            System.out.print("> !Error al evaluar comanda del fitxer: " + e.getMessage() + "\n");
         }
     }
-
 
     public static void openFile() throws IOException {
 
