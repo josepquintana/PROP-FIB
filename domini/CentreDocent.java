@@ -69,20 +69,20 @@ public class CentreDocent
         return ret;
     }
 
-    public void afegirPlaDeEstudis(PlaEstudis pe) {
-        this.plansDeEstudis.afegirPlaEstudis(pe);
+    public boolean afegirPlaEstudis(PlaEstudis pe) {
+        return this.plansDeEstudis.afegirPlaEstudis(pe);
     }
 
-    public void eliminarPlaDeEstudis(PlaEstudis pe) {
-        this.plansDeEstudis.eliminarPlaEstudis(pe);
+    public boolean eliminarPlaEstudis(PlaEstudis pe) {
+        return this.plansDeEstudis.eliminarPlaEstudis(pe);
     }
 
-    public void afegirAssignaturaAlPlaEstudis(String nomPla, Assignatura a) {
-        this.plansDeEstudis.getPlaEstudis(nomPla).afegirAssignaturaAlPlaEstudis(a);
+    public boolean afegirAssignaturaAlPlaEstudis(String nomPla, Assignatura a) {
+        return this.plansDeEstudis.getPlaEstudis(nomPla).afegirAssignaturaAlPlaEstudis(a);
     }
 
-    public void elimnarAssignaturaDelPlaEstudis(String nomPla, Assignatura a) {
-        this.plansDeEstudis.getPlaEstudis(nomPla).eliminarAssignaturaDelPlaEstudis(a);
+    public boolean elimnarAssignaturaDelPlaEstudis(String nomPla, Assignatura a) {
+        return this.plansDeEstudis.getPlaEstudis(nomPla).eliminarAssignaturaDelPlaEstudis(a);
     }
 
     public String getNomCentre() {
@@ -110,7 +110,7 @@ public class CentreDocent
         return this.plansDeEstudis;
     }
 
-    public PlaEstudis getPlaDeEstudis(String nomPla) {
+    public PlaEstudis getPlaEstudis(String nomPla) {
         for (int i = 0; i < this.plansDeEstudis.mida(); i++) {
             if (this.plansDeEstudis.getPlaEstudis(i).getNomPla().equals(nomPla)) return this.plansDeEstudis.getPlaEstudis(i);
         }
@@ -138,18 +138,12 @@ public class CentreDocent
         this.plansDeEstudis = plansDeEstudis;
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        return super.equals(obj);
-//    }
-
     public void printCentreDocentLong() {
         System.out.println("\n> CentreDocent [Long Format]:\n");
         System.out.println(" nomCentre: " + this.nomCentre + "\n");
         this.periodeLectiu.printPeriodeLectiu();       System.out.println("");
         this.jornadaLectiva.printJornadaLectiva();     System.out.println("");
-        //this.aules.printAulesLong();                   System.out.println("");
-        this.aules.printAules();                       System.out.println("");
+        this.aules.printAulesLong();                   System.out.println("");
         this.plansDeEstudis.printPlansDeEstudisLong(); System.out.println("");
     }
 

@@ -100,6 +100,7 @@ public class Aules
     }
 
     public void printAulesLong() {
+        System.out.println(" Aules: [Long Format]");
         for (int i = 0; i < this.aules.size(); i++) {
             this.aules.get(i).printAula();
         }
@@ -109,7 +110,8 @@ public class Aules
         System.out.println(" Aules:");
         System.out.print("  ");
         for (int i = 0; i < this.aules.size(); i++) {
-            System.out.print(this.aules.get(i).getCodi() + ", ");
+            System.out.print(this.aules.get(i).getCodi());
+            if (i < this.aules.size() - 1) System.out.print(", ");
         }
         System.out.println("");
     }

@@ -1,7 +1,8 @@
 
 package domini;
 
-public class Grup {
+public class Grup
+{
     private String codiAssig;
     private int numGrup;
     private int capacitat;
@@ -16,6 +17,12 @@ public class Grup {
         this.codiAssig = codi;
         this.numGrup = num;
         this.capacitat = capacitat;
+    }
+
+    public Grup(Grup g) {
+        this.codiAssig = g.getCodiAssig();
+        this.numGrup = g.getNumGrup();
+        this.capacitat = g.getCapacitat();
     }
     
     public String getCodiAssig(){
@@ -43,6 +50,10 @@ public class Grup {
     }
     
     public void printGrup(){
-        System.out.println("   Grup:" + this.numGrup);
+        System.out.println("      Grup: [" + this.codiAssig + ", " + this.numGrup + "]");
+    }
+
+    public void printGrupLong() {
+        System.out.println("      Grup: [" + this.codiAssig + ", g:" + this.numGrup + ", " + this.capacitat + "pers]");
     }
 }

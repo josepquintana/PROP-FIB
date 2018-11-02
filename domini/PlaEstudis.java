@@ -1,11 +1,9 @@
 package domini;
 
-import java.util.ArrayList;
-
 public class PlaEstudis
 {
     private String nomPla;
-    private int credits;
+    private double credits;
     private Assignatures assignatures;
     private Titulacio titulacio;
 
@@ -74,7 +72,7 @@ public class PlaEstudis
         return this.nomPla;
     }
 
-    public int getCredits() {
+    public double getCredits() {
         return this.credits;
     }
 
@@ -109,8 +107,8 @@ public class PlaEstudis
         this.nomPla = nomPla;
     }
 
-    // funcio inutil...
     public void setCredits() {
+        // funcio inutil...
         this.calculaCredits();
     }
 
@@ -123,26 +121,27 @@ public class PlaEstudis
         this.titulacio = titulacio;
     }
 
-    public void printPlaEstudisLong() {
-        System.out.println("  Pla d'Estudis:");
-        System.out.println("   nomPlaEstudis: " + this.nomPla);
-        System.out.println("   credits: " + this.credits);
-        this.assignatures.printAssignaturesLong();
-        this.titulacio.printTitulacio();
-    }
-
-    public void printPlaEstudis() {
-        System.out.println("  Pla d'Estudis:");
-        System.out.println("   nomPlaEstudis: " + this.nomPla);
-        System.out.println("   credits: " + this.credits);
-        this.assignatures.printAssignatures();
-        this.titulacio.printTitulacio();
-    }
-    
     public void calculaCredits(){
         this.credits = 0;
         for(int i = 0; i < this.assignatures.mida(); i++){
             this.credits += this.assignatures.getAssignatura(i).getCredits();
         }
     }
+
+    public void printPlaEstudisLong() {
+        System.out.println("  Pla d'Estudis:");
+        this.titulacio.printTitulacioLong();
+        System.out.println("   nomPlaEstudis: " + this.nomPla);
+        System.out.println("   credits: " + this.credits + " ECTS");
+        this.assignatures.printAssignaturesLong();
+    }
+
+    public void printPlaEstudis() {
+        System.out.println("  Pla d'Estudis:");
+        this.titulacio.printTitulacio();
+        System.out.println("   nomPlaEstudis: " + this.nomPla);
+        System.out.println("   credits: " + (int)this.credits + " ECTS");
+        this.assignatures.printAssignatures();
+    }
+
 }
