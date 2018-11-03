@@ -155,5 +155,14 @@ public class CentreDocent
         this.aules.printAules();
         this.plansDeEstudis.printPlansDeEstudis();
     }
+
+    public void printCentreDocentXS() {
+        System.out.println("\n> CentreDocent:");
+        System.out.println(" nomCentre: " + this.nomCentre);
+        this.periodeLectiu.printPeriodeLectiu();
+        this.jornadaLectiva.printJornadaLectiva();
+        this.aules.printAules();
+        this.plansDeEstudis.printPlansDeEstudisXS();
+    }
 }
 

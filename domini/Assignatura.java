@@ -234,7 +234,7 @@ public class Assignatura
         else System.out.print(this.credits + "\t");
         System.out.print("\tnGrups: " + this.grups.size());
         if (this.teCorrequisits()) { System.out.print("\t\t correq: "); this.printCorrequisits(); }
-        System.out.println("");
+        System.out.print("\n");
     }
 
 }

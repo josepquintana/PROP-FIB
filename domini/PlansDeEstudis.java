@@ -43,11 +43,6 @@ public class PlansDeEstudis {
         return ret;
     }
 
-    public boolean modificarPlaEstudis(PlaEstudis pe) {
-        // no es pot -> s'ha de eliminar i crear amb els nous parametres
-        return false;
-    }
-
     public PlaEstudis getPlaEstudis(int i) {
         return this.plansDeEstudis.get(i);
     }
@@ -79,14 +74,21 @@ public class PlansDeEstudis {
     public void printPlansDeEstudisLong() {
         System.out.println(" Plans de Estudi: [Long Format]");
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudisLong(); System.out.println("");
+            this.plansDeEstudis.get(i).printPlaEstudisLong(); System.out.print("\n");
         }
     }
 
     public void printPlansDeEstudis() {
         System.out.println(" PlansDeEstudis:");
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudis(); System.out.println("");
+            this.plansDeEstudis.get(i).printPlaEstudis();
+        }
+    }
+
+    public void printPlansDeEstudisXS() {
+        System.out.println(" PlansDeEstudis:");
+        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
+            this.plansDeEstudis.get(i).printPlaEstudisXS();
         }
     }
 
