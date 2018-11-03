@@ -22,17 +22,18 @@ public class Main
     private static Assignacio asg;
 
     // Execution-control variables
-    private static boolean printInputLines      = !true; // counter // final #
-    private static boolean printCentreDocent    = true;
-    private static boolean printLongFormat      = !true;
+    private static int printInputLines      = 0;     // 0 -> noPrint; 1 -> printInputLines  // counter // final #
+    private static int printCentreDocent    = 2;     // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
+
 
     public static void main(String[] args) throws Exception
     {
         openFile();
         int inputCounter = 0;
+        //while ((op = readNextLine()).charAt(0) != '@') {
         while ((op = readNextLine()) != null) {
             if (op.charAt(0) == '#') continue; // this input line is a comment
-            if (printInputLines) System.out.println("· Input:   " + op);
+            if (printInputLines == 1) System.out.println("· Input:   " + op);
             evaluateCommand(op);
             ++inputCounter;
         }
@@ -40,10 +41,10 @@ public class Main
         System.out.println("Read " + inputCounter + " from the input file.");
         closeFile();
 
-        if (printCentreDocent) {
-            if (printLongFormat) cd.printCentreDocentLong();
-            else cd.printCentreDocent();
-        }
+        if      (printCentreDocent == 1) cd.printCentreDocentXS();
+        else if (printCentreDocent == 2) cd.printCentreDocent();
+        else if (printCentreDocent == 3) cd.printCentreDocentLong();
+        else;    // doNotPrint()
 
     }
 
@@ -111,6 +112,7 @@ public class Main
 
         catch (Exception e) {
             System.out.print("> !Error al evaluar comanda del fitxer: " + e.getMessage() + "\n");
+            throw new Exception();
         }
     }
 

@@ -81,7 +81,14 @@ public class PlansDeEstudis {
     public void printPlansDeEstudis() {
         System.out.println(" PlansDeEstudis:");
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudis(); System.out.print("\n");
+            this.plansDeEstudis.get(i).printPlaEstudis();
+        }
+    }
+
+    public void printPlansDeEstudisXS() {
+        System.out.println(" PlansDeEstudis:");
+        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
+            this.plansDeEstudis.get(i).printPlaEstudisXS();
         }
     }
 

@@ -7,6 +7,7 @@
 # "Titulacio", nomTitulacio, tipus
 # "Pla Estudis", nomPla
 # "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, alumnes/grup [, correquisit_1, .. correquisit_N]
+# "Assignacio", ......
 #
 #
 Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
@@ -59,3 +60,4 @@ Assignatura, EngInf EEES, PAE, Projecte Aplicat d'Enginyeria, 6, 8, 50, 10
 Assignatura, EngInf EEES, TFG, Treball de Fi de Grau, 18, 8, 1000, 1000
 #
 # end of input
+#

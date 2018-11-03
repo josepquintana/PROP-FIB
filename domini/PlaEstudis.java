@@ -142,6 +142,19 @@ public class PlaEstudis
         System.out.println("   nomPlaEstudis: " + this.nomPla);
         System.out.println("   credits: " + (int)this.credits + " ECTS");
         this.assignatures.printAssignatures();
+        System.out.print("\n");
+    }
+
+    public void printPlaEstudisXS() {
+        System.out.println("  Pla d'Estudis:");
+        this.titulacio.printTitulacio();
+        System.out.println("   nomPlaEstudis: " + this.nomPla);
+        System.out.println("   credits: " + (int)this.credits + " ECTS");
+        for (int i = 0; i < this.assignatures.mida(); i++) {
+            if (i == 0) System.out.print("   Assignatures: " + this.assignatures.getAssignatura(i).getCodi());
+            else System.out.print(", " + this.assignatures.getAssignatura(i).getCodi());
+        }
+        System.out.print("\n");
     }
 
 }
