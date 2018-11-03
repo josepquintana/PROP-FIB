@@ -7,8 +7,8 @@ public class Assignatura
     private String codi;
     private String nom;
     private double credits;
-    private int nivell; //a l'esquema no hi és però crec que és necessari per aplicar les restriccions
-    private ArrayList<Assignatura> correquisits; // Requisits as a class?
+    private int nivell;
+    private ArrayList<Assignatura> correquisits;
     private ArrayList<Grup> grups;
 
     public Assignatura() {
@@ -237,5 +237,4 @@ public class Assignatura
         System.out.println("");
     }
 
-    // double credits
 }
