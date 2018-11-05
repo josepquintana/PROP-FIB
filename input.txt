@@ -4,24 +4,67 @@
 # usage:
 # "Cente Docent", nomCentre, horaIni, minIni, horaFi, minFi, dayIni, monthIni, yearIni, dayFi, monthFi, yearFi 
 # "Aula", codiAula, capacitat  
-# "Titulacio", nomTitulacio, tipus
-# "Pla Estudis", nomPla
+# "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio
 # "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, alumnes/grup [, correquisit_1, .. correquisit_N]
 # "Assignacio", ......
 #
 #
 Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
-Aula, A5E02, 120
-Aula, A5S108, 30
-Aula, A6201, 80
-Aula, D6003, 15
-Aula, A1S101, 30
-Aula, C6S306, 20
-Aula, B5S102, 25
-Aula, A4105, 60
-Aula, A5001, 90
-Titulacio, Enginyeria Informatica, GRAU
-Pla Estudis, EngInf EEES
+Aula, A6201, 46
+Aula, A6202, 76
+Aula, A6203, 50
+Aula, A6204, 40
+Aula, A6205, 40
+Aula, A6206, 40
+Aula, A6101, 46
+Aula, A6102, 76
+Aula, A6103, 50
+Aula, A6104, 40
+Aula, A6105, 40
+Aula, A6106, 40
+Aula, A6E01, 140
+Aula, A6E02, 140
+Aula, A6001, 120
+Aula, A6002, 120
+Aula, A5201, 40
+Aula, A5202, 64
+Aula, A5203, 40
+Aula, A5204, 40
+Aula, A5101, 46
+Aula, A5102, 76
+Aula, A5103, 50
+Aula, A5104, 40
+Aula, A5105, 40
+Aula, A5106, 40
+Aula, A5E01, 140
+Aula, A5E02, 140
+Aula, A5001, 120
+Aula, A5002, 120
+Aula, A4202, 64
+Aula, A4102, 76
+Aula, A4002, 120
+Aula, A5S102, 25
+Aula, A5S103, 14
+Aula, A5S104, 21
+Aula, A5S105, 14
+Aula, A5S108, 23
+Aula, A5S109, 25
+Aula, A5S111, 14
+Aula, A5S112, 14
+Aula, A5S113, 25
+Aula, B5S101, 22
+Aula, B5S201, 23
+Aula, B5S202, 22
+Aula, C6S301, 15
+Aula, C6S302, 29
+Aula, C6S303, 16
+Aula, C6S304, 10
+Aula, C6S306, 21
+Aula, C6S308, 21
+Aula, C6S309, 21
+Aula, A1S101, 40
+Aula, D6003, 20
+Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU
 Assignatura, EngInf EEES, PRO1, Programació I, 7.5, 1, 450, 50
 Assignatura, EngInf EEES, F, Física, 7.5, 1, 450, 50
 Assignatura, EngInf EEES, IC, Introducció als Computadors, 7.5, 1, 450, 50

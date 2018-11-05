@@ -8,11 +8,11 @@ public class CentreDocent
     private Aules aules;
     private PlansDeEstudis plansDeEstudis;
 
-    public CentreDocent(String nomCentre) {
-        this.nomCentre = nomCentre;
-        this.periodeLectiu = new PeriodeLectiu();
+    public CentreDocent() {
+        this.nomCentre      = new String();
+        this.periodeLectiu  = new PeriodeLectiu();
         this.jornadaLectiva = new JornadaLectiva();
-        this.aules = new Aules();
+        this.aules          = new Aules();
         this.plansDeEstudis = new PlansDeEstudis();
     }
 
