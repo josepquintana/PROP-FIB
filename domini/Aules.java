@@ -107,11 +107,12 @@ public class Aules
     }
 
     public void printAules() {
-        System.out.println(" Aules:");
-        System.out.print("  ");
+        System.out.print(" Aules:");
         for (int i = 0; i < this.aules.size(); i++) {
-            System.out.print(this.aules.get(i).getCodi());
-            if (i < this.aules.size() - 1) System.out.print(", ");
+            if (i % 11 == 0) System.out.print("\n  ");                              // for indentation purposes
+            System.out.print(this.aules.get(i).getCodi());                          // print codiAula
+            if (i < this.aules.size() - 1) System.out.print(", ");                  // for presentation purposes
+            if (this.aules.get(i).getCodi().length() == 5) System.out.print(" ");   // for indentation purposes
         }
         System.out.println("");
     }

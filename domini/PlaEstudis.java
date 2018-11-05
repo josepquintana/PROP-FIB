@@ -128,16 +128,17 @@ public class PlaEstudis
         }
     }
 
-    public void printPlaEstudisLong() {
-        System.out.println("  Pla d'Estudis:");
+    public void printPlaEstudisLong(int numPla) {
+        System.out.println("  Pla d'Estudis " + numPla + ":");
         this.titulacio.printTitulacioLong();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
         System.out.println("   credits: " + this.credits + " ECTS");
         this.assignatures.printAssignaturesLong();
+        System.out.print("\n");
     }
 
-    public void printPlaEstudis() {
-        System.out.println("  Pla d'Estudis:");
+    public void printPlaEstudis(int numPla) {
+        System.out.println("  Pla d'Estudis " + numPla + ":");
         this.titulacio.printTitulacio();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
         System.out.println("   credits: " + (int)this.credits + " ECTS");
@@ -145,14 +146,16 @@ public class PlaEstudis
         System.out.print("\n");
     }
 
-    public void printPlaEstudisXS() {
-        System.out.println("  Pla d'Estudis:");
+    public void printPlaEstudisXS(int numPla) {
+        System.out.println("  Pla d'Estudis " + numPla + ":");
         this.titulacio.printTitulacio();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
         System.out.println("   credits: " + (int)this.credits + " ECTS");
+        System.out.print  ("   Assignatures: ");
         for (int i = 0; i < this.assignatures.mida(); i++) {
-            if (i == 0) System.out.print("   Assignatures: " + this.assignatures.getAssignatura(i).getCodi());
-            else System.out.print(", " + this.assignatures.getAssignatura(i).getCodi());
+            if (i % 19 == 0) System.out.print("\n    ");                              // for indentation purposes
+            System.out.print(this.assignatures.getAssignatura(i).getCodi());        // print codiAssignatura
+            if (i < this.assignatures.mida() - 1) System.out.print(", ");           // for presentation purposes
         }
         System.out.print("\n");
     }
