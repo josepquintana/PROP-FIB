@@ -33,9 +33,12 @@ public class Horari
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
                 Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
                 assignatures.getAssignatura(asg.getGrupAssignat().getCodiAssig()).eliminarGrupAssignatura(asg.getGrupAssignat());
-                assignatures.getAssignatura(asg.getGrupAssignat().getCodiAssig())
+                if (!assignatures.getAssignatura(asg.getGrupAssignat().getCodiAssig()).teGrups()) {
+                    Assignatura a = assignatures.getAssignatura(asg.getGrupAssignat().getCodiAssig());
+                    assignatures.eliminarAssignatura(a);
+                }
             }
-            Grup g = hL.
+            Grup g = hL. ///////////
         }
         this.OmplirHorari(horesLectives);
 
