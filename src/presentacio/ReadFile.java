@@ -33,7 +33,7 @@ public class ReadFile
         closeFile();
     }
 
-    private static void openFile() throws IOException {
+    public static void openFile() throws IOException {
 
         String workingDirectory = Paths.get(".\\input").toAbsolutePath().normalize().toString();
 
@@ -102,7 +102,7 @@ public class ReadFile
             else if (categoria.equals("Pla Estudis")) {
                 String nomPlaEstudis = s.next();
                 Titulacio t = new Titulacio(s.next(), s.next());
-                PlaEstudis pe = new PlaEstudis(nomPlaEstudis, t);
+                PlaEstudis pe = new PlaEstudis(nomPlaEstudis, cd.getJornadaLectiva(), t); // El PE te la mateixa JL que CD
                 cd.afegirPlaEstudis(pe);
             }
             else if (categoria.equals("Assignatura")) {

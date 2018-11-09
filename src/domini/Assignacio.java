@@ -22,6 +22,12 @@ public class Assignacio
         this.codiAula = aula.getCodi();
     }
 
+    public Assignacio(Assignacio asg){
+        this.grup = new Grup();
+        this.grup = asg.getGrupAssignat();
+        this.codiAula = asg.getCodiAulaAssignada();
+    }
+
     public void setGrup(Grup grup){
         this.grup = new Grup();
         this.grup = grup;

@@ -22,7 +22,12 @@ public class Assignatures
         this.it = assignatures.iterator();
     }
 
-    // clone()
+    public Assignatures(Assignatures assignatures) {
+        this.assignatures = new ArrayList<>();
+        this.assignatures = assignatures.getAssignatures();
+        this.it = new ArrayList<Assignatura>().iterator();
+        this.it = this.assignatures.iterator();
+    }
 
     public boolean existeixAssignatura(Assignatura assig) {
         for (int i = 0; i < this.assignatures.size(); i++) {
@@ -44,6 +49,14 @@ public class Assignatures
         boolean ret = this.assignatures.remove(a);
         if(!ret) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
         return ret;
+    }
+
+    ////// mirar si peta remove()
+    public boolean eliminarAssignatura(int i) {
+        Assignatura a = new Assignatura();
+        a = this.assignatures.remove(i);
+        if(a == null) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
+        return true;
     }
 
     public boolean modificarAssignatura(Assignatura a) {

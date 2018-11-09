@@ -21,6 +21,13 @@ public class Aules
         this.it = this.aules.iterator();
     }
 
+    public Aules(Aules aules) {
+        this.aules = new ArrayList<>();
+        this.aules = aules.getAules();
+        this.it = new ArrayList<Aula>().iterator();
+        this.it = this.aules.iterator();
+    }
+
     public boolean existeixAula(Aula aula) {
         for (int i = 0; i < this.aules.size(); i++) {
             if (this.aules.get(i).equals(aula)) return true;
@@ -28,18 +35,20 @@ public class Aules
         return false;
     }
 
-    public void afegirAula(Aula a) throws MyException{
+    public boolean afegirAula(Aula a) throws MyException{
         if(existeixAula(a)) {
             System.out.println(">>> afegirAula(): L'aula " + a.getCodi() + " ja existeix al sistema");
-            return;
+            return false;
         }
         boolean ret = this.aules.add(a);
         if(!ret) throw new MyException(">>> Error: Aula no afegida"); // ¿ pot passar ?
+        return ret;
     }
 
-    public void eliminarAula(Aula a) {
+    public boolean eliminarAula(Aula a) {
         boolean ret = this.aules.remove(a);
         if(!ret) System.out.println(">>> eliminarAula(): L'aula " + a.getCodi() + " no existeix al sistema");
+        return ret;
     }
 
     public Aula eliminarAula(int i) throws MyException {

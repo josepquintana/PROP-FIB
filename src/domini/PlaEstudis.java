@@ -4,47 +4,56 @@ public class PlaEstudis
 {
     private String nomPla;
     private double credits;
-    private Assignatures assignatures;
+    private JornadaLectiva jornadaLectiva;
     private Titulacio titulacio;
+    private Assignatures assignatures;
+    private Aules aules; //// aules per cada pla de estudis
+    private Horari horari;
 
     public PlaEstudis() {
         nomPla = new String();
-        credits = 0;   
-        assignatures = new Assignatures();
+        credits = 0;
+        jornadaLectiva = new JornadaLectiva();
         titulacio = new Titulacio();
+        assignatures = new Assignatures();
+        aules = new Aules();
     }
 
     public PlaEstudis(String nomPla) {
         this.nomPla = nomPla;
-        this.credits = 0;    
-        this.assignatures = new Assignatures();
+        this.credits = 0;
+        this.jornadaLectiva = new JornadaLectiva();
         this.titulacio = new Titulacio();
+        this.assignatures = new Assignatures();
+        this.aules = new Aules();
     }
 
-    public PlaEstudis(String nomPla, Titulacio titulacio) {
+    public PlaEstudis(String nomPla, JornadaLectiva jornadaLectiva, Titulacio titulacio) {
         this.nomPla = nomPla;
-        this.credits = 0; 
+        this.credits = 0;
+        this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
+        this.titulacio = new Titulacio(titulacio);
         this.assignatures = new Assignatures();
-        this.titulacio = new Titulacio();
-        this.titulacio = titulacio;
+        this.aules = new Aules();
+        this.horari = new Horari(jornadaLectiva);
     }
 
     public PlaEstudis(String nomPla, Assignatures assignatures, Titulacio titulacio) {
         this.nomPla = nomPla;
-        this.assignatures = new Assignatures();
-        this.assignatures = assignatures;
-        this.titulacio = new Titulacio();
-        this.titulacio = titulacio;
+        this.assignatures = new Assignatures(assignatures);
+        this.titulacio = new Titulacio(titulacio);
         this.calculaCredits();
+        this.aules = new Aules();
     }
 
     public PlaEstudis(PlaEstudis pe) {
         this.nomPla = pe.getNomPla();
         this.credits = pe.getCredits();
-        this.assignatures = new Assignatures();
-        this.assignatures = pe.getAssignatures();
-        this.titulacio = new Titulacio();
-        this.titulacio = pe.getTitulacio();
+        this.jornadaLectiva = pe.getJornadaLectiva();
+        this.titulacio = new Titulacio(pe.getTitulacio());
+        this.assignatures = new Assignatures(pe.getAssignatures());
+        this.aules = new Aules(pe.aules);
+        this.horari = new Horari(pe.getHorari());
     }
 
     public boolean existeixAssignaturaAlPlaEstudis(Assignatura a) {
@@ -63,7 +72,17 @@ public class PlaEstudis
         return ret;
     }
 
-    public boolean equal(PlaEstudis pe) {
+    public boolean afegirAulaAlPlaEstudis(Aula a) throws MyException{
+        boolean ret = this.aules.afegirAula(a);
+        return ret;
+    }
+
+    public boolean eliminarAulaDelPlaEstudis(Aula a) throws MyException {
+        boolean ret = this.aules.eliminarAula(a);
+        return ret;
+    }
+
+    public boolean equals(PlaEstudis pe) {
         if (this.nomPla.equals(pe.getNomPla()) && this.titulacio.equals(pe.getTitulacio())) return true;
         return false;
     }
@@ -76,12 +95,16 @@ public class PlaEstudis
         return this.credits;
     }
 
-    public Assignatures getAssignatures() {
-        return this.assignatures;
+    public JornadaLectiva getJornadaLectiva() {
+        return this.jornadaLectiva;
     }
 
     public Titulacio getTitulacio() {
         return this.titulacio;
+    }
+
+    public Assignatures getAssignatures() {
+        return this.assignatures;
     }
 
     public Assignatura getAssignatura(int i) {
@@ -95,12 +118,39 @@ public class PlaEstudis
         return null;
     }
 
+    public Aules getAules() {
+        return this.aules;
+    }
+
+    public Aula getAula(int i) {
+        return this.aules.getAula(i);
+    }
+
+    public Aula getAula(String codi) {
+        for (int i = 0; i < this.aules.mida(); i++) {
+            if(this.aules.getAula(i).getCodi().equals(codi)) return this.aules.getAula(i);
+        }
+        return null;
+    }
+
+    public Horari getHorari() {
+        return this.horari;
+    }
+
     public boolean hiHaAssignatures() {
         return this.assignatures.esBuit();
     }
 
     public int quantesAssignatures() {
         return this.assignatures.mida();
+    }
+
+    public boolean hiHiAules() {
+        return this.aules.esBuit();
+    }
+
+    public int quantesAules() {
+        return this.aules.mida();
     }
 
     public void setNomPla(String nomPla) {
@@ -112,20 +162,32 @@ public class PlaEstudis
         this.calculaCredits();
     }
 
-    public void setAssignatures(Assignatures assignatures) {
-        this.assignatures = assignatures;
-        this.calculaCredits();
+    public void setJornadaLectiva(JornadaLectiva jornadaLectiva) {
+        this.jornadaLectiva = jornadaLectiva;
     }
 
     public void setTitulacio(Titulacio titulacio) {
         this.titulacio = titulacio;
     }
 
-    public void calculaCredits(){
+    public void setAssignatures(Assignatures assignatures) {
+        this.assignatures = assignatures;
+        this.calculaCredits();
+    }
+
+    public void setAules(Aules aules) {
+        this.aules = aules;
+    }
+
+    public void calculaCredits() {
         this.credits = 0;
         for(int i = 0; i < this.assignatures.mida(); i++){
             this.credits += this.assignatures.getAssignatura(i).getCredits();
         }
+    }
+
+    public void generarHorari() throws MyException {
+        this.horari.GenerarHorari(this);
     }
 
     public void printPlaEstudisLong(int numPla) {
@@ -133,6 +195,7 @@ public class PlaEstudis
         this.titulacio.printTitulacioLong();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
         System.out.println("   credits: " + this.credits + " ECTS");
+        this.aules.printAulesLong();
         this.assignatures.printAssignaturesLong();
         System.out.print("\n");
     }
@@ -142,6 +205,7 @@ public class PlaEstudis
         this.titulacio.printTitulacio();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
         System.out.println("   credits: " + (int)this.credits + " ECTS");
+        this.aules.printAules();
         this.assignatures.printAssignatures();
         System.out.print("\n");
     }
@@ -151,9 +215,16 @@ public class PlaEstudis
         this.titulacio.printTitulacio();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
         System.out.println("   credits: " + (int)this.credits + " ECTS");
+        System.out.print  ("   Aules: ");
+        for (int i = 0; i < this.aules.mida(); i++) {
+            if (i % 11 == 0) System.out.print("\n    ");                            // for indentation purposes
+            System.out.print(this.aules.getAula(i).getCodi());                      // print codiAula
+            if (i < this.aules.mida() - 1) System.out.print(", ");           // for presentation purposes
+        }
+        System.out.print("\n");
         System.out.print  ("   Assignatures: ");
         for (int i = 0; i < this.assignatures.mida(); i++) {
-            if (i % 19 == 0) System.out.print("\n    ");                              // for indentation purposes
+            if (i % 19 == 0) System.out.print("\n    ");                            // for indentation purposes
             System.out.print(this.assignatures.getAssignatura(i).getCodi());        // print codiAssignatura
             if (i < this.assignatures.mida() - 1) System.out.print(", ");           // for presentation purposes
         }
