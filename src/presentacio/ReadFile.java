@@ -35,7 +35,7 @@ public class ReadFile
 
     private static void openFile() throws IOException {
 
-        String workingDirectory = Paths.get(".\\src").toAbsolutePath().normalize().toString();
+        String workingDirectory = Paths.get(".\\input").toAbsolutePath().normalize().toString();
 
         String filename = "input.txt";
         File file = new File(workingDirectory, filename);
