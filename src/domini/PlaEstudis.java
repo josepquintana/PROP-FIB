@@ -186,49 +186,87 @@ public class PlaEstudis
         }
     }
 
-    public void generarHorari() throws MyException {
-        this.horari.GenerarHorari(this);
+    public void generateHorari() throws MyException {
+        this.horari = new Horari(this.jornadaLectiva);
+
+        System.out.println("\n\n in PlaEstudis.generateHorari()");
+
+        Grup g = new Grup("EDA", 10, 25);
+        Grup j = new Grup("PROP", 10, 25);
+        Grup k = new Grup("IDI", 10, 25);
+        Grup q = new Grup("EDA", 20, 25);
+        Grup w = new Grup("EDA", 30, 25);
+        Grup t = new Grup("PROP", 20, 25);
+
+        Assignacio a = new Assignacio(g, "A5101");
+        Assignacio b = new Assignacio(j, "A5102");
+        Assignacio c = new Assignacio(k, "A5103");
+        Assignacio d = new Assignacio(q, "A5104");
+        Assignacio e = new Assignacio(w, "A5105");
+        Assignacio f = new Assignacio(t, "A5106");
+
+        HoraLectiva hL = new HoraLectiva();
+        hL.afegirAssignacio(a);
+        hL.afegirAssignacio(b);
+        hL.afegirAssignacio(c);
+        hL.afegirAssignacio(d);
+
+
+        HoraLectiva kk = new HoraLectiva();
+        kk.afegirAssignacio(e);
+        kk.afegirAssignacio(f);
+
+        this.horari.afegirHoraLectiva(hL);
+        this.horari.afegirHoraLectiva(kk, 3, 17);
+
+        //this.horari.GenerarHorari(this);
     }
 
     public void printPlaEstudisLong(int numPla) {
         System.out.println("  Pla d'Estudis " + numPla + ":");
-        this.titulacio.printTitulacioLong();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
+        this.titulacio.printTitulacioLong();
         System.out.println("   credits: " + this.credits + " ECTS");
-        this.aules.printAulesLong();
+        this.aules.printAulesLong(3);
         this.assignatures.printAssignaturesLong();
         System.out.print("\n");
     }
 
     public void printPlaEstudis(int numPla) {
         System.out.println("  Pla d'Estudis " + numPla + ":");
-        this.titulacio.printTitulacio();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
+        this.titulacio.printTitulacio();
         System.out.println("   credits: " + (int)this.credits + " ECTS");
-        this.aules.printAules();
+        this.jornadaLectiva.printJornadaLectiva();
+        this.aules.printAules(3);
         this.assignatures.printAssignatures();
         System.out.print("\n");
     }
 
     public void printPlaEstudisXS(int numPla) {
         System.out.println("  Pla d'Estudis " + numPla + ":");
-        this.titulacio.printTitulacio();
         System.out.println("   nomPlaEstudis: " + this.nomPla);
+        this.titulacio.printTitulacio();
         System.out.println("   credits: " + (int)this.credits + " ECTS");
+        this.jornadaLectiva.printJornadaLectiva();
         System.out.print  ("   Aules: ");
         for (int i = 0; i < this.aules.mida(); i++) {
-            if (i % 11 == 0) System.out.print("\n    ");                            // for indentation purposes
-            System.out.print(this.aules.getAula(i).getCodi());                      // print codiAula
-            if (i < this.aules.mida() - 1) System.out.print(", ");           // for presentation purposes
+            if (i % 11 == 0) System.out.print("\n    ");                                // for indentation purposes
+            System.out.print(this.aules.getAula(i).getCodi());                          // print codiAula
+            if (i < this.aules.mida() - 1) System.out.print(", ");                      // for presentation purposes
+            if (this.aules.getAula(i).getCodi().length() == 5) System.out.print(" ");   // for indentation purposes
+
         }
         System.out.print("\n");
         System.out.print  ("   Assignatures: ");
         for (int i = 0; i < this.assignatures.mida(); i++) {
-            if (i % 19 == 0) System.out.print("\n    ");                            // for indentation purposes
-            System.out.print(this.assignatures.getAssignatura(i).getCodi());        // print codiAssignatura
-            if (i < this.assignatures.mida() - 1) System.out.print(", ");           // for presentation purposes
+            if (i % 19 == 0) System.out.print("\n    ");                                // for indentation purposes
+            System.out.print(this.assignatures.getAssignatura(i).getCodi());            // print codiAssignatura
+            if (i < this.assignatures.mida() - 1) System.out.print(", ");               // for presentation purposes
         }
         System.out.print("\n");
+
+        this.horari.printHorari();
     }
 
 }

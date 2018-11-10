@@ -95,15 +95,16 @@ public class ReadFile
                 cd.setPeriodeLectiu(periodeLectiu);
                 cd.setJornadaLectiva(jornadaLectiva);
             }
-            else if (categoria.equals("Aula")) {
-                Aula aula = new Aula(s.next(), Integer.parseInt(s.next()));
-                cd.assignarAulaAlCentreDocent(aula);
-            }
             else if (categoria.equals("Pla Estudis")) {
                 String nomPlaEstudis = s.next();
                 Titulacio t = new Titulacio(s.next(), s.next());
                 PlaEstudis pe = new PlaEstudis(nomPlaEstudis, cd.getJornadaLectiva(), t); // El PE te la mateixa JL que CD
                 cd.afegirPlaEstudis(pe);
+            }
+            else if (categoria.equals("Aula")) {
+                String nomPla = s.next();
+                Aula aula = new Aula(s.next(), Integer.parseInt(s.next()));
+                cd.afegirAulaAlPlaEstudis(nomPla, aula);
             }
             else if (categoria.equals("Assignatura")) {
                 String nomPla = s.next();
@@ -127,7 +128,6 @@ public class ReadFile
                 }
                 cd.afegirAssignaturaAlPlaEstudis(nomPla, a);
             }
-            else if (categoria.equals("Assignacio")) {  }
             else;
         }
 

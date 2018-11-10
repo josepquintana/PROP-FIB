@@ -25,9 +25,9 @@ public class GeneradorHora {
             if (assigFuturas.getAssignatura(0).getGrups().size() == 0) {
                 assigFuturas.eliminarAssignatura(0);
             }
-            for ()
+//            for ()
 
-                return
+//                return
         }
     }
 }

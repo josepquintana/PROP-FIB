@@ -42,6 +42,14 @@ public class CentreDocent
         this.plansDeEstudis = cd.getPlansDeEstudis();
     }
 
+    public void generateHorariPlaEstudis(String nomPla) throws MyException {
+        this.plansDeEstudis.getPlaEstudis(nomPla).generateHorari();
+    }
+
+    public void generateHorariPlaEstudis(int numPla) throws MyException {
+        this.plansDeEstudis.getPlaEstudis(numPla).generateHorari();
+    }
+
     public boolean afegirPlaEstudis(PlaEstudis pe) {
         return this.plansDeEstudis.afegirPlaEstudis(pe);
     }
@@ -81,7 +89,9 @@ public class CentreDocent
     public Aules getTotesLesAules() throws MyException {
         Aules aules = new Aules();
         for (int i = 0; i < this.plansDeEstudis.mida(); i++) {
-            aules.afegirAula(this.plansDeEstudis.getPlaEstudis(i).getAula(i));
+            for (int j = 0; j < this.plansDeEstudis.getPlaEstudis(i).getAules().mida(); j++) {
+                aules.afegirAula(this.plansDeEstudis.getPlaEstudis(i).getAula(j));
+            }
         }
         return aules;
     }
@@ -124,18 +134,18 @@ public class CentreDocent
     public void printCentreDocentLong() throws MyException {
         System.out.println("\n> CentreDocent [Long Format]:\n");
         System.out.println(" nomCentre: " + this.nomCentre + "\n");
-        this.periodeLectiu.printPeriodeLectiu();       System.out.println("");
-        this.jornadaLectiva.printJornadaLectiva();     System.out.println("");
-        this.getTotesLesAules().printAulesLong();      System.out.println("");
-        this.plansDeEstudis.printPlansDeEstudisLong(); System.out.println("");
+        this.periodeLectiu.printPeriodeLectiu();                System.out.println("");
+        this.jornadaLectiva.printJornadaLectivaLong();          System.out.println("");
+        this.getTotesLesAules().printAulesLong(1);    System.out.println("");
+        this.plansDeEstudis.printPlansDeEstudisLong();          System.out.println("");
     }
 
     public void printCentreDocent() throws MyException {
         System.out.println("\n> CentreDocent:");
         System.out.println(" nomCentre: " + this.nomCentre);
         this.periodeLectiu.printPeriodeLectiu();
-        this.jornadaLectiva.printJornadaLectiva();
-        this.getTotesLesAules().printAules();
+        this.jornadaLectiva.printJornadaLectivaLong();
+        this.getTotesLesAules().printAules(1);
         this.plansDeEstudis.printPlansDeEstudis();
     }
 
@@ -143,8 +153,8 @@ public class CentreDocent
         System.out.println("\n> CentreDocent:");
         System.out.println(" nomCentre: " + this.nomCentre);
         this.periodeLectiu.printPeriodeLectiu();
-        this.jornadaLectiva.printJornadaLectiva();
-        this.getTotesLesAules().printAules();
+        this.jornadaLectiva.printJornadaLectivaLong();
+        this.getTotesLesAules().printAules(1);
         this.plansDeEstudis.printPlansDeEstudisXS();
     }
 }

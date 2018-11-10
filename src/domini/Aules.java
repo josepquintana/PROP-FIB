@@ -108,17 +108,20 @@ public class Aules
         return this.aules.isEmpty();
     }
 
-    public void printAulesLong() {
-        System.out.println(" Aules: [Long Format]");
+    public void printAulesLong(int indentation) {
+        if (indentation == 1) System.out.println(" Aules: [Long Format]");
+        if (indentation == 3) System.out.println("   Aules: [Long Format]");
         for (int i = 0; i < this.aules.size(); i++) {
-            this.aules.get(i).printAula();
+            this.aules.get(i).printAulaLong(indentation);
         }
     }
 
-    public void printAules() {
-        System.out.print(" Aules:");
+    public void printAules(int indentation) {                                       //int indentation: blank sapces depend on calling method
+        if (indentation == 1) System.out.print(" Aules:");
+        if (indentation == 3) System.out.print("   Aules:");
         for (int i = 0; i < this.aules.size(); i++) {
-            if (i % 11 == 0) System.out.print("\n  ");                              // for indentation purposes
+            if (i % 11 == 0 && indentation == 1) System.out.print("\n  ");        // for indentation purposes (1)
+            if (i % 11 == 0 && indentation == 3) System.out.print("\n    ");        // for indentation purposes (1)
             System.out.print(this.aules.get(i).getCodi());                          // print codiAula
             if (i < this.aules.size() - 1) System.out.print(", ");                  // for presentation purposes
             if (this.aules.get(i).getCodi().length() == 5) System.out.print(" ");   // for indentation purposes

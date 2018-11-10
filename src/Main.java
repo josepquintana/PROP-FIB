@@ -1,4 +1,5 @@
 import domini.CentreDocent;
+import domini.MyException;
 import presentacio.ReadFile;
 
 public class Main
@@ -7,13 +8,15 @@ public class Main
     public static CentreDocent cd;
 
     // Execution-control variables
-    private static int printMode = 2;     // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
+    private static int printMode = 0;     // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
 
     public static void main(String[] args) throws Exception
     {
         printHello();
         cd = new CentreDocent();
         ReadFile.main(cd);
+        cd.generateHorariPlaEstudis(0);
+        cd.getPlaEstudis(0).getHorari().printHorariEasy();
         printDades(cd, printMode);
     }
 
@@ -25,7 +28,7 @@ public class Main
         System.out.print("\n");
     }
 
-    private static void printDades(CentreDocent cd, int printMode) {
+    private static void printDades(CentreDocent cd, int printMode) throws MyException {
         if      (printMode == 1) cd.printCentreDocentXS();
         else if (printMode == 2) cd.printCentreDocent();
         else if (printMode == 3) cd.printCentreDocentLong();
