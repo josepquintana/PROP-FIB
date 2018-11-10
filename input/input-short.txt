@@ -1,0 +1,32 @@
+# 
+# Input File for "GeneradorHoraris PROP"
+# 
+# usage:
+# "Cente Docent", nomCentre, horaIni, minIni, horaFi, minFi, dayIni, monthIni, yearIni, dayFi, monthFi, yearFi 
+# "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio
+# "Aula", nomPla, codiAula, capacitat  
+# "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, alumnes/grup [, correquisit_1, .. correquisit_N]
+#
+#
+Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
+Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU
+Aula, EngInf EEES, A6201, 46
+Aula, EngInf EEES, A6202, 76
+Aula, EngInf EEES, A6203, 50
+Aula, EngInf EEES, A6204, 40
+Aula, EngInf EEES, A6205, 40
+Aula, EngInf EEES, A6206, 40
+Aula, EngInf EEES, A5201, 40
+Aula, EngInf EEES, A5202, 40
+Aula, EngInf EEES, A5203, 40
+Aula, EngInf EEES, A5204, 40
+Aula, EngInf EEES, A5205, 40
+Aula, EngInf EEES, A5206, 40
+Assignatura, EngInf EEES, A, Assig A, 48, 1, 50, 50
+Assignatura, EngInf EEES, B, Assig B, 48, 1, 50, 50
+Assignatura, EngInf EEES, C, Assig C, 48, 2, 50, 50
+Assignatura, EngInf EEES, D, Assig D, 48, 3, 50, 50, C
+Assignatura, EngInf EEES, E, Assig E, 48, 4, 50, 50
+#
+# end of input
+#
