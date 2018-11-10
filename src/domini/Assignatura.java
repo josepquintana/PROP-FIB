@@ -8,7 +8,7 @@ public class Assignatura
     private String nom;
     private double credits;
     private int nivell;
-    private ArrayList<Assignatura> correquisits;            // AL<StringCodi>
+    private ArrayList<String> correquisits;            // Comprobar correquisits bidireccionals
     private ArrayList<Grup> grups;
 
     public Assignatura() {
@@ -38,7 +38,7 @@ public class Assignatura
         this.grups = new ArrayList<>();
     }
 
-    public Assignatura(String codi, String nom, double credits, int nivell, ArrayList<Assignatura> correqs, ArrayList<Grup> grups) {
+    public Assignatura(String codi, String nom, double credits, int nivell, ArrayList<String> correqs, ArrayList<Grup> grups) {
         this.codi = codi;
         this.nom = nom;
         this.credits = credits;
@@ -68,14 +68,14 @@ public class Assignatura
 
     public boolean existeixRequisit(Assignatura assig) {
         for (int i = 0; i < this.correquisits.size(); i++) {
-            if(this.correquisits.get(i).equals(assig)) return true;
+            if(this.correquisits.get(i).equals(assig.getCodi())) return true;
         }
         return false;
     }
 
     public boolean existeixRequisit(String codi) {
         for (int i = 0; i < this.correquisits.size(); i++) {
-            if(this.correquisits.get(i).getCodi().equals(codi)) return true;
+            if(this.correquisits.get(i).equals(codi)) return true;
         }
         return false;
     }
@@ -85,13 +85,13 @@ public class Assignatura
             System.out.println(">>> afegirRequisitAssignatura(): L'assignatura " + this.codi + " ja té " + a.getCodi() + "com a requisit");
             return false;
         }
-        boolean ret = this.correquisits.add(a);
+        boolean ret = this.correquisits.add(a.getCodi());
         if(!ret) throw new MyException(">>> Error: Assig.Requisit no afegit"); // ¿ pot passar ?
         return ret;
     }
 
     public boolean eliminarRequisitAssignatura(Assignatura a) {
-        boolean ret = this.correquisits.remove(a);
+        boolean ret = this.correquisits.remove(a.getCodi());
         if(!ret) System.out.println(">>> eliminarRequisitAssignatura(): L'assignatura " + this.codi + " no té " + a.getCodi() + " com a requisit");
         return ret;
     }
@@ -157,7 +157,7 @@ public class Assignatura
         this.nivell = nivell;
     }
     
-    public void setCorrequisits(ArrayList<Assignatura> correqs) {
+    public void setCorrequisits(ArrayList<String> correqs) {
         this.correquisits = correqs;
     }
 
@@ -181,11 +181,11 @@ public class Assignatura
         return this.nivell;
     }
     
-    public ArrayList<Assignatura> getCorrequisits() {
+    public ArrayList<String> getCorrequisits() {
         return this.correquisits;
     }
 
-    public Assignatura getCorrequisit(int i) {
+    public String getCorrequisit(int i) {
         return this.correquisits.get(i);
     }
 
@@ -207,7 +207,7 @@ public class Assignatura
 
     private void printCorrequisits(){
         for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.print(this.correquisits.get(i).getCodi());
+            System.out.print(this.correquisits.get(i));
             if (i < this.correquisits.size() - 1) System.out.print(", ");
         }
     }
@@ -227,7 +227,7 @@ public class Assignatura
         System.out.println("     nivell : " + this.nivell);
         System.out.println("     Correquisits:");
         for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i).getCodi() + "  \t nivell: " + this.correquisits.get(i).getNivell());
+            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i) + "  \t nivell: " + this.correquisits.get(i));                     ///BUSCAR NIVELL DEL CORREQUISIT
         }
         System.out.println("     Grups:");
         for (int i = 0; i < this.grups.size(); i++) {
