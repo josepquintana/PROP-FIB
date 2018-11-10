@@ -37,7 +37,7 @@ public class ReadFile
 
         String workingDirectory = Paths.get(".\\input").toAbsolutePath().normalize().toString();
 
-        String filename = "input.txt";
+        String filename = "input-short.txt";
         File file = new File(workingDirectory, filename);
 
         System.out.println("Reading file from: " + file.getAbsolutePath());

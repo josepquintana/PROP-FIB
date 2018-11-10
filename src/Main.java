@@ -8,16 +8,17 @@ public class Main
     public static CentreDocent cd;
 
     // Execution-control variables
-    private static int printMode = 0;     // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
+    private static int printMode = 2;     // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
 
     public static void main(String[] args) throws Exception
     {
         printHello();
         cd = new CentreDocent();
         ReadFile.main(cd);
+        printDades(cd, printMode);
         cd.generateHorariPlaEstudis(0);
         cd.getPlaEstudis(0).getHorari().printHorariEasy();
-        printDades(cd, printMode);
+        
     }
 
     private static void printHello() {

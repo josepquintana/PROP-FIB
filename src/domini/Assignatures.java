@@ -58,6 +58,17 @@ public class Assignatures
         if(a == null) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
         return true;
     }
+    
+    public boolean eliminarAssignatura(String codi) {
+        Assignatura a = new Assignatura();
+        for(int i = 0; i< assignatures.size(); ++i){
+            if(assignatures.get(i).getCodi().equals(codi)) {
+                a = this.assignatures.remove(i);
+                return true;
+            }
+         }
+        return false;
+    }
 
     public boolean modificarAssignatura(Assignatura a) {
         // no es pot -> s'ha de eliminar i crear amb els nous parametres

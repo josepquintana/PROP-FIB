@@ -22,9 +22,12 @@ public class Horari
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException {
-
-        Assignatures assignatures = new Assignatures(pe.getAssignatures());
-        Aules aules = new Aules(pe.getAules());
+        ArrayList<Assignatura> assigs = new ArrayList<>();
+        assigs = pe.getAssignatures().getAssignatures();
+        Assignatures assignatures = new Assignatures(assigs);
+        ArrayList<Aula> aulesPE = new ArrayList<>();
+        aulesPE = pe.getAules().getAules();
+        Aules aules = new Aules(aulesPE);
 
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         while (! assignatures.esBuit()) {
@@ -33,19 +36,21 @@ public class Horari
 
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
                 Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
-                assignatures.getAssignatura(asg.getGrupAssignat().getCodiAssig()).eliminarGrupAssignatura(asg.getGrupAssignat());
-                if (!assignatures.getAssignatura(asg.getGrupAssignat().getCodiAssig()).teGrups()) {
-                    Assignatura a = assignatures.getAssignatura(asg.getGrupAssignat().getCodiAssig());
-                    assignatures.eliminarAssignatura(a);
+                String codiAssig = asg.getGrupAssignat().getCodiAssig();
+                asg.printAssignacio();
+                assignatures.printAssignatures();
+                System.out.println("Hola");
+                assignatures.getAssignatura(codiAssig).eliminarGrupAssignatura(asg.getGrupAssignat());
+                if (!assignatures.getAssignatura(codiAssig).teGrups()) {
+                    assignatures.eliminarAssignatura(codiAssig);
                 }
             }
-            //Grup g = hL. ///////////
         }
         this.OmplirHorari(horesLectives);
 
     }
 
-    public void OmplirHorari(ArrayList<HoraLectiva> horesLectives) {
+    private void OmplirHorari(ArrayList<HoraLectiva> horesLectives) {
         for (int j = 0; j < this.hores; j++) {
             for (int i = 0; i < this.dies; i++) {
                 HoraLectiva hL = horesLectives.remove(0);
