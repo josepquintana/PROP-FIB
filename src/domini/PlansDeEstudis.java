@@ -21,9 +21,16 @@ public class PlansDeEstudis {
         this.it = plansDeEstudis.iterator();
     }
 
+    public PlansDeEstudis(PlansDeEstudis plansDeEstudis) {
+        this.plansDeEstudis = new ArrayList<>();
+        this.plansDeEstudis = plansDeEstudis.getPlansDeEstudis();
+        this.it = new ArrayList<PlaEstudis>().iterator();
+        this.it = this.plansDeEstudis.iterator();
+    }
+
     public boolean existeixPlaEstudis(PlaEstudis pe) {
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            if(this.plansDeEstudis.get(i).equal(pe)) return true;
+            if(this.plansDeEstudis.get(i).equals(pe)) return true;
         }
         return false;
     }

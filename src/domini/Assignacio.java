@@ -22,6 +22,16 @@ public class Assignacio
         this.codiAula = aula.getCodi();
     }
 
+    public Assignacio(Assignacio asg){
+        this.grup = new Grup();
+        this.grup = asg.getGrupAssignat();
+        this.codiAula = asg.getCodiAulaAssignada();
+    }
+
+    public boolean equals(Assignacio asg) {
+        return (this.grup.equals(asg.getGrupAssignat()) && this.codiAula.equals(asg.getCodiAulaAssignada()));
+    }
+
     public void setGrup(Grup grup){
         this.grup = new Grup();
         this.grup = grup;
@@ -39,7 +49,20 @@ public class Assignacio
         return this.codiAula;
     }
 
-    public void printAssignacio() {
+    public String getAssignacioPrintFormat() {
+        String str = "[" + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula + "]";
+        return str;
+    }
 
+    public void printAssignacioLong() {
+        System.out.println("      Assignacio: " + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula);
+    }
+
+    public void printAssignacio() {
+        System.out.println("[" + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula + "]");
+    }
+
+    public void printAssignacioXS() {
+        System.out.print("[" + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula + "] ");
     }
 }

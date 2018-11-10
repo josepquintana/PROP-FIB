@@ -24,7 +24,11 @@ public class Grup
         this.numGrup = g.getNumGrup();
         this.capacitat = g.getCapacitat();
     }
-    
+
+    public boolean equals(Grup g) {
+        return (this.codiAssig.equals(g.getCodiAssig()) && this.numGrup == g.getNumGrup());
+    }
+
     public String getCodiAssig(){
         return this.codiAssig;
     }

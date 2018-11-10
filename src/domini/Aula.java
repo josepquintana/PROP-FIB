@@ -46,8 +46,15 @@ public class Aula
         return this.capacitat;
     }
 
+    public void printAulaLong(int indentation) {
+        System.out.print("\n");
+        if (indentation == 3) System.out.print("  ");
+        System.out.print("  Aula:\n");
+        if (indentation == 3) System.out.print("  ");
+        System.out.print("    codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
+    }
+
     public void printAula() {
-        System.out.println("  Aula:");
-        System.out.println("   codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
+        System.out.println("    Aula: " + this.codi + ", \tcapacitat: " + this.capacitat);
     }
 }

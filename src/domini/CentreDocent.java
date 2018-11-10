@@ -5,14 +5,12 @@ public class CentreDocent
     private String nomCentre;
     private PeriodeLectiu periodeLectiu;
     private JornadaLectiva jornadaLectiva;
-    private Aules aules;
     private PlansDeEstudis plansDeEstudis;
 
     public CentreDocent() {
         this.nomCentre      = new String();
         this.periodeLectiu  = new PeriodeLectiu();
         this.jornadaLectiva = new JornadaLectiva();
-        this.aules          = new Aules();
         this.plansDeEstudis = new PlansDeEstudis();
     }
 
@@ -20,7 +18,6 @@ public class CentreDocent
         this.nomCentre = nomCentre;
         this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
-        this.aules = new Aules();
         this.plansDeEstudis = new PlansDeEstudis();
     }
 
@@ -28,45 +25,29 @@ public class CentreDocent
      * @param nomCentre
      * @param periodeLectiu
      * @param jornadaLectiva
-     * @param aules
      * @param plansDeEstudis
      */
-    public CentreDocent(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, Aules aules, PlansDeEstudis plansDeEstudis) {
+    public CentreDocent(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, PlansDeEstudis plansDeEstudis) {
         this.nomCentre = nomCentre;
         this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
-        this.aules = new Aules();
-        this.aules = aules;
-        this.plansDeEstudis = new PlansDeEstudis();
-        this.plansDeEstudis = plansDeEstudis;
+        this.plansDeEstudis = new PlansDeEstudis(plansDeEstudis);
     }
 
     public CentreDocent(CentreDocent cd) {
         this.nomCentre = cd.getNomCentre();
         this.periodeLectiu = new PeriodeLectiu(cd.getPeriodeLectiu());
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());
-        this.aules = new Aules();
-        this.aules = cd.getAules();
         this.plansDeEstudis = new PlansDeEstudis();
         this.plansDeEstudis = cd.getPlansDeEstudis();
     }
 
-    public void assignarAulaAlCentreDocent(Aula aula) throws MyException {
-        this.aules.afegirAula(aula);
+    public void generateHorariPlaEstudis(String nomPla) throws MyException {
+        this.plansDeEstudis.getPlaEstudis(nomPla).generateHorari();
     }
 
-    public void desassignarAulaDelCentreDocent(Aula aula) throws MyException{
-        this.aules.eliminarAula(aula);
-    }
-
-    public boolean modificarAulaDelCentreDocent(Aula aula, String newCodi) {
-        boolean ret = this.aules.modificarAula(aula, newCodi);
-        return ret;
-    }
-
-    public boolean modificarAulaDelCentreDocent(Aula aula, int newCapacitat) {
-        boolean ret = this.aules.modificarAula(aula, newCapacitat);
-        return ret;
+    public void generateHorariPlaEstudis(int numPla) throws MyException {
+        this.plansDeEstudis.getPlaEstudis(numPla).generateHorari();
     }
 
     public boolean afegirPlaEstudis(PlaEstudis pe) {
@@ -85,6 +66,14 @@ public class CentreDocent
         return this.plansDeEstudis.getPlaEstudis(nomPla).eliminarAssignaturaDelPlaEstudis(a);
     }
 
+    public boolean afegirAulaAlPlaEstudis(String nomPla, Aula a) throws MyException {
+        return this.plansDeEstudis.getPlaEstudis(nomPla).afegirAulaAlPlaEstudis(a);
+    }
+
+    public boolean elimnarAulaDelPlaEstudis(String nomPla, Aula a) throws MyException {
+        return this.plansDeEstudis.getPlaEstudis(nomPla).eliminarAulaDelPlaEstudis(a);
+    }
+
     public String getNomCentre() {
         return this.nomCentre;
     }
@@ -97,13 +86,18 @@ public class CentreDocent
         return this.jornadaLectiva;
     }
 
-    public Aules getAules() { return this.aules; }
-
-    public Aula getAula(String codi) {
-        for (int i = 0; i < this.aules.mida(); i++) {
-            if (this.aules.getAula(i).getCodi().equals(codi)) return this.aules.getAula(i);
+    public Aules getTotesLesAules() throws MyException {
+        Aules aules = new Aules();
+        for (int i = 0; i < this.plansDeEstudis.mida(); i++) {
+            for (int j = 0; j < this.plansDeEstudis.getPlaEstudis(i).getAules().mida(); j++) {
+                aules.afegirAula(this.plansDeEstudis.getPlaEstudis(i).getAula(j));
+            }
         }
-        return null;
+        return aules;
+    }
+
+    public Aula getAulaDelPlaEstudis(String nomPla, String codi) {
+        return this.plansDeEstudis.getPlaEstudis(nomPla).getAula(codi);
     }
 
     public PlansDeEstudis getPlansDeEstudis() {
@@ -115,6 +109,10 @@ public class CentreDocent
             if (this.plansDeEstudis.getPlaEstudis(i).getNomPla().equals(nomPla)) return this.plansDeEstudis.getPlaEstudis(i);
         }
         return null;
+    }
+
+    public PlaEstudis getPlaEstudis(int i) {
+        return this.plansDeEstudis.getPlaEstudis(i);
     }
 
     public void setNomCentre(String nomCentre) {
@@ -129,39 +127,34 @@ public class CentreDocent
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
     }
 
-    public void setAules(Aules aules) {
-        this.aules = new Aules();
-        this.aules = aules;
-    }
-
     public void setPlansDeEstudis(PlansDeEstudis plansDeEstudis) {
         this.plansDeEstudis = plansDeEstudis;
     }
 
-    public void printCentreDocentLong() {
+    public void printCentreDocentLong() throws MyException {
         System.out.println("\n> CentreDocent [Long Format]:\n");
         System.out.println(" nomCentre: " + this.nomCentre + "\n");
-        this.periodeLectiu.printPeriodeLectiu();       System.out.println("");
-        this.jornadaLectiva.printJornadaLectiva();     System.out.println("");
-        this.aules.printAulesLong();                   System.out.println("");
-        this.plansDeEstudis.printPlansDeEstudisLong(); System.out.println("");
+        this.periodeLectiu.printPeriodeLectiu();                System.out.println("");
+        this.jornadaLectiva.printJornadaLectivaLong();          System.out.println("");
+        this.getTotesLesAules().printAulesLong(1);    System.out.println("");
+        this.plansDeEstudis.printPlansDeEstudisLong();          System.out.println("");
     }
 
-    public void printCentreDocent() {
+    public void printCentreDocent() throws MyException {
         System.out.println("\n> CentreDocent:");
         System.out.println(" nomCentre: " + this.nomCentre);
         this.periodeLectiu.printPeriodeLectiu();
-        this.jornadaLectiva.printJornadaLectiva();
-        this.aules.printAules();
+        this.jornadaLectiva.printJornadaLectivaLong();
+        this.getTotesLesAules().printAules(1);
         this.plansDeEstudis.printPlansDeEstudis();
     }
 
-    public void printCentreDocentXS() {
+    public void printCentreDocentXS() throws MyException {
         System.out.println("\n> CentreDocent:");
         System.out.println(" nomCentre: " + this.nomCentre);
         this.periodeLectiu.printPeriodeLectiu();
-        this.jornadaLectiva.printJornadaLectiva();
-        this.aules.printAules();
+        this.jornadaLectiva.printJornadaLectivaLong();
+        this.getTotesLesAules().printAules(1);
         this.plansDeEstudis.printPlansDeEstudisXS();
     }
 }

@@ -8,7 +8,7 @@ public class Assignatura
     private String nom;
     private double credits;
     private int nivell;
-    private ArrayList<Assignatura> correquisits;
+    private ArrayList<Assignatura> correquisits;            // AL<StringCodi>
     private ArrayList<Grup> grups;
 
     public Assignatura() {
@@ -124,6 +124,13 @@ public class Assignatura
         boolean ret = this.grups.remove(g);
         if(!ret) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
         return ret;
+    }
+
+    public boolean eliminarGrupAssignatura(int i) {
+        Grup g = new Grup();
+        g = this.grups.remove(i);
+        if(g == null) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
+        return true;
     }
 
     public boolean teCorrequisits() {

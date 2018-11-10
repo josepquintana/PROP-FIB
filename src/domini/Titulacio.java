@@ -20,6 +20,11 @@ public class Titulacio {
         this.tipus = tipus;
     }
 
+    public Titulacio(Titulacio t) {
+        this.nom = t.getNomTitulacio();
+        this.tipus = t.getTipusTitulacio();
+    }
+
     public String getNomTitulacio() {
         return this.nom;
     }

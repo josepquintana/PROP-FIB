@@ -46,8 +46,12 @@ public class JornadaLectiva
         return this.horaFi;
     }
 
-    public void printJornadaLectiva() {
+    public void printJornadaLectivaLong() {
         System.out.println(" horaIni: " + this.horaIni);
         System.out.println(" horaFi : " + this.horaFi);
+    }
+
+    public void printJornadaLectiva() {
+        System.out.println("   jornadaLectiva: " + this.horaIni + " - " + this.horaFi);
     }
 }
