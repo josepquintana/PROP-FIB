@@ -189,37 +189,7 @@ public class PlaEstudis
     public void generateHorari() throws MyException {
         this.horari = new Horari(this.jornadaLectiva);
 
-        System.out.println("\n\n in PlaEstudis.generateHorari()");
-
-        Grup g = new Grup("EDA", 10, 25);
-        Grup j = new Grup("PROP", 10, 25);
-        Grup k = new Grup("IDI", 10, 25);
-        Grup q = new Grup("EDA", 20, 25);
-        Grup w = new Grup("EDA", 30, 25);
-        Grup t = new Grup("PROP", 20, 25);
-
-        Assignacio a = new Assignacio(g, "A5101");
-        Assignacio b = new Assignacio(j, "A5102");
-        Assignacio c = new Assignacio(k, "A5103");
-        Assignacio d = new Assignacio(q, "A5104");
-        Assignacio e = new Assignacio(w, "A5105");
-        Assignacio f = new Assignacio(t, "A5106");
-
-        HoraLectiva hL = new HoraLectiva();
-        hL.afegirAssignacio(a);
-        hL.afegirAssignacio(b);
-        hL.afegirAssignacio(c);
-        hL.afegirAssignacio(d);
-
-
-        HoraLectiva kk = new HoraLectiva();
-        kk.afegirAssignacio(e);
-        kk.afegirAssignacio(f);
-
-        this.horari.afegirHoraLectiva(hL);
-        this.horari.afegirHoraLectiva(kk, 3, 17);
-
-        //this.horari.GenerarHorari(this);
+        this.horari.GenerarHorari(this);
     }
 
     public void printPlaEstudisLong(int numPla) {
