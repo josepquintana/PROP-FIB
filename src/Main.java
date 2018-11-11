@@ -17,8 +17,7 @@ public class Main
         ReadFile.main(cd);
         printDades(cd, printMode);
         cd.generateHorariPlaEstudis(0);
-        cd.getPlaEstudis(0).getHorari().printHorariEasy();
-        
+        cd.getPlaEstudis(0).getHorari().printHorariEasy(); 
     }
 
     private static void printHello() {
