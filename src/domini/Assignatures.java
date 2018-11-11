@@ -16,18 +16,12 @@ public class Assignatures
     }
 
     public Assignatures(ArrayList<Assignatura> assignatures) {
-        this.assignatures = new ArrayList<>();
-        this.assignatures = assignatures;
-        this.it = new ArrayList<Assignatura>().iterator();
-        this.it = assignatures.iterator();
+        this.assignatures = new ArrayList<>(assignatures);
     }
 
-    public Assignatures(Assignatures assignatures) {
-        this.assignatures = new ArrayList<>();
-        this.assignatures = assignatures.getAssignatures();
-        this.it = new ArrayList<Assignatura>().iterator();
-        this.it = this.assignatures.iterator();
-    }
+    public Assignatures(Assignatures assignaturesCP) {
+        this.assignatures = new ArrayList<>(assignaturesCP.assignatures);
+        }
 
     public boolean existeixAssignatura(Assignatura assig) {
         for (int i = 0; i < this.assignatures.size(); i++) {
@@ -53,8 +47,7 @@ public class Assignatures
 
     ////// mirar si peta remove()
     public boolean eliminarAssignatura(int i) {
-        Assignatura a = new Assignatura();
-        a = this.assignatures.remove(i);
+        Assignatura a = new Assignatura(this.assignatures.remove(i));
         if(a == null) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
         return true;
     }
