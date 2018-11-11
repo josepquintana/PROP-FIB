@@ -6,15 +6,14 @@ public class GeneradorHora {
 
     public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException {
         Assignatures assignatures = new Assignatures(assignaturesPE);
-        ArrayList<Aula> aulesCP = new ArrayList<>();
-        aulesCP = aulesPE.getAules();
+        ArrayList<Aula> aulesCP = new ArrayList<>(aulesPE.getAules());
         Aules aules = new Aules(aulesCP);
         HoraLectiva solucion = new HoraLectiva();
-        i_ForwardChecking(assignatures, aules, solucion);
+        i_ForwardChecking(assignatures, aules, solucion, assignaturesPE);
         return solucion;
     }
 
-    private static void i_ForwardChecking(Assignatures assignatures, Aules aulesFuturas, HoraLectiva solucion) throws MyException {
+    private static void i_ForwardChecking(Assignatures assignatures, Aules aulesFuturas, HoraLectiva solucion, Assignatures assignaturesPE) throws MyException {
         if (assignatures.esBuit() || aulesFuturas.esBuit()) return;
         else {
             Aula a = new Aula(aulesFuturas.getAula(0));
@@ -22,25 +21,29 @@ public class GeneradorHora {
             
             Assignatura assig = new Assignatura(assignatures.getAssignatura(0));
             Grup g = new Grup(assig.getGrup(0));
-            assig.eliminarGrupAssignatura(0);  
             
+             if(restriccioTamanyAula(g,a)){
+                 if(restriccioAssignaturesNivell(assig, solucion, assignaturesPE) && restriccioAssignaturesCorrequisits(assig, solucion, assignaturesPE)){  
+                    Assignacio asg = new Assignacio(g,a);
+                    assig.eliminarGrupAssignatura(0); 
+                    //assig.printAssignatura();
+                    if (assig.getGrups().isEmpty()) assignatures.eliminarAssignatura(0);
+                    solucion.afegirAssignacio(asg);
+                } else {
+                 assig.eliminarGrupAssignatura(0); 
+                 if (assig.getGrups().isEmpty()) assignatures.eliminarAssignatura(0);
+             } 
+            } 
+            i_ForwardChecking(assignatures,aulesFuturas,solucion, assignaturesPE);
             
-            if (assig.getGrups().isEmpty()) {
-                assignatures.eliminarAssignatura(0);
-            }
-            if(restriccioTamanyAula(g,a) && restriccioAssignaturesNivell(assig, solucion, assignatures) && restriccioAssignaturesCorrequisits(assig, solucion, assignatures)){  
-                Assignacio asg = new Assignacio(g,a);
-                solucion.afegirAssignacio(asg);
-                
-            } else i_ForwardChecking(assignatures,aulesFuturas,solucion);      
+               
 
         }
     }
     private static boolean restriccioAssignaturesNivell(Assignatura assig, HoraLectiva sol, Assignatures assignatures){
         for(int i = 0; i < sol.mida(); ++i){
             String codiAssigSol = sol.getAssignacio(i).getGrupAssignat().getCodiAssig();
-            Assignatura assigSol = new Assignatura(assignatures.getAssignatura(codiAssigSol));
-            if(assigSol.getNivell() == assig.getNivell()) return false;
+            if(assignatures.getAssignatura(codiAssigSol).getNivell() == assig.getNivell()) return false;
         }
         return true;
     }
@@ -56,8 +59,8 @@ public class GeneradorHora {
     }
     
     private static boolean restriccioTamanyAula(Grup g, Aula a){
-        if(g.getCapacitat() > a.getCapacitat()) return false;
-        else return true;
+        return (g.getCapacitat() <= a.getCapacitat());
+
     }
     
     private static void podarAssignatures(Assignatures assigs, Assignatura a){

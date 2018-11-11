@@ -29,16 +29,13 @@ public class Horari
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         while (! assignatures.esBuit()) {
             HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);
-            hL.printHoraLectiva();
             horesLectives.add(hL);
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
-                System.out.println(hL.getAssignacions().size());
                 Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
                 asg.printAssignacio();
                 String codiAssig = asg.getGrupAssignat().getCodiAssig();
                 Assignatura assig = new Assignatura(assignatures.getAssignatura(codiAssig));
                 assig.eliminarGrupAssignatura(asg.getGrupAssignat());
-                
                 if (!assig.teGrups()) {
                     assignatures.eliminarAssignatura(codiAssig);
                     assignatures.printAssignatures();
