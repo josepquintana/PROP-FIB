@@ -49,8 +49,7 @@ public class Assignatures
 
     ////// mirar si peta remove()
     public boolean eliminarAssignatura(int i) {
-        Assignatura a = new Assignatura();
-        a = this.assignatures.remove(i);
+        Assignatura a = new Assignatura(this.assignatures.remove(i));
         if(a == null) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
         return true;
     }

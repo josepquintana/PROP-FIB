@@ -45,8 +45,7 @@ public class Assignatura
         this.nivell = nivell;
         this.correquisits = new ArrayList<>();
         this.correquisits = correqs;
-        this.grups = new ArrayList<>();
-        this.grups = grups;
+        this.grups = new ArrayList<>(grups);
     }
 
     public Assignatura(Assignatura a) {
@@ -57,8 +56,7 @@ public class Assignatura
         this.nivell = a.getNivell();
         this.correquisits = new ArrayList<>();
         this.correquisits = a.getCorrequisits();
-        this.grups = new ArrayList<>();
-        this.grups = a.getGrups();
+        this.grups = new ArrayList<>(a.getGrups());
     }
 
     public boolean equals(Assignatura a) {
@@ -121,14 +119,15 @@ public class Assignatura
     }
 
     public boolean eliminarGrupAssignatura(Grup g) {
-        boolean ret = this.grups.remove(g);
-        if(!ret) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
-        return ret;
+        for(int i = 0; i< this.grups.size(); ++i){
+            if(g.getNumGrup() == this.grups.get(i).getNumGrup()) this.grups.remove(i);
+            return true;
+        }
+        return false;
     }
 
     public boolean eliminarGrupAssignatura(int i) {
-        Grup g = new Grup();
-        g = this.grups.remove(i);
+        Grup g = new Grup(this.grups.remove(i));
         if(g == null) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
         return true;
     }
@@ -162,7 +161,7 @@ public class Assignatura
     }
 
     public void setGrups(ArrayList<Grup> grups) {
-        this.grups = grups;
+        this.grups = new ArrayList<>(grups);
     }
 
     public String getCodi() {

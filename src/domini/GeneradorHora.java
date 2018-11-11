@@ -11,7 +11,6 @@ public class GeneradorHora {
         Aules aules = new Aules(aulesCP);
         HoraLectiva solucion = new HoraLectiva();
         i_ForwardChecking(assignatures, aules, solucion);
-        assignatures.eliminarAssignatura(0);
         return solucion;
     }
 
@@ -21,10 +20,10 @@ public class GeneradorHora {
             Aula a = new Aula(aulesFuturas.getAula(0));
             aulesFuturas.eliminarAula(0);
             
-            
             Assignatura assig = new Assignatura(assignatures.getAssignatura(0));
             Grup g = new Grup(assig.getGrup(0));
-            assig.eliminarGrupAssignatura(0);     
+            assig.eliminarGrupAssignatura(0);  
+            
             
             if (assig.getGrups().isEmpty()) {
                 assignatures.eliminarAssignatura(0);

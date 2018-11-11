@@ -23,29 +23,30 @@ public class Horari
 
     public void GenerarHorari(PlaEstudis pe) throws MyException {
         Assignatures assignatures = new Assignatures(pe.getAssignatures());
-        ArrayList<Aula> aulesPE = new ArrayList<>();
-        aulesPE = pe.getAules().getAules();
+        ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());
         Aules aules = new Aules(aulesPE);
 
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         while (! assignatures.esBuit()) {
             HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);
+            hL.printHoraLectiva();
             horesLectives.add(hL);
-            assignatures.printAssignatures();
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
+                System.out.println(hL.getAssignacions().size());
                 Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
-                String codiAssig = asg.getGrupAssignat().getCodiAssig();
                 asg.printAssignacio();
-                Assignatura assig = new Assignatura();
-                assig = assignatures.getAssignatura(codiAssig);
-                System.out.println(codiAssig);
+                String codiAssig = asg.getGrupAssignat().getCodiAssig();
+                Assignatura assig = new Assignatura(assignatures.getAssignatura(codiAssig));
                 assig.eliminarGrupAssignatura(asg.getGrupAssignat());
                 
-                if (!assignatures.getAssignatura(codiAssig).teGrups()) {
+                if (!assig.teGrups()) {
                     assignatures.eliminarAssignatura(codiAssig);
+                    assignatures.printAssignatures();
                 }
             }
         }
+        System.out.println("No he petao");
+        
         this.OmplirHorari(horesLectives);
 
     }
@@ -53,8 +54,11 @@ public class Horari
     private void OmplirHorari(ArrayList<HoraLectiva> horesLectives) {
         for (int j = 0; j < this.hores; j++) {
             for (int i = 0; i < this.dies; i++) {
-                HoraLectiva hL = horesLectives.remove(0);
-                this.setmana[i][j] = new HoraLectiva(hL);
+                if(!horesLectives.isEmpty()){
+                     HoraLectiva hL = horesLectives.remove(0);
+                     this.setmana[i][j] = new HoraLectiva(hL);
+                } else break;
+                
             }
         }
     }
