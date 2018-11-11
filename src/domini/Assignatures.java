@@ -17,8 +17,6 @@ public class Assignatures
 
     public Assignatures(ArrayList<Assignatura> assignatures) {
         this.assignatures = new ArrayList<>(assignatures);
-        this.it = new ArrayList<Assignatura>().iterator();
-        this.it = assignatures.iterator();
     }
 
     public Assignatures(Assignatures assignaturesCP) {
