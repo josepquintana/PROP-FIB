@@ -36,7 +36,6 @@ public class Horari
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
                 Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
                 String codiAssig = asg.getGrupAssignat().getCodiAssig();
-                //assignatures.getAssignatura(codiAssig).printAssignatura();
                 Assignatura assig = new Assignatura(assignatures.getAssignatura(codiAssig));
                 assig.eliminarGrupAssignatura(asg.getGrupAssignat());
                 if (!assig.teGrups()) {
@@ -44,8 +43,9 @@ public class Horari
                 }
             }
         }
-        
-        this.OmplirHorari(horesLectives);
+        if(horesLectives.size() > this.hores*this.dies) {
+            System.out.println("Error");
+        }else this.OmplirHorari(horesLectives);
 
     }
 
