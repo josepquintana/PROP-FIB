@@ -21,7 +21,7 @@ public class Assignatures
 
     public Assignatures(Assignatures assignaturesCP) {
         this.assignatures = new ArrayList<>(assignaturesCP.assignatures);
-        }
+    }
 
     public boolean existeixAssignatura(Assignatura assig) {
         for (int i = 0; i < this.assignatures.size(); i++) {

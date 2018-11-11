@@ -78,7 +78,7 @@ public class Assignatura
         return false;
     }
 
-    public boolean afegirRequisitAssignatura(Assignatura a) throws MyException{
+    public boolean afegirCorrequisitAssignatura(Assignatura a) throws MyException{
         if(existeixRequisit(a)) {
             System.out.println(">>> afegirRequisitAssignatura(): L'assignatura " + this.codi + " ja té " + a.getCodi() + "com a requisit");
             return false;
@@ -88,9 +88,22 @@ public class Assignatura
         return ret;
     }
 
-    public boolean eliminarRequisitAssignatura(Assignatura a) {
+    public boolean afegirCorrequisitAssignatura(String codi) throws MyException{
+        // NO comprova restriccions de existencia!!!!!
+        boolean ret = this.correquisits.add(codi);
+        if(!ret) throw new MyException(">>> Error: Assig.Requisit no afegit"); // ¿ pot passar ?
+        return ret;
+    }
+
+    public boolean eliminarCorrequisitAssignatura(Assignatura a) {
         boolean ret = this.correquisits.remove(a.getCodi());
         if(!ret) System.out.println(">>> eliminarRequisitAssignatura(): L'assignatura " + this.codi + " no té " + a.getCodi() + " com a requisit");
+        return ret;
+    }
+
+    public boolean eliminarCorrequisitAssignatura(String codi) {
+        boolean ret = this.correquisits.remove(codi);
+        if(!ret) System.out.println(">>> eliminarRequisitAssignatura(): L'assignatura " + this.codi + " no té " + codi + " com a requisit");
         return ret;
     }
 
@@ -128,6 +141,8 @@ public class Assignatura
 
     public boolean eliminarGrupAssignatura(int i) {
         this.grups.remove(i);
+//        Grup g = new Grup(this.grups.remove(i));
+//        if(g == null) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
         return true;
     }
 

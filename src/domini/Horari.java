@@ -22,7 +22,7 @@ public class Horari
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException {
-        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignatures().getAssignatures()); 
+        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesDelPlaEstudis().getAssignatures());
         Assignatures assignatures = new Assignatures(asigs);
         
         ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());

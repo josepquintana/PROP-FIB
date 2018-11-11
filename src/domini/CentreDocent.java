@@ -138,6 +138,7 @@ public class CentreDocent
         this.jornadaLectiva.printJornadaLectivaLong();          System.out.println("");
         this.getTotesLesAules().printAulesLong(1);    System.out.println("");
         this.plansDeEstudis.printPlansDeEstudisLong();          System.out.println("");
+        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
     }
 
     public void printCentreDocent() throws MyException {
@@ -147,6 +148,7 @@ public class CentreDocent
         this.jornadaLectiva.printJornadaLectivaLong();
         this.getTotesLesAules().printAules(1);
         this.plansDeEstudis.printPlansDeEstudis();
+        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
     }
 
     public void printCentreDocentXS() throws MyException {
@@ -156,6 +158,7 @@ public class CentreDocent
         this.jornadaLectiva.printJornadaLectivaLong();
         this.getTotesLesAules().printAules(1);
         this.plansDeEstudis.printPlansDeEstudisXS();
+        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
     }
 }
 
