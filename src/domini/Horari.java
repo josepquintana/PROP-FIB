@@ -22,14 +22,17 @@ public class Horari
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException {
-        Assignatures assignatures = new Assignatures(pe.getAssignatures());
+        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignatures().getAssignatures()); 
+        Assignatures assignatures = new Assignatures(asigs);
+        
         ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());
         Aules aules = new Aules(aulesPE);
-
+        
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         while (! assignatures.esBuit()) {
             HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);
             horesLectives.add(hL);
+            
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
                 Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
                 String codiAssig = asg.getGrupAssignat().getCodiAssig();

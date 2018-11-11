@@ -127,8 +127,7 @@ public class Assignatura
     }
 
     public boolean eliminarGrupAssignatura(int i) {
-        Grup g = new Grup(this.grups.remove(i));
-        if(g == null) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
+        this.grups.remove(i);
         return true;
     }
 

@@ -5,14 +5,21 @@ import java.util.ArrayList;
 public class GeneradorHora {
 
     public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException {
+        
         Assignatures assignatures = new Assignatures(assignaturesPE);
         ArrayList<Aula> aulesCP = new ArrayList<>(aulesPE.getAules());
         Aules aules = new Aules(aulesCP);
         HoraLectiva solucion = new HoraLectiva();
-        assignatures.getAssignatura(0).eliminarGrupAssignatura(0);
-        assignatures.getAssignatura(0).printAssignatura();
-        assignaturesPE.getAssignatura(0).printAssignatura();
-        //i_ForwardChecking(assignatures, aules, solucion, assignaturesPE);
+        
+        
+      /*  ArrayList <Assignatura> asssigs = new ArrayList();
+        for(int i = 0; i < assignaturesPE.mida(); i++){
+            Assignatura a = new Assignatura(assignaturesPE.getAssignatura(i));
+            asssigs.add(a);
+        }
+        Assignatures assignatures = new Assignatures(asssigs);      
+        */
+        i_ForwardChecking(assignatures, aules, solucion, assignaturesPE);
         return solucion;
     }
 
@@ -44,7 +51,7 @@ public class GeneradorHora {
     private static boolean restriccioAssignaturesNivell(Assignatura assig, HoraLectiva sol, Assignatures assignaturesPE){
         for(int i = 0; i < sol.mida(); ++i){
             String codiAssigSol = sol.getAssignacio(i).getGrupAssignat().getCodiAssig();
-            if(assignaturesPE.getAssignatura(codiAssigSol).getNivell() == assig.getNivell() && !codiAssigSol.equals(assig.getCodi())) return false;
+            if(assignaturesPE.getAssignatura(codiAssigSol).getNivell() == assig.getNivell() ) return false;
         }
         return true;
     }
