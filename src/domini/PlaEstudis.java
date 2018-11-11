@@ -1,5 +1,7 @@
 package domini;
 
+import java.util.ArrayList;
+
 public class PlaEstudis
 {
     private String nomPla;
@@ -51,7 +53,7 @@ public class PlaEstudis
         this.credits = pe.getCredits();
         this.jornadaLectiva = pe.getJornadaLectiva();
         this.titulacio = new Titulacio(pe.getTitulacio());
-        this.assignatures = new Assignatures(pe.getAssignatures());
+        this.assignatures = new Assignatures(pe.getAssignaturesDelPlaEstudis());
         this.aules = new Aules(pe.aules);
         this.horari = new Horari(pe.getHorari());
     }
@@ -103,9 +105,14 @@ public class PlaEstudis
         return this.titulacio;
     }
 
-    public Assignatures getAssignatures() {
+    public Assignatures getAssignaturesDelPlaEstudis() {
         return this.assignatures;
     }
+
+   public ArrayList<Assignatura> getAssignaturesAL() {
+        return this.assignatures.getAssignatures();
+   }
+
 
     public Assignatura getAssignatura(int i) {
         return this.assignatures.getAssignatura(i);
@@ -235,8 +242,6 @@ public class PlaEstudis
             if (i < this.assignatures.mida() - 1) System.out.print(", ");               // for presentation purposes
         }
         System.out.print("\n");
-
-        this.horari.printHorari();
     }
 
 }

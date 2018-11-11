@@ -7,8 +7,7 @@ public class GeneradorHora {
     public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException {
         
         Assignatures assignatures = new Assignatures(assignaturesPE);
-        ArrayList<Aula> aulesCP = new ArrayList<>(aulesPE.getAules());
-        Aules aules = new Aules(aulesCP);
+        Aules aules = new Aules(aulesPE);
         HoraLectiva solucion = new HoraLectiva();
         
         int i = 0;

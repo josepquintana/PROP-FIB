@@ -59,7 +59,7 @@ public class ReadFile
             ++inputCounter;
         }
 
-        System.out.println("Read " + inputCounter + " from the input file.");
+        System.out.println("Read " + inputCounter + " from the input file.\n");
     }
 
     private static void closeFile() throws IOException {
@@ -124,7 +124,7 @@ public class ReadFile
                     req = new Assignatura();
                     req = cd.getPlaEstudis(nomPla).getAssignatura(s.next());
                     // TO DO: vigilar que no peti per haver posar una assig no valida!
-                    a.afegirRequisitAssignatura(req);
+                    a.afegirCorrequisitAssignatura(req/*.getCodi()*/);
                 }
                 cd.afegirAssignaturaAlPlaEstudis(nomPla, a);
             }
