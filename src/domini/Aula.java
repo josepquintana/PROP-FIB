@@ -51,10 +51,10 @@ public class Aula
         if (indentation == 3) System.out.print("  ");
         System.out.print("  Aula:\n");
         if (indentation == 3) System.out.print("  ");
-        System.out.print("    codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
+        System.out.print("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
     }
 
     public void printAula() {
-        System.out.println("    Aula: " + this.codi + ", \tcapacitat: " + this.capacitat);
+        System.out.println("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
     }
 }
