@@ -95,10 +95,10 @@ public class Aules
         return this.aules;
     }
 
-    public void setAules(ArrayList<Aula> aules) {
+   /* public void setAules(ArrayList<Aula> aules) {
         this.aules = new ArrayList<>();
         this.aules = aules;
-    }
+    }*/
 
     public int mida() {
         return this.aules.size();
