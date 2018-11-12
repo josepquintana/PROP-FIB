@@ -22,7 +22,6 @@ public class Horari
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException {
-//        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesDelPlaEstudis().getAssignatures());
         ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesAL());
         Assignatures assignatures = new Assignatures(asigs);
         
@@ -46,7 +45,8 @@ public class Horari
         }
         if(horesLectives.size() > this.hores*this.dies) {
             System.out.println("Error: No hi ha espai suficient per tantes horesLectives");
-        }else this.OmplirHorari(horesLectives);
+        }
+        else this.OmplirHorari(horesLectives);
 
     }
 
@@ -56,8 +56,8 @@ public class Horari
                 if(!horesLectives.isEmpty()){
                      HoraLectiva hL = horesLectives.remove(0);
                      this.setmana[i][j] = new HoraLectiva(hL);
-                } else break;
-                
+                }
+                else break;
             }
         }
     }
@@ -149,7 +149,7 @@ public class Horari
         return hores;
     }
 
-    public int gethIni() { return hIni; }
+    public int getHIni() { return hIni; }
 
     private void iniSetmana() {
         for (int i = 0; i < dies; i++) {
@@ -159,47 +159,7 @@ public class Horari
         }
     }
 
-
-
-    ///////////////////////////////////////////////////////
-    ////// Molta tralla nomes per imprimir el horari //////
-
-    private void printHoresIniFi(int h) {
-        h = h + this.hIni;
-        String h0s = Integer.toString(h);
-        String h1s = Integer.toString(h+1);
-        if (h0s.length() < 2) h0s = "0" + h0s;
-        if (h1s.length() < 2) h1s = "0" + h1s;
-        String str = "  " + h0s + " - " + h1s + "h";
-        System.out.printf("%-2s %-10s", str, "");
-    }
-
-    private void printHL(int d, int h) {
-        for (int i = 0; i < this.setmana[d][h].mida(); i++) {
-            String str = this.setmana[d][h].getAssignacio(i).getAssignacioPrintFormat();
-            if (d == 0 && i == 0) {
-                System.out.printf("%-20.20s%n", str);
-            }
-            else System.out.printf("%-20.20s %-20.20s%n", "", str);
-        }
-    }
-
-    public void printHorari() {
-
-        System.out.println("\n\n   Horari Generat:\n");
-        System.out.printf("%-20.20s %-21.21s %-21.21s %-21.21s %-21.21s %-21.21s%n", "", "DILLUNS", "DIMARTS", "DIMECRES", "DIJOUS", "DIVENDRES");
-
-        for (int h = 0; h < this.hores; h++) {
-            //this.printHoresIniFi(h);
-            for (int d = 0; d < this.dies; d++) {
-                this.printHL(d, h);
-            }
-            System.out.print("\n");
-        }
-        System.out.print("\n");
-    }
-
-    /// \/
+    /// print horari methods
 
     private void printIndentation(int size) {
         int n_spaces = 20 - size;
@@ -225,16 +185,16 @@ public class Horari
         }
     }
 
-    public void printHorariEasy() {
-        System.out.println("\nDILLUNS");
+    public void printHorari() {
+        System.out.println(    "  >>>>>                              D  I  L  L  U  N  S                              <<<<<\n");
         this.printDay(0);
-        System.out.println("\nDIMARTS");
+        System.out.println("\n\n  >>>>>                              D  I  M  A  R  T  S                              <<<<<\n");
         this.printDay(1);
-        System.out.println("\nDIMECRES");
+        System.out.println("\n\n  >>>>>                             D  I  M  E  C  R  E  S                            <<<<<\n");
         this.printDay(2);
-        System.out.println("\nDIJOUS");
+        System.out.println("\n\n  >>>>>                               D  I  J  O  U  S                                <<<<<\n");
         this.printDay(3);
-        System.out.println("\nDIVENDRES");
+        System.out.println("\n\n  >>>>>                            D  I  V  E  N  D  R  E  S                          <<<<<\n");
         this.printDay(4);
     }
 }

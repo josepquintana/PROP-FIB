@@ -1,6 +1,4 @@
-import domini.CentreDocent;
-import domini.Horari;
-import domini.MyException;
+import domini.*;
 import presentacio.ReadFile;
 import presentacio.WriteHorari;
 
@@ -10,8 +8,8 @@ public class Main
     private static CentreDocent cd;
 
     // Execution-control variables
-    private static int printMode         = 2;                    // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
-    private static String inputFileName  = "input.txt";          // filename for the data input
+    private static int    printMode      = 2;                    // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
+    private static String inputFileName  = "input";              // filename for the data input
     private static String outputFileName = "output";             // filename for the horari output
 
     public static void main(String[] args) throws Exception
@@ -21,8 +19,8 @@ public class Main
         ReadFile.main(cd, inputFileName);
         printDades(cd, printMode);
         cd.generateHorariPlaEstudis(0);
-        cd.getPlaEstudis(0).getHorari().printHorariEasy();
-//        WriteHorari.main(cd.getPlaEstudis(0).getHorari(), outputFileName);    // de moment no xuta...
+        cd.getPlaEstudis(0).getHorari().printHorari();
+//        WriteHorari.main(cd.getPlaEstudis(0).getHorari(), outputFileName);    // de moment no xuta..
     }
 
     private static void printHello() {

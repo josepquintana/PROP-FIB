@@ -64,14 +64,14 @@ Aula, EngInf EEES, C6S308, 21
 Aula, EngInf EEES, C6S309, 21
 Aula, EngInf EEES, A1S101, 40
 Aula, EngInf EEES, D6003, 20
-Assignatura, EngInf EEES, PRO1, Programació I, 7.5, 1, 550, 50
-Assignatura, EngInf EEES, F, Física, 7.5, 1, 550, 50
-Assignatura, EngInf EEES, IC, Introducció als Computadors, 7.5, 1, 550, 50
-Assignatura, EngInf EEES, FM, Fonaments Matemàtics, 7.5, 1, 550, 50
-Assignatura, EngInf EEES, PRO2, Programació II, 7.5, 2, 550, 50
-Assignatura, EngInf EEES, EC, Estructura de Computadors, 7.5, 2, 550, 50
-Assignatura, EngInf EEES, M2, Matemàtiques II, 7.5, 2, 550, 50
-Assignatura, EngInf EEES, M1, Matemàtiques I, 7.5, 2, 550, 50
+Assignatura, EngInf EEES, PRO1, Programació I, 7.5, 1, 450, 50
+Assignatura, EngInf EEES, F, Física, 7.5, 1, 450, 50
+Assignatura, EngInf EEES, IC, Introducció als Computadors, 7.5, 1, 450, 50
+Assignatura, EngInf EEES, FM, Fonaments Matemàtics, 7.5, 1, 450, 50
+Assignatura, EngInf EEES, PRO2, Programació II, 7.5, 2, 450, 50
+Assignatura, EngInf EEES, EC, Estructura de Computadors, 7.5, 2, 450, 50
+Assignatura, EngInf EEES, M2, Matemàtiques II, 7.5, 2, 450, 50
+Assignatura, EngInf EEES, M1, Matemàtiques I, 7.5, 2, 450, 50
 Assignatura, EngInf EEES, EDA, Estructures de Dades i Algorisme, 6, 3, 350, 50, PRO1, PRO2
 Assignatura, EngInf EEES, BD, Bases de Dades, 6, 3, 350, 50, PRO1, PRO2
 Assignatura, EngInf EEES, CI, Interfícies de Computadors, 6, 3, 350, 50, F, IC, EC

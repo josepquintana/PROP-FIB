@@ -35,7 +35,7 @@ public class ReadFile
 
     public static void openFile(String filename) throws IOException {
 
-//        if (!filename.endsWith(".txt")) { filename += ".txt"; }
+        if (!filename.endsWith(".txt")) { filename += ".txt"; }
 
         String workingDirectory = Paths.get(".\\input").toAbsolutePath().normalize().toString();
         File file = new File(workingDirectory, filename);

@@ -35,7 +35,7 @@ public class WriteHorari
         int outputCounter = 0;
         for (int h = 0; h < horari.getHores(); h++) {
 
-            String hourFormat = WriteHorari.getHourFormat(h, horari.gethIni());
+            String hourFormat = WriteHorari.getHourFormat(h, horari.getHIni());
             writer.print(hourFormat + ",");
 
             for (int d = 0; d < horari.getDies(); d++) {
