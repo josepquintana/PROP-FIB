@@ -1,13 +1,22 @@
 package domini;
 
+import javafx.print.Collation;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GeneradorHora {
 
+    private static final int maxAssignacionsHora = 4;
+    private static final boolean randomize       = true;    // randomize Assigs and Aules arrays ?
+
     public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException {
-        
-        Assignatures assignatures = new Assignatures(assignaturesPE);
-        Aules aules = new Aules(aulesPE);
+
+        // MIRAR COM FER BE LES COPIES DE OBJECTES!
+        ArrayList<Assignatura> assignaturesCP = new ArrayList<>(assignaturesPE.getAssignatures());
+        Assignatures assignatures = new Assignatures(assignaturesCP);
+        ArrayList<Aula> aulesCP = new ArrayList<>(aulesPE.getAules());
+        Aules aules = new Aules(aulesCP);
         HoraLectiva solucion = new HoraLectiva();
         
         int i = 0;
@@ -16,7 +25,13 @@ public class GeneradorHora {
     }
 
     private static void i_ForwardChecking(Assignatures assignatures, Aules aulesFuturas, HoraLectiva solucion, Assignatures assignaturesPE, int i) throws MyException {
-        if (assignatures.esBuit() || aulesFuturas.esBuit() || i >= aulesFuturas.mida() || solucion.mida() >= 5){  
+
+        if (randomize) {
+            Collections.shuffle(assignatures.getAssignatures());
+            Collections.shuffle(aulesFuturas.getAules());
+        }
+
+        if (assignatures.esBuit() || aulesFuturas.esBuit() || i >= aulesFuturas.mida() || solucion.mida() >= maxAssignacionsHora){
             i = 0;
             return;
         }
@@ -37,16 +52,16 @@ public class GeneradorHora {
                         i = 0;
                     }
                     solucion.afegirAssignacio(asg);
-                }else {
+                }
+                else {
                     assignatures.eliminarAssignatura(0);
                 } 
-            } else i++;
+            }
+            else i++;
             i_ForwardChecking(assignatures,aulesFuturas,solucion, assignaturesPE, i);
-            
-               
-
         }
     }
+
     private static boolean restriccioAssignaturesNivell(Assignatura assig, HoraLectiva sol, Assignatures assignaturesPE){
         for(int i = 0; i < sol.mida(); ++i){
             
@@ -79,14 +94,12 @@ public class GeneradorHora {
         }
         for(int i = 0; i < assigs.getAssignatures().size(); ++i){
             for(int j = 0; j < a.getCorrequisits().size(); ++j){
-                if(a.getCorrequisit(j).equals(assigs.getAssignatures().get(i).getCodi()))
+                if(a.getCorrequisit(j).equals(assigs.getAssignatures().get(i).getCodi())) {
                     assigs.getAssignatures().remove(i);
                 }
+            }
         }
     }
-    
 
-    
-    
 }
 
