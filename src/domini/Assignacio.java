@@ -50,7 +50,7 @@ public class Assignacio
     }
 
     public String getAssignacioPrintFormat() {
-        String str = "[" + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula + "]";
+        String str = "[" + this.grup.getCodiAssig() + "-" + this.grup.getNumGrup() + ", " + this.codiAula + "]";
         return str;
     }
 

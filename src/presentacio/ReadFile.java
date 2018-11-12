@@ -27,17 +27,17 @@ public class ReadFile
     // Execution-control variables
     private static int printInputLines = 0;     // 0 -> noPrint; 1 -> printInputLines  // counter // final #
 
-    public static void main (CentreDocent cd) throws Exception {
-        openFile();
+    public static void main (CentreDocent cd, String filename) throws Exception {
+        openFile(filename);
         readFile(cd);
         closeFile();
     }
 
-    public static void openFile() throws IOException {
+    public static void openFile(String filename) throws IOException {
+
+//        if (!filename.endsWith(".txt")) { filename += ".txt"; }
 
         String workingDirectory = Paths.get(".\\input").toAbsolutePath().normalize().toString();
-
-        String filename = "input.txt";
         File file = new File(workingDirectory, filename);
 
         System.out.println("Reading file from: " + file.getAbsolutePath());
@@ -59,7 +59,7 @@ public class ReadFile
             ++inputCounter;
         }
 
-        System.out.println("Read " + inputCounter + " from the input file.\n");
+        System.out.println("Read " + inputCounter + " input lines.\n");
     }
 
     private static void closeFile() throws IOException {

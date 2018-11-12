@@ -22,7 +22,8 @@ public class Horari
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException {
-        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesDelPlaEstudis().getAssignatures());
+//        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesDelPlaEstudis().getAssignatures());
+        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesAL());
         Assignatures assignatures = new Assignatures(asigs);
         
         ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());
@@ -44,7 +45,7 @@ public class Horari
             }
         }
         if(horesLectives.size() > this.hores*this.dies) {
-            System.out.println("Error");
+            System.out.println("Error: No hi ha espai suficient per tantes horesLectives");
         }else this.OmplirHorari(horesLectives);
 
     }
@@ -127,6 +128,19 @@ public class Horari
         }
     }
 
+    public HoraLectiva[][] getSetmana() {
+        return setmana;
+    }
+
+    public HoraLectiva getHoraLectiva(int dia, int hora) {
+//        hora = hora - this.hIni;
+        if (hora < 0 || hora >= this.hores || dia < 0 || dia >= 5) {
+            System.out.println(">>> getHoraLectiva(): Parametres hora i dia no valids.");
+            return null;
+        }
+        return this.setmana[dia][hora];
+    }
+
     public int getDies() {
         return dies;
     }
@@ -134,6 +148,8 @@ public class Horari
     public int getHores() {
         return hores;
     }
+
+    public int gethIni() { return hIni; }
 
     private void iniSetmana() {
         for (int i = 0; i < dies; i++) {
@@ -145,8 +161,8 @@ public class Horari
 
 
 
-    ////////////////////////////////////////////////////////////
-    //// Molta tralla nomes per imprimir el horari
+    ///////////////////////////////////////////////////////
+    ////// Molta tralla nomes per imprimir el horari //////
 
     private void printHoresIniFi(int h) {
         h = h + this.hIni;
@@ -183,7 +199,16 @@ public class Horari
         System.out.print("\n");
     }
 
-    public void printDay(int d) {
+    /// \/
+
+    private void printIndentation(int size) {
+        int n_spaces = 20 - size;
+        String spaces = "";
+        for (int i = 0; i < n_spaces; i++) { spaces += " "; }
+        System.out.print(spaces);
+    }
+
+    private void printDay(int d) {
         for (int h = 0; h < this.hores; h++) {
             String h0s = Integer.toString(h + this.hIni);
             String h1s = Integer.toString(h + this.hIni +1);
@@ -193,22 +218,23 @@ public class Horari
             System.out.print(str + "   ");
             for (int i = 0; i < this.setmana[d][h].mida(); i++) {
                 String s = this.setmana[d][h].getAssignacio(i).getAssignacioPrintFormat();
-                System.out.print(s + "  ");
+                System.out.print(s);
+                this.printIndentation(s.length());
             }
             System.out.print("\n");
         }
     }
 
     public void printHorariEasy() {
-        System.out.println("DILLUNS");
+        System.out.println("\nDILLUNS");
         this.printDay(0);
-        System.out.println("DIMARTS");
+        System.out.println("\nDIMARTS");
         this.printDay(1);
-        System.out.println("DIMECRES");
+        System.out.println("\nDIMECRES");
         this.printDay(2);
-        System.out.println("DIJOUS");
+        System.out.println("\nDIJOUS");
         this.printDay(3);
-        System.out.println("DIVENDRES");
+        System.out.println("\nDIVENDRES");
         this.printDay(4);
     }
 }

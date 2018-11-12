@@ -7,7 +7,8 @@ public class GeneradorHora {
     public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException {
         
         Assignatures assignatures = new Assignatures(assignaturesPE);
-        Aules aules = new Aules(aulesPE);
+        ArrayList<Aula> aulesCP = new ArrayList<>(aulesPE.getAules());
+        Aules aules = new Aules(aulesCP);
         HoraLectiva solucion = new HoraLectiva();
         
         int i = 0;
@@ -16,6 +17,9 @@ public class GeneradorHora {
     }
 
     private static void i_ForwardChecking(Assignatures assignatures, Aules aulesFuturas, HoraLectiva solucion, Assignatures assignaturesPE, int i) throws MyException {
+
+        // randomize vectors
+
         if (assignatures.esBuit() || aulesFuturas.esBuit() || i >= aulesFuturas.mida() || solucion.mida() >= 5){  
             i = 0;
             return;
@@ -37,14 +41,13 @@ public class GeneradorHora {
                         i = 0;
                     }
                     solucion.afegirAssignacio(asg);
-                }else {
+                }
+                else {
                     assignatures.eliminarAssignatura(0);
                 } 
-            } else i++;
+            }
+            else i++;
             i_ForwardChecking(assignatures,aulesFuturas,solucion, assignaturesPE, i);
-            
-               
-
         }
     }
     private static boolean restriccioAssignaturesNivell(Assignatura assig, HoraLectiva sol, Assignatures assignaturesPE){
@@ -84,9 +87,6 @@ public class GeneradorHora {
                 }
         }
     }
-    
 
-    
-    
 }
 
