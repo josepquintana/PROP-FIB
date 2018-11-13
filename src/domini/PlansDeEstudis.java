@@ -6,26 +6,33 @@ import java.util.Iterator;
 public class PlansDeEstudis {
 
     private ArrayList<PlaEstudis> plansDeEstudis;
-    private Iterator<PlaEstudis> it;
 
     public PlansDeEstudis() {
         this.plansDeEstudis = new ArrayList<>();
-        this.it = new ArrayList<PlaEstudis>().iterator();
-        this.it = plansDeEstudis.iterator();
     }
 
     public PlansDeEstudis(ArrayList<PlaEstudis> plansDeEstudis) {
         this.plansDeEstudis = new ArrayList<>();
         this.plansDeEstudis = plansDeEstudis;
-        this.it = new ArrayList<PlaEstudis>().iterator();
-        this.it = plansDeEstudis.iterator();
     }
 
     public PlansDeEstudis(PlansDeEstudis plansDeEstudis) {
         this.plansDeEstudis = new ArrayList<>();
         this.plansDeEstudis = plansDeEstudis.getPlansDeEstudis();
-        this.it = new ArrayList<PlaEstudis>().iterator();
-        this.it = this.plansDeEstudis.iterator();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        PlansDeEstudis plansDeEstudisCloned = new PlansDeEstudis();
+        try {
+            for(int i = 0; i < this.plansDeEstudis.size(); ++i) {
+                plansDeEstudisCloned.plansDeEstudis.add((PlaEstudis) this.plansDeEstudis.get(i).clone());
+            }
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return plansDeEstudisCloned;
     }
 
     public boolean existeixPlaEstudis(PlaEstudis pe) {

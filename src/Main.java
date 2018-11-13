@@ -9,7 +9,7 @@ public class Main
 
     // Execution-control variables
     private static int    printMode      = 2;                    // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
-    private static String inputFileName  = "input-short";              // filename for the data input
+    private static String inputFileName  = "input-short";        // filename for the data input
     private static String outputFileName = "output";             // filename for the horari output
 
     public static void main(String[] args) throws Exception
@@ -18,9 +18,12 @@ public class Main
         cd = new CentreDocent();
         ReadFile.main(cd, inputFileName);
         printDades(cd, printMode);
-        cd.generateHorariPlaEstudis(0);
-        cd.getPlaEstudis(0).getHorari().printHorari();
+//        cd.generateHorariPlaEstudis(0);
+//        cd.getPlaEstudis(0).getHorari().printHorari();
 //        WriteHorari.main(cd.getPlaEstudis(0).getHorari(), outputFileName);    // de moment no xuta..
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     }
 
     private static void printHello() {

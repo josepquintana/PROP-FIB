@@ -1,7 +1,7 @@
 package domini;
 
 
-public class Aula
+public class Aula implements Cloneable
 {
     private String codi;
     private int capacitat;
@@ -22,6 +22,18 @@ public class Aula
         this.codi = a.getCodi();
         this.capacitat = a.getCapacitat();
         this.PC = a.getTipus();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Aula a = new Aula();
+        try {
+            a = (Aula) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return a;
     }
 
     public boolean equals(Aula a) {

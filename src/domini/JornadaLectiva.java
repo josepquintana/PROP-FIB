@@ -3,7 +3,7 @@ package domini;
 
 import java.sql.Time;
 
-public class JornadaLectiva
+public class JornadaLectiva implements Cloneable
 {
     private Time horaIni;
     private Time horaFi;
@@ -22,6 +22,21 @@ public class JornadaLectiva
     public JornadaLectiva(JornadaLectiva jL) {
         this.horaIni = new Time(jL.getHoraIni().getTime());
         this.horaFi  = new Time(jL.getHoraFi().getTime());
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        JornadaLectiva jL = new JornadaLectiva();
+        try {
+            jL = (JornadaLectiva) super.clone();
+
+            jL.setHoraIni((Time) this.getHoraIni().clone());
+            jL.setHoraFi((Time) this.getHoraFi().clone());
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return jL;
     }
 
     public void setHoraIni(Time horaIni) {

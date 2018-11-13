@@ -1,6 +1,9 @@
 package domini;
 
-public class Titulacio {
+import java.util.Iterator;
+
+public class Titulacio implements Cloneable
+{
 
     private String nom;
     private String tipus;
@@ -23,6 +26,19 @@ public class Titulacio {
     public Titulacio(Titulacio t) {
         this.nom = t.getNomTitulacio();
         this.tipus = t.getTipusTitulacio();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Titulacio t = new Titulacio();
+        try {
+            t = (Titulacio) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return t;
     }
 
     public String getNomTitulacio() {

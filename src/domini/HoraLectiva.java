@@ -20,6 +20,20 @@ public class HoraLectiva
         this.assignacions = hL.getAssignacions();
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        HoraLectiva hL = new HoraLectiva();
+        try {
+            for(int i = 0; i < this.assignacions.size(); ++i) {
+                hL.assignacions.add((Assignacio) this.assignacions.get(i).clone());
+            }
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return hL;
+    }
+
     public boolean equals(HoraLectiva hL) {
         return (this.assignacions.equals(hL.getAssignacions()));
     }

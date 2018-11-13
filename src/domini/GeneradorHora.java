@@ -10,7 +10,7 @@ public class GeneradorHora {
     private static final int maxAssignacionsHora = 100;
     private static final boolean randomize       = true;    // randomize Assigs and Aules arrays ?
 
-    public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException {
+    public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException, CloneNotSupportedException {
 
         // MIRAR COM FER BE LES COPIES DE OBJECTES!
         ArrayList<Assignatura> assignaturesCP = new ArrayList<>(assignaturesPE.getAssignatures());
