@@ -46,7 +46,7 @@ public class Aula
         return this.capacitat;
     }
 
-    /*public void printAulaLong(int indentation) {
+    public void printAulaLong(int indentation) {
         System.out.print("\n");
         if (indentation == 3) System.out.print("  ");
         System.out.print("  Aula:\n");
@@ -56,5 +56,5 @@ public class Aula
 
     public void printAula() {
         System.out.println("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
-    }*/
+    }
 }
