@@ -108,7 +108,7 @@ public class Aules
         return this.aules.isEmpty();
     }
 
-    /*public void printAulesLong(int indentation) {
+    public void printAulesLong(int indentation) {
         if (indentation == 1) System.out.println(" Aules: [Long Format]");
         if (indentation == 3) System.out.println("   Aules: [Long Format]");
         for (int i = 0; i < this.aules.size(); i++) {
@@ -127,6 +127,6 @@ public class Aules
             if (this.aules.get(i).getCodi().length() == 5) System.out.print(" ");   // for indentation purposes
         }
         System.out.println("");
-    }*/
+    }
 
 }

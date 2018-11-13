@@ -9,7 +9,7 @@ public class Main
 
     // Execution-control variables
     private static int    printMode      = 2;                    // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
-    private static String inputFileName  = "input";              // filename for the data input
+    private static String inputFileName  = "input-short";              // filename for the data input
     private static String outputFileName = "output";             // filename for the horari output
 
     public static void main(String[] args) throws Exception
