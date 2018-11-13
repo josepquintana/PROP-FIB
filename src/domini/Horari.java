@@ -2,13 +2,14 @@ package domini;
 
 import java.util.ArrayList;
 
-public class Horari
+public class Horari implements Cloneable
 {
     private final int dies = 5;
     private int hIni;
     private int hores;
     private HoraLectiva[][] setmana;
 
+    @SuppressWarnings("deprecation")
     public Horari(JornadaLectiva jL) {
         this.hIni = jL.getHoraIni().getHours();
         this.hores = (jL.getHoraFi().getHours())-hIni;
@@ -21,13 +22,36 @@ public class Horari
         this.setmana = new HoraLectiva[this.dies][this.hores];
     }
 
-    public void GenerarHorari(PlaEstudis pe) throws MyException {
-        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesAL());
-        Assignatures assignatures = new Assignatures(asigs);
-        
-        ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());
-        Aules aules = new Aules(aulesPE);
-        
+    //@Override
+    protected Object clone(JornadaLectiva jL) throws CloneNotSupportedException {
+        JornadaLectiva aux = (JornadaLectiva) jL.clone();
+        Horari horari = new Horari(aux);
+        try {
+            horari = (Horari) super.clone();
+
+            for (int i = 0; i < this.dies; i++) {
+                for (int j = 0; j < this.hores; j++) {
+                    horari.setHoraLectiva((HoraLectiva) this.getHoraLectiva(i, j).clone(), i, j);
+                }
+            }
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return jL;
+    }
+
+    public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
+
+        System.out.println("Cloning...");
+
+        Assignatures assignatures = (Assignatures) pe.getAssignaturesDelPlaEstudis().clone();
+        Aules aules = (Aules) pe.getAules().clone();
+
+        System.out.println("Cloned!");
+
+        assignatures.printAssignatures();
+
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         while (! assignatures.esBuit()) {
             HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);
@@ -150,6 +174,25 @@ public class Horari
     }
 
     public int getHIni() { return hIni; }
+
+    public void setSetmana(HoraLectiva[][] setmana) {
+        this.setmana = setmana;
+    }
+
+    public void setHoraLectiva(HoraLectiva hL, int dia, int hora) {
+        if (hora < 0 || hora >= this.hores || dia < 0 || dia >= 5) {
+            System.out.println(">>> getHoraLectiva(): Parametres hora i dia no valids.");
+        }
+        else this.setmana[dia][hora] = hL;
+    }
+
+    public void setHores(int hores) {
+        this.hores = hores;
+    }
+
+    public void setHIni(int hIni) {
+        this.hIni = hIni;
+    }
 
     private void iniSetmana() {
         for (int i = 0; i < dies; i++) {

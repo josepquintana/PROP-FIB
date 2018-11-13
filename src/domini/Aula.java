@@ -1,7 +1,7 @@
 package domini;
 
 
-public class Aula
+public class Aula implements Cloneable
 {
     private String codi;
     private int capacitat;
@@ -19,6 +19,18 @@ public class Aula
     public Aula(Aula a) {
         this.codi = a.getCodi();
         this.capacitat = a.getCapacitat();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Aula a = new Aula();
+        try {
+            a = (Aula) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return a;
     }
 
     public boolean equals(Aula a) {
@@ -46,7 +58,7 @@ public class Aula
         return this.capacitat;
     }
 
-    /*public void printAulaLong(int indentation) {
+    public void printAulaLong(int indentation) {
         System.out.print("\n");
         if (indentation == 3) System.out.print("  ");
         System.out.print("  Aula:\n");
@@ -56,5 +68,5 @@ public class Aula
 
     public void printAula() {
         System.out.println("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
-    }*/
+    }
 }

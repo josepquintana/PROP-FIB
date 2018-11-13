@@ -2,7 +2,7 @@ package domini;
 
 import java.util.Date;
 
-public class PeriodeLectiu
+public class PeriodeLectiu implements Cloneable
 {
     private Date dataIni;
     private Date dataFi;
@@ -20,6 +20,21 @@ public class PeriodeLectiu
     public PeriodeLectiu(PeriodeLectiu pL) {
         this.dataIni = new Date(pL.getDataIni().getTime());
         this.dataFi  = new Date(pL.getDataFi().getTime());
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        PeriodeLectiu pL = new PeriodeLectiu();
+        try {
+            pL = (PeriodeLectiu) super.clone();
+
+            pL.setDataIni((Date) this.getDataIni().clone());
+            pL.setDataFi((Date) this.getDataFi().clone());
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return pL;
     }
 
     public void setDataIni(Date dataIni) {

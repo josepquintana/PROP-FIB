@@ -7,20 +7,36 @@ import java.util.Iterator;
 public class Assignatures
 {
     private ArrayList<Assignatura> assignatures;
-    private Iterator<Assignatura> it;
 
     public Assignatures() {
         this.assignatures = new ArrayList<>();
-        this.it = new ArrayList<Assignatura>().iterator();
-        this.it = assignatures.iterator();
     }
 
-    public Assignatures(ArrayList<Assignatura> assignatures) {
-        this.assignatures = new ArrayList<>(assignatures);
+    public Assignatures(ArrayList<Assignatura> assignatures) throws CloneNotSupportedException {
+        this.assignatures = new ArrayList<>();
+        Iterator<Assignatura> it = assignatures.iterator();
+        while(it.hasNext()) {
+            // Add a clone of object i
+            this.assignatures.add((Assignatura) it.next().clone());
+        }
     }
 
     public Assignatures(Assignatures assignaturesCP) {
         this.assignatures = new ArrayList<>(assignaturesCP.assignatures);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Assignatures assignaturesCloned = new Assignatures();
+        try {
+            for(int i = 0; i < this.assignatures.size(); ++i) {
+                assignaturesCloned.assignatures.add((Assignatura) this.assignatures.get(i).clone());
+            }
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return assignaturesCloned;
     }
 
     public boolean existeixAssignatura(Assignatura assig) {
@@ -53,10 +69,9 @@ public class Assignatures
     }
     
     public boolean eliminarAssignatura(String codi) {
-        Assignatura a = new Assignatura();
         for(int i = 0; i< assignatures.size(); ++i){
             if(assignatures.get(i).getCodi().equals(codi)) {
-                a = this.assignatures.remove(i);
+                Assignatura a = new Assignatura(this.assignatures.remove(i));
                 return true;
             }
          }

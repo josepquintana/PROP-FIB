@@ -1,6 +1,6 @@
 package domini;
 
-public class CentreDocent
+public class CentreDocent implements Cloneable
 {
     private String nomCentre;
     private PeriodeLectiu periodeLectiu;
@@ -42,11 +42,28 @@ public class CentreDocent
         this.plansDeEstudis = cd.getPlansDeEstudis();
     }
 
-    public void generateHorariPlaEstudis(String nomPla) throws MyException {
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        CentreDocent cd = new CentreDocent();
+        try {
+            cd = (CentreDocent) super.clone();
+
+            // mutable methods!
+            cd.setPeriodeLectiu((PeriodeLectiu) this.getPeriodeLectiu().clone());
+            cd.setJornadaLectiva((JornadaLectiva) this.getJornadaLectiva().clone());
+            cd.setPlansDeEstudis((PlansDeEstudis) this.getPlansDeEstudis().clone());
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return cd;
+    }
+
+    public void generateHorariPlaEstudis(String nomPla) throws MyException, CloneNotSupportedException {
         this.plansDeEstudis.getPlaEstudis(nomPla).generateHorari();
     }
 
-    public void generateHorariPlaEstudis(int numPla) throws MyException {
+    public void generateHorariPlaEstudis(int numPla) throws MyException, CloneNotSupportedException {
         this.plansDeEstudis.getPlaEstudis(numPla).generateHorari();
     }
 

@@ -1,6 +1,6 @@
 package domini;
 
-public class Assignacio
+public class Assignacio implements Cloneable
 {
     private Grup grup;
     private String codiAula;
@@ -26,6 +26,19 @@ public class Assignacio
         this.grup = new Grup();
         this.grup = asg.getGrupAssignat();
         this.codiAula = asg.getCodiAulaAssignada();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Assignacio asg = new Assignacio();
+        try {
+            asg = (Assignacio) super.clone();
+            asg.setGrup((Grup) this.getGrupAssignat().clone());
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return asg;
     }
 
     public boolean equals(Assignacio asg) {

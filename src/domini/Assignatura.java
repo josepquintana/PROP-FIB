@@ -1,8 +1,10 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Assignatura
+public class Assignatura implements Cloneable
 {
     private String codi;
     private String nom;
@@ -13,15 +15,6 @@ public class Assignatura
 
     public Assignatura() {
         this.codi = new String();
-        this.nom = new String();
-        this.credits = 0;
-        this.nivell = 0;
-        this.correquisits = new ArrayList<>();
-        this.grups = new ArrayList<>();
-    }
-
-    public Assignatura(String codi) {
-        this.codi = codi;
         this.nom = new String();
         this.credits = 0;
         this.nivell = 0;
@@ -57,6 +50,29 @@ public class Assignatura
         this.correquisits = new ArrayList<>();
         this.correquisits = a.getCorrequisits();
         this.grups = new ArrayList<>(a.getGrups());
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Assignatura a = new Assignatura();
+        try {
+            a = (Assignatura) super.clone();
+
+            // tractar mutable fields
+            a.setCorrequisits((ArrayList<String>) this.getCorrequisits().clone());
+
+            Iterator<Grup> it_grups  = this.grups.iterator();
+            ArrayList<Grup> list_grups = new ArrayList<>();
+            while(it_grups.hasNext()) {
+                list_grups.add((Grup) it_grups.next().clone());
+            }
+            a.setGrups(list_grups);
+
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return a;
     }
 
     public boolean equals(Assignatura a) {
@@ -240,7 +256,8 @@ public class Assignatura
         System.out.println("     nivell : " + this.nivell);
         System.out.println("     Correquisits:");
         for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i) + "  \t nivell: " + this.correquisits.get(i));                     ///BUSCAR NIVELL DEL CORREQUISIT
+            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i));
+            ///BUSCAR NIVELL DEL CORREQUISIT
         }
         System.out.println("     Grups:");
         for (int i = 0; i < this.grups.size(); i++) {
