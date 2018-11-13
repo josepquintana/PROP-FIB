@@ -42,24 +42,16 @@ public class Horari implements Cloneable
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
+
         System.out.println("Cloning...");
 
         Assignatures assignatures = (Assignatures) pe.getAssignaturesDelPlaEstudis().clone();
-//        Aules aules = (Aules) pe.getAules().clone();
-        ArrayList<Aula> aCP = pe.getAules().getAules();
-        Aules aules = new Aules(aCP);
-
+        Aules aules = (Aules) pe.getAules().clone();
 
         System.out.println("Cloned!");
 
         assignatures.printAssignatures();
 
-//        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesAL());
-//        Assignatures assignatures = new Assignatures(asigs);
-        
-//        ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());
-//        Aules aules = new Aules(aulesPE);
-        
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         while (! assignatures.esBuit()) {
             HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);

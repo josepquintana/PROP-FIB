@@ -30,7 +30,7 @@ public class Aules
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         Aules aulesCloned = new Aules();
         try {
             for(int i = 0; i < this.aules.size(); ++i) {

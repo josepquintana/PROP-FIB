@@ -72,7 +72,6 @@ public class Assignatura implements Cloneable
         catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
-
         return a;
     }
 

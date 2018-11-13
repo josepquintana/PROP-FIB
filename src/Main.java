@@ -2,8 +2,6 @@ import domini.*;
 import presentacio.ReadFile;
 import presentacio.WriteHorari;
 
-import java.util.ArrayList;
-
 public class Main
 {
     // Data Structures to store all the information --------> dades/
@@ -11,7 +9,7 @@ public class Main
 
     // Execution-control variables
     private static int    printMode      = 2;                    // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
-    private static String inputFileName  = "input-short";              // filename for the data input
+    private static String inputFileName  = "input-short";        // filename for the data input
     private static String outputFileName = "output";             // filename for the horari output
 
     public static void main(String[] args) throws Exception
@@ -25,17 +23,6 @@ public class Main
 //        WriteHorari.main(cd.getPlaEstudis(0).getHorari(), outputFileName);    // de moment no xuta..
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        Assignatura a = (Assignatura) cd.getPlaEstudis(0).getAssignatura(3).clone();
-
-        a.eliminarGrupAssignatura(0);
-
-        System.out.println("original");
-        cd.getPlaEstudis(0).getAssignatura(3).printAssignaturaLong();
-        System.out.println("\nmods:");
-        a.printAssignaturaLong();
-
 
     }
 
