@@ -30,8 +30,6 @@ public class DriverAules {
                 System.out.println("\t 11) ArrayList<Aula> getAules()");
                 System.out.println("\t 12) int mida()");
                 System.out.println("\t 13) boolean esBuit()");
-                System.out.println("\t 14) void printAulesLong(int indentation)");
-                System.out.println("\t 15) public void printAules(int indentation)");
                 System.out.println("\t 0) Sortir");
 
                 String linea;
@@ -111,14 +109,6 @@ public class DriverAules {
                             boolean buit = As.esBuit();
                             if (buit) System.out.println("No hi ha aules");
                             else System.out.println("Hi ha aules");
-                            break; 
-                        case "14":
-                            As.printAulesLong(Integer.parseInt(paraules[1]));
-                            System.out.print("\n");
-                            break; 
-                        case "15":
-                            As.printAules(Integer.parseInt(paraules[1]));
-                            System.out.print("\n");
                             break; 
                         case "0":
                             sortir = true;

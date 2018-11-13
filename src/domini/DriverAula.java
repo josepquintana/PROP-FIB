@@ -24,8 +24,6 @@ public class DriverAula {
                 System.out.println("\t 6) boolean setCapacitat(int capacitat)");
                 System.out.println("\t 7) String getCodi()");
                 System.out.println("\t 8) int getCapacitat()");
-                System.out.println("\t 9) void printAulaLong(int indentation)");
-                System.out.println("\t 10) void printAula()");
                 System.out.println("\t 0) Sortir");
 
                 String linea;
@@ -65,13 +63,7 @@ public class DriverAula {
                             break;
                         case "8":
                             System.out.println("Capacitat de l'aula actual: " + A.getCapacitat() + ".");
-                            break;
-                        case "9":
-                            A.printAulaLong(Integer.parseInt(paraules[1]));
-                            break;
-                        case "10":
-                            A.printAula();
-                            break;    
+                            break;   
                         case "0":
                             sortir = true;
                             break;
