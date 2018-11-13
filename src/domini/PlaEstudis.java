@@ -3,7 +3,7 @@ package domini;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class PlaEstudis
+public class PlaEstudis implements Cloneable
 {
     private String nomPla;
     private double credits;
@@ -53,7 +53,7 @@ public class PlaEstudis
             pe.setTitulacio((Titulacio) this.getTitulacio().clone());
             pe.setAssignatures((Assignatures) this.getAssignaturesDelPlaEstudis().clone());
             pe.setAules((Aules) this.getAules().clone());
-//            pe.setHorari((Horari) this.getHorari().clone()); de moment es pot clonar el horari
+            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva())); // de moment es pot clonar el horari
 
         }
         catch (CloneNotSupportedException e) {

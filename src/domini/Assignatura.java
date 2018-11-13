@@ -53,24 +53,21 @@ public class Assignatura implements Cloneable
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         Assignatura a = new Assignatura();
         try {
             a = (Assignatura) super.clone();
 
             // tractar mutable fields
-            CopyOnWriteArrayList<String> list_correq = new CopyOnWriteArrayList<>();
-            for(String s : this.correquisits) {
-                list_correq.add(new String(s));
-            }
-            a.correquisits.addAll(list_correq);
+            a.setCorrequisits((ArrayList<String>) this.getCorrequisits().clone());
 
             Iterator<Grup> it_grups  = this.grups.iterator();
-            CopyOnWriteArrayList<Grup> list_grups = new CopyOnWriteArrayList<>();
+            ArrayList<Grup> list_grups = new ArrayList<>();
             while(it_grups.hasNext()) {
                 list_grups.add((Grup) it_grups.next().clone());
             }
-            a.grups.addAll(list_grups);
+            a.setGrups(list_grups);
+
         }
         catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
@@ -260,7 +257,8 @@ public class Assignatura implements Cloneable
         System.out.println("     nivell : " + this.nivell);
         System.out.println("     Correquisits:");
         for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i) + "  \t nivell: " + this.correquisits.get(i));                     ///BUSCAR NIVELL DEL CORREQUISIT
+            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i));
+            ///BUSCAR NIVELL DEL CORREQUISIT
         }
         System.out.println("     Grups:");
         for (int i = 0; i < this.grups.size(); i++) {

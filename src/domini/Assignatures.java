@@ -26,7 +26,7 @@ public class Assignatures
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    protected Object clone() throws CloneNotSupportedException {
         Assignatures assignaturesCloned = new Assignatures();
         try {
             for(int i = 0; i < this.assignatures.size(); ++i) {

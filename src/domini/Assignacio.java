@@ -1,6 +1,6 @@
 package domini;
 
-public class Assignacio
+public class Assignacio implements Cloneable
 {
     private Grup grup;
     private String codiAula;

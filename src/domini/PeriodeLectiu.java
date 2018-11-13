@@ -2,7 +2,7 @@ package domini;
 
 import java.util.Date;
 
-public class PeriodeLectiu
+public class PeriodeLectiu implements Cloneable
 {
     private Date dataIni;
     private Date dataFi;

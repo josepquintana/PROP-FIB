@@ -2,7 +2,7 @@ package domini;
 
 import java.util.ArrayList;
 
-public class Horari
+public class Horari implements Cloneable
 {
     private final int dies = 5;
     private int hIni;
@@ -22,26 +22,24 @@ public class Horari
         this.setmana = new HoraLectiva[this.dies][this.hores];
     }
 
-//    @Override
-//    protected Object clone() throws CloneNotSupportedException {
-//        Horari horari = new Horari();
-//        try {
-//            horari = (Horari) super.clone();
-//
-//            for (int i = 0; i < this.dies; i++) {
-//                for (int j = 0; j < this.hores; j++) {
-//                    horari.setHoraLectiva((HoraLectiva) this.getHoraLectiva(i, j).clone(), dia, hora);
-//                }
-//
-//            }
-//
-//            horari.setSetmana((HoraLectiva[][]) this.getSetmana().clone());
-//        }
-//        catch (CloneNotSupportedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return jL;
-//    }
+    //@Override
+    protected Object clone(JornadaLectiva jL) throws CloneNotSupportedException {
+        JornadaLectiva aux = (JornadaLectiva) jL.clone();
+        Horari horari = new Horari(aux);
+        try {
+            horari = (Horari) super.clone();
+
+            for (int i = 0; i < this.dies; i++) {
+                for (int j = 0; j < this.hores; j++) {
+                    horari.setHoraLectiva((HoraLectiva) this.getHoraLectiva(i, j).clone(), i, j);
+                }
+            }
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return jL;
+    }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
         System.out.println("Cloning...");

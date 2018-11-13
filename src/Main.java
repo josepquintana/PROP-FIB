@@ -26,20 +26,15 @@ public class Main
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        Aula a = (Aula) cd.getTotesLesAules().getAula(0).clone();
 
-        a.printAula();
+        Assignatura a = (Assignatura) cd.getPlaEstudis(0).getAssignatura(3).clone();
 
+        a.eliminarGrupAssignatura(0);
 
-
-
-//        Assignatures assignatures = (Assignatures) cd.getPlaEstudis(0).getAssignaturesDelPlaEstudis().clone();
-//
-//        assignatures.getAssignatura(3).setCodi("ZZ");
-//
-//        cd.getPlaEstudis(0).getAssignatura(3).printAssignatura();
-//        System.out.println("mods:");
-//        assignatures.getAssignatura(3).printAssignatura();
+        System.out.println("original");
+        cd.getPlaEstudis(0).getAssignatura(3).printAssignaturaLong();
+        System.out.println("\nmods:");
+        a.printAssignaturaLong();
 
 
     }

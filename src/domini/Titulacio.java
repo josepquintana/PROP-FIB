@@ -2,7 +2,8 @@ package domini;
 
 import java.util.Iterator;
 
-public class Titulacio {
+public class Titulacio implements Cloneable
+{
 
     private String nom;
     private String tipus;

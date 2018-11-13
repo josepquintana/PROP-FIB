@@ -3,7 +3,7 @@ package domini;
 
 import java.sql.Time;
 
-public class JornadaLectiva
+public class JornadaLectiva implements Cloneable
 {
     private Time horaIni;
     private Time horaFi;

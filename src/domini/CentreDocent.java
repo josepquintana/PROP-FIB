@@ -1,6 +1,6 @@
 package domini;
 
-public class CentreDocent
+public class CentreDocent implements Cloneable
 {
     private String nomCentre;
     private PeriodeLectiu periodeLectiu;

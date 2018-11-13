@@ -1,7 +1,7 @@
 package domini;
 
 
-public class Aula
+public class Aula implements Cloneable
 {
     private String codi;
     private int capacitat;
@@ -22,7 +22,7 @@ public class Aula
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    protected Object clone() throws CloneNotSupportedException {
         Aula a = new Aula();
         try {
             a = (Aula) super.clone();
