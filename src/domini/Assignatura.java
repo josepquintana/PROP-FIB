@@ -12,6 +12,9 @@ public class Assignatura implements Cloneable
     private int nivell;
     private ArrayList<String> correquisits;            // Comprobar correquisits bidireccionals
     private ArrayList<Grup> grups;
+    private boolean lab;
+    private int horesLab;
+    private int horesTeo;
 
     public Assignatura() {
         this.codi = new String();
@@ -20,18 +23,24 @@ public class Assignatura implements Cloneable
         this.nivell = 0;
         this.correquisits = new ArrayList<>();
         this.grups = new ArrayList<>();
+        this.lab = false;
+        this.horesLab = 0;
+        this.horesTeo = 0;
     }
 
-    public Assignatura(String codi, String nom, double credits, int nivell) {
+    public Assignatura(String codi, String nom, double credits, int nivell, boolean ordinadors) {
         this.codi = codi;
         this.nom = nom;
         this.credits = credits;
         this.nivell = nivell;
         this.correquisits = new ArrayList<>();
         this.grups = new ArrayList<>();
+        this.lab = ordinadors;
+        setSessionsLab();
+        setSessionsTeoria();
     }
 
-    public Assignatura(String codi, String nom, double credits, int nivell, ArrayList<String> correqs, ArrayList<Grup> grups) {
+    public Assignatura(String codi, String nom, double credits, int nivell, ArrayList<String> correqs, ArrayList<Grup> grups, boolean ordinadors) {
         this.codi = codi;
         this.nom = nom;
         this.credits = credits;
@@ -39,6 +48,9 @@ public class Assignatura implements Cloneable
         this.correquisits = new ArrayList<>();
         this.correquisits = correqs;
         this.grups = new ArrayList<>(grups);
+        this.lab = ordinadors;
+        setSessionsLab();
+        setSessionsTeoria();
     }
 
     public Assignatura(Assignatura a) {
@@ -50,6 +62,9 @@ public class Assignatura implements Cloneable
         this.correquisits = new ArrayList<>();
         this.correquisits = a.getCorrequisits();
         this.grups = new ArrayList<>(a.getGrups());
+        this.lab = a.getLab();
+        setSessionsLab();
+        setSessionsTeoria();
     }
 
     @Override
@@ -154,6 +169,10 @@ public class Assignatura implements Cloneable
         }
         return false;
     }
+    
+    public void eliminarSubGrupAssignatura(Grup g){
+        g.eliminarSubgrup();
+    }
 
     public boolean eliminarGrupAssignatura(int i) {
         this.grups.remove(i);
@@ -186,6 +205,10 @@ public class Assignatura implements Cloneable
         this.nivell = nivell;
     }
     
+    public void setLab(boolean ordinadors){
+        this.lab = ordinadors;
+    }
+    
     public void setCorrequisits(ArrayList<String> correqs) {
         this.correquisits = correqs;
     }
@@ -208,6 +231,30 @@ public class Assignatura implements Cloneable
     
     public int getNivell() {
         return this.nivell;
+    }
+    
+    public boolean getLab(){
+        return this.lab;
+    }
+    
+    public int getSessionsLab(){
+        return this.horesLab;
+    }
+    
+    private void setSessionsLab(){
+        this.horesLab = (int)(this.credits/1.5)/2;
+    }
+    
+    public int getSessionsTeoria(){
+        return this.horesTeo;
+    }
+    
+    private void setSessionsTeoria(){
+        int hores = (int)(this.credits/1.5);
+        if(hores%2 != 0) {
+            ++hores;         
+        }
+        this.horesTeo = hores/2;
     }
     
     public ArrayList<String> getCorrequisits() {
@@ -246,6 +293,10 @@ public class Assignatura implements Cloneable
             System.out.print(this.grups.get(i).getNumGrup());
             if (i < this.grups.size() - 1) System.out.print(", ");
         }
+    }
+    
+    public void restarHoraTeo(){
+        --this.horesTeo;
     }
 
     public void printAssignaturaLong() {

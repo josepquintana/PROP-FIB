@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class GeneradorHora {
 
-    private static final int maxAssignacionsHora = 4;
+    private static final int maxAssignacionsHora = 100;
     private static final boolean randomize       = true;    // randomize Assigs and Aules arrays ?
 
     public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException, CloneNotSupportedException {
@@ -38,20 +38,32 @@ public class GeneradorHora {
         else {
             
             Aula a = new Aula(aulesFuturas.getAula(i));
-            
             Assignatura assig = new Assignatura(assignatures.getAssignatura(0));
             Grup g = new Grup(assig.getGrup(0));
             
              if(restriccioTamanyAula(g,a)){
-                if(restriccioAssignaturesNivell(assig, solucion, assignaturesPE) && restriccioAssignaturesCorrequisits(assig, solucion, assignaturesPE)){  
-                    Assignacio asg = new Assignacio(g,a);                   
-                    assignatures.getAssignatura(0).eliminarGrupAssignatura(0); 
-                    aulesFuturas.eliminarAula(i);
+                if(restriccioAssignaturesNivell(assig, solucion, assignaturesPE) && restriccioAssignaturesCorrequisits(assig, solucion, assignaturesPE)){
+                    if(restriccioTipusAula(assig, a)) {
+                        Assignacio asg = new Assignacio(g,a);
+                        if(g.getSubGrups() != 0){
+                            assignatures.getAssignatura(0).getGrup(0).restarHoraLab();
+                            if(g.getHoresLab() == 0) {
+                                assignatures.getAssignatura(0).getGrup(0).eliminarSubgrup();
+                                assignatures.getAssignatura(0).getGrup(0).setHoresLab();
+                               }
+                        }else {
+                            assignatures.getAssignatura(0).restarHoraTeo();
+                            if(assignatures.getAssignatura(0).getSessionsTeoria() == 0){
+                                assignatures.getAssignatura(0).eliminarGrupAssignatura(0);
+                            }
+                        }
+                        solucion.afegirAssignacio(asg);
+                        aulesFuturas.eliminarAula(i);
+                    } i++; 
                     if (assignatures.getAssignatura(0).getGrups().isEmpty()){
                         assignatures.eliminarAssignatura(0);
                         i = 0;
                     }
-                    solucion.afegirAssignacio(asg);
                 }
                 else {
                     assignatures.eliminarAssignatura(0);
@@ -60,6 +72,11 @@ public class GeneradorHora {
             else i++;
             i_ForwardChecking(assignatures,aulesFuturas,solucion, assignaturesPE, i);
         }
+    }
+    
+    private static boolean restriccioTipusAula(Assignatura assig, Aula aula){
+        return ((aula.getTipus() && assig.getLab()) || (!aula.getTipus() && !assig.getLab()));
+
     }
 
     private static boolean restriccioAssignaturesNivell(Assignatura assig, HoraLectiva sol, Assignatures assignaturesPE){
@@ -82,7 +99,8 @@ public class GeneradorHora {
     }
     
     private static boolean restriccioTamanyAula(Grup g, Aula a){
-        return (g.getCapacitat() <= a.getCapacitat());
+        if(g.getSubGrups() == 0) return (g.getCapacitat() <= a.getCapacitat());
+        else return (g.getCapacitatSub() <= a.getCapacitat());
 
     }
     

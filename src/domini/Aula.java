@@ -5,20 +5,23 @@ public class Aula implements Cloneable
 {
     private String codi;
     private int capacitat;
+    private boolean PC;
 
     public Aula() {
         this.codi = "";
         this.capacitat = 0;
     }
 
-    public Aula(String codi, int capacitat) {
+    public Aula(String codi, int capacitat, boolean tipus) {
         this.codi = codi;
         this.capacitat = capacitat;
+        this.PC = tipus;
     }
 
     public Aula(Aula a) {
         this.codi = a.getCodi();
         this.capacitat = a.getCapacitat();
+        this.PC = a.getTipus();
     }
 
     @Override
@@ -49,6 +52,11 @@ public class Aula implements Cloneable
         this.capacitat = capacitat;
         return true;
     }
+    
+    public boolean setTipus(boolean tipus){
+        this.PC = tipus;
+        return true;
+    }
 
     public String getCodi() {
         return this.codi;
@@ -56,6 +64,10 @@ public class Aula implements Cloneable
 
     public int getCapacitat() {
         return this.capacitat;
+    }
+    
+    public boolean getTipus(){
+        return this.PC;
     }
 
     public void printAulaLong(int indentation) {

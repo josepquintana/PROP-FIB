@@ -104,19 +104,28 @@ public class ReadFile
             }
             else if (categoria.equals("Aula")) {
                 String nomPla = s.next();
-                Aula aula = new Aula(s.next(), Integer.parseInt(s.next()));
+                String codiAula = s.next();
+                int capacitat = Integer.parseInt(s.next());
+                Boolean tipus = s.next().equals("true");
+                Aula aula = new Aula(codiAula,capacitat ,tipus);
                 cd.afegirAulaAlPlaEstudis(nomPla, aula);
             }
             else if (categoria.equals("Assignatura")) {
                 String nomPla = s.next();
-                Assignatura a = new Assignatura(s.next(), s.next(), Double.parseDouble(s.next()), Integer.parseInt(s.next()));
-
+                String nom = s.next();
+                String descripcio = s.next();
+                Double credits = Double.parseDouble(s.next());
+                int matricules = Integer.parseInt(s.next());
+                
                 int ctotal = Integer.parseInt(s.next());
-                int cgrup = Integer.parseInt(s.next());
-                int ngrups = ctotal / cgrup;
+                int ngrups = Integer.parseInt(s.next());
+                int nsubGrups = Integer.parseInt(s.next());
+                int egrups = ctotal / ngrups;
+                Boolean tipus = s.next().equals("true");
+                Assignatura a = new Assignatura(nom, descripcio, credits, matricules,tipus);
                 Grup g;
                 for (int i = 10; i <= ngrups * 10; i = i + 10) {    // grups
-                    g = new Grup(a.getCodi(), i, cgrup);
+                    g = new Grup(a.getCodi(), i, egrups, nsubGrups, a.getSessionsLab());
                     a.afegirGrupAssignatura(g);
                 }
 

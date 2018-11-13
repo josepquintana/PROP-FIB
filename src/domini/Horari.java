@@ -53,9 +53,12 @@ public class Horari implements Cloneable
         assignatures.printAssignatures();
 
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
-        while (! assignatures.esBuit()) {
+        
+        boolean erroni = false;
+        while (! assignatures.esBuit() && !erroni) {
             HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);
             horesLectives.add(hL);
+            if(hL.esBuit()) erroni = true;
             
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
                 Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
@@ -67,7 +70,8 @@ public class Horari implements Cloneable
                 }
             }
         }
-        if(horesLectives.size() > this.hores*this.dies) {
+        if(horesLectives.size() > this.hores*this.dies || erroni) {
+            if(erroni) System.out.println("Error: Hi ha alguna assignatura que no hi cap a cap aula");
             System.out.println("Error: No hi ha espai suficient per tantes horesLectives");
         }
         else this.OmplirHorari(horesLectives);
