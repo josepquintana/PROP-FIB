@@ -1,6 +1,3 @@
-
-package domini;
-
 public class Grup
 {
     private String codiAssig;
