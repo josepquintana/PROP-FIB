@@ -50,11 +50,11 @@ public class Grup
         this.capacitat = n;
     }
     
-    public void printGrup(){
+    /*public void printGrup(){
         System.out.println("      Grup: [" + this.codiAssig + ", " + this.numGrup + "]");
     }
 
     public void printGrupLong() {
         System.out.println("      Grup: [" + this.codiAssig + ", g:" + this.numGrup + ", " + this.capacitat + "pers]");
-    }
+    }*/
 }
