@@ -28,6 +28,19 @@ public class Assignacio
         this.codiAula = asg.getCodiAulaAssignada();
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Assignacio asg = new Assignacio();
+        try {
+            asg = (Assignacio) super.clone();
+            asg.setGrup((Grup) this.getGrupAssignat().clone());
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return asg;
+    }
+
     public boolean equals(Assignacio asg) {
         return (this.grup.equals(asg.getGrupAssignat()) && this.codiAula.equals(asg.getCodiAulaAssignada()));
     }

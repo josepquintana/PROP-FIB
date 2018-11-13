@@ -9,6 +9,7 @@ public class Horari
     private int hores;
     private HoraLectiva[][] setmana;
 
+    @SuppressWarnings("deprecation")
     public Horari(JornadaLectiva jL) {
         this.hIni = jL.getHoraIni().getHours();
         this.hores = (jL.getHoraFi().getHours())-hIni;
@@ -21,12 +22,45 @@ public class Horari
         this.setmana = new HoraLectiva[this.dies][this.hores];
     }
 
-    public void GenerarHorari(PlaEstudis pe) throws MyException {
-        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesAL());
-        Assignatures assignatures = new Assignatures(asigs);
+//    @Override
+//    protected Object clone() throws CloneNotSupportedException {
+//        Horari horari = new Horari();
+//        try {
+//            horari = (Horari) super.clone();
+//
+//            for (int i = 0; i < this.dies; i++) {
+//                for (int j = 0; j < this.hores; j++) {
+//                    horari.setHoraLectiva((HoraLectiva) this.getHoraLectiva(i, j).clone(), dia, hora);
+//                }
+//
+//            }
+//
+//            horari.setSetmana((HoraLectiva[][]) this.getSetmana().clone());
+//        }
+//        catch (CloneNotSupportedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return jL;
+//    }
+
+    public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
+        System.out.println("Cloning...");
+
+        Assignatures assignatures = (Assignatures) pe.getAssignaturesDelPlaEstudis().clone();
+//        Aules aules = (Aules) pe.getAules().clone();
+        ArrayList<Aula> aCP = pe.getAules().getAules();
+        Aules aules = new Aules(aCP);
+
+
+        System.out.println("Cloned!");
+
+        assignatures.printAssignatures();
+
+//        ArrayList<Assignatura> asigs = new ArrayList<>(pe.getAssignaturesAL());
+//        Assignatures assignatures = new Assignatures(asigs);
         
-        ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());
-        Aules aules = new Aules(aulesPE);
+//        ArrayList<Aula> aulesPE = new ArrayList<>(pe.getAules().getAules());
+//        Aules aules = new Aules(aulesPE);
         
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         while (! assignatures.esBuit()) {
@@ -150,6 +184,25 @@ public class Horari
     }
 
     public int getHIni() { return hIni; }
+
+    public void setSetmana(HoraLectiva[][] setmana) {
+        this.setmana = setmana;
+    }
+
+    public void setHoraLectiva(HoraLectiva hL, int dia, int hora) {
+        if (hora < 0 || hora >= this.hores || dia < 0 || dia >= 5) {
+            System.out.println(">>> getHoraLectiva(): Parametres hora i dia no valids.");
+        }
+        else this.setmana[dia][hora] = hL;
+    }
+
+    public void setHores(int hores) {
+        this.hores = hores;
+    }
+
+    public void setHIni(int hIni) {
+        this.hIni = hIni;
+    }
 
     private void iniSetmana() {
         for (int i = 0; i < dies; i++) {

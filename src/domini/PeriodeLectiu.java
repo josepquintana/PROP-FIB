@@ -22,6 +22,21 @@ public class PeriodeLectiu
         this.dataFi  = new Date(pL.getDataFi().getTime());
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        PeriodeLectiu pL = new PeriodeLectiu();
+        try {
+            pL = (PeriodeLectiu) super.clone();
+
+            pL.setDataIni((Date) this.getDataIni().clone());
+            pL.setDataFi((Date) this.getDataFi().clone());
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return pL;
+    }
+
     public void setDataIni(Date dataIni) {
         this.dataIni = new Date(dataIni.getTime());
     }

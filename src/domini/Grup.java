@@ -1,7 +1,7 @@
 
 package domini;
 
-public class Grup
+public class Grup implements Cloneable
 {
     private String codiAssig;
     private int numGrup;
@@ -23,6 +23,18 @@ public class Grup
         this.codiAssig = g.getCodiAssig();
         this.numGrup = g.getNumGrup();
         this.capacitat = g.getCapacitat();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Grup g = new Grup();
+        try {
+            g = (Grup) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return g;
     }
 
     public boolean equals(Grup g) {

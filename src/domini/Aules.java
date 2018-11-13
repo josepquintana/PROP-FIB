@@ -6,26 +6,41 @@ import java.util.Iterator;
 public class Aules
 {
     private ArrayList<Aula> aules;
-    private Iterator<Aula> it;
 
     public Aules() {
         this.aules = new ArrayList<>();
-        this.it = new ArrayList<Aula>().iterator();
-        this.it = aules.iterator();
     }
 
-    public Aules(ArrayList<Aula> aules) {
-        this.aules = new ArrayList<>();
-        this.aules = aules;
-        this.it = new ArrayList<Aula>().iterator();
-        this.it = this.aules.iterator();
+    public Aules(ArrayList<Aula> aules) throws CloneNotSupportedException {
+        this.aules = new ArrayList<>(aules);
     }
+
+//    public Aules(ArrayList<Aula> aules) throws CloneNotSupportedException {
+//        this.aules = new ArrayList<>();
+//        Iterator<Aula> it = aules.iterator();
+//        while(it.hasNext()) {
+//            // Add a clone of object i
+//            this.aules.add((Aula) it.next().clone());
+//        }
+//    }
 
     public Aules(Aules aules) {
         this.aules = new ArrayList<>();
         this.aules = aules.getAules();
-        this.it = new ArrayList<Aula>().iterator();
-        this.it = this.aules.iterator();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Aules aulesCloned = new Aules();
+        try {
+            for(int i = 0; i < this.aules.size(); ++i) {
+                aulesCloned.aules.add((Aula) this.aules.get(i).clone());
+            }
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return aulesCloned;
     }
 
     public boolean existeixAula(Aula aula) {

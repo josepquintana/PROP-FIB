@@ -1,8 +1,10 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Assignatura
+public class Assignatura implements Cloneable
 {
     private String codi;
     private String nom;
@@ -13,15 +15,6 @@ public class Assignatura
 
     public Assignatura() {
         this.codi = new String();
-        this.nom = new String();
-        this.credits = 0;
-        this.nivell = 0;
-        this.correquisits = new ArrayList<>();
-        this.grups = new ArrayList<>();
-    }
-
-    public Assignatura(String codi) {
-        this.codi = codi;
         this.nom = new String();
         this.credits = 0;
         this.nivell = 0;
@@ -57,6 +50,33 @@ public class Assignatura
         this.correquisits = new ArrayList<>();
         this.correquisits = a.getCorrequisits();
         this.grups = new ArrayList<>(a.getGrups());
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Assignatura a = new Assignatura();
+        try {
+            a = (Assignatura) super.clone();
+
+            // tractar mutable fields
+            CopyOnWriteArrayList<String> list_correq = new CopyOnWriteArrayList<>();
+            for(String s : this.correquisits) {
+                list_correq.add(new String(s));
+            }
+            a.correquisits.addAll(list_correq);
+
+            Iterator<Grup> it_grups  = this.grups.iterator();
+            CopyOnWriteArrayList<Grup> list_grups = new CopyOnWriteArrayList<>();
+            while(it_grups.hasNext()) {
+                list_grups.add((Grup) it_grups.next().clone());
+            }
+            a.grups.addAll(list_grups);
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return a;
     }
 
     public boolean equals(Assignatura a) {

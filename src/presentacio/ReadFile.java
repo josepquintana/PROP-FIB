@@ -66,6 +66,7 @@ public class ReadFile
         br.close(); // Close BufferReader
     }
 
+    @SuppressWarnings("deprecation")
     private static void evaluateCommand(CentreDocent cd, String op) throws Exception {
 
         try {
@@ -119,10 +120,9 @@ public class ReadFile
                     a.afegirGrupAssignatura(g);
                 }
 
-                Assignatura req;
+                String req;
                 while (s.hasNext()) {   // requisits
-                    req = new Assignatura();
-                    req = cd.getPlaEstudis(nomPla).getAssignatura(s.next());
+                    req = cd.getPlaEstudis(nomPla).getAssignatura(s.next()).getCodi();
                     // TO DO: vigilar que no peti per haver posar una assig no valida!
                     a.afegirCorrequisitAssignatura(req/*.getCodi()*/);
                 }

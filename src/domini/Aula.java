@@ -21,6 +21,18 @@ public class Aula
         this.capacitat = a.getCapacitat();
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Aula a = new Aula();
+        try {
+            a = (Aula) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return a;
+    }
+
     public boolean equals(Aula a) {
         if (this.codi.equals(a.getCodi())) return true;
         else return false;

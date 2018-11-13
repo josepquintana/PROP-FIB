@@ -16,17 +16,11 @@ Aula, EngInf EEES, A6203, 100
 Aula, EngInf EEES, A6204, 100
 Aula, EngInf EEES, A6205, 100
 Aula, EngInf EEES, A6206, 100
-Aula, EngInf EEES, A5201, 100
-Aula, EngInf EEES, A5202, 100
-Aula, EngInf EEES, A5203, 100
-Aula, EngInf EEES, A5204, 100
-Aula, EngInf EEES, A5205, 100
-Aula, EngInf EEES, A5206, 100
-Assignatura, EngInf EEES, A, Assig A, 48, 1, 50, 50
-Assignatura, EngInf EEES, B, Assig B, 48, 1, 50, 50
-Assignatura, EngInf EEES, C, Assig C, 48, 2, 50, 50
-Assignatura, EngInf EEES, D, Assig D, 48, 3, 50, 50, C
-Assignatura, EngInf EEES, E, Assig E, 48, 4, 50, 50
+Assignatura, EngInf EEES, A, Assig A, 48, 1, 100, 50
+Assignatura, EngInf EEES, B, Assig B, 48, 1, 100, 50
+Assignatura, EngInf EEES, C, Assig C, 48, 2, 100, 50
+Assignatura, EngInf EEES, D, Assig D, 48, 3, 100, 50, C
+Assignatura, EngInf EEES, E, Assig E, 48, 4, 100, 50
 #
 # end of input
 #

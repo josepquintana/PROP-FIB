@@ -1,5 +1,7 @@
 package domini;
 
+import java.util.Iterator;
+
 public class Titulacio {
 
     private String nom;
@@ -23,6 +25,19 @@ public class Titulacio {
     public Titulacio(Titulacio t) {
         this.nom = t.getNomTitulacio();
         this.tipus = t.getTipusTitulacio();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Titulacio t = new Titulacio();
+        try {
+            t = (Titulacio) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return t;
     }
 
     public String getNomTitulacio() {

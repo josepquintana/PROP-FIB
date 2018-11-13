@@ -24,6 +24,21 @@ public class JornadaLectiva
         this.horaFi  = new Time(jL.getHoraFi().getTime());
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        JornadaLectiva jL = new JornadaLectiva();
+        try {
+            jL = (JornadaLectiva) super.clone();
+
+            jL.setHoraIni((Time) this.getHoraIni().clone());
+            jL.setHoraFi((Time) this.getHoraFi().clone());
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return jL;
+    }
+
     public void setHoraIni(Time horaIni) {
         this.horaIni = new Time(horaIni.getTime());
 //        else {

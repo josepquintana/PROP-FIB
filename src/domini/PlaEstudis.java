@@ -1,6 +1,7 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PlaEstudis
 {
@@ -21,15 +22,6 @@ public class PlaEstudis
         aules = new Aules();
     }
 
-    public PlaEstudis(String nomPla) {
-        this.nomPla = nomPla;
-        this.credits = 0;
-        this.jornadaLectiva = new JornadaLectiva();
-        this.titulacio = new Titulacio();
-        this.assignatures = new Assignatures();
-        this.aules = new Aules();
-    }
-
     public PlaEstudis(String nomPla, JornadaLectiva jornadaLectiva, Titulacio titulacio) {
         this.nomPla = nomPla;
         this.credits = 0;
@@ -40,14 +32,6 @@ public class PlaEstudis
         this.horari = new Horari(jornadaLectiva);
     }
 
-    public PlaEstudis(String nomPla, Assignatures assignatures, Titulacio titulacio) {
-        this.nomPla = nomPla;
-        this.assignatures = new Assignatures(assignatures);
-        this.titulacio = new Titulacio(titulacio);
-        this.calculaCredits();
-        this.aules = new Aules();
-    }
-
     public PlaEstudis(PlaEstudis pe) {
         this.nomPla = pe.getNomPla();
         this.credits = pe.getCredits();
@@ -56,6 +40,27 @@ public class PlaEstudis
         this.assignatures = new Assignatures(pe.getAssignaturesDelPlaEstudis());
         this.aules = new Aules(pe.aules);
         this.horari = new Horari(pe.getHorari());
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        PlaEstudis pe = new PlaEstudis();
+        try {
+            pe = (PlaEstudis) super.clone();
+
+            // tractar mutable fields
+            pe.setJornadaLectiva((JornadaLectiva) this.getJornadaLectiva().clone());
+            pe.setTitulacio((Titulacio) this.getTitulacio().clone());
+            pe.setAssignatures((Assignatures) this.getAssignaturesDelPlaEstudis().clone());
+            pe.setAules((Aules) this.getAules().clone());
+//            pe.setHorari((Horari) this.getHorari().clone()); de moment es pot clonar el horari
+
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return pe;
     }
 
     public boolean existeixAssignaturaAlPlaEstudis(Assignatura a) {
@@ -112,7 +117,6 @@ public class PlaEstudis
    public ArrayList<Assignatura> getAssignaturesAL() {
         return this.assignatures.getAssignatures();
    }
-
 
     public Assignatura getAssignatura(int i) {
         return this.assignatures.getAssignatura(i);
@@ -186,6 +190,10 @@ public class PlaEstudis
         this.aules = aules;
     }
 
+    public void setHorari(Horari horari) {
+        this.horari = horari;
+    }
+
     public void calculaCredits() {
         this.credits = 0;
         for(int i = 0; i < this.assignatures.mida(); i++){
@@ -193,7 +201,7 @@ public class PlaEstudis
         }
     }
 
-    public void generateHorari() throws MyException {
+    public void generateHorari() throws MyException, CloneNotSupportedException {
         this.horari = new Horari(this.jornadaLectiva);
 
         this.horari.GenerarHorari(this);

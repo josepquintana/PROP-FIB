@@ -28,6 +28,20 @@ public class PlansDeEstudis {
         this.it = this.plansDeEstudis.iterator();
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        PlansDeEstudis plansDeEstudisCloned = new PlansDeEstudis();
+        try {
+            for(int i = 0; i < this.plansDeEstudis.size(); ++i) {
+                plansDeEstudisCloned.plansDeEstudis.add((PlaEstudis) this.plansDeEstudis.get(i).clone());
+            }
+        }
+        catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return plansDeEstudisCloned;
+    }
+
     public boolean existeixPlaEstudis(PlaEstudis pe) {
         for (int i = 0; i < this.plansDeEstudis.size(); i++) {
             if(this.plansDeEstudis.get(i).equals(pe)) return true;
