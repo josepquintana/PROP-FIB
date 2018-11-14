@@ -3,6 +3,6 @@ Compilació:
 	javac *.java
 Ejecución:
 	Pasándole un fichero:
-		java DriverAula < jocDeProva.in
+		java DriverAssignatures < jocDeProva.in
 	Por consola:
-		java DriverAula
+		java DriverAssignatures
