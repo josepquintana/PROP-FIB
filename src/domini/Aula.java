@@ -21,7 +21,7 @@ public class Aula implements Cloneable
     public Aula(Aula a) {
         this.codi = a.getCodi();
         this.capacitat = a.getCapacitat();
-        this.PC = a.getTipus();
+        this.PC = a.isLab();
     }
 
     @Override
@@ -65,10 +65,9 @@ public class Aula implements Cloneable
     public int getCapacitat() {
         return this.capacitat;
     }
-    
-    public boolean getTipus(){
-        return this.PC;
-    }
+
+
+    public boolean isLab() { return this.PC; }
 
     public void printAulaLong(int indentation) {
         System.out.print("\n");

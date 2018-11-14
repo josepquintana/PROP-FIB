@@ -106,26 +106,27 @@ public class ReadFile
                 String nomPla = s.next();
                 String codiAula = s.next();
                 int capacitat = Integer.parseInt(s.next());
-                Boolean tipus = s.next().equals("true");
-                Aula aula = new Aula(codiAula,capacitat ,tipus);
+                Boolean teOrdinadors = s.next().equals("true");
+                Aula aula = new Aula(codiAula, capacitat, teOrdinadors);
                 cd.afegirAulaAlPlaEstudis(nomPla, aula);
             }
             else if (categoria.equals("Assignatura")) {
                 String nomPla = s.next();
-                String nom = s.next();
+                String codi = s.next();
                 String descripcio = s.next();
                 Double credits = Double.parseDouble(s.next());
-                int matricules = Integer.parseInt(s.next());
+                int nivell = Integer.parseInt(s.next());
                 
-                int ctotal = Integer.parseInt(s.next());
-                int ngrups = Integer.parseInt(s.next());
-                int nsubGrups = Integer.parseInt(s.next());
-                int egrups = ctotal / ngrups;
-                Boolean tipus = s.next().equals("true");
-                Assignatura a = new Assignatura(nom, descripcio, credits, matricules,tipus);
+                int capacitatTotal = Integer.parseInt(s.next());
+                int nGrups = Integer.parseInt(s.next());
+                int nSubGrups = Integer.parseInt(s.next());
+                int capacitatGrupTeoria = capacitatTotal / nGrups;
+                Boolean ambOrdinadors = s.next().equals("true");
+
+                Assignatura a = new Assignatura(codi, descripcio, credits, nivell, ambOrdinadors);
                 Grup g;
-                for (int i = 10; i <= ngrups * 10; i = i + 10) {    // grups
-                    g = new Grup(a.getCodi(), i, egrups, nsubGrups, a.getSessionsLab());
+                for (int i = 10; i <= nGrups * 10; i = i + 10) {    // grups
+                    g = new Grup(a.getCodi(), i, capacitatGrupTeoria, nSubGrups, a.getSessionsLab());
                     a.afegirGrupAssignatura(g);
                 }
 
@@ -141,7 +142,7 @@ public class ReadFile
         }
 
         catch (Exception e) {
-            System.out.print("> !Error al evaluar comanda del fitxer: " + e.getMessage() + "\n");
+            System.out.print("> !Error al evaluar comanda del fitxer: " + e.getMessage() + " @ input line: \"" + op + "\"\n");
             throw new Exception();
         }
     }

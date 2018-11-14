@@ -64,6 +64,7 @@ public class CentreDocent implements Cloneable
     }
 
     public void generateHorariPlaEstudis(int numPla) throws MyException, CloneNotSupportedException {
+        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
         this.plansDeEstudis.getPlaEstudis(numPla).generateHorari();
     }
 

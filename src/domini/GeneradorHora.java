@@ -1,16 +1,17 @@
 package domini;
 
-import javafx.print.Collation;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GeneradorHora {
 
-    private static final int maxAssignacionsHora = 100;
-    private static final boolean randomize       = true;    // randomize Assigs and Aules arrays ?
+    private static final int maxAssignacionsHora = 0;
+    private static final boolean randomize       = false;    // randomize Assigs and Aules arrays ?
 
     public static HoraLectiva ForwardChecking(Assignatures assignaturesPE, Aules aulesPE) throws MyException, CloneNotSupportedException {
+
+        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
 
         // MIRAR COM FER BE LES COPIES DE OBJECTES!
         ArrayList<Assignatura> assignaturesCP = new ArrayList<>(assignaturesPE.getAssignatures());
@@ -19,19 +20,22 @@ public class GeneradorHora {
         Aules aules = new Aules(aulesCP);
         HoraLectiva solucion = new HoraLectiva();
         
+//        AtomicInteger i = new AtomicInteger(0);
         int i = 0;
         i_ForwardChecking(assignatures, aules, solucion, assignaturesPE, i);
         return solucion;
     }
 
-    private static void i_ForwardChecking(Assignatures assignatures, Aules aulesFuturas, HoraLectiva solucion, Assignatures assignaturesPE, int i) throws MyException {
+    private static void i_ForwardChecking(Assignatures assignatures, Aules aulesFuturas, HoraLectiva solucion, Assignatures assignaturesPE, Integer i) throws MyException {
+
+        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
 
         if (randomize) {
             Collections.shuffle(assignatures.getAssignatures());
             Collections.shuffle(aulesFuturas.getAules());
         }
 
-        if (assignatures.esBuit() || aulesFuturas.esBuit() || i >= aulesFuturas.mida() || solucion.mida() >= maxAssignacionsHora){
+        if (assignatures.esBuit() || aulesFuturas.esBuit() || i >= aulesFuturas.mida() || solucion.mida() >= maxAssignacionsHora) {
             i = 0;
             return;
         }
@@ -51,7 +55,8 @@ public class GeneradorHora {
                                 assignatures.getAssignatura(0).getGrup(0).eliminarSubgrup();
                                 assignatures.getAssignatura(0).getGrup(0).setHoresLab();
                                }
-                        }else {
+                        }
+                        else {
                             assignatures.getAssignatura(0).restarHoraTeo();
                             if(assignatures.getAssignatura(0).getSessionsTeoria() == 0){
                                 assignatures.getAssignatura(0).eliminarGrupAssignatura(0);
@@ -59,7 +64,8 @@ public class GeneradorHora {
                         }
                         solucion.afegirAssignacio(asg);
                         aulesFuturas.eliminarAula(i);
-                    } i++; 
+                    }
+                    i++;
                     if (assignatures.getAssignatura(0).getGrups().isEmpty()){
                         assignatures.eliminarAssignatura(0);
                         i = 0;
@@ -75,13 +81,10 @@ public class GeneradorHora {
     }
     
     private static boolean restriccioTipusAula(Assignatura assig, Aula aula){
-        return ((aula.getTipus() && assig.getLab()) || (!aula.getTipus() && !assig.getLab()));
-
-    }
+        return ((aula.isLab() && assig.isLab()) || (!aula.isLab() && !assig.isLab()));    }
 
     private static boolean restriccioAssignaturesNivell(Assignatura assig, HoraLectiva sol, Assignatures assignaturesPE){
         for(int i = 0; i < sol.mida(); ++i){
-            
             String codiAssigSol = sol.getAssignacio(i).getGrupAssignat().getCodiAssig();
             if(assignaturesPE.getAssignatura(codiAssigSol).getNivell() == assig.getNivell() ) return false;
         }
