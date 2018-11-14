@@ -146,7 +146,7 @@ public class Assignatura implements Cloneable
     }
 
     public boolean existeixGrup(int numGrup) {
-        for (int i = 0; i < this.correquisits.size(); i++) {
+        for (int i = 0; i < this.grups.size(); i++) {
             if(this.grups.get(i).getNumGrup() == numGrup) return true;
         }
         return false;
