@@ -42,37 +42,48 @@ public class Horari implements Cloneable
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
+        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
 
         System.out.println("Cloning...");
-
         Assignatures assignatures = (Assignatures) pe.getAssignaturesDelPlaEstudis().clone();
         Aules aules = (Aules) pe.getAules().clone();
-
         System.out.println("Cloned!");
 
-        assignatures.printAssignatures();
+        System.out.println("Ini Assigs");
+        assignatures.printAssignaturesXS();
 
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
-        
+
         boolean erroni = false;
-        while (! assignatures.esBuit() && !erroni) {
+        while (!assignatures.esBuit() && !erroni) {
             HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);
+            System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
             horesLectives.add(hL);
-            if(hL.esBuit()) erroni = true;
-            
+            if(hL.esBuit()) {
+                erroni = true;
+                System.out.println("erroni!");
+                hL.printHoraLectiva();
+            }
+
             for (int i = 0; i < hL.getAssignacions().size(); i++) {
-                Assignacio asg = new Assignacio(hL.getAssignacions().get(i));
-                String codiAssig = asg.getGrupAssignat().getCodiAssig();
-                Assignatura assig = new Assignatura(assignatures.getAssignatura(codiAssig));
-                assig.eliminarGrupAssignatura(asg.getGrupAssignat());
-                if (!assig.teGrups()) {
-                    assignatures.eliminarAssignatura(codiAssig);
+                Assignacio asg = (Assignacio) hL.getAssignacions().get(i).clone();
+                String codiAssigAssignada = asg.getGrupAssignat().getCodiAssig();
+                int numGrupAssignat = asg.getGrupAssignat().getNumGrup();
+                System.out.print("current Asg: " + asg.getAssignacioPrintFormat() + "\n");
+
+                assignatures.getAssignatura(codiAssigAssignada).eliminarGrupAssignatura(numGrupAssignat);
+                if (!assignatures.getAssignatura(codiAssigAssignada).teGrups()) {
+                    assignatures.eliminarAssignatura(codiAssigAssignada);
                 }
             }
+            System.out.println("Next iteration at Horari.GeneradorHorari");
+            System.out.println("cur_Assigs");
+            assignatures.printAssignaturesXS();
         }
+
         if(horesLectives.size() > this.hores*this.dies || erroni) {
-            if(erroni) System.out.println("Error: Hi ha alguna assignatura que no hi cap a cap aula");
-            System.out.println("Error: No hi ha espai suficient per tantes horesLectives");
+            if(erroni) System.out.println("\nError: Hi ha alguna assignatura:grup que no hi cap a cap aula");
+            else System.out.println("\nError: No hi ha espai suficient per tantes horesLectives");
         }
         else this.OmplirHorari(horesLectives);
 

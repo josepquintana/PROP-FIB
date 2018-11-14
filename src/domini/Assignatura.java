@@ -62,7 +62,7 @@ public class Assignatura implements Cloneable
         this.correquisits = new ArrayList<>();
         this.correquisits = a.getCorrequisits();
         this.grups = new ArrayList<>(a.getGrups());
-        this.lab = a.getLab();
+        this.lab = a.isLab();
         setSessionsLab();
         setSessionsTeoria();
     }
@@ -95,14 +95,14 @@ public class Assignatura implements Cloneable
         else return false;
     }
 
-    public boolean existeixRequisit(Assignatura assig) {
+    public boolean existeixCorrequisit(Assignatura assig) {
         for (int i = 0; i < this.correquisits.size(); i++) {
             if(this.correquisits.get(i).equals(assig.getCodi())) return true;
         }
         return false;
     }
 
-    public boolean existeixRequisit(String codi) {
+    public boolean existeixCorrequisit(String codi) {
         for (int i = 0; i < this.correquisits.size(); i++) {
             if(this.correquisits.get(i).equals(codi)) return true;
         }
@@ -110,7 +110,7 @@ public class Assignatura implements Cloneable
     }
 
     public boolean afegirCorrequisitAssignatura(Assignatura a) throws MyException{
-        if(existeixRequisit(a)) {
+        if(existeixCorrequisit(a)) {
             System.out.println(">>> afegirRequisitAssignatura(): L'assignatura " + this.codi + " ja té " + a.getCodi() + "com a requisit");
             return false;
         }
@@ -169,16 +169,16 @@ public class Assignatura implements Cloneable
         }
         return false;
     }
-    
-    public void eliminarSubGrupAssignatura(Grup g){
-        g.eliminarSubgrup();
-    }
 
     public boolean eliminarGrupAssignatura(int i) {
         this.grups.remove(i);
 //        Grup g = new Grup(this.grups.remove(i));
 //        if(g == null) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
         return true;
+    }
+
+    public void eliminarSubGrupAssignatura(Grup g){
+        g.eliminarSubgrup();
     }
 
     public boolean teCorrequisits() {
@@ -233,7 +233,7 @@ public class Assignatura implements Cloneable
         return this.nivell;
     }
     
-    public boolean getLab(){
+    public boolean isLab(){
         return this.lab;
     }
     

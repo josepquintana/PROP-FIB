@@ -4,8 +4,8 @@
 # usage:
 # "Cente Docent", nomCentre, horaIni, minIni, horaFi, minFi, dayIni, monthIni, yearIni, dayFi, monthFi, yearFi 
 # "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio
-# "Aula", nomPla, codiAula, capacitat  
-# "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, alumnes/grup [, correquisit_1, .. correquisit_N]
+# "Aula", nomPla, codiAula, capacitat, aulaOrdinadors?
+# "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, numGrups, numSubgrups, ambOrdinadors?, [, correquisit_1, .. correquisit_N]
 #
 #
 Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
@@ -22,11 +22,14 @@ Aula, EngInf EEES, A5203, 100, false
 Aula, EngInf EEES, A5204, 100, false
 Aula, EngInf EEES, A5205, 100, false
 Aula, EngInf EEES, A5206, 100, false
-Assignatura, EngInf EEES, A, Assig A, 6, 1, 50, 2, 1, false
-Assignatura, EngInf EEES, B, Assig B, 6, 1, 50, 2, 1, false
-Assignatura, EngInf EEES, C, Assig C, 6, 2, 50, 2, 1, false 
-Assignatura, EngInf EEES, D, Assig D, 6, 3, 50, 2, 1, false, C
-Assignatura, EngInf EEES, E, Assig E, 6, 4, 50, 2, 1, false
+Assignatura, EngInf EEES, A, Assig A, 6, 1, 150, 2, 3, false
+Assignatura, EngInf EEES, B, Assig B, 6, 1, 150, 2, 3, false
+Assignatura, EngInf EEES, C, Assig C, 6, 2, 100, 2, 2, false, A 
+Assignatura, EngInf EEES, D, Assig D, 6, 2, 100, 2, 2, false, B
+Assignatura, EngInf EEES, E, Assig E, 6, 3, 52, 2, 2, false, A, C
+Assignatura, EngInf EEES, F, Assig F, 6, 3, 52, 2, 2, false, B, D
+Assignatura, EngInf EEES, G, Assig G, 6, 4, 20, 2, 1, false, E
+Assignatura, EngInf EEES, H, Assig H, 6, 4, 20, 2, 1, false, F
 #
 # end of input
 #

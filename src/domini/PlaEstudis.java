@@ -202,8 +202,8 @@ public class PlaEstudis implements Cloneable
     }
 
     public void generateHorari() throws MyException, CloneNotSupportedException {
+        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
         this.horari = new Horari(this.jornadaLectiva);
-
         this.horari.GenerarHorari(this);
     }
 
@@ -234,22 +234,8 @@ public class PlaEstudis implements Cloneable
         this.titulacio.printTitulacio();
         System.out.println("   credits: " + (int)this.credits + " ECTS");
         this.jornadaLectiva.printJornadaLectiva();
-        System.out.print  ("   Aules: ");
-        for (int i = 0; i < this.aules.mida(); i++) {
-            if (i % 11 == 0) System.out.print("\n    ");                                // for indentation purposes
-            System.out.print(this.aules.getAula(i).getCodi());                          // print codiAula
-            if (i < this.aules.mida() - 1) System.out.print(", ");                      // for presentation purposes
-            if (this.aules.getAula(i).getCodi().length() == 5) System.out.print(" ");   // for indentation purposes
-
-        }
-        System.out.print("\n");
-        System.out.print  ("   Assignatures: ");
-        for (int i = 0; i < this.assignatures.mida(); i++) {
-            if (i % 19 == 0) System.out.print("\n    ");                                // for indentation purposes
-            System.out.print(this.assignatures.getAssignatura(i).getCodi());            // print codiAssignatura
-            if (i < this.assignatures.mida() - 1) System.out.print(", ");               // for presentation purposes
-        }
-        System.out.print("\n");
+        this.aules.printAulesXS(3);
+        this.assignatures.printAssignaturesXS();
     }
 
 }

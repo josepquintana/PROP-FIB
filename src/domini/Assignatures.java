@@ -125,5 +125,15 @@ public class Assignatures
         }
     }
 
+    public void printAssignaturesXS() {
+        System.out.print("   Assignatures: [" + this.assignatures.size() + "]");
+        for (int i = 0; i < this.assignatures.size(); i++) {
+            if (i % 11 == 0) System.out.print("\n    ");                                // for indentation purposes
+            System.out.print(this.assignatures.get(i).getCodi() + "-[" + this.assignatures.get(i).getGrups().size() + "]");   // print codiAssignatura + nGrups
+            if (i < this.assignatures.size() - 1) System.out.print(", ");               // for presentation purposes
+        }
+        System.out.print("\n");
+    }
+
 }
 

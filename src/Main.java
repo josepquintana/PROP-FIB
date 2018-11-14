@@ -8,7 +8,7 @@ public class Main
     private static CentreDocent cd;
 
     // Execution-control variables
-    private static int    printMode      = 2;                    // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
+    private static int    printMode      = 1;                    // 0 -> noPrint; 1 -> XS; 2 -> Normal; 3 -> Long
     private static String inputFileName  = "input-short";        // filename for the data input
     private static String outputFileName = "output";             // filename for the horari output
 
@@ -18,7 +18,8 @@ public class Main
         cd = new CentreDocent();
         ReadFile.main(cd, inputFileName);
         printDades(cd, printMode);
-//        cd.generateHorariPlaEstudis(0);
+        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
+        cd.generateHorariPlaEstudis(0);
 //        cd.getPlaEstudis(0).getHorari().printHorari();
 //        WriteHorari.main(cd.getPlaEstudis(0).getHorari(), outputFileName);    // de moment no xuta..
 
