@@ -126,7 +126,7 @@ public class ReadFile
                 Assignatura a = new Assignatura(codi, descripcio, credits, nivell, ambOrdinadors);
                 Grup g;
                 for (int i = 10; i <= nGrups * 10; i = i + 10) {    // grups
-                    g = new Grup(a.getCodi(), i, capacitatGrupTeoria, nSubGrups, a.getSessionsLab());
+                    g = new Grup(a.getCodi(), i, capacitatGrupTeoria, nSubGrups, a.getSessionsLab(), a.getSessionsTeoria());
                     a.afegirGrupAssignatura(g);
                 }
 

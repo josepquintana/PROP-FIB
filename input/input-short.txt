@@ -8,10 +8,10 @@
 # "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, numGrups, numSubgrups, ambOrdinadors?, [, correquisit_1, .. correquisit_N]
 #
 #
-Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
+Centre Docent, FIB, 8, 0, 12, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
 Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU
-Aula, EngInf EEES, A6201, 100, false
-Aula, EngInf EEES, A6202, 100, false
+Aula, EngInf EEES, A6201, 100, true
+Aula, EngInf EEES, A6202, 100, true
 Aula, EngInf EEES, A6203, 100, false
 Aula, EngInf EEES, A6204, 100, false
 Aula, EngInf EEES, A6205, 100, false
@@ -22,12 +22,18 @@ Aula, EngInf EEES, A5203, 100, false
 Aula, EngInf EEES, A5204, 100, false
 Aula, EngInf EEES, A5205, 100, false
 Aula, EngInf EEES, A5206, 100, false
-Assignatura, EngInf EEES, A, Assig A, 6, 1, 150, 2, 3, false
-Assignatura, EngInf EEES, B, Assig B, 6, 1, 150, 2, 3, false
-Assignatura, EngInf EEES, C, Assig C, 6, 2, 100, 2, 2, false, A 
-Assignatura, EngInf EEES, D, Assig D, 6, 2, 100, 2, 2, false, B
-Assignatura, EngInf EEES, E, Assig E, 6, 3, 52, 2, 2, false, A, C
-Assignatura, EngInf EEES, F, Assig F, 6, 3, 52, 2, 2, false, B, D
+Aula, EngInf EEES, A5208, 100, false
+Aula, EngInf EEES, A5209, 100, false
+Aula, EngInf EEES, A5210, 100, false
+Aula, EngInf EEES, A5211, 100, false
+Aula, EngInf EEES, A5212, 100, false
+Aula, EngInf EEES, A5213, 100, false
+Assignatura, EngInf EEES, A, Assig A, 6, 1, 150, 2, 1, false
+Assignatura, EngInf EEES, B, Assig B, 6, 1, 150, 2, 1, false
+Assignatura, EngInf EEES, C, Assig C, 6, 2, 100, 2, 1, false, A
+Assignatura, EngInf EEES, D, Assig D, 6, 2, 100, 2, 1, true, B
+Assignatura, EngInf EEES, E, Assig E, 6, 3, 52, 2, 1, false, A, C
+Assignatura, EngInf EEES, F, Assig F, 6, 3, 52, 2, 3, false, B, D
 Assignatura, EngInf EEES, G, Assig G, 6, 4, 20, 2, 1, false, E
 Assignatura, EngInf EEES, H, Assig H, 6, 4, 20, 2, 1, false, F
 #

@@ -36,8 +36,7 @@ public class Assignatura implements Cloneable
         this.correquisits = new ArrayList<>();
         this.grups = new ArrayList<>();
         this.lab = ordinadors;
-        setSessionsLab();
-        setSessionsTeoria();
+        setSessions();
     }
 
     public Assignatura(String codi, String nom, double credits, int nivell, ArrayList<String> correqs, ArrayList<Grup> grups, boolean ordinadors) {
@@ -49,8 +48,7 @@ public class Assignatura implements Cloneable
         this.correquisits = correqs;
         this.grups = new ArrayList<>(grups);
         this.lab = ordinadors;
-        setSessionsLab();
-        setSessionsTeoria();
+        setSessions();
     }
 
     public Assignatura(Assignatura a) {
@@ -63,8 +61,7 @@ public class Assignatura implements Cloneable
         this.correquisits = a.getCorrequisits();
         this.grups = new ArrayList<>(a.getGrups());
         this.lab = a.isLab();
-        setSessionsLab();
-        setSessionsTeoria();
+        setSessions();
     }
 
     @Override
@@ -241,20 +238,16 @@ public class Assignatura implements Cloneable
         return this.horesLab;
     }
     
-    private void setSessionsLab(){
-        this.horesLab = (int)(this.credits/1.5)/2;
-    }
+
     
     public int getSessionsTeoria(){
         return this.horesTeo;
     }
     
-    private void setSessionsTeoria(){
+    private void setSessions(){
         int hores = (int)(this.credits/1.5);
-        if(hores%2 != 0) {
-            ++hores;         
-        }
         this.horesTeo = hores/2;
+        this.horesLab = hores-this.horesTeo;
     }
     
     public ArrayList<String> getCorrequisits() {
@@ -312,7 +305,7 @@ public class Assignatura implements Cloneable
         }
         System.out.println("     Grups:");
         for (int i = 0; i < this.grups.size(); i++) {
-            System.out.println("      G" + (i+1) + ":  num: " + this.grups.get(i).getNumGrup() + "  \t capacitat: " + this.grups.get(i).getCapacitat());
+           this.grups.get(i).printGrup();
         }
     }
 

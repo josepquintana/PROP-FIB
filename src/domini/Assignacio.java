@@ -3,29 +3,34 @@ package domini;
 public class Assignacio implements Cloneable
 {
     private Grup grup;
+    private int numGrup;
     private String codiAula;
 
     public Assignacio(){
         this.grup = new Grup();
         this.codiAula = new String();
+        this.numGrup = 0;
     }
 
-    public Assignacio(Grup grup, String aula){
+    public Assignacio(Grup grup, String aula, int numGrup){
         this.grup = new Grup();
         this.grup = grup;
         this.codiAula = aula;
+        this.numGrup = numGrup;
     }
 
-    public Assignacio(Grup grup, Aula aula){
+    public Assignacio(Grup grup, Aula aula, int numGrup){
         this.grup = new Grup();
         this.grup = grup;
         this.codiAula = aula.getCodi();
+        this.numGrup = numGrup;
     }
 
     public Assignacio(Assignacio asg){
         this.grup = new Grup();
         this.grup = asg.getGrupAssignat();
         this.codiAula = asg.getCodiAulaAssignada();
+        this.numGrup = asg.getNumGrupAssignacio();
     }
 
     @Override
@@ -62,20 +67,30 @@ public class Assignacio implements Cloneable
         return this.codiAula;
     }
 
+    public int getNumGrupAssignacio() {
+        return this.numGrup; 
+    }
+    
+    public void setNumGrupAssignacio(int numGrup){
+        this.numGrup = numGrup;
+    }
+    
     public String getAssignacioPrintFormat() {
-        String str = "[" + this.grup.getCodiAssig() + "-" + this.grup.getNumGrup() + ", " + this.codiAula + "]";
+        String str = "[" + this.grup.getCodiAssig() + "-" + this.numGrup + ", " + this.codiAula + "]";
         return str;
     }
 
     public void printAssignacioLong() {
-        System.out.println("      Assignacio: " + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula);
+        System.out.println("      Assignacio: " + this.grup.getCodiAssig() + ", " + this.numGrup + ", " + this.codiAula);
     }
 
     public void printAssignacio() {
-        System.out.println("[" + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula + "]");
+        System.out.println("[" + this.grup.getCodiAssig() + ", " + this.numGrup + ", " + this.codiAula + "]");
     }
 
     public void printAssignacioXS() {
-        System.out.print("[" + this.grup.getCodiAssig() + ", " + this.grup.getNumGrup() + ", " + this.codiAula + "] ");
+        System.out.print("[" + this.grup.getCodiAssig() + ", " + this.numGrup + ", " + this.codiAula + "] ");
     }
+
+    
 }

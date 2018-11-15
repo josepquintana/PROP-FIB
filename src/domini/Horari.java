@@ -42,43 +42,34 @@ public class Horari implements Cloneable
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
-        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
+//        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
 
-        System.out.println("Cloning...");
+//        System.out.println("Cloning...");
         Assignatures assignatures = (Assignatures) pe.getAssignaturesDelPlaEstudis().clone();
         Aules aules = (Aules) pe.getAules().clone();
-        System.out.println("Cloned!");
+//        System.out.println("Cloned!");
 
-        System.out.println("Ini Assigs");
+ //       System.out.println("Ini Assigs");
         assignatures.printAssignaturesXS();
 
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
-
+        //assignatures.printAssignaturesLong();
         boolean erroni = false;
         while (!assignatures.esBuit() && !erroni) {
-            HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules);
-            System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
+            HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules, pe.getAssignaturesDelPlaEstudis());
+            //eliminarAssignacions(assignatures,hL);
             horesLectives.add(hL);
-            if(hL.esBuit()) {
+            //hL.printHoraLectiva();
+           if(hL.esBuit()) {
                 erroni = true;
                 System.out.println("erroni!");
-                hL.printHoraLectiva();
+                //hL.printHoraLectiva();
             }
+            
 
-            for (int i = 0; i < hL.getAssignacions().size(); i++) {
-                Assignacio asg = (Assignacio) hL.getAssignacions().get(i).clone();
-                String codiAssigAssignada = asg.getGrupAssignat().getCodiAssig();
-                int numGrupAssignat = asg.getGrupAssignat().getNumGrup();
-                System.out.print("current Asg: " + asg.getAssignacioPrintFormat() + "\n");
-
-                assignatures.getAssignatura(codiAssigAssignada).eliminarGrupAssignatura(numGrupAssignat);
-                if (!assignatures.getAssignatura(codiAssigAssignada).teGrups()) {
-                    assignatures.eliminarAssignatura(codiAssigAssignada);
-                }
-            }
-            System.out.println("Next iteration at Horari.GeneradorHorari");
-            System.out.println("cur_Assigs");
-            assignatures.printAssignaturesXS();
+            //System.out.println("Next iteration at Horari.GeneradorHorari");
+            //System.out.println("cur_Assigs");
+            //assignatures.printAssignaturesXS();
         }
 
         if(horesLectives.size() > this.hores*this.dies || erroni) {
@@ -90,8 +81,8 @@ public class Horari implements Cloneable
     }
 
     private void OmplirHorari(ArrayList<HoraLectiva> horesLectives) {
-        for (int j = 0; j < this.hores; j++) {
-            for (int i = 0; i < this.dies; i++) {
+        for (int i = 0; i < this.dies; i++) {
+            for (int j = 0; j < this.hores; j++) {
                 if(!horesLectives.isEmpty()){
                      HoraLectiva hL = horesLectives.remove(0);
                      this.setmana[i][j] = new HoraLectiva(hL);
@@ -216,6 +207,8 @@ public class Horari implements Cloneable
             }
         }
     }
+    
+    
 
     /// print horari methods
 
