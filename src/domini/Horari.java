@@ -81,11 +81,11 @@ public class Horari implements Cloneable
     }
 
     private void OmplirHorari(ArrayList<HoraLectiva> horesLectives) {
-        for (int i = 0; i < this.dies; i++) {
-            for (int j = 0; j < this.hores; j++) {
+        for (int i = 0; i < this.hores; i++) {
+            for (int j = 0; j < this.dies; j++) {
                 if(!horesLectives.isEmpty()){
                      HoraLectiva hL = horesLectives.remove(0);
-                     this.setmana[i][j] = new HoraLectiva(hL);
+                     this.setmana[j][i] = new HoraLectiva(hL);
                 }
                 else break;
             }
