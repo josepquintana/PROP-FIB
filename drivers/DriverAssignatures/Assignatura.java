@@ -1,5 +1,3 @@
-package domini;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -62,7 +60,7 @@ public class Assignatura implements Cloneable
         this.correquisits = new ArrayList<>();
         this.correquisits = a.getCorrequisits();
         this.grups = new ArrayList<>(a.getGrups());
-        this.lab = a.isLab();
+        this.lab = a.getLab();
         setSessionsLab();
         setSessionsTeoria();
     }
@@ -95,14 +93,14 @@ public class Assignatura implements Cloneable
         else return false;
     }
 
-    public boolean existeixCorrequisit(Assignatura assig) {
+    public boolean existeixRequisit(Assignatura assig) {
         for (int i = 0; i < this.correquisits.size(); i++) {
             if(this.correquisits.get(i).equals(assig.getCodi())) return true;
         }
         return false;
     }
 
-    public boolean existeixCorrequisit(String codi) {
+    public boolean existeixRequisit(String codi) {
         for (int i = 0; i < this.correquisits.size(); i++) {
             if(this.correquisits.get(i).equals(codi)) return true;
         }
@@ -110,7 +108,7 @@ public class Assignatura implements Cloneable
     }
 
     public boolean afegirCorrequisitAssignatura(Assignatura a) throws MyException{
-        if(existeixCorrequisit(a)) {
+        if(existeixRequisit(a)) {
             System.out.println(">>> afegirRequisitAssignatura(): L'assignatura " + this.codi + " ja té " + a.getCodi() + "com a requisit");
             return false;
         }
@@ -169,16 +167,16 @@ public class Assignatura implements Cloneable
         }
         return false;
     }
+    
+    public void eliminarSubGrupAssignatura(Grup g){
+        g.eliminarSubgrup();
+    }
 
     public boolean eliminarGrupAssignatura(int i) {
         this.grups.remove(i);
 //        Grup g = new Grup(this.grups.remove(i));
 //        if(g == null) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
         return true;
-    }
-
-    public void eliminarSubGrupAssignatura(Grup g){
-        g.eliminarSubgrup();
     }
 
     public boolean teCorrequisits() {
@@ -233,7 +231,7 @@ public class Assignatura implements Cloneable
         return this.nivell;
     }
     
-    public boolean isLab(){
+    public boolean getLab(){
         return this.lab;
     }
     
