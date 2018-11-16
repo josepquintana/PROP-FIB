@@ -57,6 +57,12 @@ public class PlansDeEstudis {
         return ret;
     }
 
+    public boolean eliminarPlaEstudis(int i) {
+        PlaEstudis pe = this.plansDeEstudis.remove(i);
+        if(pe == null) return false;
+        return true;
+    }
+
     public PlaEstudis getPlaEstudis(int i) {
         return this.plansDeEstudis.get(i);
     }

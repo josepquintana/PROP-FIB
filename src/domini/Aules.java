@@ -11,18 +11,9 @@ public class Aules
         this.aules = new ArrayList<>();
     }
 
-    public Aules(ArrayList<Aula> aules) throws CloneNotSupportedException {
+    public Aules(ArrayList<Aula> aules)  {
         this.aules = new ArrayList<>(aules);
     }
-
-//    public Aules(ArrayList<Aula> aules) throws CloneNotSupportedException {
-//        this.aules = new ArrayList<>();
-//        Iterator<Aula> it = aules.iterator();
-//        while(it.hasNext()) {
-//            // Add a clone of object i
-//            this.aules.add((Aula) it.next().clone());
-//        }
-//    }
 
     public Aules(Aules aules) {
         this.aules = new ArrayList<>();

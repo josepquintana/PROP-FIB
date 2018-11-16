@@ -53,7 +53,7 @@ public class PlaEstudis implements Cloneable
             pe.setTitulacio((Titulacio) this.getTitulacio().clone());
             pe.setAssignatures((Assignatures) this.getAssignaturesDelPlaEstudis().clone());
             pe.setAules((Aules) this.getAules().clone());
-            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva())); // de moment es pot clonar el horari
+//            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva())); // de moment es pot clonar el horari
 
         }
         catch (CloneNotSupportedException e) {

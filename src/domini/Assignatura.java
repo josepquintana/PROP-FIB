@@ -174,10 +174,6 @@ public class Assignatura implements Cloneable
         return true;
     }
 
-    public void eliminarSubGrupAssignatura(Grup g){
-        g.eliminarSubgrup();
-    }
-
     public boolean teCorrequisits() {
         return (!this.correquisits.isEmpty());
     }
@@ -233,17 +229,15 @@ public class Assignatura implements Cloneable
     public boolean isLab(){
         return this.lab;
     }
-    
-    public int getSessionsLab(){
-        return this.horesLab;
-    }
-    
 
-    
     public int getSessionsTeoria(){
         return this.horesTeo;
     }
-    
+
+    public int getSessionsLab(){
+        return this.horesLab;
+    }
+
     private void setSessions(){
         int hores = (int)(this.credits/1.5);
         this.horesTeo = hores/2;
@@ -274,48 +268,8 @@ public class Assignatura implements Cloneable
         return c;
     }
 
-    private void printCorrequisits(){
-        for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.print(this.correquisits.get(i));
-            if (i < this.correquisits.size() - 1) System.out.print(", ");
-        }
-    }
-
-    private void printGrups(){
-        for (int i = 0; i < this.grups.size(); i++) {
-            System.out.print(this.grups.get(i).getNumGrup());
-            if (i < this.grups.size() - 1) System.out.print(", ");
-        }
-    }
-    
     public void restarHoraTeo(){
         --this.horesTeo;
-    }
-
-    public void printAssignaturaLong() {
-        System.out.println("    Assignatura:");
-        System.out.println("     codi   : " + this.codi);
-        System.out.println("     nom    : " + this.nom);
-        System.out.println("     credits: " + this.credits);
-        System.out.println("     nivell : " + this.nivell);
-        System.out.println("     Correquisits:");
-        for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i));
-            ///BUSCAR NIVELL DEL CORREQUISIT
-        }
-        System.out.println("     Grups:");
-        for (int i = 0; i < this.grups.size(); i++) {
-           this.grups.get(i).printGrup();
-        }
-    }
-
-    public void printAssignatura() {
-        System.out.print("    " + this.codi + "   \tlvl: " + this.nivell + "\t\tcred: ");
-        if(this.credits == Math.floor(this.credits)) System.out.print((int)this.credits + " \t");
-        else System.out.print(this.credits + "\t");
-        System.out.print("\tnGrups: " + this.grups.size());
-        if (this.teCorrequisits()) { System.out.print("\t\t correq: "); this.printCorrequisits(); }
-        System.out.print("\n");
     }
 
 }

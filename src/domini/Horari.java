@@ -38,7 +38,7 @@ public class Horari implements Cloneable
         catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
-        return jL;
+        return horari;
     }
 
     public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
@@ -56,7 +56,7 @@ public class Horari implements Cloneable
         //assignatures.printAssignaturesLong();
         boolean erroni = false;
         while (!assignatures.esBuit() && !erroni) {
-            HoraLectiva hL = GeneradorHora.ForwardChecking(assignatures, aules, pe.getAssignaturesDelPlaEstudis());
+            HoraLectiva hL = GeneradorHora.GenerarHoraLectiva(assignatures, aules, pe.getAssignaturesDelPlaEstudis());
             //eliminarAssignacions(assignatures,hL);
             horesLectives.add(hL);
             //hL.printHoraLectiva();
@@ -163,7 +163,6 @@ public class Horari implements Cloneable
     }
 
     public HoraLectiva getHoraLectiva(int dia, int hora) {
-//        hora = hora - this.hIni;
         if (hora < 0 || hora >= this.hores || dia < 0 || dia >= 5) {
             System.out.println(">>> getHoraLectiva(): Parametres hora i dia no valids.");
             return null;
@@ -212,40 +211,40 @@ public class Horari implements Cloneable
 
     /// print horari methods
 
-    private void printIndentation(int size) {
-        int n_spaces = 20 - size;
-        String spaces = "";
-        for (int i = 0; i < n_spaces; i++) { spaces += " "; }
-        System.out.print(spaces);
-    }
-
-    private void printDay(int d) {
-        for (int h = 0; h < this.hores; h++) {
-            String h0s = Integer.toString(h + this.hIni);
-            String h1s = Integer.toString(h + this.hIni +1);
-            if (h0s.length() < 2) h0s = "0" + h0s;
-            if (h1s.length() < 2) h1s = "0" + h1s;
-            String str = "  " + h0s + " - " + h1s + "h";
-            System.out.print(str + "   ");
-            for (int i = 0; i < this.setmana[d][h].mida(); i++) {
-                String s = this.setmana[d][h].getAssignacio(i).getAssignacioPrintFormat();
-                System.out.print(s);
-                this.printIndentation(s.length());
-            }
-            System.out.print("\n");
-        }
-    }
-
-    public void printHorari() {
-        System.out.println(    "  >>>>>                              D  I  L  L  U  N  S                              <<<<<\n");
-        this.printDay(0);
-        System.out.println("\n\n  >>>>>                              D  I  M  A  R  T  S                              <<<<<\n");
-        this.printDay(1);
-        System.out.println("\n\n  >>>>>                             D  I  M  E  C  R  E  S                            <<<<<\n");
-        this.printDay(2);
-        System.out.println("\n\n  >>>>>                               D  I  J  O  U  S                                <<<<<\n");
-        this.printDay(3);
-        System.out.println("\n\n  >>>>>                            D  I  V  E  N  D  R  E  S                          <<<<<\n");
-        this.printDay(4);
-    }
+//    private void printIndentation(int size) {
+//        int n_spaces = 20 - size;
+//        String spaces = "";
+//        for (int i = 0; i < n_spaces; i++) { spaces += " "; }
+//        System.out.print(spaces);
+//    }
+//
+//    private void printDay(int d) {
+//        for (int h = 0; h < this.hores; h++) {
+//            String h0s = Integer.toString(h + this.hIni);
+//            String h1s = Integer.toString(h + this.hIni +1);
+//            if (h0s.length() < 2) h0s = "0" + h0s;
+//            if (h1s.length() < 2) h1s = "0" + h1s;
+//            String str = "  " + h0s + " - " + h1s + "h";
+//            System.out.print(str + "   ");
+//            for (int i = 0; i < this.setmana[d][h].mida(); i++) {
+//                String s = this.setmana[d][h].getAssignacio(i).getAssignacioPrintFormat();
+//                System.out.print(s);
+//                this.printIndentation(s.length());
+//            }
+//            System.out.print("\n");
+//        }
+//    }
+//
+//    public void printHorari() {
+//        System.out.println(    "  >>>>>                              D  I  L  L  U  N  S                              <<<<<\n");
+//        this.printDay(0);
+//        System.out.println("\n\n  >>>>>                              D  I  M  A  R  T  S                              <<<<<\n");
+//        this.printDay(1);
+//        System.out.println("\n\n  >>>>>                             D  I  M  E  C  R  E  S                            <<<<<\n");
+//        this.printDay(2);
+//        System.out.println("\n\n  >>>>>                               D  I  J  O  U  S                                <<<<<\n");
+//        this.printDay(3);
+//        System.out.println("\n\n  >>>>>                            D  I  V  E  N  D  R  E  S                          <<<<<\n");
+//        this.printDay(4);
+//    }
 }

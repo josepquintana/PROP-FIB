@@ -10,7 +10,6 @@ public class Grup implements Cloneable
     private int capacitatSubGrups;
     private int horesLab;
     private int horesTeo;
-    private int aux;
     
     public Grup(){
         this.codiAssig = new String();
@@ -25,7 +24,6 @@ public class Grup implements Cloneable
         this.numSubGrups = numSubGrups;
         this.capacitatSubGrups = capacitat / numSubGrups;
         this.horesLab = horesLab;
-        this.aux = horesLab;
         this.horesTeo = horesTeo;
 
     }
@@ -38,7 +36,6 @@ public class Grup implements Cloneable
         if(g.getSubGrups() == 0) this.capacitatSubGrups = g.getCapacitat();
         else this.capacitatSubGrups = g.getCapacitat() / g.getSubGrups();
         this.horesLab = g.getHoresLab();
-        this.aux = this.horesLab;
         this.horesTeo = g.getHoresTeo();
         
     }
@@ -111,8 +108,8 @@ public class Grup implements Cloneable
         this.capacitatSubGrups = n;
     }
     
-    public void setHoresLab(){
-        this.horesLab = aux;
+    public void setHoresLab(int h){
+        this.horesLab = h;
     }
     
     public void restarHoraLab(){

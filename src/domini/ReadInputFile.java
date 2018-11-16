@@ -1,4 +1,4 @@
-package presentacio;
+package domini;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -8,26 +8,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-import domini.CentreDocent;
-import domini.JornadaLectiva;
-import domini.PeriodeLectiu;
-import domini.Aula;
-import domini.PlaEstudis;
-import domini.Titulacio;
-import domini.Assignatura;
-import domini.Grup;
-
-
-public class ReadFile
+public class ReadInputFile
 {
     // Read Input
     private static BufferedReader br;
     private static String op;
 
-    // Execution-control variables
-    private static int printInputLines = 0;     // 0 -> noPrint; 1 -> printInputLines  // counter // final #
-
-    public static void main (CentreDocent cd, String filename) throws Exception {
+    public static void main (ControladorDomini cd, String filename) throws Exception {
         openFile(filename);
         readFile(cd);
         closeFile();
@@ -48,13 +35,12 @@ public class ReadFile
         op = new String(); // Read line by line
     }
 
-    private static void readFile(CentreDocent cd) throws Exception {
+    private static void readFile(ControladorDomini cd) throws Exception {
 
         int inputCounter = 0;
         //while ((op = readNextLine()).charAt(0) != '@') {
         while ((op = br.readLine()) != null) {
             if (op.charAt(0) == '#') continue; // this input line is a comment
-            if (printInputLines == 1) System.out.println("· Input:   " + op);
             evaluateCommand(cd, op);
             ++inputCounter;
         }
@@ -67,7 +53,7 @@ public class ReadFile
     }
 
     @SuppressWarnings("deprecation")
-    private static void evaluateCommand(CentreDocent cd, String op) throws Exception {
+    private static void evaluateCommand(ControladorDomini cd, String op) throws Exception {
 
         try {
             Scanner s = new Scanner(op).useDelimiter(", ");
@@ -108,7 +94,7 @@ public class ReadFile
                 int capacitat = Integer.parseInt(s.next());
                 Boolean teOrdinadors = s.next().equals("true");
                 Aula aula = new Aula(codiAula, capacitat, teOrdinadors);
-                cd.afegirAulaAlPlaEstudis(nomPla, aula);
+                cd.getPlaEstudis(nomPla).afegirAulaAlPlaEstudis(aula);
             }
             else if (categoria.equals("Assignatura")) {
                 String nomPla = s.next();
@@ -136,7 +122,7 @@ public class ReadFile
                     // TO DO: vigilar que no peti per haver posar una assig no valida!
                     a.afegirCorrequisitAssignatura(req/*.getCodi()*/);
                 }
-                cd.afegirAssignaturaAlPlaEstudis(nomPla, a);
+                cd.getPlaEstudis(nomPla).afegirAssignaturaAlPlaEstudis(a);
             }
             else;
         }

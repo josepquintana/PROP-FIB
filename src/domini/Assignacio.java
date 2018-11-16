@@ -79,18 +79,5 @@ public class Assignacio implements Cloneable
         String str = "[" + this.grup.getCodiAssig() + "-" + this.numGrup + ", " + this.codiAula + "]";
         return str;
     }
-
-    public void printAssignacioLong() {
-        System.out.println("      Assignacio: " + this.grup.getCodiAssig() + ", " + this.numGrup + ", " + this.codiAula);
-    }
-
-    public void printAssignacio() {
-        System.out.println("[" + this.grup.getCodiAssig() + ", " + this.numGrup + ", " + this.codiAula + "]");
-    }
-
-    public void printAssignacioXS() {
-        System.out.print("[" + this.grup.getCodiAssig() + ", " + this.numGrup + ", " + this.codiAula + "] ");
-    }
-
     
 }
