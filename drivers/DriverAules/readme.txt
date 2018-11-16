@@ -2,7 +2,10 @@
 Compilació:
 	javac *.java
 Ejecución:
-	Pasándole un fichero:
-		java DriverAules < jocDeProva.in
-	Por consola:
+	Passant-li un fitxer:
+		./DriverAules.jar < jocDeProva.in
+Executant directament el .jar:
+        ./DriverAules.jar		
+	Alternativa:
 		java DriverAules
+    
