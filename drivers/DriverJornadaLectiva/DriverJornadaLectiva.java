@@ -1,9 +1,8 @@
-package domini;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 
 public class DriverJornadaLectiva {
     
@@ -35,7 +34,7 @@ public class DriverJornadaLectiva {
                 String linea;
                 String paraules[];
                 String opcio;
-
+                SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
                 linea = br.readLine();
                 paraules = linea.split(" ");
                 opcio = paraules[0];
@@ -46,21 +45,21 @@ public class DriverJornadaLectiva {
                             j = new JornadaLectiva();
                             break;
                         case "2":
-                            Time horaini = Time.parseExact(paraules[1], "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture);
-                            Time horafi = Time.parseExact(paraules[2], "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture);
+                            Time horaini = new java.sql.Time(format.parse(paraules[1]).getTime());
+                            Time horafi = new java.sql.Time(format.parse(paraules[2]).getTime());
                             j = new JornadaLectiva(horaini, horafi);
                             break;
                         case "3":
-                            Time horaini2 = Time.parseExact(paraules[1], "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture);
-                            Time horafi2 = Time.parseExact(paraules[2], "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture);
+                            Time horaini2 = new java.sql.Time(format.parse(paraules[1]).getTime());
+                            Time horafi2 = new java.sql.Time(format.parse(paraules[2]).getTime());
                             JornadaLectiva j2 = new JornadaLectiva(horaini2, horafi2);
                             j = new JornadaLectiva(j2);
                             break;
                         case "4":
-                            Time horaini3 = Time.parseExact(paraules[1], "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture);
+                            Time horaini3 = new java.sql.Time(format.parse(paraules[1]).getTime());
                             j.setHoraIni(horaini3);
                         case "5":
-                            Time horafi3 = Time.parseExact(paraules[1], "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture);
+                            Time horafi3 = new java.sql.Time(format.parse(paraules[1]).getTime());
                             j.setHoraFi(horafi3);
                             break;
                         case "6":           

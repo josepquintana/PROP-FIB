@@ -1,6 +1,3 @@
-package domini;
-
-
 import java.sql.Time;
 
 public class JornadaLectiva implements Cloneable
