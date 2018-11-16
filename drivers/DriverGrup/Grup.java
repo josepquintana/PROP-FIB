@@ -1,6 +1,3 @@
-
-package domini;
-
 public class Grup implements Cloneable
 {
     private String codiAssig;
