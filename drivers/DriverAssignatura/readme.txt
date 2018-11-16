@@ -2,7 +2,9 @@
 Compilació:
 	javac *.java
 Ejecución:
-	Pasándole un fichero:
-		java DriverAssignatura < jocDeProva.in
-	Por consola:
+	Passant-li un fitxer:
+		./DriverAssignatura.jar < jocDeProva.in
+Executant directament el .jar:
+        ./DriverAssignatura.jar		
+	Alternativa:
 		java DriverAssignatura
