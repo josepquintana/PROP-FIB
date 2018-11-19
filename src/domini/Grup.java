@@ -119,16 +119,5 @@ public class Grup implements Cloneable
     public void restarHoraTeo(){
         --this.horesTeo;
     }
-    
-    public void printGrup(){
-        System.out.println("      Grup: [" + this.codiAssig + ", " + this.numGrup + "]");
-        for(int i = 0; i < this.numSubGrups ; ++i){
-            System.out.println("       Subgrup: " +(this.numGrup + i+1) );
-        }
-        System.out.println("       Hores Teoria: " +this.horesTeo + ", Hores Lab: "+  this.horesLab );
-    }
 
-    public void printGrupLong() {
-        System.out.println("      Grup: [" + this.codiAssig + ", g:" + this.numGrup + ", " + this.capacitat + "pers]");
-    }
 }

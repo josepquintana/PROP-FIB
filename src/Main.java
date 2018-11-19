@@ -8,7 +8,8 @@ public class Main
         printHello();
         ControladorDomini cd;
         cd = new ControladorDomini();
-        String inputFileName  = "input.txt";        // filename for the data input
+        String inputFileName  = args[0];        // filename for the data input
+
         cd.readInputFile(inputFileName);
 
         for (int i = 0; i < cd.getPlansDeEstudis().mida(); i++) {

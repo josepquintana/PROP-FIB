@@ -61,14 +61,4 @@ public class Titulacio implements Cloneable
         if ((this.nom.equals(t.getNomTitulacio())) && (this.tipus.equals(t.getTipusTitulacio()))) return true;
         return false;
     }
-
-    public void printTitulacioLong() {
-        System.out.println("   Titulacio:");
-        System.out.println("    nomTitulacio: " + this.nom);
-        System.out.println("    tipus       : " + this.tipus);
-    }
-
-    public void printTitulacio() {
-        System.out.println("   Titulacio: " + this.nom + " [" + this.tipus + "]");
-    }
 }

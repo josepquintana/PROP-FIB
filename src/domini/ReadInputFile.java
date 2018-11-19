@@ -24,7 +24,8 @@ public class ReadInputFile
 
         if (!filename.endsWith(".txt")) { filename += ".txt"; }
 
-        String workingDirectory = Paths.get(".\\input").toAbsolutePath().normalize().toString();
+        String workingDirectory = Paths.get(".").toAbsolutePath().normalize().toString();
+
         File file = new File(workingDirectory, filename);
 
         System.out.println("Reading file from: " + file.getAbsolutePath());
