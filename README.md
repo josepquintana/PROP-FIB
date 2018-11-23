@@ -5,8 +5,6 @@ Dates dels lliuraments:
 - Segon: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
 
 ### TO DO
-- ferAssignacio()
-- Comprovació de totes les restriccions.
-- Algorisme Generador Horari
+- Aules a CD (com va dir Turmo). Falta poder generar horari de 2 plans estudis usant les mateixes aules!
 - Capacitats grups -> millorar divisio
-- Horari.java
+- Horari.java amb backtracking ??

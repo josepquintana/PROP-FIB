@@ -12,6 +12,7 @@ public class Main
 
         cd.readInputFile(inputFileName);
 
+
         for (int i = 0; i < cd.getPlansDeEstudis().mida(); i++) {
             cd.generateHorariPlaEstudis(i);
             cd.printHorari(i);

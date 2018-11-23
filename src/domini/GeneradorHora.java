@@ -16,7 +16,7 @@ public class GeneradorHora {
         eliminarAssignacions(assigsPE, solucio);
         return solucio;
     }
-    
+
     private static void i_GenerarHoraLectiva(Assignatures assigs, Aules aules, HoraLectiva solucio, int i_aula, Assignatures assigsAll) throws MyException{
         if(assigs.esBuit() || aules.esBuit() || i_aula >= aules.mida())i_aula = 0;
         else{
@@ -28,7 +28,7 @@ public class GeneradorHora {
             //grup.printGrup();
             //a.printAula();
             //COMPROBAR RESTRICCIONS
-            
+
             if(requisitsAssignatures(assig, solucio, assigsAll)){
                 if(aulaTipusEspecial(a)){                                       //Aula LAB
                     if(assignaturaTipusEspecial(assig)){                        //assig lab
@@ -63,17 +63,17 @@ public class GeneradorHora {
                         } else ++i_aula;
                     }
                 }
-            
+
             }else {
                 assigs.eliminarAssignatura(0);
             }
             i_GenerarHoraLectiva(assigs,aules,solucio,i_aula,assigsAll);
-        
+
         }
-        
-        
+
+
     }
-    
+
     private static void eliminarAssignacions(Assignatures assigsPE, HoraLectiva assignacions){
         Assignacio actual = new Assignacio();
         String codi;
@@ -86,40 +86,40 @@ public class GeneradorHora {
                         assigsPE.getAssignatura(codi).getGrup(j).restarHoraTeo();
                     }
                 } else {
-                   if(assigsPE.getAssignatura(codi).getGrup(j).getNumSubgrup() == actual.getNumGrupAssignacio()) {
+                    if(assigsPE.getAssignatura(codi).getGrup(j).getNumSubgrup() == actual.getNumGrupAssignacio()) {
                         assigsPE.getAssignatura(codi).getGrup(j).restarHoraLab();
                         if(assigsPE.getAssignatura(codi).getGrup(j).getHoresLab() == 0) {
                             assigsPE.getAssignatura(codi).getGrup(j).eliminarSubgrup();
                             if(assigsPE.getAssignatura(codi).getGrup(j).getSubGrups() != 0) assigsPE.getAssignatura(codi).getGrup(j).setHoresLab(assigsPE.getAssignatura(codi).getSessionsLab());
                         }
-                    } 
+                    }
                 }
                 if(assigsPE.getAssignatura(codi).getGrup(j).getHoresTeo() == 0 && assigsPE.getAssignatura(codi).getGrup(j).getHoresLab() == 0) assigsPE.getAssignatura(codi).eliminarGrupAssignatura(j);
             }
             if(assigsPE.getAssignatura(codi).getGrups().isEmpty()) assigsPE.eliminarAssignatura(codi);
         }
     }
-    
+
     private static boolean horesLab(Grup g){
         return g.getHoresLab() > 0;
     }
-    
+
     private static boolean horesTeo(Grup g){
         return g.getHoresTeo() > 0;
     }
-    
+
     private static boolean capacitatAula(int k, Aula a){
         return a.getCapacitat() >= k;
     }
-    
+
     private static boolean assignaturaTipusEspecial(Assignatura a){
         return a.isLab();
     }
-    
+
     private static boolean aulaTipusEspecial(Aula a){
         return a.isLab();
     }
-    
+
     private static boolean requisitsAssignatures(Assignatura a, HoraLectiva sol, Assignatures all){
         Assignatura b = new Assignatura();
         int varios = 0;
@@ -135,5 +135,5 @@ public class GeneradorHora {
         }
         return true;
     }
-    
+
 }

@@ -41,19 +41,20 @@ public class Horari implements Cloneable
         return horari;
     }
 
-    public void GenerarHorari(PlaEstudis pe) throws MyException, CloneNotSupportedException {
-        Assignatures assignatures = (Assignatures) pe.getAssignaturesDelPlaEstudis().clone();
-        Aules aules = (Aules) pe.getAules().clone();
+    public void GenerarHorari(Assignatures assignaturesPlaEstudis, Aules aulesCentreDocent) throws MyException, CloneNotSupportedException {
+        Assignatures assignatures = (Assignatures) assignaturesPlaEstudis.clone();
+        Assignatures assignaturesPE = (Assignatures) assignatures.clone();
+        Aules aules = (Aules) aulesCentreDocent.clone();
 
         ArrayList<HoraLectiva> horesLectives = new ArrayList<>();
         //assignatures.printAssignaturesLong();
         boolean erroni = false;
         while (!assignatures.esBuit() && !erroni) {
-            HoraLectiva hL = GeneradorHora.GenerarHoraLectiva(assignatures, aules, pe.getAssignaturesDelPlaEstudis());
+            HoraLectiva hL = GeneradorHora.GenerarHoraLectiva(assignatures, aules, assignaturesPE);
             //eliminarAssignacions(assignatures,hL);
             horesLectives.add(hL);
             //hL.printHoraLectiva();
-           if(hL.esBuit()) {
+            if(hL.esBuit()) {
                 erroni = true;
                 System.out.println("erroni!");
             }
@@ -72,8 +73,8 @@ public class Horari implements Cloneable
         for (int i = 0; i < this.hores; i++) {
             for (int j = 0; j < this.dies; j++) {
                 if(!horesLectives.isEmpty()){
-                     HoraLectiva hL = horesLectives.remove(0);
-                     this.setmana[j][i] = new HoraLectiva(hL);
+                    HoraLectiva hL = horesLectives.remove(0);
+                    this.setmana[j][i] = new HoraLectiva(hL);
                 }
                 else break;
             }
@@ -90,7 +91,7 @@ public class Horari implements Cloneable
         }
         return false;
     }
-    
+
     public boolean afegirHoraLectiva(HoraLectiva hL) {
         if(existeixHoraLectiva(hL)){
             System.out.println(">>> afegirHora(): L' hora lectiva donada ja existeix");  return false;
@@ -108,19 +109,19 @@ public class Horari implements Cloneable
 
     public boolean afegirHoraLectiva(HoraLectiva hL, int dia, int hora) {
         if(existeixHoraLectiva(hL)){
-          System.out.println(">>> afegirHora_ij(): L' hora lectiva donada ja existeix"); return false;
+            System.out.println(">>> afegirHora_ij(): L' hora lectiva donada ja existeix"); return false;
         }
         hora = hora - this.hIni;
         if (hora < 0 || hora >= this.hores || dia < 0 || dia >= 5) {
-          System.out.println(">>> afegirHora_ij(): Parametres hora i dia no valids."); return false;
+            System.out.println(">>> afegirHora_ij(): Parametres hora i dia no valids."); return false;
         }
         if (!this.setmana[dia][hora].esBuit()) {
-          System.out.println(">>> afegirHora_ij(): setmana[i][j] no esta buida."); return false;
+            System.out.println(">>> afegirHora_ij(): setmana[i][j] no esta buida."); return false;
         }
         this.setmana[dia][hora] = hL;
         return true;
     }
-    
+
     public boolean eliminarHoraLectiva(HoraLectiva hL){
         for(int i = 0; i < dies; ++i) {
             for(int j = 0; j < hores; ++j) {

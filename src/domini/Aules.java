@@ -16,7 +16,6 @@ public class Aules
     }
 
     public Aules(Aules aules) {
-        this.aules = new ArrayList<>();
         this.aules = aules.getAules();
     }
 
