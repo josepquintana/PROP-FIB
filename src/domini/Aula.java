@@ -67,4 +67,8 @@ public class Aula implements Cloneable
 
     public boolean isLab() { return this.PC; }
 
+    public void printAula() {
+        System.out.println("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
+    }
+
 }

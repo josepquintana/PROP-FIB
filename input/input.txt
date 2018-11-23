@@ -3,67 +3,67 @@
 # 
 # usage:
 # "Cente Docent", nomCentre, horaIni, minIni, horaFi, minFi, dayIni, monthIni, yearIni, dayFi, monthFi, yearFi 
-# "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio
-# "Aula", nomPla, codiAula, capacitat, aulaOrdinadors?
+# "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio, horaIni, minIni, horaFi, minFi
+# "Aula", codiAula, capacitat, aulaOrdinadors?
 # "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, numGrups, numSubgrupsXGrup, ambOrdinadors?, [, correquisit_1, .. correquisit_N]
 #
 #
 Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
-Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU
-Aula, EngInf EEES, A6201, 46, false
-Aula, EngInf EEES, A6202, 76, false
-Aula, EngInf EEES, A6203, 50, false
-Aula, EngInf EEES, A6204, 40, false
-Aula, EngInf EEES, A6205, 40, false
-Aula, EngInf EEES, A6206, 40, false
-Aula, EngInf EEES, A6101, 46, false
-Aula, EngInf EEES, A6102, 76, false
-Aula, EngInf EEES, A6103, 50, false
-Aula, EngInf EEES, A6104, 40, false
-Aula, EngInf EEES, A6105, 40, false
-Aula, EngInf EEES, A6106, 40, false
-Aula, EngInf EEES, A6E01, 140, false
-Aula, EngInf EEES, A6E02, 140, true
-Aula, EngInf EEES, A6001, 120, true
-Aula, EngInf EEES, A6002, 120, false
-Aula, EngInf EEES, A5201, 40, false
-Aula, EngInf EEES, A5202, 64, false
-Aula, EngInf EEES, A5203, 40, false
-Aula, EngInf EEES, A5204, 40, false
-Aula, EngInf EEES, A5101, 46, false
-Aula, EngInf EEES, A5102, 76, true
-Aula, EngInf EEES, A5103, 50, false
-Aula, EngInf EEES, A5104, 40, false
-Aula, EngInf EEES, A5105, 40, false
-Aula, EngInf EEES, A5106, 40, false
-Aula, EngInf EEES, A5E01, 140, true
-Aula, EngInf EEES, A5E02, 140, false
-Aula, EngInf EEES, A5001, 120, true
-Aula, EngInf EEES, A5002, 120, false
-Aula, EngInf EEES, A4202, 64, false
-Aula, EngInf EEES, A4102, 76, true
-Aula, EngInf EEES, A4002, 120, false
-Aula, EngInf EEES, A5S102, 25, true
-Aula, EngInf EEES, A5S103, 14, true
-Aula, EngInf EEES, A5S104, 21, true
-Aula, EngInf EEES, A5S105, 14, true
-Aula, EngInf EEES, A5S108, 23, true
-Aula, EngInf EEES, A5S109, 25, true
-Aula, EngInf EEES, A5S111, 14, true
-Aula, EngInf EEES, A5S112, 14, true
-Aula, EngInf EEES, A5S113, 25, false
-Aula, EngInf EEES, B5S101, 22, false
-Aula, EngInf EEES, B5S201, 23, false
-Aula, EngInf EEES, B5S202, 22, false
-Aula, EngInf EEES, C6S301, 15, false
-Aula, EngInf EEES, C6S302, 29, true
-Aula, EngInf EEES, C6S303, 16, true
-Aula, EngInf EEES, C6S304, 10, true
-Aula, EngInf EEES, C6S306, 21, true
-Aula, EngInf EEES, C6S308, 21, true
-Aula, EngInf EEES, C6S309, 21, true
-Aula, EngInf EEES, A1S101, 40, true
-Aula, EngInf EEES, D6003, 20, false
+Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU, 8, 0, 20, 0
+Aula, A6201, 46, false
+Aula, A6202, 76, false
+Aula, A6203, 50, false
+Aula, A6204, 40, false
+Aula, A6205, 40, false
+Aula, A6206, 40, false
+Aula, A6101, 46, false
+Aula, A6102, 76, false
+Aula, A6103, 50, false
+Aula, A6104, 40, false
+Aula, A6105, 40, false
+Aula, A6106, 40, false
+Aula, A6E01, 140, false
+Aula, A6E02, 140, true
+Aula, A6001, 120, true
+Aula, A6002, 120, false
+Aula, A5201, 40, false
+Aula, A5202, 64, false
+Aula, A5203, 40, false
+Aula, A5204, 40, false
+Aula, A5101, 46, false
+Aula, A5102, 76, true
+Aula, A5103, 50, false
+Aula, A5104, 40, false
+Aula, A5105, 40, false
+Aula, A5106, 40, false
+Aula, A5E01, 140, true
+Aula, A5E02, 140, false
+Aula, A5001, 120, true
+Aula, A5002, 120, false
+Aula, A4202, 64, false
+Aula, A4102, 76, true
+Aula, A4002, 120, false
+Aula, A5S102, 25, true
+Aula, A5S103, 14, true
+Aula, A5S104, 21, true
+Aula, A5S105, 14, true
+Aula, A5S108, 23, true
+Aula, A5S109, 25, true
+Aula, A5S111, 14, true
+Aula, A5S112, 14, true
+Aula, A5S113, 25, false
+Aula, B5S101, 22, false
+Aula, B5S201, 23, false
+Aula, B5S202, 22, false
+Aula, C6S301, 15, false
+Aula, C6S302, 29, true
+Aula, C6S303, 16, true
+Aula, C6S304, 10, true
+Aula, C6S306, 21, true
+Aula, C6S308, 21, true
+Aula, C6S309, 21, true
+Aula, A1S101, 40, true
+Aula, D6003, 20, false
 Assignatura, EngInf EEES, PRO1, Programació I, 7.5, 1, 150, 3, 2, true
 Assignatura, EngInf EEES, F, Física, 7.5, 1, 150, 3, 2, true
 Assignatura, EngInf EEES, IC, Introducció als Computadors, 7.5, 1, 150, 3, 2, true

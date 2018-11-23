@@ -86,16 +86,20 @@ public class ReadInputFile
             else if (categoria.equals("Pla Estudis")) {
                 String nomPlaEstudis = s.next();
                 Titulacio t = new Titulacio(s.next(), s.next());
-                PlaEstudis pe = new PlaEstudis(nomPlaEstudis, cd.getJornadaLectiva(), t); // El PE te la mateixa JL que CD
+                Time horaIni = new Time(Integer.parseInt(s.next()), Integer.parseInt(s.next()), 0);
+                Time horaFi  = new Time(Integer.parseInt(s.next()), Integer.parseInt(s.next()), 0);
+                JornadaLectiva jornadaLectiva = new JornadaLectiva(horaIni, horaFi);
+                PlaEstudis pe = new PlaEstudis(nomPlaEstudis, jornadaLectiva, t);
                 cd.afegirPlaEstudis(pe);
             }
             else if (categoria.equals("Aula")) {
-                String nomPla = s.next();
+//                String nomPla = s.next();
                 String codiAula = s.next();
                 int capacitat = Integer.parseInt(s.next());
                 Boolean teOrdinadors = s.next().equals("true");
                 Aula aula = new Aula(codiAula, capacitat, teOrdinadors);
-                cd.getPlaEstudis(nomPla).afegirAulaAlPlaEstudis(aula);
+                cd.afegirAula(aula);
+//                cd.getPlaEstudis(nomPla).afegirAulaAlPlaEstudis(aula);
             }
             else if (categoria.equals("Assignatura")) {
                 String nomPla = s.next();

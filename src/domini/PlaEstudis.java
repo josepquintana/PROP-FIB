@@ -10,7 +10,6 @@ public class PlaEstudis implements Cloneable
     private JornadaLectiva jornadaLectiva;
     private Titulacio titulacio;
     private Assignatures assignatures;
-    private Aules aules; //// aules per cada pla de estudis
     private Horari horari;
 
     public PlaEstudis() {
@@ -19,7 +18,6 @@ public class PlaEstudis implements Cloneable
         jornadaLectiva = new JornadaLectiva();
         titulacio = new Titulacio();
         assignatures = new Assignatures();
-        aules = new Aules();
     }
 
     public PlaEstudis(String nomPla, JornadaLectiva jornadaLectiva, Titulacio titulacio) {
@@ -28,7 +26,6 @@ public class PlaEstudis implements Cloneable
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
         this.titulacio = new Titulacio(titulacio);
         this.assignatures = new Assignatures();
-        this.aules = new Aules();
         this.horari = new Horari(jornadaLectiva);
     }
 
@@ -38,7 +35,6 @@ public class PlaEstudis implements Cloneable
         this.jornadaLectiva = pe.getJornadaLectiva();
         this.titulacio = new Titulacio(pe.getTitulacio());
         this.assignatures = new Assignatures(pe.getAssignaturesDelPlaEstudis());
-        this.aules = new Aules(pe.aules);
         this.horari = new Horari(pe.getHorari());
     }
 
@@ -52,8 +48,7 @@ public class PlaEstudis implements Cloneable
             pe.setJornadaLectiva((JornadaLectiva) this.getJornadaLectiva().clone());
             pe.setTitulacio((Titulacio) this.getTitulacio().clone());
             pe.setAssignatures((Assignatures) this.getAssignaturesDelPlaEstudis().clone());
-            pe.setAules((Aules) this.getAules().clone());
-//            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva())); // de moment es pot clonar el horari
+            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva()));
 
         }
         catch (CloneNotSupportedException e) {
@@ -76,16 +71,6 @@ public class PlaEstudis implements Cloneable
     public boolean eliminarAssignaturaDelPlaEstudis(Assignatura a) {
         boolean ret = this.assignatures.eliminarAssignatura(a);
         if(ret) this.credits -= a.getCredits();
-        return ret;
-    }
-
-    public boolean afegirAulaAlPlaEstudis(Aula a) throws MyException{
-        boolean ret = this.aules.afegirAula(a);
-        return ret;
-    }
-
-    public boolean eliminarAulaDelPlaEstudis(Aula a) throws MyException {
-        boolean ret = this.aules.eliminarAula(a);
         return ret;
     }
 
@@ -129,21 +114,6 @@ public class PlaEstudis implements Cloneable
         return null;
     }
 
-    public Aules getAules() {
-        return this.aules;
-    }
-
-    public Aula getAula(int i) {
-        return this.aules.getAula(i);
-    }
-
-    public Aula getAula(String codi) {
-        for (int i = 0; i < this.aules.mida(); i++) {
-            if(this.aules.getAula(i).getCodi().equals(codi)) return this.aules.getAula(i);
-        }
-        return null;
-    }
-
     public Horari getHorari() {
         return this.horari;
     }
@@ -154,14 +124,6 @@ public class PlaEstudis implements Cloneable
 
     public int quantesAssignatures() {
         return this.assignatures.mida();
-    }
-
-    public boolean hiHiAules() {
-        return this.aules.esBuit();
-    }
-
-    public int quantesAules() {
-        return this.aules.mida();
     }
 
     public void setNomPla(String nomPla) {
@@ -186,10 +148,6 @@ public class PlaEstudis implements Cloneable
         this.calculaCredits();
     }
 
-    public void setAules(Aules aules) {
-        this.aules = aules;
-    }
-
     public void setHorari(Horari horari) {
         this.horari = horari;
     }
@@ -199,11 +157,6 @@ public class PlaEstudis implements Cloneable
         for(int i = 0; i < this.assignatures.mida(); i++){
             this.credits += this.assignatures.getAssignatura(i).getCredits();
         }
-    }
-
-    public void generateHorari() throws MyException, CloneNotSupportedException {
-        this.horari = new Horari(this.jornadaLectiva);
-        this.horari.GenerarHorari(this);
     }
 
 }

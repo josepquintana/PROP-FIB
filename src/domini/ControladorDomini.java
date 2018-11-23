@@ -5,26 +5,30 @@ public class ControladorDomini implements Cloneable
     private String nomCentre;
     private PeriodeLectiu periodeLectiu;
     private JornadaLectiva jornadaLectiva;
+    private Aules aules;
     private PlansDeEstudis plansDeEstudis;
 
     public ControladorDomini() {
         this.nomCentre      = new String();
         this.periodeLectiu  = new PeriodeLectiu();
         this.jornadaLectiva = new JornadaLectiva();
+        this.aules          = new Aules();
         this.plansDeEstudis = new PlansDeEstudis();
     }
 
     public ControladorDomini(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva) {
-        this.nomCentre = nomCentre;
-        this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
+        this.nomCentre      = nomCentre;
+        this.periodeLectiu  = new PeriodeLectiu(periodeLectiu);
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
+        this.aules          = new Aules();
         this.plansDeEstudis = new PlansDeEstudis();
     }
 
-    public ControladorDomini(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, PlansDeEstudis plansDeEstudis) {
-        this.nomCentre = nomCentre;
-        this.periodeLectiu = new PeriodeLectiu(periodeLectiu);
+    public ControladorDomini(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, Aules aules, PlansDeEstudis plansDeEstudis) {
+        this.nomCentre      = nomCentre;
+        this.periodeLectiu  = new PeriodeLectiu(periodeLectiu);
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
+        this.aules          = new Aules(aules);
         this.plansDeEstudis = new PlansDeEstudis(plansDeEstudis);
     }
 
@@ -32,6 +36,8 @@ public class ControladorDomini implements Cloneable
         this.nomCentre = cd.getNomCentre();
         this.periodeLectiu = new PeriodeLectiu(cd.getPeriodeLectiu());
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());
+        this.aules          = new Aules();
+        this.aules          = cd.getAules();
         this.plansDeEstudis = new PlansDeEstudis();
         this.plansDeEstudis = cd.getPlansDeEstudis();
     }
@@ -45,6 +51,7 @@ public class ControladorDomini implements Cloneable
             // mutable methods!
             cd.setPeriodeLectiu((PeriodeLectiu) this.getPeriodeLectiu().clone());
             cd.setJornadaLectiva((JornadaLectiva) this.getJornadaLectiva().clone());
+            cd.setAules((Aules) this.getAules().clone());
             cd.setPlansDeEstudis((PlansDeEstudis) this.getPlansDeEstudis().clone());
         }
         catch (CloneNotSupportedException e) {
@@ -58,11 +65,13 @@ public class ControladorDomini implements Cloneable
     }
 
     public void generateHorariPlaEstudis(String nomPla) throws MyException, CloneNotSupportedException {
-        this.plansDeEstudis.getPlaEstudis(nomPla).generateHorari();
+        Horari horari = this.getPlansDeEstudis().getPlaEstudis(nomPla).getHorari();
+        horari.GenerarHorari(this.getPlaEstudis(nomPla).getAssignaturesDelPlaEstudis(), this.getAules());
     }
 
     public void generateHorariPlaEstudis(int numPla) throws MyException, CloneNotSupportedException {
-        this.plansDeEstudis.getPlaEstudis(numPla).generateHorari();
+        Horari horari = this.getPlansDeEstudis().getPlaEstudis(numPla).getHorari();
+        horari.GenerarHorari(this.getPlaEstudis(numPla).getAssignaturesDelPlaEstudis(), this.getAules());
     }
 
     public boolean afegirPlaEstudis(PlaEstudis pe) {
@@ -72,6 +81,10 @@ public class ControladorDomini implements Cloneable
     public boolean eliminarPlaEstudis(PlaEstudis pe) {
         return this.plansDeEstudis.eliminarPlaEstudis(pe);
     }
+
+    public boolean afegirAula(Aula a) throws MyException { return this.aules.afegirAula(a); }
+
+    public boolean eliminarAula(Aula a) throws MyException { return this.aules.eliminarAula(a); }
 
     public void setNomCentre(String nomCentre) {
         this.nomCentre = new String(nomCentre);
@@ -101,6 +114,14 @@ public class ControladorDomini implements Cloneable
         return this.jornadaLectiva;
     }
 
+    public void setAules(Aules aules) {
+        this.aules = aules;
+    }
+
+    public Aules getAules() {
+        return aules;
+    }
+
     public PlansDeEstudis getPlansDeEstudis() {
         return this.plansDeEstudis;
     }
@@ -114,16 +135,6 @@ public class ControladorDomini implements Cloneable
 
     public PlaEstudis getPlaEstudis(int i) {
         return this.plansDeEstudis.getPlaEstudis(i);
-    }
-
-    public Aules getTotesLesAules() throws MyException {
-        Aules aules = new Aules();
-        for (int i = 0; i < this.plansDeEstudis.mida(); i++) {
-            for (int j = 0; j < this.plansDeEstudis.getPlaEstudis(i).getAules().mida(); j++) {
-                aules.afegirAula(this.plansDeEstudis.getPlaEstudis(i).getAula(j));
-            }
-        }
-        return aules;
     }
 
     private void printIndentation(int size) {
