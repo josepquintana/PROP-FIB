@@ -8,7 +8,9 @@ public class Main
         printHello();
         ControladorDomini cd;
         cd = new ControladorDomini();
-        String inputFileName  = args[0];        // filename for the data input
+//        String inputFileName  = args[0];        // filename for the data input
+
+        String inputFileName = "input.txt";
 
         cd.readInputFile(inputFileName);
 
