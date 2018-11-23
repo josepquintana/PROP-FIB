@@ -9,7 +9,7 @@ public class Grup implements Cloneable
     private int numSubGrups;
     private int capacitatSubGrups;
     private int horesLab;
-    private int aux;
+    private int horesTeo;
     
     public Grup(){
         this.codiAssig = new String();
@@ -17,13 +17,14 @@ public class Grup implements Cloneable
         this.capacitat = 0;
     }
     
-    public Grup(String codi, int num, int capacitat, int numSubGrups, int hores){
+    public Grup(String codi, int num, int capacitat, int numSubGrups, int horesLab, int horesTeo){
         this.codiAssig = codi;
         this.numGrup = num;
         this.capacitat = capacitat;
         this.numSubGrups = numSubGrups;
         this.capacitatSubGrups = capacitat / numSubGrups;
-        this.horesLab = this.aux = hores;
+        this.horesLab = horesLab;
+        this.horesTeo = horesTeo;
 
     }
 
@@ -34,6 +35,9 @@ public class Grup implements Cloneable
         this.numSubGrups = g.getSubGrups();
         if(g.getSubGrups() == 0) this.capacitatSubGrups = g.getCapacitat();
         else this.capacitatSubGrups = g.getCapacitat() / g.getSubGrups();
+        this.horesLab = g.getHoresLab();
+        this.horesTeo = g.getHoresTeo();
+        
     }
 
     @Override
@@ -72,8 +76,16 @@ public class Grup implements Cloneable
         return this.horesLab;
     }
     
+    public int getHoresTeo(){
+        return this.horesTeo;
+    }
+    
     public int getSubGrups(){
         return this.numSubGrups;
+    }
+    
+    public int getNumSubgrup(){
+        return this.numGrup+this.numSubGrups;
     }
     
     public int getCapacitatSub(){
@@ -96,19 +108,16 @@ public class Grup implements Cloneable
         this.capacitatSubGrups = n;
     }
     
-    public void setHoresLab(){
-        this.horesLab = aux;
+    public void setHoresLab(int h){
+        this.horesLab = h;
     }
     
     public void restarHoraLab(){
         --this.horesLab;
     }
     
-    public void printGrup(){
-        System.out.println("      Grup: [" + this.codiAssig + ", " + this.numGrup + "]");
+    public void restarHoraTeo(){
+        --this.horesTeo;
     }
 
-    public void printGrupLong() {
-        System.out.println("      Grup: [" + this.codiAssig + ", g:" + this.numGrup + ", " + this.capacitat + "pers]");
-    }
 }

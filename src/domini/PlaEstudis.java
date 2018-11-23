@@ -53,7 +53,7 @@ public class PlaEstudis implements Cloneable
             pe.setTitulacio((Titulacio) this.getTitulacio().clone());
             pe.setAssignatures((Assignatures) this.getAssignaturesDelPlaEstudis().clone());
             pe.setAules((Aules) this.getAules().clone());
-            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva())); // de moment es pot clonar el horari
+//            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva())); // de moment es pot clonar el horari
 
         }
         catch (CloneNotSupportedException e) {
@@ -202,40 +202,8 @@ public class PlaEstudis implements Cloneable
     }
 
     public void generateHorari() throws MyException, CloneNotSupportedException {
-        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
         this.horari = new Horari(this.jornadaLectiva);
         this.horari.GenerarHorari(this);
-    }
-
-    public void printPlaEstudisLong(int numPla) {
-        System.out.println("  Pla d'Estudis " + numPla + ":");
-        System.out.println("   nomPlaEstudis: " + this.nomPla);
-        this.titulacio.printTitulacioLong();
-        System.out.println("   credits: " + this.credits + " ECTS");
-        this.aules.printAulesLong(3);
-        this.assignatures.printAssignaturesLong();
-        System.out.print("\n");
-    }
-
-    public void printPlaEstudis(int numPla) {
-        System.out.println("  Pla d'Estudis " + numPla + ":");
-        System.out.println("   nomPlaEstudis: " + this.nomPla);
-        this.titulacio.printTitulacio();
-        System.out.println("   credits: " + (int)this.credits + " ECTS");
-        this.jornadaLectiva.printJornadaLectiva();
-        this.aules.printAules(3);
-        this.assignatures.printAssignatures();
-        System.out.print("\n");
-    }
-
-    public void printPlaEstudisXS(int numPla) {
-        System.out.println("  Pla d'Estudis " + numPla + ":");
-        System.out.println("   nomPlaEstudis: " + this.nomPla);
-        this.titulacio.printTitulacio();
-        System.out.println("   credits: " + (int)this.credits + " ECTS");
-        this.jornadaLectiva.printJornadaLectiva();
-        this.aules.printAulesXS(3);
-        this.assignatures.printAssignaturesXS();
     }
 
 }

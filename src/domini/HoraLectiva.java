@@ -92,25 +92,4 @@ public class HoraLectiva
         return this.assignacions.size();
     }
 
-    public void printHoraLectivaLong() {
-        System.out.println("    HoraLectiva: [Long Format]");
-        for (int i = 0; i < this.assignacions.size(); i++) {
-            this.assignacions.get(i).printAssignacioLong();
-        }
-    }
-
-    public void printHoraLectiva() {
-        System.out.println("    HoraLectiva:");
-        for (int i = 0; i < this.assignacions.size(); i++) {
-            this.assignacions.get(i).printAssignacio();
-        }
-    }
-
-    public void printHoraLectivaXS() {
-        System.out.print("    HoraLectiva: ");
-        for (int i = 0; i < this.assignacions.size(); i++) {
-            this.assignacions.get(i).printAssignacioXS();
-        }
-        System.out.print("\n");
-    }
 }

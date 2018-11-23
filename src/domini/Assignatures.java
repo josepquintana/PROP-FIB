@@ -61,7 +61,6 @@ public class Assignatures
         return ret;
     }
 
-    ////// mirar si peta remove()
     public boolean eliminarAssignatura(int i) {
         Assignatura a = new Assignatura(this.assignatures.remove(i));
         if(a == null) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
@@ -75,11 +74,6 @@ public class Assignatures
                 return true;
             }
          }
-        return false;
-    }
-
-    public boolean modificarAssignatura(Assignatura a) {
-        // no es pot -> s'ha de eliminar i crear amb els nous parametres
         return false;
     }
 
@@ -102,37 +96,13 @@ public class Assignatures
         return this.assignatures.isEmpty();
     }
 
-    public ArrayList<Assignatura> getAssignatures() {
-        return this.assignatures;
-    }
-
     public void setAssignatures(ArrayList<Assignatura> assignatures) {
         this.assignatures = new ArrayList<>();
         this.assignatures = assignatures;
     }
 
-    public void printAssignaturesLong() {
-        System.out.println("   Assignatures [Long Format]:");
-        for (int i = 0; i < this.assignatures.size(); i++) {
-            this.assignatures.get(i).printAssignaturaLong();
-        }
-    }
-
-    public void printAssignatures() {
-        System.out.println("   Assignatures:");
-        for (int i = 0; i < this.assignatures.size(); i++) {
-            this.assignatures.get(i).printAssignatura();
-        }
-    }
-
-    public void printAssignaturesXS() {
-        System.out.print("   Assignatures: [" + this.assignatures.size() + "]");
-        for (int i = 0; i < this.assignatures.size(); i++) {
-            if (i % 11 == 0) System.out.print("\n    ");                                // for indentation purposes
-            System.out.print(this.assignatures.get(i).getCodi() + "-[" + this.assignatures.get(i).getGrups().size() + "]");   // print codiAssignatura + nGrups
-            if (i < this.assignatures.size() - 1) System.out.print(", ");               // for presentation purposes
-        }
-        System.out.print("\n");
+    public ArrayList<Assignatura> getAssignatures() {
+        return this.assignatures;
     }
 
 }

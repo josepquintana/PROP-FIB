@@ -57,6 +57,12 @@ public class PlansDeEstudis {
         return ret;
     }
 
+    public boolean eliminarPlaEstudis(int i) {
+        PlaEstudis pe = this.plansDeEstudis.remove(i);
+        if(pe == null) return false;
+        return true;
+    }
+
     public PlaEstudis getPlaEstudis(int i) {
         return this.plansDeEstudis.get(i);
     }
@@ -85,25 +91,5 @@ public class PlansDeEstudis {
         return this.plansDeEstudis.isEmpty();
     }
 
-    public void printPlansDeEstudisLong() {
-        System.out.println(" Plans de Estudi: [Long Format]");
-        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudisLong(i+1);
-        }
-    }
-
-    public void printPlansDeEstudis() {
-        System.out.println(" PlansDeEstudis:");
-        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudis(i+1);
-        }
-    }
-
-    public void printPlansDeEstudisXS() {
-        System.out.println(" PlansDeEstudis:");
-        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudisXS(i+1);
-        }
-    }
 
 }

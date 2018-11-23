@@ -48,7 +48,6 @@ public class Aula implements Cloneable
     }
 
     public boolean setCapacitat(int capacitat) {
-        // check if "capacitat" is valid
         this.capacitat = capacitat;
         return true;
     }
@@ -66,18 +65,6 @@ public class Aula implements Cloneable
         return this.capacitat;
     }
 
-
     public boolean isLab() { return this.PC; }
 
-    public void printAulaLong(int indentation) {
-        System.out.print("\n");
-        if (indentation == 3) System.out.print("  ");
-        System.out.print("  Aula:\n");
-        if (indentation == 3) System.out.print("  ");
-        System.out.print("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
-    }
-
-    public void printAula() {
-        System.out.println("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
-    }
 }
