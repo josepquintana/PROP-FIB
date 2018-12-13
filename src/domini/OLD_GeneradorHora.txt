@@ -1,0 +1,109 @@
+package domini;
+
+import java.util.ArrayList;
+
+public class GeneradorHora {
+
+    private static final int minAssignacionsHora = 5;
+    private static final boolean randomize       = false;    // randomize Assigs and Aules arrays ?
+
+    protected static void SatisfaccioRestriccions() {
+        
+    }
+
+    protected static void BackTracking(int z, Assignatures assignatures, Aules aules, ArrayList<HoraLectiva> allPossibleSols, HoraLectiva solucion, HoraLectiva maxSolucion, Assignatures assignaturesPE, Aules aulesPE) throws CloneNotSupportedException {
+//        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
+
+        if (z >= 3/*No hay mas posibles horasLectivas*/) System.out.println("no hay mas horasLectivas posibles a Generar");
+        else {
+            if (esMejorSolucion(solucion, maxSolucion)) {
+                maxSolucion = (HoraLectiva) solucion.clone();
+                allPossibleSols.add(solucion);
+            }
+
+            for (int i = 0; i < assignatures.mida(); i++) {                                                        // assigs
+                for (int j = 0; j < aules.mida(); j++) {                                                           // aula
+                    for (int k = 0; k < assignatures.getAssignatura(i).getGrups().size(); k++) {                   // grup
+
+                        String codiAssig = assignatures.getAssignatura(i).getCodi();
+                        String codiAula = aules.getAula(j).getCodi();
+                        if (assignatures.getAssignatura(i).getGrup(k).teSubGrups()) {   // Assignar SubGrup seguent
+                            for (int l = 0; l < assignatures.getAssignatura(i).getGrup(k).getSubGrups().size(); l++) { // subgrup                                       // aula
+                                int numSubGrup = assignatures.getAssignatura(i).getGrup(k).getSubGrup(l).getNumSubGrup();
+
+                                // Assignacio amb els valors de la iteracio actual!
+                                Assignacio asg = new Assignacio(codiAssig, numSubGrup, codiAula);
+
+                                if (esFactible(asg, solucion, assignaturesPE, aulesPE)) {    // Podar arbre si no es factible una solucio continuant
+                                    solucion.afegirAssignacio(asg);
+                                    BackTracking(z+1, assignatures, aules, allPossibleSols, solucion, maxSolucion, assignaturesPE, aulesPE);
+                                    solucion.elimnarAssignacio(codiAssig, numSubGrup, codiAula);
+                                }
+                            }
+                        }
+                        else {
+                            int numGrup = assignatures.getAssignatura(i).getGrup(k).getNumGrup();
+                            // Assignacio amb els valors de la iteracio actual!
+                            Assignacio asg = new Assignacio(codiAssig, numGrup, codiAula);
+
+                            if (esFactible(asg, solucion, assignaturesPE, aulesPE)) {    // Podar arbre si no es factible una solucio continuant
+                                    solucion.afegirAssignacio(asg);
+                                    BackTracking(z+1, assignatures, aules, allPossibleSols, solucion, maxSolucion, assignaturesPE, aulesPE);
+                                    solucion.elimnarAssignacio(asg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static boolean esFactible(Assignacio asg, HoraLectiva solucion, Assignatures assignaturesPE, Aules aulesPE) throws CloneNotSupportedException {
+        // Es factible posar Assignacio "a" a la HoraLectiva solucio
+        if (solucion.existeixAssignacio(asg)) return false;
+        Aula aula = (Aula) aulesPE.getAula(asg.getCodiAula()).clone();
+        Assignatura assig = (Assignatura) assignaturesPE.getAssignatura(asg.getCodiAssig()).clone();
+
+        if (!RestriccionsHoresLectives.AulaOcupada(aula, solucion)) return false;
+        if (!RestriccionsHoresLectives.ColissioGrupTeoriaAmbLab(asg, solucion, assignaturesPE))
+        if (!RestriccionsHoresLectives.AssignaturesNivell(assig, assignaturesPE, solucion)) return false;
+        if (!RestriccionsHoresLectives.AssignaturesCorrequisits(assig, solucion)) return false;
+        if (asg.getNumGrup() % 10 != 0) {
+            // Asg es sobre un subGrup
+            int numSubGrup = asg.getNumGrup();
+            int numGrup = (numSubGrup)-(Math.abs(numSubGrup) % 10);
+            SubGrup sG = (SubGrup) assig.getGrupAmbNum(numGrup).getSubGrupAmbNum(numSubGrup).clone();
+            if (!RestriccionsHoresLectives.TipusAula(sG,aula)) return false;
+            if(!RestriccionsHoresLectives.TamanyAula(sG, aula)) return false;
+        }
+        else {
+            // Asg es sobre un Grup
+            int numGrup = asg.getNumGrup();
+            Grup g = (Grup) assig.getGrupAmbNum(numGrup).clone();
+            if(!RestriccionsHoresLectives.TamanyAula(g, aula)) return false;
+        }
+        return true;
+    }
+
+    private static boolean esMejorSolucion (HoraLectiva solucion, HoraLectiva maxSolucion) {
+        return (solucion.mida() > maxSolucion.mida());
+    }
+
+
+    private static void podarAssignatures(Assignatures assigs, Assignatura a){
+        int nivell = a.getNivell();
+        for(int i = 0; i < assigs.getAssignatures().size(); ++i){
+            if(assigs.getAssignatures().get(i).getNivell() == nivell)
+                assigs.getAssignatures().remove(i);
+        }
+        for(int i = 0; i < assigs.getAssignatures().size(); ++i){
+            for(int j = 0; j < a.getCorrequisits().size(); ++j){
+                if(a.getCorrequisit(j).equals(assigs.getAssignatures().get(i).getCodi())) {
+                    assigs.getAssignatures().remove(i);
+                }
+            }
+        }
+    }
+
+}
+
