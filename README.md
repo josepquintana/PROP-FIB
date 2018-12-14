@@ -2,6 +2,12 @@
 ### Generador d’horaris
 Dates dels lliuraments:
 - Segon: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
+Entregar en paper dilluns:
+- Manual usuari
+- Diagrames uml
+- Relacio de les classes
+- Descripció de l’algorisme i estructures de dades
+
 
 ### TO DO
 - Aules a CD (com va dir Turmo). Falta poder generar horari de 2 plans estudis usant les mateixes aules!
