@@ -82,14 +82,17 @@ public class Horari implements Cloneable
                             int durada = 1;
 
                             horari[i][j][k] = new Assignacio(codi, grup, aula, horaIni, durada);
-//                            assignatures.getAssignatura(a).getGrup(g).decrementHores();
+                            assignatures.getAssignatura(a).getGrup(g).decrementHores();
 
-//                            if(assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades() == 0) {
+                            if(assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades() == 0) {
                                 if (backtracking(g + 1, a)) return true;
-//                            }
+                            }
+                            else {
+                                if (backtracking(g + 0, a)) return true;
+                            }
 
-//                            assignatures.getAssignatura(a).getGrup(g).incrementHores();
-                            horari[i][j][k] = new Assignacio();
+                            assignatures.getAssignatura(a).getGrup(g).incrementHores();
+                            horari[i][j][k] = null;
                         }
                     }
                 }

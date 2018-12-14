@@ -4,7 +4,7 @@ public class Restriccions
 {
 
     protected static boolean comprovarAssignatura(int i, int j, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
-        if (!NoColisioGrupTeoriaAmbLab(i,j,n_aules,assignatures,g, a, horari)) return false;
+        if (!AssignaturaNoColisionaTeoriaLab(i,j,n_aules,assignatures,g, a, horari)) return false;
         if (!AssignaturesNivellCorrecte(i,j,n_aules,assignatures,a,horari)) return false;
         if (!AssignaturesCorrequisitsCorrecte(i,j,n_aules,assignatures,a,horari)) return false;
         return true;
@@ -40,7 +40,7 @@ public class Restriccions
         return true;
     }
 
-    protected static boolean NoColisioGrupTeoriaAmbLab(int i, int j, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
+    protected static boolean AssignaturaNoColisionaTeoriaLab(int i, int j, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
         for (int k = 0; k < n_aules; k++) {
             if(horari[i][j][k] != null) {
                 if (assignatures.getAssignatura(a).getCodi().equals(horari[i][j][k].getCodiAssig())) {
@@ -73,32 +73,6 @@ public class Restriccions
     protected static boolean AulaTipusCorrecte(Grup grup, Aula aula){
         return ((aula.isLab() && grup.isAmbPCs()) || (!aula.isLab() && !grup.isAmbPCs()));
     }
-
-
-
-//
-//    protected static boolean ColissioGrupTeoriaAmbLab(Assignacio asg, HoraLectiva solucion, Assignatures assignaturesPE) throws CloneNotSupportedException {
-//        boolean isGrup = (asg.getNumGrup() % 10 == 0);
-//        Assignatura assig = (Assignatura) assignaturesPE.getAssignatura(asg.getCodiAssig()).clone();
-//        if(isGrup) {
-//            int numGrup = asg.getNumGrup();
-//            Grup g = assig.getGrupAmbNum(numGrup);
-//            for (int i = 0; i < solucion.mida(); i++) {
-//                for (int j = 0; j < g.getSubGrups().size(); j++) {
-//                    if(solucion.getAssignacio(i).getNumGrup() == g.getSubGrup(j).getNumSubGrup()) return false;
-//                }
-//            }
-//        }
-//        else {
-//            // si la ASG es de un SubGrup i a SOLUCION el GrupTeoria pare ja esta asignat -> return false
-//            int numSubGrup = asg.getNumGrup();
-//            int numGrup = (numSubGrup)-(Math.abs(numSubGrup) % 10);
-//            for (int i = 0; i < solucion.mida(); i++) {
-//                if (solucion.getAssignacio(i).getNumGrup() == numGrup) return false;
-//            }
-//        }
-//        return true;
-//    }
-
+    
 
 }

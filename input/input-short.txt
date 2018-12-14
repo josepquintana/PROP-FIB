@@ -25,6 +25,7 @@ Assignatura, EngInf EEES, F, Assig F, 7.5, 3, 100, 2, 1, false, B, D
 Assignatura, EngInf EEES, G, Assig G, 6, 4, 20, 2, 1, false, E
 Assignatura, EngInf EEES, H, Assig H, 6, 4, 20, 2, 1, false, F
 Assignatura, EngInf EEES, I, Assig I, 6, 5, 1, 1, 1, false, A, B, C, D, E, F
+Assignatura, EngInf EEES, J, Assig I, 24, 5, 1, 1, 1, false, A, C, E, F
 #
 # end of input
 #
