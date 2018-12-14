@@ -49,7 +49,8 @@ public class Restriccions
                         if (assignatures.getAssignatura(a).getGrupAmbNum(horari[i][j][k].getNumGrup()).isLab()) {
                             if (grup.teComASubgrup(horari[i][j][k].getNumGrup())) return false;
                         }
-                    } else {  // Grup a assignar es Lab
+                    }
+                    else {  // Grup a assignar es Lab
                         if (!assignatures.getAssignatura(a).getGrupAmbNum(horari[i][j][k].getNumGrup()).isLab()) {
                             if (grup.pertanyAlGrupTeoria(horari[i][j][k].getNumGrup())) return false;
                         }

@@ -291,10 +291,6 @@ public class Assignatura implements Cloneable
         return c;
     }
 
-    public void restarHoraTeo(){
-        --this.horesTeo;
-    }
-
     private void printCorrequisits(){
         for (int i = 0; i < this.correquisits.size(); i++) {
             System.out.print(this.correquisits.get(i));

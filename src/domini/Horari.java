@@ -61,8 +61,6 @@ public class Horari implements Cloneable
         System.out.println("hores:   " + this.horari[0].length);
         System.out.println("n_aules: " + this.horari[0][0].length);
 
-//        this.getAssignacioIJK(1,1,1).printAssignacio();
-
         backtracking(0,0);
 
     }
@@ -70,12 +68,13 @@ public class Horari implements Cloneable
     private boolean backtracking(int g, int a) {
         if(a == assignatures.mida()) return true;
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
-
+        
         for (int i = 0; i < this.dies; i++) {
             for (int j = 0; j < this.hores; j++) {
                 if (Restriccions.comprovarAssignatura(i, j, n_aules, assignatures, g, a, horari)) {
                     for (int k = 0; k < this.n_aules; k++) {
                         if(Restriccions.comprovarAula(i, j, k, aules.getAula(k), assignatures.getAssignatura(a), g, horari)) {
+
                             String codi = assignatures.getAssignatura(a).getCodi();
                             int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
                             String aula = aules.getAula(k).getCodi();
@@ -83,9 +82,13 @@ public class Horari implements Cloneable
                             int durada = 1;
 
                             horari[i][j][k] = new Assignacio(codi, grup, aula, horaIni, durada);
+//                            assignatures.getAssignatura(a).getGrup(g).decrementHores();
 
-                            if (backtracking(g + 1, a)) return true;
+//                            if(assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades() == 0) {
+                                if (backtracking(g + 1, a)) return true;
+//                            }
 
+//                            assignatures.getAssignatura(a).getGrup(g).incrementHores();
                             horari[i][j][k] = new Assignacio();
                         }
                     }
@@ -95,34 +98,15 @@ public class Horari implements Cloneable
         return false;
     }
 
-//    private boolean backtracking(int s, int g, int a){
-//        if(a == assignatures.mida()) return true;
-//        if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(-1, 0,a+1);
-//        if(s == assignatures.getAssignatura(a).getGrup(g).getSubGrups().size()) return backtracking(-1, g+1, a+0);
-//
-//        for (int i = 0; i < this.dies; i++) {
-//            for (int j = 0; j < this.hores; j++) {
-//                for (int k = 0; k < this.n_aules; k++) {
-//                    if(Restriccions.comprovar(i, j, k, vassigs.get(assig).getGrups().get(g)))
-//                    {
-//                        horari[i][j][k] = new Assignacio(vaules.get(k), vassigs.get(assig).getGrups().get(g), Dia.values()[i], j+horaIniDia, 2);
-//
-//                        String codi = assignatures.getAssignatura(a).getCodi();
-//                        int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
-//                        String aula = aules.getAula(k).getCodi();
-//
-//                        horari[i][j][k] = new Assignacio(assignatures.getAssignatura(assig).getCodi(), );
-//
-//
-//                        if(backtracking(s+1, g+0, a+0)) return true;
-//
-//                        horari[i][j][k] = new Assignacio();
-//                    }
-//                }
-//            }
-//        }
-//        return false;
-//    }
+    private void iniHorari() {
+        for (int i = 0; i < this.dies; i++) {
+            for (int j = 0; j < this.hores; j++) {
+                for (int k = 0; k < this.n_aules; k++) {
+                    this.horari[i][j][k] = new Assignacio();
+                }
+            }
+        }
+    }
 
     public Assignacio getAssignacioIJK(int dia, int hora, int aula) {
         return this.horari[dia][hora][aula];

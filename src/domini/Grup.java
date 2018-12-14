@@ -69,6 +69,21 @@ public class Grup implements Cloneable
         return false;
     }
 
+    protected void decrementHores() {
+        if(!this.isLab) --this.horesTeoria;
+        else            --this.horesLab;
+    }
+
+    protected void incrementHores() {
+        if(!this.isLab) ++this.horesTeoria;
+        else            ++this.horesLab;
+    }
+
+    protected int getHoresNoAssignades() {
+        if(!this.isLab) return this.horesTeoria;
+        else            return this.horesLab;
+    }
+
     public int getNumGrup(){
         return this.numGrup;
     }

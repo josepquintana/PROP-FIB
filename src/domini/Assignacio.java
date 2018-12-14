@@ -99,7 +99,7 @@ public class Assignacio implements Cloneable
     }
 
     public String getAssignacioPrintFormat() {
-        if(this.isEmpty()) return "[not assigned]";
+        if(this.isEmpty()) return "[assignacio buida]";
         String str = "[" + this.codiAssig + "-g" + this.numGrup + ", " + this.codiAula + "]";
         return str;
     }

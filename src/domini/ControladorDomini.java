@@ -158,30 +158,6 @@ public class ControladorDomini implements Cloneable
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
     }
 
-//    private void printIndentation(int size) {
-//        int n_spaces = 20 - size;
-//        String spaces = "";
-//        for (int i = 0; i < n_spaces; i++) { spaces += " "; }
-//        System.out.print(spaces);
-//    }
-//
-//    private void printDiaHorari(Horari horari, int d) {
-//        for (int h = 0; h < horari.getHores(); h++) {
-//            String h0s = Integer.toString(h + horari.getHIni());
-//            String h1s = Integer.toString(h + horari.getHIni() +1);
-//            if (h0s.length() < 2) h0s = "0" + h0s;
-//            if (h1s.length() < 2) h1s = "0" + h1s;
-//            String str = "  " + h0s + " - " + h1s + "h";
-//            System.out.print(str + "   ");
-//            for (int i = 0; i < horari.getHoraLectiva(d,h).mida(); i++) {
-//                String s = horari.getHoraLectiva(d,h).getAssignacio(i).getAssignacioPrintFormat();
-//                System.out.print(s);
-//                this.printIndentation(s.length());
-//            }
-//            System.out.print("\n");
-//        }
-//    }
-//
     public void printHorari(int numPla) throws CloneNotSupportedException {
 
         for (int i = 0; i < this.horari.getDies(); i++) {
@@ -193,18 +169,10 @@ public class ControladorDomini implements Cloneable
                 }
             }
         }
-//
-//        System.out.println(    "  >>>>>                              D  I  L  L  U  N  S                              <<<<<\n");
-//        this.printDiaHorari(horari, 0);
-//        System.out.println("\n\n  >>>>>                              D  I  M  A  R  T  S                              <<<<<\n");
-//        this.printDiaHorari(horari,1);
-//        System.out.println("\n\n  >>>>>                             D  I  M  E  C  R  E  S                            <<<<<\n");
-//        this.printDiaHorari(horari,2);
-//        System.out.println("\n\n  >>>>>                               D  I  J  O  U  S                                <<<<<\n");
-//        this.printDiaHorari(horari,3);
-//        System.out.println("\n\n  >>>>>                            D  I  V  E  N  D  R  E  S                          <<<<<\n");
-//        this.printDiaHorari(horari,4);
     }
+
+
+
 
 
 }
