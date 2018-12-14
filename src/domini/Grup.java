@@ -57,6 +57,18 @@ public class Grup implements Cloneable
         return (this.numGrup)-(Math.abs(this.numGrup) % 10);
     }
 
+    public boolean teComASubgrup(int subgrup) {
+        int aux = subgrup - this.numGrup;
+        if (aux >= 1 && aux <= 9) return true;
+        return false;
+    }
+
+    public boolean pertanyAlGrupTeoria(int grup) {
+        int aux = this.numGrup - grup;
+        if (aux >= 1 && aux <= 9) return true;
+        return false;
+    }
+
     public int getNumGrup(){
         return this.numGrup;
     }

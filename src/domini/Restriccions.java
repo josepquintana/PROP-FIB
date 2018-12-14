@@ -4,6 +4,7 @@ public class Restriccions
 {
 
     protected static boolean comprovarAssignatura(int i, int j, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
+        if (!NoColisioGrupTeoriaAmbLab(i,j,n_aules,assignatures,g, a, horari)) return false;
         if (!AssignaturesNivellCorrecte(i,j,n_aules,assignatures,a,horari)) return false;
         if (!AssignaturesCorrequisitsCorrecte(i,j,n_aules,assignatures,a,horari)) return false;
         return true;
@@ -20,7 +21,7 @@ public class Restriccions
 
     protected static boolean AssignaturesNivellCorrecte(int i, int j, int n_aules, Assignatures assignatures, int a, Assignacio[][][] horari) {
         for(int k = 0; k < n_aules; ++k) {
-            if(!horari[i][j][k].getCodiAssig().equals("none")) {
+            if(horari[i][j][k] != null) {
                 if (horari[i][j][k].getCodiAssig().equals(assignatures.getAssignatura(a).getCodi())) continue;
                 if (assignatures.getAssignatura(horari[i][j][k].getCodiAssig()).getNivell() == assignatures.getAssignatura(a).getNivell()) return false;
             }
@@ -33,6 +34,26 @@ public class Restriccions
             for (int c = 0; c < assignatures.getAssignatura(a).getCorrequisits().size(); c++) {
                 if(horari[i][j][k] != null) {
                     if (assignatures.getAssignatura(a).getCorrequisit(c).equals(assignatures.getAssignatura(horari[i][j][k].getCodiAssig()).getCodi())) return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    protected static boolean NoColisioGrupTeoriaAmbLab(int i, int j, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
+        for (int k = 0; k < n_aules; k++) {
+            if(horari[i][j][k] != null) {
+                if (assignatures.getAssignatura(a).getCodi().equals(horari[i][j][k].getCodiAssig())) {
+                    Grup grup = assignatures.getAssignatura(a).getGrup(g);
+                    if (!grup.isLab()) { // Grup a assignar es Teoria
+                        if (assignatures.getAssignatura(a).getGrupAmbNum(horari[i][j][k].getNumGrup()).isLab()) {
+                            if (grup.teComASubgrup(horari[i][j][k].getNumGrup())) return false;
+                        }
+                    } else {  // Grup a assignar es Lab
+                        if (!assignatures.getAssignatura(a).getGrupAmbNum(horari[i][j][k].getNumGrup()).isLab()) {
+                            if (grup.pertanyAlGrupTeoria(horari[i][j][k].getNumGrup())) return false;
+                        }
+                    }
                 }
             }
         }

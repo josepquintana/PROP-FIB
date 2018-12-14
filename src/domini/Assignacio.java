@@ -16,14 +16,6 @@ public class Assignacio implements Cloneable
         this.durada  = 0;
     }
 
-    public Assignacio(boolean emtpy){
-        this.codiAssig = "none";
-        this.numGrup  = 0;
-        this.codiAula = new String();
-        this.horaIni  = 0;
-        this.durada  = 0;
-    }
-
     public Assignacio(String codiAssig, int numGrup, String codiAula, int horaIni, int durada){
         this.codiAssig = codiAssig;
         this.numGrup = numGrup;

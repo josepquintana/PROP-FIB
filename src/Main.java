@@ -13,18 +13,8 @@ public class Main
         cd.readInputFile(inputFileName);
         cd.printCentreDocent();
 
-//        for (int i = 0; i < cd.getPlaEstudis(0).getAssignatures().mida(); i++) {
-//            cd.getPlaEstudis(0).getAssignatures().getAssignatura(i).printAssignaturaGSG();
-//        }
-
         cd.generateHorariPlaEstudis(0);
         cd.printHorari(0);
-
-
-//        for (int i = 0; i < cd.getPlansDeEstudis().mida(); i++) {
-//            cd.generateHorariPlaEstudis(i);
-//            cd.printHorari(i);
-//        }
 
     }
 
