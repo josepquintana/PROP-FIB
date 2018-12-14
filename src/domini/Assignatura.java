@@ -11,7 +11,7 @@ public class Assignatura implements Cloneable
     private double credits;                     // ha de ser multiple de 1.5 !
     private int nivell;
     private ArrayList<String> correquisits;     // Comprobar correquisits bidireccionals
-    private ArrayList<Grup> grups;
+    private ArrayList<Grup> grups;              // {10, 11, 12, 20, 21, 22, 30, 31, 32}
     private boolean labAmbPCs;                  // Teoria mai PCs, lab maybe!
     private int horesTeo;
     private int horesLab;
@@ -45,8 +45,7 @@ public class Assignatura implements Cloneable
         this.nom = nom;
         this.credits = credits;
         this.nivell = nivell;
-        this.correquisits = new ArrayList<>();
-        this.correquisits = correqs;
+        this.correquisits = new ArrayList<>(correqs);
         this.grups = new ArrayList<>(grups);
         this.labAmbPCs = ordinadors;
         setSessionsLab();
@@ -54,13 +53,12 @@ public class Assignatura implements Cloneable
     }
 
     public Assignatura(Assignatura a) {
-        // clone Assignatura
+        // hauria de clone Assignatura
         this.codi = a.getCodi();
         this.nom = a.getNom();
         this.credits = a.getCredits();
         this.nivell = a.getNivell();
-        this.correquisits = new ArrayList<>();
-        this.correquisits = a.getCorrequisits();
+        this.correquisits = new ArrayList<>(a.getCorrequisits());
         this.grups = new ArrayList<>(a.getGrups());
         this.labAmbPCs = a.teLabAmbPCs();
         setSessionsLab();
@@ -324,7 +322,8 @@ public class Assignatura implements Cloneable
         }
         System.out.println("     Grups:");
         for (int i = 0; i < this.grups.size(); i++) {
-            System.out.println("      G" + (i+1) + ":  num: " + this.grups.get(i).getNumGrup() + "  \t capacitat: " + this.grups.get(i).getCapacitat());
+            this.grups.get(i).printGrupLong();
+//            System.out.println("      G" + (i+1) + ":  num: " + this.grups.get(i).getNumGrup() + "  \t capacitat: " + this.grups.get(i).getCapacitat());
         }
     }
 
@@ -333,24 +332,14 @@ public class Assignatura implements Cloneable
         if(this.credits == Math.floor(this.credits)) System.out.print((int)this.credits + " \t");
         else System.out.print(this.credits + "\t");
         System.out.print("\tnGrups: " + this.grups.size());
-        System.out.print("\t  nSG/G: " + this.grups.get(0).getQuantsSubGrups());
+//        System.out.print("\t  nSG/G: " + this.grups.get(0).getQuantsSubGrups());
         System.out.print("\t  hTeo: " + this.horesTeo);
         System.out.print("\t  hsLab: " + this.horesLab);
+        if (this.teLabAmbPCs()) System.out.print("\t LAB: PCs    ");
+        else System.out.print("\t LAB: no_PCs");
+        if (this.teGrups()) { System.out.print("\t\t grups: "); this.printGrups(); }
         if (this.teCorrequisits()) { System.out.print("\t\t correq: "); this.printCorrequisits(); }
         System.out.print("\n");
-    }
-
-    public void printAssignaturaGSG() {
-        System.out.print("    " + this.codi + ": ");
-        for (int i = 0; i < this.grups.size(); i++) {
-            System.out.print("g" + this.grups.get(i).getNumGrup() + "[" + this.grups.get(i).getHoresTeoria() + "] {");
-            for (int j = 0; j < this.grups.get(i).getSubGrups().size(); j++) {
-                System.out.print(this.grups.get(i).getSubGrup(j).getNumSubGrup() + "[" + this.grups.get(i).getSubGrup(j).getHoresLab() + "]");
-                if (j < this.grups.get(i).getSubGrups().size()-1) System.out.print(", ");
-                else System.out.print("};  ");
-            }
-        }
-        System.out.println("");
     }
 
 }

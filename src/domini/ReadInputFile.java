@@ -118,15 +118,15 @@ public class ReadInputFile
                 int capacitatGrupTeoria = capacitatTotal / nGrups;
                 for (int i = 10; i <= nGrups * 10; i = i + 10) {    // grups
 
-                    g = new Grup(a.getCodi(), i, capacitatGrupTeoria, a.getSessionsTeoria());
+                    g = new Grup(i, capacitatGrupTeoria, false, a.getSessionsTeoria(), 0, false);
+                    a.afegirGrupAssignatura(g);
+
                     int capacitatSubGrup = capacitatGrupTeoria / nSubGrups;
                     for (int j = 1; j <= nSubGrups; j++) {
                         int numSubGrup = g.getNumGrup() + j;
-                        SubGrup sG = new SubGrup(numSubGrup, capacitatSubGrup, a.getSessionsLab(), teLabAmbPCs);
-                        g.afegirSubGrup(sG);
+                        Grup sG = new Grup(numSubGrup, capacitatSubGrup, true, 0, a.getSessionsLab(), a.teLabAmbPCs());
+                        a.afegirGrupAssignatura(sG);
                     }
-
-                    a.afegirGrupAssignatura(g);
                 }
 
                 String req;

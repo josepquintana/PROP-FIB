@@ -9,15 +9,18 @@ public class Restriccions
         return true;
     }
 
-    protected static boolean comprovarAula(int i, int j, int k, Aules aules, Grup grup, Assignacio[][][] horari) {
+    protected static boolean comprovarAula(int i, int j, int k, Aula aula, Assignatura assignatura, int g, Assignacio[][][] horari) {
         if (!AulaDisponible(i,j,k,horari)) return false;
-        if (!AulaTamanySuficient(grup, aules.getAula(k))) return false;
+        Grup grup = assignatura.getGrup(g);
+        if (!AulaTamanySuficient(grup, aula)) return false;
+        if (grup.isLab() && !AulaTipusCorrecte(grup, aula)) return false; // nomes per Grups Lab
+
         return true;
     }
 
     protected static boolean AssignaturesNivellCorrecte(int i, int j, int n_aules, Assignatures assignatures, int a, Assignacio[][][] horari) {
         for(int k = 0; k < n_aules; ++k) {
-            if(horari[i][j][k] != null) {
+            if(!horari[i][j][k].getCodiAssig().equals("none")) {
                 if (horari[i][j][k].getCodiAssig().equals(assignatures.getAssignatura(a).getCodi())) continue;
                 if (assignatures.getAssignatura(horari[i][j][k].getCodiAssig()).getNivell() == assignatures.getAssignatura(a).getNivell()) return false;
             }
@@ -41,17 +44,13 @@ public class Restriccions
         return true;
     }
 
-    protected static boolean AulaTamanySuficient(Grup g, Aula a) {
-        return (g.getCapacitat() <= a.getCapacitat());
+    protected static boolean AulaTamanySuficient(Grup grup, Aula a) {
+        return (grup.getCapacitat() <= a.getCapacitat());
     }
 
-//    protected static boolean TamanyAula(SubGrup sg, Aula a) {
-//        return (sg.getCapacitatSG() <= a.getCapacitat());
-//    }
-
-//    protected static boolean AulaTipusCorrecte(SubGrup sg, Aula aula){
-//        return ((aula.isLab() && sg.isAmbPCs()) || (!aula.isLab() && !sg.isAmbPCs()));
-//    }
+    protected static boolean AulaTipusCorrecte(Grup grup, Aula aula){
+        return ((aula.isLab() && grup.isAmbPCs()) || (!aula.isLab() && !grup.isAmbPCs()));
+    }
 
 
 

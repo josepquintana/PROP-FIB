@@ -1,6 +1,5 @@
 package domini;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -16,7 +15,7 @@ public class Assignatures
         this.assignatures = new ArrayList<>();
         Iterator<Assignatura> it = assignatures.iterator();
         while(it.hasNext()) {
-            // Add a clone of object i
+            // Add a clone of object it
             this.assignatures.add((Assignatura) it.next().clone());
         }
     }
@@ -135,12 +134,12 @@ public class Assignatures
         System.out.print("\n");
     }
 
-    public void printAssignaturesGSG() {
-        System.out.println("   Assignatures: [" + this.assignatures.size() + "]");
-        for (int i = 0; i < this.assignatures.size(); i++) {
-            this.assignatures.get(i).printAssignaturaGSG();
-        }
-    }
+//    public void printAssignaturesGSG() {
+//        System.out.println("   Assignatures: [" + this.assignatures.size() + "]");
+//        for (int i = 0; i < this.assignatures.size(); i++) {
+//            this.assignatures.get(i).printAssignaturaGSG();
+//        }
+//    }
 
 }
 

@@ -17,6 +17,7 @@ public class Horari implements Cloneable
         this.n_aules = n_aules;
         this.hIni = jL.getHoraIni().getHours();
         this.horari = new Assignacio[this.dies][this.hores][this.n_aules];
+        this.iniHorari();
     }
 
     public Horari(Horari horari) {
@@ -56,6 +57,12 @@ public class Horari implements Cloneable
         this.assignatures = (Assignatures) assignatures.clone();
         this.aules = (Aules) aules.clone();
 
+        System.out.println(this.horari.length);
+        System.out.println(this.horari[0].length);
+        System.out.println(this.horari[0][0].length);
+
+        this.getAssignacioIJK(0,0,0).printAssignacio();
+
         backtracking(0,0);
 
     }
@@ -68,7 +75,7 @@ public class Horari implements Cloneable
             for (int j = 0; j < this.hores; j++) {
                 if (Restriccions.comprovarAssignatura(i, j, n_aules, assignatures, g, a, horari)) {
                     for (int k = 0; k < this.n_aules; k++) {
-                        if(Restriccions.comprovarAula(i, j, k, aules, assignatures.getAssignatura(a).getGrup(g), horari)) {
+                        if(Restriccions.comprovarAula(i, j, k, aules.getAula(k), assignatures.getAssignatura(a), g, horari)) {
                             String codi = assignatures.getAssignatura(a).getCodi();
                             int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
                             String aula = aules.getAula(k).getCodi();
@@ -119,6 +126,16 @@ public class Horari implements Cloneable
 
     public Assignacio getAssignacioIJK(int dia, int hora, int aula) {
         return this.horari[dia][hora][aula];
+    }
+
+    private void iniHorari() {
+        for (int i = 0; i < this.dies; i++) {
+            for (int j = 0; j < this.hores; j++) {
+                for (int k = 0; k < this.n_aules; k++) {
+                    this.horari[i][j][k] = new Assignacio(false);
+                }
+            }
+        }
     }
 
     public int getDies() {

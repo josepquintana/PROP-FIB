@@ -73,7 +73,6 @@ public class ControladorDomini implements Cloneable
     public void generateHorariPlaEstudis(int numPla) throws MyException, CloneNotSupportedException {
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
         horari.generarHorari(this.getPlaEstudis(numPla).getAssignatures(), this.aules);
-//        horari.GenerarHorari(this.getPlaEstudis(numPla).getAssignaturesDelPlaEstudis(), this.getAules());
     }
 
     public boolean afegirPlaEstudis(PlaEstudis pe) {

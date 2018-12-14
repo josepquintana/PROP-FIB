@@ -9,9 +9,17 @@ public class Assignacio implements Cloneable
     private int durada;
 
     public Assignacio(){
-        this.codiAula = "";
+        this.codiAssig = new String();
         this.numGrup  = 0;
-        this.codiAula = "";
+        this.codiAula = new String();
+        this.horaIni  = 0;
+        this.durada  = 0;
+    }
+
+    public Assignacio(boolean emtpy){
+        this.codiAssig = "none";
+        this.numGrup  = 0;
+        this.codiAula = new String();
         this.horaIni  = 0;
         this.durada  = 0;
     }

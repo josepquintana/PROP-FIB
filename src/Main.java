@@ -13,9 +13,9 @@ public class Main
         cd.readInputFile(inputFileName);
         cd.printCentreDocent();
 
-        for (int i = 0; i < cd.getPlaEstudis(0).getAssignatures().mida(); i++) {
-            cd.getPlaEstudis(0).getAssignatures().getAssignatura(i).printAssignaturaGSG();
-        }
+//        for (int i = 0; i < cd.getPlaEstudis(0).getAssignatures().mida(); i++) {
+//            cd.getPlaEstudis(0).getAssignatures().getAssignatura(i).printAssignaturaGSG();
+//        }
 
         cd.generateHorariPlaEstudis(0);
         cd.printHorari(0);
