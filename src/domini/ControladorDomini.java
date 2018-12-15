@@ -70,9 +70,9 @@ public class ControladorDomini implements Cloneable
     }
 
     public void generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
-        this.guardarHorariAlPlaEstudis(numPla);
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
         horari.generarHorari(this.getPlaEstudis(numPla).getAssignatures(), this.aules);
+        this.guardarHorariAlPlaEstudis(numPla);
     }
 
     public void guardarHorariAlPlaEstudis(int numPla) throws CloneNotSupportedException {
@@ -188,7 +188,9 @@ public class ControladorDomini implements Cloneable
         }
     }
 
-    public void printHorari() {
+    public void printHorari(int numPla) throws CloneNotSupportedException {
+
+        this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
 
         int used_aules = 0;
 
@@ -201,7 +203,9 @@ public class ControladorDomini implements Cloneable
                 }
             }
         }
+        System.out.println("\n\n");
         printUsedAules(used_aules);
+        System.out.println("\n\n");
     }
 
     public void printUsedAules(int ua) {

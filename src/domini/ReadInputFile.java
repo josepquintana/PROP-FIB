@@ -15,19 +15,17 @@ public class ReadInputFile
     private static BufferedReader br;
     private static String op;
 
-    public static void main (ControladorDomini cd, String filename) throws Exception {
-        openFile(filename);
+    public static void main (ControladorDomini cd, String inputFile) throws Exception {
+        openFile(inputFile);
         readFile(cd);
         closeFile();
     }
 
-    public static void openFile(String filename) throws IOException {
+    public static void openFile(String inputFile) throws IOException {
 
-        if (!filename.endsWith(".txt")) { filename += ".txt"; }
+        if (!inputFile.endsWith(".txt")) { inputFile += ".txt"; }
 
-        String workingDirectory = Paths.get(".").toAbsolutePath().normalize().toString();
-
-        File file = new File(workingDirectory, filename);
+        File file = new File(inputFile);
 
         System.out.println("Reading file from: " + file.getAbsolutePath());
 
@@ -58,7 +56,7 @@ public class ReadInputFile
     private static void evaluateCommand(ControladorDomini cd, String op) throws Exception {
 
         try {
-            Scanner s = new Scanner(op).useDelimiter(", ");
+            Scanner s = new Scanner(op).useDelimiter(", "); // fer un bon parser (spaces)
             String categoria = s.next();
 
             if      (categoria.equals("Centre Docent")) {
