@@ -1,4 +1,6 @@
 package dades;
 
-public class ControladorDades {
+public class ControladorDades
+{
+
 }
