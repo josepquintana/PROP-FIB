@@ -5,37 +5,36 @@
 # "Cente Docent", nomCentre, horaIni, minIni, horaFi, minFi, dayIni, monthIni, yearIni, dayFi, monthFi, yearFi 
 # "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio
 # "Aula", nomPla, codiAula, capacitat, aulaOrdinadors?
-# "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, numGrups, numSubgrups, ambOrdinadors?, [, correquisit_1, .. correquisit_N]
+# "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, numGrups, numSubgrupsXGrup, labAmbPCs?, [, correquisit_1, .. correquisit_N]
 #
 #
-Centre Docent, FIB, 8, 0, 12, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
-Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU
-Aula, EngInf EEES, A6201, 100, true
-Aula, EngInf EEES, A6202, 100, true
-Aula, EngInf EEES, A6203, 100, false
-Aula, EngInf EEES, A6204, 100, false
-Aula, EngInf EEES, A6205, 100, false
-Aula, EngInf EEES, A6206, 100, false
-Aula, EngInf EEES, A5201, 100, false
-Aula, EngInf EEES, A5202, 100, false
-Aula, EngInf EEES, A5203, 100, false
-Aula, EngInf EEES, A5204, 100, false
-Aula, EngInf EEES, A5205, 100, false
-Aula, EngInf EEES, A5206, 100, false
-Aula, EngInf EEES, A5208, 100, false
-Aula, EngInf EEES, A5209, 100, false
-Aula, EngInf EEES, A5210, 100, false
-Aula, EngInf EEES, A5211, 100, false
-Aula, EngInf EEES, A5212, 100, false
-Aula, EngInf EEES, A5213, 100, false
-Assignatura, EngInf EEES, A, Assig A, 6, 1, 150, 2, 1, false
-Assignatura, EngInf EEES, B, Assig B, 6, 1, 150, 2, 1, false
-Assignatura, EngInf EEES, C, Assig C, 6, 2, 100, 2, 1, false, A
-Assignatura, EngInf EEES, D, Assig D, 6, 2, 100, 2, 1, true, B
-Assignatura, EngInf EEES, E, Assig E, 6, 3, 52, 2, 1, false, A, C
-Assignatura, EngInf EEES, F, Assig F, 6, 3, 52, 2, 3, false, B, D
-Assignatura, EngInf EEES, G, Assig G, 6, 4, 20, 2, 1, false, E
-Assignatura, EngInf EEES, H, Assig H, 6, 4, 20, 2, 1, false, F
+Centre Docent, FIB, 8, 0, 16, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
+Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU, 8, 14
+Aula, A6201, 100, false
+Aula, A6202, 100, false
+Aula, A6203, 100, false
+Aula, A6204, 100, false
+#Aula, A6205, 100, false
+#Aula, A6206, 100, false
+#Aula, A5201, 100, false
+#Aula, A5202, 100, false
+#Aula, A5203, 100, false
+#Aula, A5204, 100, false
+#Aula, A5205, 100, false
+#Aula, A5206, 100, false
+Assignatura, EngInf EEES, A, Assig A, 3, 1, 50, 2, 2, false
+Assignatura, EngInf EEES, B, Assig B, 6, 1, 10, 4, 2, false
+Assignatura, EngInf EEES, C, Assig C, 3, 2, 90, 2, 2, false, A
+#Assignatura, EngInf EEES, A, Assig A, 7.5, 1, 80, 2, 4, false
+#Assignatura, EngInf EEES, B, Assig B, 6, 1, 150, 3, 2, false
+#Assignatura, EngInf EEES, C, Assig C, 6, 2, 100, 2, 1, false, A
+#Assignatura, EngInf EEES, D, Assig D, 6, 2, 100, 2, 1, false, B
+#Assignatura, EngInf EEES, E, Assig E, 6, 3, 52, 2, 1, false, A, C
+#Assignatura, EngInf EEES, F, Assig F, 7.5, 3, 100, 2, 1, false, B, D
+#Assignatura, EngInf EEES, G, Assig G, 6, 4, 20, 2, 1, false, E
+#Assignatura, EngInf EEES, H, Assig H, 6, 4, 20, 2, 1, false, F
+#Assignatura, EngInf EEES, I, Assig I, 6, 5, 1, 1, 1, false, A, B, C, D, E, F
+#Assignatura, EngInf EEES, J, Assig I, 25.5, 5, 1, 1, 1, false, A, C, E, F
 #
 # end of input
 #

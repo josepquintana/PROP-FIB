@@ -3,13 +3,13 @@
 # 
 # usage:
 # "Cente Docent", nomCentre, horaIni, minIni, horaFi, minFi, dayIni, monthIni, yearIni, dayFi, monthFi, yearFi 
-# "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio, horaIni, minIni, horaFi, minFi
 # "Aula", codiAula, capacitat, aulaOrdinadors?
-# "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, numGrups, numSubgrupsXGrup, ambOrdinadors?, [, correquisit_1, .. correquisit_N]
+# "Pla Estudis", nomPla, nomTitulacio, tipusTitulacio, horaIni, minIni, horaFi, minFi
+# "Assignatura", nomPla, codiAssig, nomAssig, credits, nivell, capacitat, numGrups, numSubgrupsXGrup, labAmbPCs?, [, correquisit_1, .. correquisit_N]
 #
 #
-Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2019
-Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU, 8, 0, 20, 0
+Centre Docent, FIB, 8, 0, 20, 0, 06, SEPTEMBER, 2018, 28, JANUARY, 2017
+Pla Estudis, EngInf EEES, Enginyeria Informatica, GRAU, 8, 19
 Aula, A6201, 46, false
 Aula, A6202, 76, false
 Aula, A6203, 50, false
@@ -23,83 +23,83 @@ Aula, A6104, 40, false
 Aula, A6105, 40, false
 Aula, A6106, 40, false
 Aula, A6E01, 140, false
-Aula, A6E02, 140, true
-Aula, A6001, 120, true
+Aula, A6E02, 140, false
+Aula, A6001, 120, false
 Aula, A6002, 120, false
 Aula, A5201, 40, false
 Aula, A5202, 64, false
 Aula, A5203, 40, false
 Aula, A5204, 40, false
 Aula, A5101, 46, false
-Aula, A5102, 76, true
+Aula, A5102, 76, false
 Aula, A5103, 50, false
 Aula, A5104, 40, false
 Aula, A5105, 40, false
 Aula, A5106, 40, false
-Aula, A5E01, 140, true
+Aula, A5E01, 140, false
 Aula, A5E02, 140, false
-Aula, A5001, 120, true
+Aula, A5001, 120, false
 Aula, A5002, 120, false
 Aula, A4202, 64, false
-Aula, A4102, 76, true
+Aula, A4102, 76, false
 Aula, A4002, 120, false
 Aula, A5S102, 25, true
 Aula, A5S103, 14, true
 Aula, A5S104, 21, true
 Aula, A5S105, 14, true
 Aula, A5S108, 23, true
-Aula, A5S109, 25, true
+Aula, A5S107, 25, true
 Aula, A5S111, 14, true
 Aula, A5S112, 14, true
-Aula, A5S113, 25, false
-Aula, B5S101, 22, false
-Aula, B5S201, 23, false
-Aula, B5S202, 22, false
-Aula, C6S301, 15, false
-Aula, C6S302, 29, true
+Aula, A5S113, 25, true
+Aula, B5S101, 22, true
+Aula, B5S201, 23, true
+Aula, B5S202, 22, true
+Aula, C6S301, 15, true
+Aula, C6S302, 27, true
 Aula, C6S303, 16, true
 Aula, C6S304, 10, true
 Aula, C6S306, 21, true
 Aula, C6S308, 21, true
-Aula, C6S309, 21, true
+Aula, C6S307, 21, true
 Aula, A1S101, 40, true
-Aula, D6003, 20, false
-Assignatura, EngInf EEES, PRO1, Programació I, 7.5, 1, 150, 3, 2, true
-Assignatura, EngInf EEES, F, Física, 7.5, 1, 150, 3, 2, true
-Assignatura, EngInf EEES, IC, Introducció als Computadors, 7.5, 1, 150, 3, 2, true
-Assignatura, EngInf EEES, FM, Fonaments Matemàtics, 7.5, 1, 150, 3, 2, false
-Assignatura, EngInf EEES, PRO2, Programació II, 7.5, 2, 150, 3, 2, true
-Assignatura, EngInf EEES, EC, Estructura de Computadors, 7.5, 2, 150, 3, 2, true
-Assignatura, EngInf EEES, M2, Matemàtiques II, 7.5, 2, 150, 3, 2, false
-Assignatura, EngInf EEES, M1, Matemàtiques I, 7.5, 2, 150, 3, 2, false
-Assignatura, EngInf EEES, EDA, Estructures de Dades i Algorisme, 6, 3, 150, 3, 2, true, PRO1, PRO2
-Assignatura, EngInf EEES, BD, Bases de Dades, 6, 3, 150, 3, 2, true, PRO1, PRO2
-Assignatura, EngInf EEES, CI, Interfícies de Computadors, 6, 3, 150, 3, 2, false, F, IC, EC
-Assignatura, EngInf EEES, SO, Sistemes Operatius, 6, 3, 150, 3, 2, true, IC, EC
-Assignatura, EngInf EEES, PE, Probabilitat i Estadística, 6, 3, 150, 3, 2, false, M1, M2
-Assignatura, EngInf EEES, IES, Introducció a l'Enginyeria del Software, 6, 4, 150, 3, 2, false, BD, EDA
-Assignatura, EngInf EEES, IDI, Interacció i Disseny d'Interfícies, 6, 4, 150, 3, 2, true, M1, EDA
-Assignatura, EngInf EEES, XC, Xarxes de Computadors, 6, 4, 150, 3, 3, false, SO
-Assignatura, EngInf EEES, AC, Arquitectura de Computadors, 6, 4, 150, 3, 3, false, EC, PE, SO
-Assignatura, EngInf EEES, EEE, Empresa i Entorn Econòmic, 6, 4, 150, 3, 3, false
-Assignatura, EngInf EEES, PROP, Projectes de Programació, 6, 5, 150, 3, 3, false, EDA, IES, IDI
-Assignatura, EngInf EEES, A, Algorísmia, 6, 5, 100, 3, 2, false, PE, EDA, PROP
-Assignatura, EngInf EEES, G, Gràfics, 6, 5, 100, 3, 2, true, IDI, PROP
-Assignatura, EngInf EEES, IA, Intel·ligència Artificial, 6, 5, 100, 3, 2, true, EDA, PROP
-Assignatura, EngInf EEES, LI, Lògica a la Informàtica, 6, 5, 100, 3, 2, false, EDA, PROP
-#Assignatura, EngInf EEES, PAR, Paral·lelisme, 6, 6, 150, 3, 2, true, EDA, SO, AC
-#Assignatura, EngInf EEES, LP, Llenguatges de Programació, 6, 6, 100, 2, 2, false, EDA
-#Assignatura, EngInf EEES, TC, Teoria de la Computació, 6, 6, 200, 4, 4, false, EDA, PROP
-#Assignatura, EngInf EEES, AA, Aprenentatge Automàtic, 6, 6, 75, 3, 2, false, PE, PROP
-#Assignatura, EngInf EEES, SID, Sistemes Intel·ligents Distribuïts, 6, 6, 75, 3, 2, true, IA
-#Assignatura, EngInf EEES, ASO, Administració de Sistemes Operatius, 6, 7, 75, 3, 2, false, SO, XC
-#Assignatura, EngInf EEES, SI, Seguretat Informàtica, 6, 7, 75, 3, 2, false, SO, XC
-#Assignatura, EngInf EEES, XC2, Xarxes de Computadors II, 6, 7, 75, 3, 2, false, XC
-#Assignatura, EngInf EEES, CN, Computació Numèrica, 6, 7, 40, 2, 2, true, M1, M2
-#Assignatura, EngInf EEES, C, Criptografia, 6, 7, 60, 3, 2, false
-#Assignatura, EngInf EEES, GCS, Gestió de la Ciberseguretat, 6, 8, 100, 4, 2, false
-#Assignatura, EngInf EEES, PAE, Projecte Aplicat d'Enginyeria, 6, 8, 80, 2, 2, false
-#Assignatura, EngInf EEES, TFG, Treball de Fi de Grau, 18, 8, 100, 1, 1, false
+Aula, D6003, 20, true
+Assignatura, EngInf EEES, PRO1, Programació I, 7.5, 1, 640, 8, 4, true
+Assignatura, EngInf EEES, F, Física, 7.5, 1, 640, 8, 4, true
+Assignatura, EngInf EEES, IC, Introducció als Computadors, 7.5, 1, 640, 8, 4, true
+Assignatura, EngInf EEES, FM, Fonaments Matemàtics, 7.5, 1, 640, 8, 4, false
+Assignatura, EngInf EEES, PRO2, Programació II, 7.5, 2, 640, 8, 4, true
+Assignatura, EngInf EEES, EC, Estructura de Computadors, 7.5, 2, 640, 8, 4, true
+Assignatura, EngInf EEES, M2, Matemàtiques II, 7.5, 2, 640, 8, 4, false
+Assignatura, EngInf EEES, M1, Matemàtiques I, 7.5, 2, 640, 8, 4, false
+Assignatura, EngInf EEES, EDA, Estructures de Dades i Algorisme, 6, 3, 300, 5, 3, true, PRO1, PRO2
+Assignatura, EngInf EEES, BD, Bases de Dades, 6, 3, 300, 5, 3, true, PRO1, PRO2
+Assignatura, EngInf EEES, CI, Interfícies de Computadors, 6, 3, 300, 5, 3, false, F, IC, EC
+Assignatura, EngInf EEES, SO, Sistemes Operatius, 6, 3, 300, 5, 3, true, IC, EC
+Assignatura, EngInf EEES, PE, Probabilitat i Estadística, 6, 3, 300, 5, 3, false, M1, M2
+Assignatura, EngInf EEES, IES, Introducció a l'Enginyeria del Software, 6, 4, 300, 5, 3, false, BD, EDA
+Assignatura, EngInf EEES, IDI, Interacció i Disseny d'Interfícies, 6, 4, 300, 5, 3, true, M1, EDA
+Assignatura, EngInf EEES, XC, Xarxes de Computadors, 6, 4, 300, 5, 3, true, SO
+Assignatura, EngInf EEES, AC, Arquitectura de Computadors, 6, 4, 300, 5, 3, true, EC, PE, SO
+Assignatura, EngInf EEES, EEE, Empresa i Entorn Econòmic, 6, 4, 300, 5, 3, false
+Assignatura, EngInf EEES, PROP, Projectes de Programació, 6, 5, 300, 5, 3, false, EDA, IES, IDI
+Assignatura, EngInf EEES, A, Algorísmia, 6, 5, 200, 4, 2, false, PE, EDA, PROP
+Assignatura, EngInf EEES, G, Gràfics, 6, 5, 200, 4, 2, true, IDI, PROP
+Assignatura, EngInf EEES, IA, Intel·ligència Artificial, 6, 5, 200, 4, 2, true, EDA, PROP
+Assignatura, EngInf EEES, LI, Lògica a la Informàtica, 6, 5, 200, 4, 2, true, EDA, PROP
+Assignatura, EngInf EEES, PAR, Paral·lelisme, 6, 6, 300, 7, 4, true, EDA, SO, AC
+Assignatura, EngInf EEES, LP, Llenguatges de Programació, 6, 6, 200, 4, 2, false, EDA
+Assignatura, EngInf EEES, TC, Teoria de la Computació, 6, 6, 200, 4, 2, false, EDA, PROP
+Assignatura, EngInf EEES, AA, Aprenentatge Automàtic, 6, 6, 75, 3, 2, false, PE, PROP
+Assignatura, EngInf EEES, SID, Sistemes Intel·ligents Distribuïts, 6, 6, 75, 3, 2, true,IA
+Assignatura, EngInf EEES, ASO, Administració de Sistemes Operatius, 6, 7, 75, 3, 2, true, SO, XC
+Assignatura, EngInf EEES, SI, Seguretat Informàtica, 6, 7, 75, 3, 2, true, SO, XC
+Assignatura, EngInf EEES, XC2, Xarxes de Computadors II, 6, 7, 40, 2, 2, true, XC
+Assignatura, EngInf EEES, CN, Computació Numèrica, 6, 7, 40, 2, 2, false, M1, M2
+Assignatura, EngInf EEES, C, Criptografia, 6, 7, 60, 3, 2, false
+Assignatura, EngInf EEES, GCS, Gestió de la Ciberseguretat, 6, 8, 100, 4, 2, false
+Assignatura, EngInf EEES, PAE, Projecte Aplicat d'Enginyeria, 6, 8, 80, 8, 2, false
+Assignatura, EngInf EEES, TFG, Treball de Fi de Grau, 18, 8, 80, 1, 1, false
 #
 # end of input
 #
