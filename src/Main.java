@@ -9,12 +9,13 @@ public class Main
         ControladorDomini cd;
         cd = new ControladorDomini();
         String inputFileName  = args[0];        // filename for the data input
+//        inputFileName  = "input\\input-short.txt";        // filename for the data input
 
         cd.readInputFile(inputFileName);
         cd.printCentreDocent();
 
         cd.generateHorariPlaEstudis(0);
-        cd.printHorari(0);
+        cd.printHorari();
 
     }
 

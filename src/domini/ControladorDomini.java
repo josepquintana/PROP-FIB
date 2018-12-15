@@ -15,6 +15,7 @@ public class ControladorDomini implements Cloneable
         this.jornadaLectiva = new JornadaLectiva();
         this.aules          = new Aules();
         this.plansDeEstudis = new PlansDeEstudis();
+        this.horari         = new Horari();
     }
 
     public ControladorDomini(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva) {
@@ -23,6 +24,7 @@ public class ControladorDomini implements Cloneable
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
         this.aules          = new Aules();
         this.plansDeEstudis = new PlansDeEstudis();
+        this.horari         = new Horari();
     }
 
     public ControladorDomini(String nomCentre, PeriodeLectiu periodeLectiu, JornadaLectiva jornadaLectiva, Aules aules, PlansDeEstudis plansDeEstudis) {
@@ -31,6 +33,7 @@ public class ControladorDomini implements Cloneable
         this.jornadaLectiva = new JornadaLectiva(jornadaLectiva);
         this.aules          = new Aules(aules);
         this.plansDeEstudis = new PlansDeEstudis(plansDeEstudis);
+        this.horari         = new Horari();
     }
 
     public ControladorDomini(ControladorDomini cd) {
@@ -41,6 +44,7 @@ public class ControladorDomini implements Cloneable
         this.aules          = cd.getAules();
         this.plansDeEstudis = new PlansDeEstudis();
         this.plansDeEstudis = cd.getPlansDeEstudis();
+        this.horari         = new Horari();
     }
 
     @Override
@@ -65,14 +69,16 @@ public class ControladorDomini implements Cloneable
         ReadInputFile.main(this, filename);
     }
 
-    public void generateHorariPlaEstudis(String nomPla) throws MyException, CloneNotSupportedException {
-        horari = new Horari(this.getPlaEstudis(nomPla).getJornadaLectiva(), this.aules.mida());
-        horari.generarHorari(this.getPlaEstudis(nomPla).getAssignatures(), this.aules);
-    }
-
-    public void generateHorariPlaEstudis(int numPla) throws MyException, CloneNotSupportedException {
+    public void generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
+        this.guardarHorariAlPlaEstudis(numPla);
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
         horari.generarHorari(this.getPlaEstudis(numPla).getAssignatures(), this.aules);
+    }
+
+    public void guardarHorariAlPlaEstudis(int numPla) throws CloneNotSupportedException {
+        if (!horari.empty()) {
+            this.plansDeEstudis.getPlaEstudis(numPla).setHorari((Horari) this.horari.clone());
+        }
     }
 
     public boolean afegirPlaEstudis(PlaEstudis pe) {
@@ -138,6 +144,9 @@ public class ControladorDomini implements Cloneable
         return this.plansDeEstudis.getPlaEstudis(i);
     }
 
+
+    // Funcions temporals que no PRESENTAREM!!
+
     public void printCentreDocentLong() throws MyException {
         System.out.println("\n> CentreDocent [Long Format]:\n");
         System.out.println(" nomCentre: " + this.nomCentre + "\n");
@@ -158,17 +167,47 @@ public class ControladorDomini implements Cloneable
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
     }
 
-    public void printHorari(int numPla) throws CloneNotSupportedException {
+    private String getDia(int i) {
+        if (i == 0) return "DILLUNS";
+        if (i == 1) return "DIMARTS";
+        if (i == 2) return "DIMECRES";
+        if (i == 3) return "DIJOUS";
+        if (i == 4) return "DIVENDRES";
+        return "Error";
+    }
+
+    public void printHorari2() {
+        for (int i = 0; i < this.horari.getDies(); i++) {
+            for (int j = 0; j < this.horari.getHores(); j++) {
+                for (int k = 0; k < this.horari.getN_aules(); k++) {
+                    System.out.print("Horari[" + getDia(i) + "][" + (horari.getHIni()+j) + "][" + this.aules.getAula(k).getCodi() + "] \t = ");
+                    if(null != horari.getAssignacioIJK(i,j,k))  System.out.print(horari.getAssignacioIJK(i,j,k).getAssignacioAssigGrup() + "\n");
+                    else System.out.print("[none]\n");
+                }
+            }
+        }
+    }
+
+    public void printHorari() {
+
+        int used_aules = 0;
 
         for (int i = 0; i < this.horari.getDies(); i++) {
             for (int j = 0; j < this.horari.getHores(); j++) {
                 for (int k = 0; k < this.horari.getN_aules(); k++) {
                     System.out.print("Horari[" + i + "][" + j + "][" + k + "] \t = ");
-                    if(null != horari.getAssignacioIJK(i,j,k)) horari.getAssignacioIJK(i,j,k).printAssignacio();
+                    if(null != horari.getAssignacioIJK(i,j,k)) { horari.getAssignacioIJK(i,j,k).printAssignacio(); used_aules++; }
                     else System.out.println("[none]");
                 }
             }
         }
+        printUsedAules(used_aules);
+    }
+
+    public void printUsedAules(int ua) {
+
+        System.out.println("Assigned " + ua + "/" + (this.aules.mida()*this.horari.getHores()*5) + " of possible [dia][hora][aula].");
+
     }
 
 

@@ -5,23 +5,8 @@ public class Restriccions
     protected static boolean comprovar(int i, int j, int k, int dies, int hores, int n_aules, Assignatures assignatures, Aula aula, int g, int a, Assignacio[][][] horari)
     {
         if (!AulaCorrecte(i, j, k, assignatures, aula, g, a, horari)) return false;
+        if (!GrupsCompatibles(i,j,dies,hores,n_aules,assignatures,g,a,horari)) return false;
         if (!AssignaturesCompatibles(i,j,dies,hores,n_aules,assignatures,g,a,horari)) return false;
-        return true;
-    }
-
-    private static boolean AssignaturesCompatibles(int i, int j, int dies, int hores, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
-        for (int k = 0; k < n_aules; k++) {
-            if(horari[i][j][k] != null) {
-                if (GrupJaAssignatAquestaHora(i, j, k, assignatures.getAssignatura(a).getGrup(g), horari)) return false;
-                if (ColisionaTeoriaLab(i, j, k, assignatures.getAssignatura(a), g, a, horari)) return false;
-
-                if (!horari[i][j][k].getCodiAssig().equals(assignatures.getAssignatura(a).getCodi())) { // no comprovar nivell si estic comparant la mateixa assignatura
-                    if (AssignaturesMateixNivell(i, j, k, assignatures, g, a, horari)) return false;
-                }
-
-                if (AssignaturesSonCorrequisit(i, j, k, assignatures, g, a, horari)) return false;
-            }
-        }
         return true;
     }
 
@@ -32,8 +17,46 @@ public class Restriccions
         return true;
     }
 
-    private static boolean GrupJaAssignatAquestaHora(int i, int j, int k, Grup grup, Assignacio[][][] horari) {
-        if (grup.getNumGrup() == horari[i][j][k].getNumGrup()) return true;
+    private static boolean GrupsCompatibles(int i, int j, int dies, int hores, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
+        for (int k = 0; k < n_aules; k++) {
+            if(horari[i][j][k] != null) {
+                if (GrupJaAssignatAquestaHora(i, j, k, assignatures.getAssignatura(a), g, horari)) return false;
+                if (!assignatures.getAssignatura(a).getGrup(g).isLab() && AltreGrupTeoriaJaEsFaAra(i, j, k, assignatures.getAssignatura(a), g, horari)) return false;
+                if (assignatures.getAssignatura(a).getGrup(g).isLab()  && AltreSubGrupLabJaEsFaAra(i, j, k, assignatures.getAssignatura(a), g, horari)) return false;
+                if (ColisionaTeoriaLab(i, j, k, assignatures.getAssignatura(a), g, a, horari)) return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean AssignaturesCompatibles(int i, int j, int dies, int hores, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
+        for (int k = 0; k < n_aules; k++) {
+            if(horari[i][j][k] != null) {
+                if (AssignaturesSonCorrequisit(i, j, k, assignatures, g, a, horari)) return false;
+                if (AssignaturesMateixNivell(i, j, k, assignatures, g, a, horari)) return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean GrupJaAssignatAquestaHora(int i, int j, int k, Assignatura assignatura, int g, Assignacio[][][] horari) {
+        if (assignatura.getCodi().equals(horari[i][j][k].getCodiAssig())) {
+            if (assignatura.getGrup(g).getNumGrup() == horari[i][j][k].getNumGrup()) return true;
+        }
+        return false;
+    }
+
+    private static boolean AltreGrupTeoriaJaEsFaAra(int i, int j, int k, Assignatura assignatura, int g, Assignacio[][][] horari) {
+        if (assignatura.getCodi().equals(horari[i][j][k].getCodiAssig())) {
+            if(!assignatura.getGrupAmbNum(horari[i][j][k].getNumGrup()).isLab()) return true;
+        }
+        return false;
+    }
+
+    private static boolean AltreSubGrupLabJaEsFaAra(int i, int j, int k, Assignatura assignatura, int g, Assignacio[][][] horari) {
+        if (assignatura.getCodi().equals(horari[i][j][k].getCodiAssig())) {
+            if(assignatura.getGrupAmbNum(horari[i][j][k].getNumGrup()).isLab() && (getNumGrupGeneral(assignatura.getGrup(g).getNumGrup()) == getNumGrupGeneral(horari[i][j][k].getNumGrup()))) return true;
+        }
         return false;
     }
 
@@ -55,9 +78,11 @@ public class Restriccions
     }
 
     private static boolean AssignaturesMateixNivell(int i, int j, int k, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
-        // no poden coincidir assigs same nivell NOMES SI son el mateix grup
-        if (getNumGrupGeneral(horari[i][j][k].getNumGrup()) == assignatures.getAssignatura(a).getGrup(g).getGrupGeneral()) {
-            if (assignatures.getAssignatura(horari[i][j][k].getCodiAssig()).getNivell() == assignatures.getAssignatura(a).getNivell()) return true;
+        if (!horari[i][j][k].getCodiAssig().equals(assignatures.getAssignatura(a).getCodi())) { // no comprovar nivell si estic comparant la mateixa assignatura
+            // no poden coincidir assigs same nivell NOMES SI son el mateix grup
+            if (getNumGrupGeneral(horari[i][j][k].getNumGrup()) == assignatures.getAssignatura(a).getGrup(g).getGrupGeneral()) {
+                if (assignatures.getAssignatura(horari[i][j][k].getCodiAssig()).getNivell() == assignatures.getAssignatura(a).getNivell()) return true;
+            }
         }
         return false;
     }

@@ -39,6 +39,11 @@ public class JornadaLectiva implements Cloneable
         return jL;
     }
 
+    public boolean includedInJLec(JornadaLectiva jL) {
+        if (this.horaIni.getTime() >= jL.getHoraIni().getTime() && this.horaFi.getTime() <= jL.getHoraFi().getTime()) return true;
+        return false;
+    }
+
     public void setHoraIni(Time horaIni) {
         this.horaIni = new Time(horaIni.getTime());
 //        else {

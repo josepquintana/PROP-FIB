@@ -29,7 +29,6 @@ public class PlaEstudis implements Cloneable
         this.titulacio = new Titulacio(titulacio);
         this.assignatures = new Assignatures();
         this.aules = new Aules();
-//        this.horari = new Horari(jornadaLectiva);
     }
 
     public PlaEstudis(PlaEstudis pe) {
@@ -44,7 +43,7 @@ public class PlaEstudis implements Cloneable
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        PlaEstudis pe = new PlaEstudis();
+        PlaEstudis pe;
         try {
             pe = (PlaEstudis) super.clone();
 
@@ -53,7 +52,7 @@ public class PlaEstudis implements Cloneable
             pe.setTitulacio((Titulacio) this.getTitulacio().clone());
             pe.setAssignatures((Assignatures) this.getAssignatures().clone());
             pe.setAules((Aules) this.getAules().clone());
-//            pe.setHorari((Horari) this.getHorari().clone(pe.getJornadaLectiva())); // de moment es pot clonar el horari
+            pe.setHorari((Horari) this.getHorari().clone());
 
         }
         catch (CloneNotSupportedException e) {
@@ -76,16 +75,6 @@ public class PlaEstudis implements Cloneable
     public boolean eliminarAssignaturaDelPlaEstudis(Assignatura a) {
         boolean ret = this.assignatures.eliminarAssignatura(a);
         if(ret) this.credits -= a.getCredits();
-        return ret;
-    }
-
-    public boolean afegirAulaAlPlaEstudis(Aula a) throws MyException{
-        boolean ret = this.aules.afegirAula(a);
-        return ret;
-    }
-
-    public boolean eliminarAulaDelPlaEstudis(Aula a) throws MyException {
-        boolean ret = this.aules.eliminarAula(a);
         return ret;
     }
 
@@ -201,11 +190,7 @@ public class PlaEstudis implements Cloneable
         }
     }
 
-//    public void generateHorari() throws MyException, CloneNotSupportedException {
-//        System.out.println(" > " + Thread.currentThread().getStackTrace()[1]);
-//        this.horari = new Horari(this.jornadaLectiva);
-//        this.horari.generarHorari();
-//    }
+    // Funcions temporals que NO PRESENTAREM
 
     public void printPlaEstudisLong(int numPla) {
         System.out.println("  Pla d'Estudis " + numPla + ":");

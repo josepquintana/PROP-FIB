@@ -2,7 +2,7 @@ package domini;
 
 public class Horari implements Cloneable
 {
-    private final int dies = 3;
+    private final int dies = 5;
     private int hores;
     private int n_aules;
     private int hIni;
@@ -10,6 +10,13 @@ public class Horari implements Cloneable
 
     private Assignatures assignatures;
     private Aules aules;
+
+    public Horari() {
+        this.hores = 0;
+        this.n_aules = 0;
+        this.hIni = 0;
+        this.horari = new Assignacio[0][0][0];
+    }
 
     @SuppressWarnings("deprecation")
     public Horari(JornadaLectiva jL, int n_aules) {
@@ -26,7 +33,6 @@ public class Horari implements Cloneable
         this.horari = horari.getHorari();
     }
 
-    //@Override
     protected Object clone() throws CloneNotSupportedException {
         Horari h;
         try {
@@ -37,7 +43,9 @@ public class Horari implements Cloneable
             for (int i = 0; i < this.dies; i++) {
                 for (int j = 0; j < this.hores; j++) {
                     for (int k = 0; k < this.n_aules; k++) {
-                        new_horari[i][j][k] = (Assignacio) this.getHorari()[i][j][k].clone();
+                        if(horari[i][j][k] != null) {
+                            new_horari[i][j][k] = (Assignacio) horari[i][j][k].clone();
+                        }
                     }
                 }
             }
@@ -65,7 +73,10 @@ public class Horari implements Cloneable
 
         if(a == assignatures.mida()) return true;
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
-        
+
+//        System.out.println("Backtracking...     g = " + g + " \t a = " + a);
+//        System.out.println("assig: " + assignatures.getAssignatura(a).getCodi());
+
         for (int i = 0; i < this.dies; i++) {
             for (int j = 0; j < this.hores; j++) {
                 for (int k = 0; k < this.n_aules; k++) {
@@ -74,7 +85,7 @@ public class Horari implements Cloneable
                         String codi = assignatures.getAssignatura(a).getCodi();
                         int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
                         String aula = aules.getAula(k).getCodi();
-                        int horaIni = this.hIni;
+                        int horaIni = this.hIni + j;
                         int durada = 1;
 
                         horari[i][j][k] = new Assignacio(codi, grup, aula, horaIni, durada);
@@ -100,6 +111,10 @@ public class Horari implements Cloneable
         return this.horari[dia][hora][aula];
     }
 
+    public boolean empty() {
+        if (horari.length == 0) return true;
+        return false;
+    }
 
     public int getDies() {
         return dies;

@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class ReadInputFile
 {
@@ -83,22 +84,22 @@ public class ReadInputFile
                 cd.setPeriodeLectiu(periodeLectiu);
                 cd.setJornadaLectiva(jornadaLectiva);
             }
-            else if (categoria.equals("Pla Estudis")) {
-                String nomPlaEstudis = s.next();
-                Titulacio t = new Titulacio(s.next(), s.next());
-//                Time horaIni = new Time(Integer.parseInt(s.next()), Integer.parseInt(s.next()), 0);
-//                Time horaFi  = new Time(Integer.parseInt(s.next()), Integer.parseInt(s.next()), 0);
-//                JornadaLectiva jornadaLectiva = new JornadaLectiva(horaIni, horaFi);
-                PlaEstudis pe = new PlaEstudis(nomPlaEstudis, cd.getJornadaLectiva(), t); // El PE te la mateixa JL que CD
-//                PlaEstudis pe = new PlaEstudis(nomPlaEstudis, jornadaLectiva, t);
-                cd.afegirPlaEstudis(pe);
-            }
             else if (categoria.equals("Aula")) {
                 String codiAula = s.next();
                 int capacitat = Integer.parseInt(s.next());
                 Boolean teOrdinadors = s.next().equals("true");
                 Aula aula = new Aula(codiAula, capacitat, teOrdinadors);
                 cd.afegirAula(aula);
+            }
+            else if (categoria.equals("Pla Estudis")) {
+                String nomPlaEstudis = s.next();
+                Titulacio t = new Titulacio(s.next(), s.next());
+                Time horaIni = new Time(Integer.parseInt(s.next()), 0, 0);
+                Time horaFi  = new Time(Integer.parseInt(s.next()), 0, 0);
+                JornadaLectiva jornadaLectiva = new JornadaLectiva(horaIni, horaFi);
+                if (!jornadaLectiva.includedInJLec(cd.getJornadaLectiva())) throw new Exception("La Jornada Lectiva del Pla d'Estudis no esta inclosa en la del Centre Docent");
+                PlaEstudis pe = new PlaEstudis(nomPlaEstudis, new JornadaLectiva(horaIni, horaFi), t);
+                cd.afegirPlaEstudis(pe);
             }
             else if (categoria.equals("Assignatura")) {
                 String nomPla = s.next();
@@ -141,7 +142,9 @@ public class ReadInputFile
         }
 
         catch (Exception e) {
-            System.out.print("> !Error al evaluar comanda del fitxer: " + e.getMessage() + " @ input line: \"" + op + "\"\n");
+            System.out.println(" > !Error al evaluar el fitxer d'entrada: ");
+            System.out.println(" > " + e.getMessage());
+            System.out.println(" > @ input line: \"" + op + "\"\n");
             throw new Exception();
         }
     }

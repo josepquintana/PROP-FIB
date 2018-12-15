@@ -104,6 +104,11 @@ public class Assignacio implements Cloneable
         return str;
     }
 
+    public String getAssignacioAssigGrup() {
+        if(this.isEmpty()) return "[ ~~ ]";
+        else return("[" + this.codiAssig + "-g" + this.numGrup + "]");
+    }
+
     public void printAssignacioLong() {
         System.out.println("      Assignacio: " + this.getAssignacioPrintFormat());
     }
@@ -113,6 +118,6 @@ public class Assignacio implements Cloneable
     }
 
     public void printAssignacioXS() {
-        System.out.print(this.getAssignacioPrintFormat() + " ");
+        System.out.print("[" + this.codiAssig + "-g" + this.numGrup + "]");
     }
 }
