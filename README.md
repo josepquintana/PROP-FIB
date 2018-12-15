@@ -1,8 +1,7 @@
-# PROP
-## Generador d’horaris
-#### Segon Lliurament: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
+# PROP - Generador d’horaris
 
-Entregar en paper dilluns:
+#### Segon Lliurament: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
+##### Entregar en paper dilluns:
 - Manual usuari
 - Diagrames uml
 - Relacio de les classes
@@ -21,7 +20,8 @@ Entregar en paper dilluns:
 - [ ] Relació de les classes implementades per cada grup -> explicar explícitament a un document
 - [ ] Codi de totes les classes, executables del programa amb jocs de proves.
 
-### Jocs de proves: per cada d’una de les funcionalitats existents s’ha de provar des de l’aplicatiu fent un joc d’assaig.
+## Jocs de proves: 
+#### per cada d’una de les funcionalitats existents s’ha de provar des de l’aplicatiu fent un joc d’assaig.
 
 S’ha de fer un conjunt de proves per cada funcionalitat: funcionalitat -> conjunt de proves.
 Proves de casos extrems i de casos intermitjos.
