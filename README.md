@@ -1,5 +1,5 @@
 # PROP
-## Generador d’horaris
+### Generador d’horaris
 #### Segon Lliurament: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
 
 Entregar en paper dilluns:
