@@ -18,7 +18,7 @@ public class ControladorPresentacio {
 //////////////////////// Constructor y metodos de inicializacion
 
 
-  public ControladorPresentacio() {
+  public ControladorPresentacio() throws IOException {
     ctrlDomini = new ControladorDomini();
     vistaPresentacio = new VistaPresentacio(this);
     vistaPrincipal = new VistaPrincipal(this);

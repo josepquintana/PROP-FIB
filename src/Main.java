@@ -12,13 +12,14 @@ public class Main
     {
         printHello();
         evaluateArgs(args);
-        ControladorDomini cd = new ControladorDomini();
+        ControladorDomini controladorDomini = new ControladorDomini();
 
-        cd.readInputFile(inputFile);
-//        cd.printCentreDocent();
+        controladorDomini.readDataFiles();
 
-        cd.generateHorariPlaEstudis(0);
-        cd.printHorari(0);
+        controladorDomini.printCentreDocent();
+
+        controladorDomini.generateHorariPlaEstudis(0);
+        controladorDomini.printHorari(0);
     }
 
     private static void printHello() {
