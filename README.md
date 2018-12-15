@@ -7,8 +7,8 @@ Dates dels lliuraments:
 ## Backtracking
 
 ## TO DO
-- [ ] Podriem implementar els subgrups amb un Extends de Grup
 - [ ] Comprovació de totes les restriccions
-- [ ] BT with SubGrup. Sino es pot ferho amb {10, 11, 12, 20, 21, 22}
+- [x] BT with SubGrup. Sino es pot ferho amb {10, 11, 12, 20, 21, 22}
 - [ ] Capacitats grups -> millorar divisio
 - [x] Classe Restriccions 
+- [ ] El BT es infinit si no pot assignar un grup (ja que no li pot decrementar les horesTeo/Lab i la crida es infinita)
