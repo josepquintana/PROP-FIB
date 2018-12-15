@@ -100,13 +100,13 @@ public class Assignacio implements Cloneable
 
     public String getAssignacioPrintFormat() {
         if(this.isEmpty()) return "[assignacio buida]";
-        String str = "[" + this.codiAssig + "-g" + this.numGrup + ", " + this.codiAula + "]";
-        return str;
-    }
+        String str = "[" + this.codiAula + ": " + this.codiAssig + "-" + this.numGrup + "]";
+        int length = str.length();
+        for (int i = 1; i <= (("[A5S108: PROP-10]").length() - length); i++) {
+            str += " "; // indentation
+        }
 
-    public String getAssignacioAssigGrup() {
-        if(this.isEmpty()) return "[ ~~ ]";
-        else return("[" + this.codiAssig + "-g" + this.numGrup + "]");
+        return str;
     }
 
     public void printAssignacioLong() {

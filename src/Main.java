@@ -23,9 +23,9 @@ public class Main
 
     private static void printHello() {
         System.out.print("\n");
-        System.out.println("##########################################################################################");
-        System.out.println("############################### PROP: GENERADOR DE HORARIS ###############################");
-        System.out.println("##########################################################################################");
+        System.out.println(" ##########################################################################################");
+        System.out.println(" ############################### PROP: GENERADOR DE HORARIS ###############################");
+        System.out.println(" ##########################################################################################");
         System.out.print("\n");
     }
 
@@ -33,9 +33,9 @@ public class Main
         if (args.length == 1 && !args[0].equals("-h")) {
             Path path = Paths.get(args[0]).toAbsolutePath().normalize();
             if (Files.exists(path) && Files.isReadable(path)) inputFile = args[0];
-            else { System.out.println("\n> Invalid path.\n\n"); System.exit(0); }
+            else { System.out.println(" > Invalid path.\n"); System.exit(0); }
         }
-        else { System.out.println("\n> Usage: java -jar ./GeneradorHoraris path/to/input/file\n\n"); System.exit(0); }
+        else { System.out.println(" > Usage: java -jar ./GeneradorHoraris path/to/input/file\n"); System.exit(0); }
     }
 
 }

@@ -168,27 +168,44 @@ public class ControladorDomini implements Cloneable
     }
 
     private String getDia(int i) {
-        if (i == 0) return "DILLUNS";
-        if (i == 1) return "DIMARTS";
-        if (i == 2) return "DIMECRES";
-        if (i == 3) return "DIJOUS";
-        if (i == 4) return "DIVENDRES";
+        if (i == 0) return ("\n\n  >>>>>                                              D   I   L   L   U   N   S                                             <<<<<\n");
+        if (i == 1) return ("\n\n  >>>>>                                              D   I   M   A   R   T   S                                             <<<<<\n");
+        if (i == 2) return ("\n\n  >>>>>                                            D   I   M   E   C   R   E   S                                           <<<<<\n");
+        if (i == 3) return ("\n\n  >>>>>                                                D   I   J   O   U   S                                               <<<<<\n");
+        if (i == 4) return ("\n\n  >>>>>                                          D   I   V   E   N   D   R   E   S                                         <<<<<\n");
         return "Error";
     }
 
-    public void printHorari2() {
-        for (int i = 0; i < this.horari.getDies(); i++) {
-            for (int j = 0; j < this.horari.getHores(); j++) {
-                for (int k = 0; k < this.horari.getN_aules(); k++) {
-                    System.out.print("Horari[" + getDia(i) + "][" + (horari.getHIni()+j) + "][" + this.aules.getAula(k).getCodi() + "] \t = ");
-                    if(null != horari.getAssignacioIJK(i,j,k))  System.out.print(horari.getAssignacioIJK(i,j,k).getAssignacioAssigGrup() + "\n");
-                    else System.out.print("[none]\n");
-                }
-            }
-        }
+    private String getHora(int j) {
+        String str = "  ";
+        if (horari.getHIni() + j  < 10) str += " ";
+        str += (horari.getHIni() + j) + " - ";
+        if (horari.getHIni() + j + 1 < 10) str += " ";
+        str += ((horari.getHIni() + j + 1) + "h :  ");
+        return str;
     }
 
     public void printHorari(int numPla) throws CloneNotSupportedException {
+
+        this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
+
+        for (int i = 0; i < this.horari.getDies(); i++) {
+            System.out.println(getDia(i));
+            for (int j = 0; j < this.horari.getHores(); j++) {
+                System.out.print(getHora(j));
+                for (int k = 0; k < this.horari.getN_aules(); k++) {
+                    if(null != horari.getAssignacioIJK(i,j,k))  System.out.print(horari.getAssignacioIJK(i,j,k).getAssignacioPrintFormat());
+                    else System.out.print("      ---        ");
+                    System.out.print("\t");
+                }
+                System.out.print("\n");
+            }
+            System.out.print("\n");
+        }
+        System.out.println("\n");
+    }
+
+    public void printHorariIJK(int numPla) throws CloneNotSupportedException {
 
         this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
 
