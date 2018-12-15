@@ -53,7 +53,7 @@ public class Grup implements Cloneable
     }
 
     public int getGrupGeneral() {
-        if (this.isLab) return this.numGrup;
+        if (!this.isLab) return this.numGrup;
         return (this.numGrup)-(Math.abs(this.numGrup) % 10);
     }
 

@@ -2,7 +2,7 @@ package domini;
 
 public class Horari implements Cloneable
 {
-    private final int dies = 5;
+    private final int dies = 3;
     private int hores;
     private int n_aules;
     private int hIni;
@@ -17,7 +17,6 @@ public class Horari implements Cloneable
         this.n_aules = n_aules;
         this.hIni = jL.getHoraIni().getHours();
         this.horari = new Assignacio[this.dies][this.hores][this.n_aules];
-//        this.iniHorari();
     }
 
     public Horari(Horari horari) {
@@ -51,64 +50,50 @@ public class Horari implements Cloneable
     }
 
     public void generarHorari(Assignatures assignatures, Aules aules) throws CloneNotSupportedException {
-        // horari esta ben inicilitzat
+        // horari esta ben inicialitzat
         System.out.println(" >> Generating Horari");
 
         this.assignatures = (Assignatures) assignatures.clone();
         this.aules = (Aules) aules.clone();
 
-        System.out.println("dies:    " + this.horari.length);
-        System.out.println("hores:   " + this.horari[0].length);
-        System.out.println("n_aules: " + this.horari[0][0].length);
-
-        backtracking(0,0);
+        boolean solucio = backtracking(0,0);
+        if (!solucio) System.out.println("No hi ha solucio");
 
     }
 
     private boolean backtracking(int g, int a) {
+
         if(a == assignatures.mida()) return true;
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
         
         for (int i = 0; i < this.dies; i++) {
             for (int j = 0; j < this.hores; j++) {
-                if (Restriccions.comprovarAssignatura(i, j, n_aules, assignatures, g, a, horari)) {
-                    for (int k = 0; k < this.n_aules; k++) {
-                        if(Restriccions.comprovarAula(i, j, k, aules.getAula(k), assignatures.getAssignatura(a), g, horari)) {
+                for (int k = 0; k < this.n_aules; k++) {
+                    if (Restriccions.comprovar(i, j, k, dies, hores, n_aules, assignatures, aules.getAula(k), g, a, horari)) {
 
-                            String codi = assignatures.getAssignatura(a).getCodi();
-                            int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
-                            String aula = aules.getAula(k).getCodi();
-                            int horaIni = this.hIni;
-                            int durada = 1;
+                        String codi = assignatures.getAssignatura(a).getCodi();
+                        int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
+                        String aula = aules.getAula(k).getCodi();
+                        int horaIni = this.hIni;
+                        int durada = 1;
 
-                            horari[i][j][k] = new Assignacio(codi, grup, aula, horaIni, durada);
-                            assignatures.getAssignatura(a).getGrup(g).decrementHores();
+                        horari[i][j][k] = new Assignacio(codi, grup, aula, horaIni, durada);
+                        assignatures.getAssignatura(a).getGrup(g).decrementHores();
 
-                            if(assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades() == 0) {
-                                if (backtracking(g + 1, a)) return true;
-                            }
-                            else {
-                                if (backtracking(g + 0, a)) return true;
-                            }
-
-                            assignatures.getAssignatura(a).getGrup(g).incrementHores();
-                            horari[i][j][k] = null;
+                        if (assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades() == 0) {
+                            if (backtracking(g + 1, a)) return true;
                         }
+                        else {
+                            if (backtracking(g + 0, a)) return true;
+                        }
+
+                        assignatures.getAssignatura(a).getGrup(g).incrementHores();
+                        horari[i][j][k] = null;
                     }
                 }
             }
         }
         return false;
-    }
-
-    private void iniHorari() {
-        for (int i = 0; i < this.dies; i++) {
-            for (int j = 0; j < this.hores; j++) {
-                for (int k = 0; k < this.n_aules; k++) {
-                    this.horari[i][j][k] = new Assignacio();
-                }
-            }
-        }
     }
 
     public Assignacio getAssignacioIJK(int dia, int hora, int aula) {
