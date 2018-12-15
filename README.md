@@ -1,8 +1,7 @@
-# PROP
-### Generador d’horaris
-#### Segon Lliurament: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
+# PROP - Generador d’horaris
 
-Entregar en paper dilluns:
+#### Segon Lliurament: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
+##### Entregar en paper dilluns:
 - Manual usuari
 - Diagrames uml
 - Relacio de les classes
