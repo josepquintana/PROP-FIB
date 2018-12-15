@@ -6,11 +6,11 @@ public class Main
     public static void main(String[] args) throws Exception
     {
         javax.swing.SwingUtilities.invokeLater (
-        new Runnable() {
-        public void run() {
-            ControladorPresentacio ctrlPresentacion = new ControladorPresentacio();
-            ctrlPresentacion.inicialitzarPresentacio();
-        }
-        });
+                new Runnable() {
+                    public void run() {
+                        ControladorPresentacio ctrlPresentacion = new ControladorPresentacio();
+                        ctrlPresentacion.inicialitzarPresentacio();
+                    }
+                });
     }
 }
