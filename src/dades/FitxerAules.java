@@ -9,7 +9,6 @@ public class FitxerAules
     private File file;
 
     public FitxerAules() throws IOException {
-
         String workingDirectory = Paths.get("./fitxersDades/").toAbsolutePath().normalize().toString();
         file = new File(workingDirectory, "FitxerAules.txt");
         file.createNewFile();

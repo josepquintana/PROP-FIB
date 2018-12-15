@@ -8,6 +8,9 @@ public class Main
     public static void main(String[] args) throws IOException {
         String assig = "Assignatura, EngInf EEES, PROP, Projectes de Programació, 6, 5, 150, 3, 3, false, EDA, IES, IDI";
         FitxerAssignatures fa = new FitxerAssignatures();
+
+//        fa.deleteContent();
+
         fa.saveAssignatura(assig);
         String assig2 = "holahola";
         fa.saveAssignatura(assig2);
@@ -22,6 +25,8 @@ public class Main
         for (int i = 0; i < assigs.size(); i++) {
             System.out.println(assigs.get(i));
         }
+
+        fa.deleteContent();
 
     }
 }
