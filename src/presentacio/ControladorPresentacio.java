@@ -145,6 +145,7 @@ public class ControladorPresentacio {
   public void sincronitzacioGestioAula_a_ConsultarAula() {
     vistaGestioAula.setVisible(false);
     vistaGestioAula.desactivar();
+    this.refrescarAules();
     vistaConsultarAula.setVisible(true);
     vistaConsultarAula.ferVisible();
   }
@@ -204,6 +205,7 @@ public class ControladorPresentacio {
   public void sincronitzacioGestioAssig_a_ConsultarAssig(){
     vistaGestioAssig.setVisible(false);
     vistaGestioAssig.desactivar();
+    this.refrescarAssig();
     vistaConsultarAssig.setVisible(true);
     vistaConsultarAssig.ferVisible();
   }
@@ -256,10 +258,12 @@ public class ControladorPresentacio {
   
   public void refrescarAules(){
       vistaConsultarAula = new VistaConsultarAula(this);
+      vistaConsultarAula.desactivar();
   }
   
   public void refrescarAssig(){
       vistaConsultarAssig = new VistaConsultarAssig(this);
+      vistaConsultarAssig.desactivar();
   }
   
   public void generarHorari(){

@@ -335,7 +335,7 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField1.setText("");
         jTextField5.setText("");
-        CtrlPresentacio.refrescarAules();
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -358,7 +358,6 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         } catch (MyException ex) {
             Logger.getLogger(VistaConsultarAula.class.getName()).log(Level.SEVERE, null, ex);
         }
-        CtrlPresentacio.refrescarAules();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

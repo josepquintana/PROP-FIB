@@ -5,6 +5,10 @@
  */
 package presentacio;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuari
@@ -14,8 +18,12 @@ public class prova {
         javax.swing.SwingUtilities.invokeLater (
         new Runnable() {
         public void run() {
-            ControladorPresentacio ctrlPresentacion = new ControladorPresentacio();
-            ctrlPresentacion.inicialitzarPresentacio();
+            try {
+                ControladorPresentacio ctrlPresentacion = new ControladorPresentacio();
+                ctrlPresentacion.inicialitzarPresentacio();
+            } catch (IOException ex) {
+                Logger.getLogger(prova.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         });
     }    

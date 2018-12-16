@@ -421,7 +421,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         } catch (MyException ex) {
             Logger.getLogger(VistaConsultarAula.class.getName()).log(Level.SEVERE, null, ex);
         }
-        CtrlPresentacio.refrescarAules();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -437,7 +437,6 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField1.setText("");
         jTextField5.setText("");
-        CtrlPresentacio.refrescarAules();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
