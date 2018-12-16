@@ -5,8 +5,6 @@
  */
 package presentacio;
 
-import java.io.IOException;
-
 /**
  *
  * @author Usuari
@@ -16,12 +14,7 @@ public class prova {
         javax.swing.SwingUtilities.invokeLater (
         new Runnable() {
         public void run() {
-            ControladorPresentacio ctrlPresentacion = null;
-            try {
-                ctrlPresentacion = new ControladorPresentacio();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ControladorPresentacio ctrlPresentacion = new ControladorPresentacio();
             ctrlPresentacion.inicialitzarPresentacio();
         }
         });
