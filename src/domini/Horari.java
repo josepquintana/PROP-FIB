@@ -80,8 +80,8 @@ public class Horari implements Cloneable
         for (int i = 0; i < this.dies; i++) {
             for (int j = 0; j < this.hores; j++) {
                 for (int k = 0; k < this.n_aules; k++) {
-                    if (Restriccions.comprovar(i, j, k, dies, hores, n_aules, assignatures, aules.getAula(k), g, a, horari)) {
-
+                    if (Restriccions.comprovar(i, j, k, dies, hores, n_aules, assignatures, aules.getAula(k), g, a, horari))
+                    {
                         String codi = assignatures.getAssignatura(a).getCodi();
                         int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
                         String aula = aules.getAula(k).getCodi();

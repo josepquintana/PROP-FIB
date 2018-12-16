@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 public class FitxerAules
 {
-    private File file;
+    private static File file;
 
     public FitxerAules() throws IOException {
-
-        String workingDirectory = Paths.get("./fitxersDades/").toAbsolutePath().normalize().toString();
+        String workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
         file = new File(workingDirectory, "FitxerAules.txt");
         file.createNewFile();
     }
@@ -33,10 +32,11 @@ public class FitxerAules
         while ((line = br.readLine()) != null) {
             aules.add(line);
         }
+        br.close();
         return aules;
     }
 
-    public void deleteContent() throws IOException {
+    public void deleteContent() throws IOException, InterruptedException {
         file.delete();
         file.createNewFile();
     }
