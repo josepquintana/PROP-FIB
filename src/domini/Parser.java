@@ -1,10 +1,12 @@
 package domini;
 
 import java.sql.Time;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Scanner;
+import java.util.Locale;
 
 public class Parser
 {
@@ -19,14 +21,14 @@ public class Parser
         JornadaLectiva jornadaLectiva = new JornadaLectiva(horaIni, horaFi);
 
         int day = Integer.parseInt(fields[6]);
-        String month = fields[7]; // !!! Calcular be
+        String month = fields[7];
         int year = Integer.parseInt(fields[8]);
-        Date dataIni = new GregorianCalendar(year, Calendar.SEPTEMBER, day, horaIni.getHours(), horaIni.getMinutes()).getTime();
+        Date dataIni = new GregorianCalendar(year, getMonthNumber(month), day, horaIni.getHours(), horaIni.getMinutes()).getTime();
 
         day = Integer.parseInt(fields[9]);
-        month = fields[10]; // !!! Calcular be
+        month = fields[10];
         year = Integer.parseInt(fields[11]);
-        Date dataFi  = new GregorianCalendar(year, Calendar.JANUARY, day, horaFi.getHours(), horaFi.getMinutes()).getTime();
+        Date dataFi  = new GregorianCalendar(year, getMonthNumber(month), day, horaFi.getHours(), horaFi.getMinutes()).getTime();
 
         PeriodeLectiu periodeLectiu = new PeriodeLectiu(dataIni, dataFi);
 
@@ -64,7 +66,8 @@ public class Parser
         return aula;
     }
 
-    protected static Assignatura assignatura(String line) throws MyException {
+    protected static Assignatura assignatura(String line) throws MyException
+    {
         String[] fields = line.split(", ");
 
         String nomPla = fields[1];
@@ -100,6 +103,26 @@ public class Parser
         }
 
         return a;
+    }
+
+    /**
+     * auxiliar methods
+     *
+     */
+    private static int getMonthNumber(String month) {
+        if (month.equalsIgnoreCase("JANUARY"))   return 0;
+        if (month.equalsIgnoreCase("FEBRUARY"))  return 1;
+        if (month.equalsIgnoreCase("MARCH"))     return 2;
+        if (month.equalsIgnoreCase("APRIL"))     return 3;
+        if (month.equalsIgnoreCase("MAY"))       return 4;
+        if (month.equalsIgnoreCase("JUNE"))      return 5;
+        if (month.equalsIgnoreCase("JULY"))      return 6;
+        if (month.equalsIgnoreCase("AUGUST"))    return 7;
+        if (month.equalsIgnoreCase("SEPTEMBER")) return 8;
+        if (month.equalsIgnoreCase("OCTOBER"))   return 9;
+        if (month.equalsIgnoreCase("NOVEMBER"))  return 10;
+        if (month.equalsIgnoreCase("DECEMBER"))  return 11;
+        return 99;
     }
 
 }

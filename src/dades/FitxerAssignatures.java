@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class FitxerAssignatures
 {
-    private File file;
+    private static File file;
 
     public FitxerAssignatures() throws IOException {
-        String workingDirectory = Paths.get("./fitxersDades/").toAbsolutePath().normalize().toString();
+        String workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
         file = new File(workingDirectory, "FitxerAssignatures.txt");
         file.createNewFile();
     }
@@ -32,6 +32,7 @@ public class FitxerAssignatures
         while ((line = br.readLine()) != null) {
             assignatures.add(line);
         }
+        br.close();
         return assignatures;
     }
 

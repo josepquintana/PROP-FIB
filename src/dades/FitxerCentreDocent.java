@@ -1,6 +1,7 @@
 package dades;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ public class FitxerCentreDocent
     private File file;
 
     public FitxerCentreDocent() throws IOException {
-        String workingDirectory = Paths.get("./fitxersDades/").toAbsolutePath().normalize().toString();
+        String workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
         file = new File(workingDirectory, "FitxerCentreDocent.txt");
         file.createNewFile();
     }
@@ -29,6 +30,7 @@ public class FitxerCentreDocent
         }
         BufferedReader br = new BufferedReader(new FileReader(file));
         centreDocent = br.readLine();
+        br.close();
         return centreDocent;
     }
 

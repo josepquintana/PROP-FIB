@@ -9,7 +9,7 @@ public class FitxerPlansDeEstudis
     private File file;
 
     public FitxerPlansDeEstudis() throws IOException {
-        String workingDirectory = Paths.get("./fitxersDades/").toAbsolutePath().normalize().toString();
+        String workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
         file = new File(workingDirectory, "FitxerPlansDeEstudis.txt");
         file.createNewFile();
     }
@@ -32,6 +32,7 @@ public class FitxerPlansDeEstudis
         while ((line = br.readLine()) != null) {
             plansDeEstudis.add(line);
         }
+        br.close();
         return plansDeEstudis;
     }
 

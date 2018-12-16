@@ -47,14 +47,13 @@ public class ControladorDomini implements Cloneable
     }
 
     public ControladorDomini(ControladorDomini cd) {
-        this.nomCentre = cd.getNomCentre();
-        this.periodeLectiu = new PeriodeLectiu(cd.getPeriodeLectiu());
+        this.controladorDades = cd.getControladorDades();
+        this.nomCentre      = cd.getNomCentre();
+        this.periodeLectiu  = new PeriodeLectiu(cd.getPeriodeLectiu());
         this.jornadaLectiva = new JornadaLectiva(cd.getJornadaLectiva());
-        this.aules          = new Aules();
-        this.aules          = cd.getAules();
-        this.plansDeEstudis = new PlansDeEstudis();
-        this.plansDeEstudis = cd.getPlansDeEstudis();
-        this.horari         = new Horari();
+        this.aules          = new Aules(cd.getAules());
+        this.plansDeEstudis = new PlansDeEstudis(cd.getPlansDeEstudis());
+        this.horari         = new Horari(cd.getHorari());
     }
 
     @Override
@@ -77,8 +76,7 @@ public class ControladorDomini implements Cloneable
         return cd;
     }
 
-    public void readDataFiles() throws IOException, MyException
-    {
+    public void loadData() throws IOException, MyException {
         String centreDocent = controladorDades.loadCentreDocent();
         ArrayList<String> plansDeEstudis = controladorDades.loadPlansDeEstudis();
         ArrayList<String> aules = controladorDades.loadAules();
@@ -103,12 +101,35 @@ public class ControladorDomini implements Cloneable
         }
     }
 
+    public void storeData() throws IOException, MyException, InterruptedException {
+        String centreDocent = Serializer.centreDocent(this);
+        controladorDades.saveCentreDocent(centreDocent);
+
+        ArrayList<String> plansDeEstudis = Serializer.plansDeEstudis(this.plansDeEstudis);
+        controladorDades.savePlansDeEstudis(plansDeEstudis);
+
+        ArrayList<String> aules = Serializer.aules(this.aules);
+        controladorDades.saveAules(aules);
+
+        for (PlaEstudis pe : this.plansDeEstudis.getPlansDeEstudis()) {
+            ArrayList<String> assignatures = Serializer.assignatures(pe.getAssignatures(), pe.getNomPla());
+            controladorDades.saveAssignatures(assignatures);
+        }
+    }
+
     public void generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
         horari.generarHorari(this.getPlaEstudis(numPla).getAssignatures(), this.aules);
         this.guardarHorariAlPlaEstudis(numPla);
     }
 
+    /**
+     * @param numPla
+     * @throws CloneNotSupportedException
+     *
+     * Cal cridar sempre que es modifiqui l'horari del ControladorDomini
+     *
+     */
     private void guardarHorariAlPlaEstudis(int numPla) throws CloneNotSupportedException {
         if (!horari.empty()) {
             this.plansDeEstudis.getPlaEstudis(numPla).setHorari((Horari) this.horari.clone());
@@ -234,8 +255,10 @@ public class ControladorDomini implements Cloneable
         return str;
     }
 
-    public void printHorari(int numPla) throws CloneNotSupportedException {
+    public void printHorari(int numPla) throws CloneNotSupportedException, MyException {
 
+        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
+        if (this.horari.empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
         this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
 
         for (int i = 0; i < this.horari.getDies(); i++) {
@@ -279,10 +302,6 @@ public class ControladorDomini implements Cloneable
         System.out.println("Assigned " + ua + "/" + (this.aules.mida()*this.horari.getHores()*5) + " of possible [dia][hora][aula].");
 
     }
-
-
-
-
 
 }
 

@@ -192,6 +192,20 @@ public class Assignatura implements Cloneable
         return (!this.grups.isEmpty());
     }
 
+    public int getNumGrupsTeoria() {
+        int lastGrup = (this.grups.get(this.grups.size() - 1).getGrupGeneral());
+        return ((int) Math.floor(lastGrup / Math.pow(10, Math.floor(Math.log10(lastGrup)))));
+    }
+
+    public int getNumGrupsLab() {
+        int nsubgrups = 0;
+        for (int i = 0; i < this.grups.size(); i++) {
+            if (this.grups.get(i).isLab()) ++nsubgrups;
+            if ((i+1) < this.grups.size() && this.grups.get(i+1).getGrupGeneral() != this.grups.get(i).getGrupGeneral()) break;
+        }
+        return nsubgrups;
+    }
+
     public void setCodi(String codi) {
         this.codi = codi;
     }
@@ -286,10 +300,12 @@ public class Assignatura implements Cloneable
     public int getCapacitatAssignatura() {
         int c = 0;
         for (int i = 0; i < this.grups.size(); i++) {
-            c += this.grups.get(i).getCapacitat();
+            if (!this.getGrup(i).isLab()) c += this.grups.get(i).getCapacitat();
         }
         return c;
     }
+
+    // print methods a eliminar
 
     private void printCorrequisits(){
         for (int i = 0; i < this.correquisits.size(); i++) {

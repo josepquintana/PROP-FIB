@@ -1,5 +1,6 @@
 import domini.ControladorDomini;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,15 +12,16 @@ public class Main
     public static void main(String[] args) throws Exception
     {
         printHello();
-        evaluateArgs(args);
         ControladorDomini controladorDomini = new ControladorDomini();
 
-        controladorDomini.readDataFiles();
+        controladorDomini.loadData();
 
         controladorDomini.printCentreDocent();
 
         controladorDomini.generateHorariPlaEstudis(0);
         controladorDomini.printHorari(0);
+
+        controladorDomini.storeData();
     }
 
     private static void printHello() {
@@ -36,7 +38,7 @@ public class Main
             if (Files.exists(path) && Files.isReadable(path)) inputFile = args[0];
             else { System.out.println(" > Invalid path.\n"); System.exit(0); }
         }
-        else { System.out.println(" > Usage: java -jar ./GeneradorHoraris path/to/input/file\n"); System.exit(0); }
+        else { System.out.println(" > Usage: java -jar ." + File.separator + "GeneradorHoraris path\" + File.separator + \"to\" + File.separator + \"input\" + File.separator + \"file\n"); System.exit(0); }
     }
 
 }
