@@ -31,7 +31,7 @@ public class ControladorPresentacio {
 //////////////////////// Constructor y metodos de inicializacion
 
 
-  public ControladorPresentacio() {
+  public ControladorPresentacio() throws IOException {
     ctrlDom = new ControladorDomini();
     vistaPresentacio = new VistaPresentacio(this);
     vistaPrincipal = new VistaPrincipal(this);
@@ -242,8 +242,8 @@ public class ControladorPresentacio {
       return ctrlDom.getNumAules();
   }
   
-  public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups, String subgrups){
-      ctrlDom.crearAssig(codi, nom, laboratori, credits, nivell, correq, grups, subgrups);
+  public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups){
+      ctrlDom.crearAssig(codi, nom, laboratori, credits, nivell, correq, grups);
   }
 
   public String getCapacitat(String codi){
@@ -256,6 +256,10 @@ public class ControladorPresentacio {
   
   public void refrescarAules(){
       vistaConsultarAula = new VistaConsultarAula(this);
+  }
+  
+  public void refrescarAssig(){
+      vistaConsultarAssig = new VistaConsultarAssig(this);
   }
   
   public void generarHorari(){
