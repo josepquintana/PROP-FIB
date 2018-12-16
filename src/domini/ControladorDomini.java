@@ -3,7 +3,12 @@ package domini;
 import dades.ControladorDades;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ControladorDomini implements Cloneable
 {
@@ -310,7 +315,7 @@ public class ControladorDomini implements Cloneable
         this.aules.afegirAula(a);
     }
     
-    public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups, String subgrups){
+    public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups){
         Assignatura A = new Assignatura();
         this.plansDeEstudis.getPlaEstudis(0).afegirAssignaturaAlPlaEstudis(A);
     }
@@ -330,7 +335,7 @@ public class ControladorDomini implements Cloneable
                 }
                 if ("".equals(laboratori)) {
                 } else {
-                    aules.getAula(i).setTipus(Boolean.parseBoolean(laboratori));
+                    aules.getAula(i).setPCs(Boolean.parseBoolean(laboratori));
                 }
             }
         }
@@ -448,8 +453,7 @@ public class ControladorDomini implements Cloneable
             d2 = formatter2.parse(s4);
             this.periodeLectiu.setDataIni(d1);
             this.periodeLectiu.setDataFi(d2); 
-        }       
-        System.out.println("Substrings: " + s1 + " "+ s2 + " "+ s3 + " "+ s4);                    
+        }                        
     }
     
     public void modificarPla(String nom, String titulacio, String tipus){
