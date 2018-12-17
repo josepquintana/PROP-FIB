@@ -25,7 +25,7 @@ public class ControladorPresentacio {
   private VistaInfoPE vistaInfoPE;
   private VistaGestioAssig vistaGestioAssig;
   private VistaCrearAssig vistaCrearAssig;
-  private VistaConsultarAssig vistaConsultarAssig;
+//  private VistaConsultarAssig vistaConsultarAssig;
 
 
 //////////////////////// Constructor y metodos de inicializacion
@@ -45,7 +45,7 @@ public class ControladorPresentacio {
     vistaInfoPE = new VistaInfoPE(this);
     vistaGestioAssig = new VistaGestioAssig(this);
     vistaCrearAssig = new VistaCrearAssig(this);
-    vistaConsultarAssig = new VistaConsultarAssig(this);
+//    vistaConsultarAssig = new VistaConsultarAssig(this);
   }
 
   public void inicialitzarPresentacio() {
@@ -206,13 +206,13 @@ public class ControladorPresentacio {
     vistaGestioAssig.setVisible(false);
     vistaGestioAssig.desactivar();
     this.refrescarAssig();
-    vistaConsultarAssig.setVisible(true);
-    vistaConsultarAssig.ferVisible();
+//    vistaConsultarAssig.setVisible(true);
+//    vistaConsultarAssig.ferVisible();
   }
   
   public void sincronitzacioConsultarAssig_a_GestioAssig(){
-    vistaConsultarAssig.setVisible(false);
-    vistaConsultarAssig.desactivar();
+//    vistaConsultarAssig.setVisible(false);
+//    vistaConsultarAssig.desactivar();
     vistaGestioAssig.setVisible(true);
     vistaGestioAssig.ferVisible();
   }
@@ -262,8 +262,8 @@ public class ControladorPresentacio {
   }
   
   public void refrescarAssig(){
-      vistaConsultarAssig = new VistaConsultarAssig(this);
-      vistaConsultarAssig.desactivar();
+//      vistaConsultarAssig = new VistaConsultarAssig(this);
+//      vistaConsultarAssig.desactivar();
   }
   
   public void generarHorari(){

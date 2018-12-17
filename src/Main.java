@@ -1,23 +1,44 @@
-import domini.MyException;
-import presentacio.ControladorPresentacio;
+import domini.ControladorDomini;
 
-import java.io.IOException;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main
 {
+    private static String inputFile;
+
     public static void main(String[] args) throws Exception
     {
-        javax.swing.SwingUtilities.invokeLater (
-                new Runnable() {
-                    public void run() {
-                        ControladorPresentacio ctrlPresentacion = null;
-                        try {
-                            ctrlPresentacion = new ControladorPresentacio();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        ctrlPresentacion.inicialitzarPresentacio();
-                    }
-                });
+        printHello();
+        ControladorDomini controladorDomini = new ControladorDomini();
+
+        controladorDomini.loadData();
+
+        controladorDomini.printCentreDocent();
+
+        controladorDomini.generateHorariPlaEstudis(0);
+        controladorDomini.printHorari(0);
+
+        controladorDomini.storeData();
     }
+
+    private static void printHello() {
+        System.out.print("\n");
+        System.out.println(" ##########################################################################################");
+        System.out.println(" ############################### PROP: GENERADOR DE HORARIS ###############################");
+        System.out.println(" ##########################################################################################");
+        System.out.print("\n");
+    }
+
+    private static void evaluateArgs(String[] args) {
+        if (args.length == 1 && !args[0].equals("-h")) {
+            Path path = Paths.get(args[0]).toAbsolutePath().normalize();
+            if (Files.exists(path) && Files.isReadable(path)) inputFile = args[0];
+            else { System.out.println(" > Invalid path.\n"); System.exit(0); }
+        }
+        else { System.out.println(" > Usage: java -jar ." + File.separator + "GeneradorHoraris path\" + File.separator + \"to\" + File.separator + \"input\" + File.separator + \"file\n"); System.exit(0); }
+    }
+
 }
