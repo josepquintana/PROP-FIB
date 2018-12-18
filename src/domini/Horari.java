@@ -102,6 +102,7 @@ public class Horari implements Cloneable
 
         this.assignatures = (Assignatures) assignatures.clone();
         this.aules = (Aules) aules.clone();
+
         boolean solucio = false;
         if(Restriccions.restriccionsGenerals(this.dies,this.hores,this.n_aules, this.assignatures,this.aules)){
             solucio = backtracking(0,0);

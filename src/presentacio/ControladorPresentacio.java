@@ -316,17 +316,15 @@ public class ControladorPresentacio {
   }
   
   public String getJornadaLectiva(){
-      String s1 = ctrlDom.getHoraIni();
-      String s2 = ctrlDom.getHoraFi();
-      String s = s1.concat(s2);
-      return s;
+      String horaIni = ctrlDom.getHoraIni();
+      String horaFi  = ctrlDom.getHoraFi();
+      return (horaIni + " " + horaFi);
   }
   
   public String getPeriodeLectiu(){
-      String s1 = ctrlDom.getDataIni();
-      String s2 = ctrlDom.getDataFi();
-      String s = s1.concat(s2);
-      return s;
+      String dataIni = ctrlDom.getDataIni();
+      String dataFi  = ctrlDom.getDataFi();
+      return (dataIni + " " + dataFi);
   }
   
   public ArrayList<String>[][] getHorari() throws CloneNotSupportedException, MyException {

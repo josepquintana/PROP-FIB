@@ -105,15 +105,6 @@ public class ControladorDomini implements Cloneable
             this.plansDeEstudis.getPlaEstudis(nomPlaEstudis).afegirAssignaturaAlPlaEstudis(assignatura);
         }
 
-
-        /**
-         *
-         *  AIXO S'HA DE TREURE!!
-         *
-         */
-//        this.generateHorariPlaEstudis(0);
-
-
     }
 
     public void storeData() throws IOException, MyException, InterruptedException {
@@ -134,15 +125,7 @@ public class ControladorDomini implements Cloneable
 
     public void generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
-        Assignatures assignatures_shuffled = (Assignatures) this.plansDeEstudis.getPlaEstudis(numPla).getAssignatures().clone();
-        assignatures_shuffled.shuffle();
-
-        horari.generarHorari(assignatures_shuffled, this.aules);
-        this.guardarHorariAlPlaEstudis(numPla);
-    }
-    
-    public void modificarHorariPla(int dI,int hI, int aI, int dF, int hF, int numPla) throws CloneNotSupportedException {
-        horari.modificarHorari(dI, hI, aI, dF, hF);
+        horari.generarHorari(this.plansDeEstudis.getPlaEstudis(numPla).getAssignatures(), this.aules);
         this.guardarHorariAlPlaEstudis(numPla);
     }
     
@@ -164,7 +147,9 @@ public class ControladorDomini implements Cloneable
         }
     }
 
-    private void carregarHorariDePlaEstudis(int numPla) throws CloneNotSupportedException {
+    private void carregarHorariDePlaEstudis(int numPla) throws CloneNotSupportedException, MyException {
+        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
+        if (this.horari.empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
         this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
     }
 
@@ -294,9 +279,7 @@ public class ControladorDomini implements Cloneable
 
     public void printHorari(int numPla) throws CloneNotSupportedException, MyException {
 
-        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
         this.carregarHorariDePlaEstudis(numPla);
-        if (this.horari.empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
 
         for (int i = 0; i < this.horari.getDies(); i++) {
             System.out.println(getDia(i));
@@ -550,37 +533,25 @@ public class ControladorDomini implements Cloneable
     } 
 
     public String getHoraIni(){
-        DateFormat df = new SimpleDateFormat("HH:mm ");
-        Time t1 = this.jornadaLectiva.getHoraIni();
-        String d =  df.format(t1);
-        return d;        
+        return Serializer.time(this.jornadaLectiva.getHoraIni());
     }
     
     public String getHoraFi(){
-        DateFormat df = new SimpleDateFormat("HH:mm ");
-        Time t1 = this.jornadaLectiva.getHoraFi();
-        String d =  df.format(t1);
-        return d;        
+        return Serializer.time(this.jornadaLectiva.getHoraFi());
     }
     
     public String getDataIni(){
-        DateFormat df = new SimpleDateFormat("DD/mm/mm ");
-        Date d1 = this.periodeLectiu.getDataIni();
-        String d = df.format(d1);
-        return d;
+        return Serializer.date(this.periodeLectiu.getDataIni());
     }
 
     public String getDataFi(){
-        DateFormat df = new SimpleDateFormat("DD/mm/mm ");
-        Date d1 = this.periodeLectiu.getDataFi();
-        String d = df.format(d1);
-        return d;
+        return Serializer.date(this.periodeLectiu.getDataFi());
     }
 
     public void modificarCalendari(String jornada, String periode) throws ParseException{
         String s1 = null, s2 = null, s3 = null, s4 = null;
         DateFormat formatter = new SimpleDateFormat("HH:mm");
-        DateFormat formatter2 = new SimpleDateFormat("DD/mm/mm");
+        DateFormat formatter2 = new SimpleDateFormat("dd/MM/yy");
         Time t1 = null;
         Time t2 = null;
         Date d1 = null;
