@@ -20,6 +20,7 @@ public class PlaEstudis implements Cloneable
         titulacio = new Titulacio();
         assignatures = new Assignatures();
         aules = new Aules();
+        horari  = new Horari();
     }
 
     public PlaEstudis(String nomPla, JornadaLectiva jornadaLectiva, Titulacio titulacio) {
@@ -29,6 +30,7 @@ public class PlaEstudis implements Cloneable
         this.titulacio = new Titulacio(titulacio);
         this.assignatures = new Assignatures();
         this.aules = new Aules();
+        this.horari = new Horari();
     }
 
     public PlaEstudis(PlaEstudis pe) {

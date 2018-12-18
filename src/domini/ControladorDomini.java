@@ -128,6 +128,9 @@ public class ControladorDomini implements Cloneable
 
         for (PlaEstudis pe : this.plansDeEstudis.getPlansDeEstudis()) {
             ArrayList<String> assignatures = Serializer.assignatures(pe.getAssignatures(), pe.getNomPla());
+            for (int i = 0; i < assignatures.size(); i++) {
+                System.out.println(assignatures.get(i));
+            }
             controladorDades.saveAssignatures(assignatures);
         }
     }
@@ -135,7 +138,7 @@ public class ControladorDomini implements Cloneable
     public void generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
         Assignatures assignatures_shuffled = (Assignatures) this.plansDeEstudis.getPlaEstudis(numPla).getAssignatures().clone();
-        assignatures_shuffled.shuffle();
+//        assignatures_shuffled.shuffle();
 
         horari.generarHorari(assignatures_shuffled, this.aules);
         this.guardarHorariAlPlaEstudis(numPla);
@@ -159,7 +162,9 @@ public class ControladorDomini implements Cloneable
         }
     }
 
-    private void carregarHorariDePlaEstudis(int numPla) throws CloneNotSupportedException {
+    private void carregarHorariDePlaEstudis(int numPla) throws CloneNotSupportedException, MyException {
+        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
+        if (this.plansDeEstudis.getPlaEstudis(numPla).getHorari().empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
         this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
     }
 
@@ -289,9 +294,7 @@ public class ControladorDomini implements Cloneable
 
     public void printHorari(int numPla) throws CloneNotSupportedException, MyException {
 
-        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
         this.carregarHorariDePlaEstudis(numPla);
-        if (this.horari.empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
 
         for (int i = 0; i < this.horari.getDies(); i++) {
             System.out.println(getDia(i));
@@ -342,7 +345,6 @@ public class ControladorDomini implements Cloneable
 
     }
 
-    // !!!!!
     public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups){
         Assignatura A = new Assignatura();
         this.plansDeEstudis.getPlaEstudis(0).afegirAssignaturaAlPlaEstudis(A);
@@ -413,38 +415,26 @@ public class ControladorDomini implements Cloneable
         return noms;
     }
 
-    public String getHoraIni(){
-        DateFormat df = new SimpleDateFormat("HH:mm ");
-        Time t1 = this.jornadaLectiva.getHoraIni();
-        String d =  df.format(t1);
-        return d;        
+    public String getHoraIni() {
+        return Serializer.time(this.jornadaLectiva.getHoraIni());
     }
     
-    public String getHoraFi(){
-        DateFormat df = new SimpleDateFormat("HH:mm ");
-        Time t1 = this.jornadaLectiva.getHoraFi();
-        String d =  df.format(t1);
-        return d;        
+    public String getHoraFi() {
+        return Serializer.time(this.jornadaLectiva.getHoraFi());
     }
     
-    public String getDataIni(){
-        DateFormat df = new SimpleDateFormat("DD/mm/mm ");
-        Date d1 = this.periodeLectiu.getDataIni();
-        String d = df.format(d1);
-        return d;
+    public String getDataIni() {
+        return Serializer.date(this.periodeLectiu.getDataIni());
     }
 
-    public String getDataFi(){
-        DateFormat df = new SimpleDateFormat("DD/mm/mm ");
-        Date d1 = this.periodeLectiu.getDataFi();
-        String d = df.format(d1);
-        return d;
+    public String getDataFi() {
+        return Serializer.date(this.periodeLectiu.getDataFi());
     }
 
     public void modificarCalendari(String jornada, String periode) throws ParseException{
         String s1 = null, s2 = null, s3 = null, s4 = null;
         DateFormat formatter = new SimpleDateFormat("HH:mm");
-        DateFormat formatter2 = new SimpleDateFormat("DD/mm/mm");
+        DateFormat formatter2 = new SimpleDateFormat("dd/MM/yy");
         Time t1 = null;
         Time t2 = null;
         Date d1 = null;
