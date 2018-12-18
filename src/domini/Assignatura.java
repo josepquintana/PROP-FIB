@@ -39,6 +39,18 @@ public class Assignatura implements Cloneable
         setSessionsTeoria();
         setSessionsLab();
     }
+    
+    public Assignatura(String codi, String nom, double credits, int nivell, ArrayList<String> correqs, boolean ordinadors) {
+        this.codi = codi;
+        this.nom = nom;
+        this.credits = credits;
+        this.nivell = nivell;
+        this.correquisits = new ArrayList<>(correqs);
+        //this.grups = new ArrayList<>(grups);
+        this.labAmbPCs = ordinadors;
+        setSessionsLab();
+        setSessionsTeoria();
+    }
 
     public Assignatura(String codi, String nom, double credits, int nivell, ArrayList<String> correqs, ArrayList<Grup> grups, boolean ordinadors) {
         this.codi = codi;
