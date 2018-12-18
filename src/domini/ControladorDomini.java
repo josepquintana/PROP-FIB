@@ -118,7 +118,6 @@ public class ControladorDomini implements Cloneable
 
     public void storeData() throws IOException, MyException, InterruptedException {
         String centreDocent = Serializer.centreDocent(this);
-        System.out.println(centreDocent);
         controladorDades.saveCentreDocent(centreDocent);
 
         ArrayList<String> plansDeEstudis = Serializer.plansDeEstudis(this.plansDeEstudis);
