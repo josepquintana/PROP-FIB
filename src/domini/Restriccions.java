@@ -48,7 +48,7 @@ public class Restriccions
                 if(horari[i][iN][jN]!= null){
                     if(horari[i][iN][jN].getCodiAssig().equals(assignatures.getAssignatura(a).getCodi())) ++horesDia;
                 }
-                if(horesDia > totals +3){ 
+                if(horesDia > totals){ 
                     return false;
                 }
             }
