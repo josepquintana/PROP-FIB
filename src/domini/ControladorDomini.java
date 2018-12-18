@@ -350,8 +350,8 @@ public class ControladorDomini implements Cloneable
             }
         }
         Assignatura a = new Assignatura(codi, nom, Double.parseDouble(credits), Integer.parseInt(nivell), c, Boolean.parseBoolean(laboratori));  
-        a.setNumGrups(Integer.parseInt(grups);
-        a.setNumSubGrups(Integer.parseInt(subgrups);
+        a.setNumGrups(Integer.parseInt(grups));
+        a.setNumSubGrups(Integer.parseInt(subgrups));
     }
 
     public void modificarAula(String codi, String nom, String capacitat, String laboratori) throws MyException{
@@ -506,11 +506,11 @@ public class ControladorDomini implements Cloneable
         return s.toString();
     }
     public String getGrups(String codi){
-        int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumGrupsTeoria();
+        int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumGrupsGenerals();
         return String.valueOf(n);
     }
     public String getSubgrups(String codi){
-        int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumGrupsLab();
+        int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumSubGrupsXGrup();
         return String.valueOf(n);
     }
     public String getNivell(String codi){

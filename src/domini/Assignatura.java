@@ -250,6 +250,14 @@ public class Assignatura implements Cloneable
         this.grups = new ArrayList<>(grups);
     }
 
+    public void setNumGrups(int ngrups) {
+
+    }
+
+    public void setNumSubGrups(int nsubgrups) {
+
+    }
+
     public void setLabAmbPCs(Boolean PCs) { this.labAmbPCs = PCs; }
 
     private void setSessionsLab(){
