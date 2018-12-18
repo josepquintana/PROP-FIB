@@ -201,7 +201,7 @@ public class Assignatura implements Cloneable
         int nsubgrups = 0;
         for (int i = 0; i < this.grups.size(); i++) {
             if (this.grups.get(i).isLab()) ++nsubgrups;
-            if ((i+1) < this.grups.size() && this.grups.get(i+1).getGrupGeneral() != this.grups.get(i).getGrupGeneral()) break;
+            //if ((i+1) < this.grups.size() && this.grups.get(i+1).getGrupGeneral() != this.grups.get(i).getGrupGeneral()) break;
         }
         return nsubgrups;
     }
@@ -308,7 +308,7 @@ public class Assignatura implements Cloneable
     }
 
     // print methods a eliminar
-
+  
     private void printCorrequisits(){
         for (int i = 0; i < this.correquisits.size(); i++) {
             System.out.print(this.correquisits.get(i));

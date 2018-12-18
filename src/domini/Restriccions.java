@@ -2,11 +2,12 @@ package domini;
 
 public class Restriccions
 {
-    protected static boolean comprovar(int i, int j, int k, int dies, int hores, int n_aules, Assignatures assignatures, Aula aula, int g, int a, Assignacio[][][] horari)
+    protected static boolean comprovar(int i, int j, int k, int dies, int hores, int n_aules,int totals, Assignatures assignatures, Aula aula, int g, int a, Assignacio[][][] horari)
     {
         if (!AulaCorrecte(i, j, k, assignatures, aula, g, a, horari)) return false;
         if (!GrupsCompatiblesHora(i, j, dies, hores, n_aules, assignatures, g, a, horari)) return false;
         if (!AssignaturesCompatibles(i, j, dies, hores, n_aules, assignatures, g, a, horari)) return false;
+        if (!HoresCompatibles(i,hores,n_aules,totals,assignatures, a, horari)) return false;
 //        if (!GrupsCompatiblesDia(i, dies, hores, n_aules, assignatures, g, a, horari)) return false;
         return true;
     }
@@ -35,6 +36,21 @@ public class Restriccions
             if(horari[i][j][k] != null) {
                 if (AssignaturesSonCorrequisit(i, j, k, assignatures, g, a, horari)) return false;
                 if (AssignaturesMateixNivell(i, j, k, assignatures, g, a, horari)) return false;
+            }
+        }
+        return true;
+    }
+    
+    protected static boolean HoresCompatibles(int i,int hores, int n_aules, int totals,Assignatures assignatures, int a, Assignacio[][][] horari){
+        int horesDia = 0;
+        for(int iN = 0; iN < hores; ++iN){
+            for(int jN = 0; jN < n_aules; ++jN){
+                if(horari[i][iN][jN]!= null){
+                    if(horari[i][iN][jN].getCodiAssig().equals(assignatures.getAssignatura(a).getCodi())) ++horesDia;
+                }
+                if(horesDia > totals +3){ 
+                    return false;
+                }
             }
         }
         return true;
