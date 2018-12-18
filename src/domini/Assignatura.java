@@ -294,6 +294,8 @@ public class Assignatura implements Cloneable
     public int getSessionsTeoria(){
         return this.horesTeo;
     }
+    
+    
 
     public int getSessionsTotals() { return (this.horesTeo + this.horesLab); }
 
@@ -352,6 +354,13 @@ public class Assignatura implements Cloneable
         if (this.teGrups()) { System.out.print("\t\t grups: "); this.printGrups(); }
         if (this.teCorrequisits()) { System.out.print("\t\t correq: "); this.printCorrequisits(); }
         System.out.print("\n");
+    }
+
+    int getIndexGrup(int numGrup) {
+        for(int i = 0; i< this.grups.size();++i){
+            if(grups.get(i).getNumGrup() == numGrup) return i;
+        }
+        return -1;
     }
 
 }

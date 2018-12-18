@@ -264,8 +264,8 @@ public class ControladorPresentacio {
   }
   
   public void refrescarAssig(){
-      vistaConsultarAssig = new VistaConsultarAssig(this);
-      vistaConsultarAssig.desactivar();
+//      vistaConsultarAssig = new VistaConsultarAssig(this);
+//      vistaConsultarAssig.desactivar();
   }
   
   public void generarHorari(){

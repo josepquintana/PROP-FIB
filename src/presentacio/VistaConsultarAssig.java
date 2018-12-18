@@ -17,7 +17,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
     public VistaConsultarAssig() {
         initComponents();
     }
-    
+
     public VistaConsultarAssig(ControladorPresentacio CP) {
         CtrlPresentacio = CP;
         initComponents();
@@ -29,7 +29,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jButton3.setEnabled(true);
         jButton4.setEnabled(true);
     }
-    
+
     public void desactivar() {
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
@@ -421,7 +421,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         } catch (MyException ex) {
             Logger.getLogger(VistaConsultarAula.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -463,7 +463,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
