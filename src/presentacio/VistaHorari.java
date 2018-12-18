@@ -5,6 +5,10 @@
  */
 package presentacio;
 
+import domini.MyException;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuari
@@ -14,11 +18,11 @@ public class VistaHorari extends javax.swing.JFrame {
     /**
      * Creates new form VistaHorari
      */
-    public VistaHorari() throws CloneNotSupportedException {
+    public VistaHorari() throws CloneNotSupportedException, MyException {
         initComponents();
     }
 
-    public VistaHorari(ControladorPresentacio CP) throws CloneNotSupportedException {
+    public VistaHorari(ControladorPresentacio CP) throws CloneNotSupportedException, MyException {
         CtrlPresentacio = CP;
         initComponents();
         this.setLocationRelativeTo(this);
@@ -40,7 +44,7 @@ public class VistaHorari extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() throws CloneNotSupportedException {
+    private void initComponents() throws CloneNotSupportedException, MyException {
 
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,12 +59,12 @@ public class VistaHorari extends javax.swing.JFrame {
             }
         });
 
-//        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-//            new Object [][] = CtrlPresentacio.getHorari(),
-//            new String [] {
-//                "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres"
-//            }
-//        ));
+        ArrayList<String>[][] horari;
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(CtrlPresentacio.getHorari(),
+            new String [] {
+                "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres"
+            }
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,6 +130,8 @@ public class VistaHorari extends javax.swing.JFrame {
                 try {
                     new VistaHorari().setVisible(true);
                 } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                } catch (MyException e) {
                     e.printStackTrace();
                 }
             }
