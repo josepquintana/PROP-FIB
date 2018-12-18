@@ -90,8 +90,8 @@ public class Serializer
             line += (assignatura.getCredits() + ", ");
             line += (assignatura.getNivell() + ", ");
             line += (assignatura.getCapacitatAssignatura() + ", ");
-            line += (assignatura.getNumGrupsTeoria() + ", ");
-            line += (assignatura.getNumGrupsLab() + ", ");
+            line += (assignatura.getNumGrupsGenerals() + ", ");
+            line += (assignatura.getNumSubGrupsXGrup() + ", ");
             line += (assignatura.teLabAmbPCs());
             if (assignatura.teCorrequisits()) {
                 for (String correq : assignatura.getCorrequisits()) {

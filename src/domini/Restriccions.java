@@ -122,7 +122,7 @@ public class Restriccions
     }
 
     private static boolean GrupJaAssignatAquestDia(int i, int j, int k, int dies, Assignatura assignatura, int g, Assignacio[][][] horari) {
-        if (assignatura.getNumGrupsTeoria() <= dies) {
+        if (assignatura.getNumGrupsGenerals() <= dies) {
             if (assignatura.getCodi().equals(horari[i][j][k].getCodiAssig())) {
                 if (assignatura.getGrup(g).getNumGrup() == horari[i][j][k].getNumGrup()) return true;
             }

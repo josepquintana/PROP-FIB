@@ -112,7 +112,7 @@ public class Horari implements Cloneable
 
         if(a == assignatures.mida()) return true;
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
-        int horesDia = (assignatures.getAssignatura(a).getNumGrupsLab()*assignatures.getAssignatura(a).getSessionsLab()) + (assignatures.getAssignatura(a).getNumGrupsTeoria()*assignatures.getAssignatura(a).getSessionsTeoria());
+        int horesDia = (assignatures.getAssignatura(a).getNumTotalGrups()*assignatures.getAssignatura(a).getSessionsLab()) + (assignatures.getAssignatura(a).getNumGrupsGenerals()*assignatures.getAssignatura(a).getSessionsTeoria());
         horesDia /= this.dies;
 //        System.out.println("Backtracking...     g = " + g + " \t a = " + a);
 //        System.out.println("assig: " + assignatures.getAssignatura(a).getCodi());
