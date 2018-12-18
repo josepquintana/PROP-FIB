@@ -1,6 +1,7 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class Assignatures
@@ -37,6 +38,11 @@ public class Assignatures
         }
         return assignaturesCloned;
     }
+
+    public void shuffle() {
+        Collections.shuffle(this.assignatures);
+    }
+
 
     public boolean existeixAssignatura(Assignatura assig) {
         for (int i = 0; i < this.assignatures.size(); i++) {
