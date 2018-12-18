@@ -15,6 +15,10 @@ public class Main
                             ctrlPresentacion = new ControladorPresentacio();
                         } catch (IOException e) {
                             e.printStackTrace();
+                        } catch (CloneNotSupportedException e) {
+                            e.printStackTrace();
+                        } catch (MyException e) {
+                            e.printStackTrace();
                         }
                         ctrlPresentacion.inicialitzarPresentacio();
                     }
