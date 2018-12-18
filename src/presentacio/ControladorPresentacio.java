@@ -5,7 +5,9 @@ import domini.ControladorDomini;
 import domini.MyException;
 //import dades.ControladorDades;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -232,7 +234,7 @@ public class ControladorPresentacio {
 
 
 
-//////////////////////// Crides al controlador de dominio
+//////////////////////// Crides al controlador de domini
 
 
   public void crearAula(String nom, String capacitat, String laboratori) throws MyException {
@@ -282,17 +284,15 @@ public class ControladorPresentacio {
   }
   
   public String getJornadaLectiva(){
-      String s1 = ctrlDom.getHoraIni();
-      String s2 = ctrlDom.getHoraFi();
-      String s = s1.concat(s2);
-      return s;
+      String horaIni = ctrlDom.getHoraIni();
+      String horaFi  = ctrlDom.getHoraFi();
+      return (horaIni + " " + horaFi);
   }
   
   public String getPeriodeLectiu(){
-      String s1 = ctrlDom.getDataIni();
-      String s2 = ctrlDom.getDataFi();
-      String s = s1.concat(s2);
-      return s;
+      String dataIni = ctrlDom.getDataIni();
+      String dataFi  = ctrlDom.getDataFi();
+      return (dataIni + " " + dataFi);
   }
   
   public ArrayList<String>[][] getHorari() throws CloneNotSupportedException, MyException {

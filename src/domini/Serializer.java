@@ -1,5 +1,7 @@
 package domini;
 
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.text.DateFormatSymbols;
@@ -29,9 +31,15 @@ public class Serializer
 
     public static String date(Date date)
     {
-        String line;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-        line = sdf.format(date);
+        String line = sdf.format(date);
+        return line;
+    }
+
+    public static String time(Time time)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String line = sdf.format(time);
         return line;
     }
 
