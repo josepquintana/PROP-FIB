@@ -2,7 +2,7 @@ package domini;
 
 public class Horari implements Cloneable
 {
-    private final int dies = 9;
+    private final int dies = 5;
     private int hores;
     private int n_aules;
     private int hIni;
