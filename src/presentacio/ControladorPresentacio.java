@@ -1,5 +1,6 @@
 package presentacio;
 
+import dades.ControladorDades;
 import domini.ControladorDomini;
 import domini.MyException;
 //import dades.ControladorDades;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 
 public class ControladorPresentacio {
   private ControladorDomini ctrlDom;
+  private ControladorDades ctrlDades;
   private VistaPresentacio vistaPresentacio;
   private VistaPrincipal vistaPrincipal;
   private VistaGestioCD vistaGestioCD;
@@ -221,7 +223,7 @@ public class ControladorPresentacio {
 
 
 
-//////////////////////// Llamadas al controlador de dominio
+//////////////////////// Crides al controlador de dominio
 
 
   public void crearAula(String nom, String capacitat, String laboratori) throws MyException {
@@ -282,6 +284,10 @@ public class ControladorPresentacio {
       String s2 = ctrlDom.getDataFi();
       String s = s1.concat(s2);
       return s;
+  }
+  
+  public String[][] getHorari(){
+      return ctrlDom.getHorari();
   }
   
   public int getNumPlans(){
