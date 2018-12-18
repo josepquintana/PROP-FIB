@@ -118,6 +118,7 @@ public class ControladorDomini implements Cloneable
 
     public void storeData() throws IOException, MyException, InterruptedException {
         String centreDocent = Serializer.centreDocent(this);
+        System.out.println(centreDocent);
         controladorDades.saveCentreDocent(centreDocent);
 
         ArrayList<String> plansDeEstudis = Serializer.plansDeEstudis(this.plansDeEstudis);
@@ -128,6 +129,9 @@ public class ControladorDomini implements Cloneable
 
         for (PlaEstudis pe : this.plansDeEstudis.getPlansDeEstudis()) {
             ArrayList<String> assignatures = Serializer.assignatures(pe.getAssignatures(), pe.getNomPla());
+            for (int i = 0; i < assignatures.size(); i++) {
+                System.out.println(assignatures.get(i));
+            }
             controladorDades.saveAssignatures(assignatures);
         }
     }
@@ -135,7 +139,7 @@ public class ControladorDomini implements Cloneable
     public void generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
         Assignatures assignatures_shuffled = (Assignatures) this.plansDeEstudis.getPlaEstudis(numPla).getAssignatures().clone();
-        assignatures_shuffled.shuffle();
+//        assignatures_shuffled.shuffle();
 
         horari.generarHorari(assignatures_shuffled, this.aules);
         this.guardarHorariAlPlaEstudis(numPla);
@@ -159,7 +163,9 @@ public class ControladorDomini implements Cloneable
         }
     }
 
-    private void carregarHorariDePlaEstudis(int numPla) throws CloneNotSupportedException {
+    private void carregarHorariDePlaEstudis(int numPla) throws CloneNotSupportedException, MyException {
+        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
+        if (this.plansDeEstudis.getPlaEstudis(numPla).getHorari().empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
         this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
     }
 
@@ -289,9 +295,7 @@ public class ControladorDomini implements Cloneable
 
     public void printHorari(int numPla) throws CloneNotSupportedException, MyException {
 
-        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
         this.carregarHorariDePlaEstudis(numPla);
-        if (this.horari.empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
 
         for (int i = 0; i < this.horari.getDies(); i++) {
             System.out.println(getDia(i));

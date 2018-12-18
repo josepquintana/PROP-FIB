@@ -1,7 +1,9 @@
 package domini;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.text.DateFormatSymbols;
+import java.util.Date;
 
 public class Serializer
 {
@@ -22,6 +24,14 @@ public class Serializer
         line += (new DateFormatSymbols().getMonths()[controladorDomini.getPeriodeLectiu().getDataFi().getMonth()].toUpperCase() + ", ");
         line += ((controladorDomini.getPeriodeLectiu().getDataFi().getYear() + 1900));
 
+        return line;
+    }
+
+    public static String date(Date date)
+    {
+        String line;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+        line = sdf.format(date);
         return line;
     }
 
