@@ -65,8 +65,8 @@ public class Horari implements Cloneable
         Assignatura assigA = assignatures.getAssignatura(sA);
         int gA = assigA.getIndexGrup(iniA.getNumGrup());
         int aA = assignatures.getIndexAssignatura(iniA.getCodiAssig());
-        int horesDiaA = assignatures.getAssignatura(aA).getGrups().size() * (assignatures.getAssignatura(aA).getSessionsTotals());
-        horesDiaA/=this.dies;
+        int horesDiaA = (assignatures.getAssignatura(aA).getNumTotalSubgrups()*assignatures.getAssignatura(aA).getSessionsLab()) + (assignatures.getAssignatura(aA).getNumGrupsGenerals()*assignatures.getAssignatura(aA).getSessionsTeoria());
+        horesDiaA /= this.dies;
         if(horari[diaB][horaB][aulaB] != null){
             Assignacio iniB = horari[diaB][horaB][aulaB];
             horari[diaB][horaB][aulaB] = null;
@@ -75,7 +75,7 @@ public class Horari implements Cloneable
             int gB = assigB.getIndexGrup(iniB.getNumGrup());
             int aB = assignatures.getIndexAssignatura(iniB.getCodiAssig());
 
-            int horesDiaB = assignatures.getAssignatura(aB).getGrups().size() * (assignatures.getAssignatura(aB).getSessionsTotals());
+            int horesDiaB =(assignatures.getAssignatura(aB).getNumTotalSubgrups()*assignatures.getAssignatura(aB).getSessionsLab()) + (assignatures.getAssignatura(aB).getNumGrupsGenerals()*assignatures.getAssignatura(aB).getSessionsTeoria());
             horesDiaB/=this.dies; 
             if(Restriccions.comprovar(diaA, horaA, aulaA, this.dies, this.hores, this.n_aules, horesDiaA,this.assignatures, this.aules.getAula(aulaB),gB,aB,this.horari) && Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaB, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
                 horari[diaB][horaB][aulaB] = iniA;
@@ -102,8 +102,11 @@ public class Horari implements Cloneable
 
         this.assignatures = (Assignatures) assignatures.clone();
         this.aules = (Aules) aules.clone();
-
-        boolean solucio = backtracking(0,0);
+        boolean solucio = false;
+        if(Restriccions.restriccionsGenerals(this.dies,this.hores,this.n_aules, this.assignatures,this.aules)){
+            solucio = backtracking(0,0);
+        
+        } 
         if (!solucio) System.out.println("No hi ha solucio");
 
     }
@@ -112,7 +115,7 @@ public class Horari implements Cloneable
 
         if(a == assignatures.mida()) return true;
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
-        int horesDia = (assignatures.getAssignatura(a).getNumTotalGrups()*assignatures.getAssignatura(a).getSessionsLab()) + (assignatures.getAssignatura(a).getNumGrupsGenerals()*assignatures.getAssignatura(a).getSessionsTeoria());
+        int horesDia = (assignatures.getAssignatura(a).getNumTotalSubgrups()*assignatures.getAssignatura(a).getSessionsLab()) + (assignatures.getAssignatura(a).getNumGrupsGenerals()*assignatures.getAssignatura(a).getSessionsTeoria());
         horesDia /= this.dies;
 //        System.out.println("Backtracking...     g = " + g + " \t a = " + a);
 //        System.out.println("assig: " + assignatures.getAssignatura(a).getCodi());

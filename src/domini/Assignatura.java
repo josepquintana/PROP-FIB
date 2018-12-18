@@ -206,8 +206,12 @@ public class Assignatura implements Cloneable
         return nsubgrups;
     }
 
-    public int getNumTotalGrups() {
-        return this.grups.size();
+    public int getNumTotalSubgrups() {
+        int nsubgrups = 0;
+        for (int i = 0; i < this.grups.size(); i++) {
+            if (this.grups.get(i).isLab()) ++nsubgrups;
+        }
+        return nsubgrups;
     }
 
     public void setCodi(String codi) {

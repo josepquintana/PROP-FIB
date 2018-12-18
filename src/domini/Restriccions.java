@@ -184,5 +184,33 @@ public class Restriccions
     private static int getNumGrupGeneral(int numGrup) {
         return (numGrup)-(Math.abs(numGrup) % 10);
     }
+    
+    
+    protected static boolean restriccionsGenerals(int dies, int hores, int n_aules, Assignatures assignatures, Aules aules){
+        if(!restriccioSlots(dies,  hores, n_aules, assignatures)) return false;
+        if(!restriccioCapacitats( n_aules, assignatures, aules)) return false;
+            
+        return true;
+    }
+    
+    private static boolean restriccioSlots(int dies, int hores, int n_aules, Assignatures assignatures){
+        int assigsMax = dies * hores * n_aules;
+        int assigsNecessaries = 0;
+        for(int i = 0; i < assignatures.mida(); ++i){
+            assigsNecessaries += (assignatures.getAssignatura(i).getNumTotalSubgrups()*assignatures.getAssignatura(i).getSessionsLab()) + (assignatures.getAssignatura(i).getNumGrupsGenerals()*assignatures.getAssignatura(i).getSessionsTeoria());
+        }
+        return !(assigsMax < assigsNecessaries);
+    }
+    
+    private static boolean restriccioCapacitats(int n_aules,Assignatures assignatures, Aules aules){
+        for(int i = 0; i < assignatures.mida(); ++i){
+            boolean espai = false;
+            for(int j = 0; j < n_aules; ++j){
+                if(assignatures.getAssignatura(i).getGrup(0).getCapacitat() <= aules.getAula(j).getCapacitat()) espai = true;
+            }
+            if(!espai) return false;
+        }
+        return true;
+    }
 
 }
