@@ -351,19 +351,24 @@ public class ControladorDomini implements Cloneable
 
     // !!!!!
     public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups, String subgrups){
-        Assignatura A = new Assignatura();
-        ArrayList<String> cor = new ArrayList<>();
-        while (correq.length() > 0){
+        ArrayList<String> c = new ArrayList<>();
+        while (correq != null){
             int iend = correq.indexOf(" ");
             String subString;
             if (iend != -1) {
-             subString= correq.substring(0 , iend); //this will give abc
-             cor.add(subString);
-             correq = correq.substring(iend, correq.length());
+                subString= correq.substring(0 , iend);
+                c.add(subString);
+                correq = correq.substring(iend+1, correq.length());
+            }
+            else {
+                subString = correq.substring(0, correq.length());
+                c.add(subString);
+                correq = null;
             }
         }
-        System.out.println("Strings separades: "+cor.get(0)+ " "+ cor.get(1));
-        //this.plansDeEstudis.getPlaEstudis(0).afegirAssignaturaAlPlaEstudis(A);
+        Assignatura a = new Assignatura(codi, nom, Double.parseDouble(credits), Integer.parseInt(nivell), c, Boolean.parseBoolean(laboratori));  
+        a.setNumGrups(Integer.parseInt(grups);
+        a.setNumSubGrups(Integer.parseInt(subgrups);
     }
 
     public void modificarAula(String codi, String nom, String capacitat, String laboratori) throws MyException{
