@@ -56,24 +56,6 @@ public class Horari implements Cloneable
         }
         return h;
     }
-
-    public void modificarHorari(int diaI, int horaI,int aulaI, int diaF, int horaF){
-        Assignacio ini = horari[diaI][horaI][aulaI];
-        String s = ini.getCodiAssig();
-        Assignatura assig = assignatures.getAssignatura(s);
-        int g = assig.getIndexGrup(ini.getNumGrup());
-        int a = assignatures.getIndexAssignatura(ini.getCodiAssig());
-        for(int i = 0; i < this.n_aules; ++i){
-            System.out.println(aules.getAula(i).getCodi());
-            if(Restriccions.comprovar(diaF,horaF,i,this.dies,this.hores,this.n_aules, assignatures,aules.getAula(i),g,a,horari)){
-                horari[diaF][horaF][i] = ini;
-                horari[diaI][horaI][aulaI] = null;
-                break;
-
-            }else System.out.println("No pot");
-        }
-    
-    }
     
     public void swapAssignacions(int diaA, int horaA,int aulaA, int diaB, int horaB, int aulaB){
         Assignacio iniA = horari[diaA][horaA][aulaA];
@@ -83,21 +65,33 @@ public class Horari implements Cloneable
         Assignatura assigA = assignatures.getAssignatura(sA);
         int gA = assigA.getIndexGrup(iniA.getNumGrup());
         int aA = assignatures.getIndexAssignatura(iniA.getCodiAssig());
-        
-        Assignacio iniB = horari[diaB][horaB][aulaB];
-        horari[diaB][horaB][aulaB] = null;
-        String sB = iniB.getCodiAssig();
-        Assignatura assigB = assignatures.getAssignatura(sB);
-        int gB = assigB.getIndexGrup(iniB.getNumGrup());
-        int aB = assignatures.getIndexAssignatura(iniB.getCodiAssig());
-        if(Restriccions.comprovar(diaA, horaA, aulaA, this.dies, this.hores, this.n_aules, this.assignatures, this.aules.getAula(aulaB),gB,aB,this.horari) && Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
-            horari[diaB][horaB][aulaB] = iniA;
-            horari[diaA][horaA][aulaA] = iniB;
+        int horesDiaA = assignatures.getAssignatura(aA).getGrups().size() * (assignatures.getAssignatura(aA).getSessionsTotals());
+        horesDiaA/=this.dies;
+        if(horari[diaB][horaB][aulaB] != null){
+            Assignacio iniB = horari[diaB][horaB][aulaB];
+            horari[diaB][horaB][aulaB] = null;
+            String sB = iniB.getCodiAssig();
+            Assignatura assigB = assignatures.getAssignatura(sB);
+            int gB = assigB.getIndexGrup(iniB.getNumGrup());
+            int aB = assignatures.getIndexAssignatura(iniB.getCodiAssig());
+
+            int horesDiaB = assignatures.getAssignatura(aB).getGrups().size() * (assignatures.getAssignatura(aB).getSessionsTotals());
+            horesDiaB/=this.dies; 
+            if(Restriccions.comprovar(diaA, horaA, aulaA, this.dies, this.hores, this.n_aules, horesDiaA,this.assignatures, this.aules.getAula(aulaB),gB,aB,this.horari) && Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaB, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
+                horari[diaB][horaB][aulaB] = iniA;
+                horari[diaA][horaA][aulaA] = iniB;
             
-        } else{
-            horari[diaA][horaA][aulaA] = iniA;
-            horari[diaB][horaB][aulaB] = iniB;
+            } else{
+                horari[diaA][horaA][aulaA] = iniA;
+                horari[diaB][horaB][aulaB] = iniB;
+            }
+        }else{
+            if(Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaA, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
+                horari[diaB][horaB][aulaB] = iniA;
+             }
         }
+        
+       
         
     
     }
@@ -118,23 +112,24 @@ public class Horari implements Cloneable
 
         if(a == assignatures.mida()) return true;
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
-
+        int horesDia = (assignatures.getAssignatura(a).getNumGrupsLab()*assignatures.getAssignatura(a).getSessionsLab()) + (assignatures.getAssignatura(a).getNumGrupsTeoria()*assignatures.getAssignatura(a).getSessionsTeoria());
+        horesDia /= this.dies;
 //        System.out.println("Backtracking...     g = " + g + " \t a = " + a);
 //        System.out.println("assig: " + assignatures.getAssignatura(a).getCodi());
 //        System.out.println("horesNA: " + assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades());
 
-        for (int i = 0; i < this.dies; i++) {
-            for (int j = 0; j < this.hores; j++) {
+        for (int i = 0; i < this.hores; i++) {
+            for (int j = 0; j < this.dies; j++) {
                 for (int k = 0; k < this.n_aules; k++) {
-                    if (Restriccions.comprovar(i, j, k, dies, hores, n_aules, assignatures, aules.getAula(k), g, a, horari))
+                    if (Restriccions.comprovar(j, i, k, dies, hores, n_aules,horesDia, assignatures, aules.getAula(k), g, a, horari))
                     {
                         String codi = assignatures.getAssignatura(a).getCodi();
                         int grup = assignatures.getAssignatura(a).getGrup(g).getNumGrup();
                         String aula = aules.getAula(k).getCodi();
-                        int horaIni = this.hIni + j;
+                        int horaIni = this.hIni + i;
                         int durada = 1;
 
-                        horari[i][j][k] = new Assignacio(codi, grup, aula, horaIni, durada);
+                        horari[j][i][k] = new Assignacio(codi, grup, aula, horaIni, durada);
                         assignatures.getAssignatura(a).getGrup(g).decrementHores();
 
                         if (assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades() == 0) {
@@ -145,7 +140,7 @@ public class Horari implements Cloneable
                         }
 
                         assignatures.getAssignatura(a).getGrup(g).incrementHores();
-                        horari[i][j][k] = null;
+                        horari[j][i][k] = null;
                     }
                 }
             }
