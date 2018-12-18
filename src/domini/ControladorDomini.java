@@ -105,15 +105,6 @@ public class ControladorDomini implements Cloneable
             this.plansDeEstudis.getPlaEstudis(nomPlaEstudis).afegirAssignaturaAlPlaEstudis(assignatura);
         }
 
-
-        /**
-         *
-         *  AIXO S'HA DE TREURE!!
-         *
-         */
-//        this.generateHorariPlaEstudis(0);
-
-
     }
 
     public void storeData() throws IOException, MyException, InterruptedException {

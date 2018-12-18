@@ -23,9 +23,9 @@ public class maindomain
 
         controladorDomini.printCentreDocent();
 
-//        controladorDomini.generateHorariPlaEstudis(0);
-//        controladorDomini.printHorari(0);
-        
+        controladorDomini.generateHorariPlaEstudis(0);
+        controladorDomini.printHorari(0);
+
 //        ArrayList<String>[][] horari = controladorDomini.getHorari(0);
 //
 //        Scanner input = new Scanner(System.in);
@@ -40,6 +40,8 @@ public class maindomain
 //            controladorDomini.swapHorariPla(da, ha, aa, db, hb, ab,0);
 //            controladorDomini.printHorari(0);
 //        }
+
+
 
         controladorDomini.storeData();
 

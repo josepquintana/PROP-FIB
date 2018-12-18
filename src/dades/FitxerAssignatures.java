@@ -33,6 +33,7 @@ public class FitxerAssignatures
             assignatures.add(line);
         }
         br.close();
+
         return assignatures;
     }
 
