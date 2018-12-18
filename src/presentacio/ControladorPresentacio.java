@@ -51,7 +51,7 @@ public class ControladorPresentacio {
     vistaCrearAssig = new VistaCrearAssig(this);
     vistaConsultarAssig = new VistaConsultarAssig(this);
 
-    this.getHorari();
+//    this.getHorari();
 
   }
 

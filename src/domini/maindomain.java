@@ -17,14 +17,14 @@ public class maindomain
     public static void main(String[] args) throws Exception
     {
         printHello();
-        ControladorDomini controladorDomini = new ControladorDomini();
+//        ControladorDomini controladorDomini = new ControladorDomini();
 
-        controladorDomini.loadData();
+//        controladorDomini.loadData();
+//
+//        controladorDomini.printCentreDocent();
 
-        controladorDomini.printCentreDocent();
-
-        controladorDomini.generateHorariPlaEstudis(0);
-        controladorDomini.printHorari(0);
+//        controladorDomini.generateHorariPlaEstudis(0);
+//        controladorDomini.printHorari(0);
 
 //        ArrayList<String>[][] horari = controladorDomini.getHorari(0);
 //
@@ -41,7 +41,7 @@ public class maindomain
 //            controladorDomini.printHorari(0);
 //        }
 
-        controladorDomini.storeData();
+//        controladorDomini.storeData();
 
     }
 
