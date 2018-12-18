@@ -286,7 +286,7 @@ public class ControladorPresentacio {
       return s;
   }
   
-  public String[][] getHorari(){
+  public ArrayList<String>[][] getHorari(){
       return ctrlDom.getHorari();
   }
   
