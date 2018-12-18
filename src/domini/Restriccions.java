@@ -62,7 +62,6 @@ public class Restriccions
 
     private static boolean ColisionaTeoriaLab(int i, int j, int k, Assignatura assignatura, int g, int a, Assignacio[][][] horari) {
         if (assignatura.getCodi().equals(horari[i][j][k].getCodiAssig())) {
-            System.out.println(assignatura.getCodi());
             Grup grup = assignatura.getGrup(g);
             if (!grup.isLab()) { // Grup a assignar es Teoria
                 if (assignatura.getGrupAmbNum(horari[i][j][k].getNumGrup()).isLab()) {

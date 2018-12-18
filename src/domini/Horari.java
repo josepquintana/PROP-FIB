@@ -64,18 +64,16 @@ public class Horari implements Cloneable
         this.assignatures = (Assignatures) assignatures.clone();
         this.aules = (Aules) aules.clone();
 
+
+
         boolean solucio = backtracking(0,0);
         if (!solucio) System.out.println("No hi ha solucio");
-
     }
 
     private boolean backtracking(int g, int a) {
 
         if(a == assignatures.mida()) return true;
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
-
-//        System.out.println("Backtracking...     g = " + g + " \t a = " + a);
-//        System.out.println("assig: " + assignatures.getAssignatura(a).getCodi());
 
         for (int i = 0; i < this.dies; i++) {
             for (int j = 0; j < this.hores; j++) {

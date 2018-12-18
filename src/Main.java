@@ -20,6 +20,8 @@ public class Main
 
         controladorDomini.generateHorariPlaEstudis(0);
         controladorDomini.printHorari(0);
+//        controladorDomini.printHorariAsList(0);
+
 
         controladorDomini.storeData();
     }
@@ -38,7 +40,7 @@ public class Main
             if (Files.exists(path) && Files.isReadable(path)) inputFile = args[0];
             else { System.out.println(" > Invalid path.\n"); System.exit(0); }
         }
-        else { System.out.println(" > Usage: java -jar ." + File.separator + "GeneradorHoraris path\" + File.separator + \"to\" + File.separator + \"input\" + File.separator + \"file\n"); System.exit(0); }
+        else { System.out.println(" > Usage: java -jar ." + File.separator + "GeneradorHoraris path\"" + File.separator + "\"to\"" + File.separator + "\"input\"" + File.separator + "\"file\n"); System.exit(0); }
     }
 
 }

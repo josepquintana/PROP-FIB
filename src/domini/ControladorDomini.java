@@ -282,6 +282,23 @@ public class ControladorDomini implements Cloneable
         System.out.println("\n");
     }
 
+    public void printHorariAsList(int numPla) throws CloneNotSupportedException, MyException {
+
+        if (numPla >= this.plansDeEstudis.mida()) { throw new MyException("No existeix el pla d'estudis num " + numPla + "."); }
+        if (this.horari.empty()) throw new MyException("Encara no s'ha genereat l'horari per aquest pla d'estudis.");
+        this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
+
+        for (int i = 0; i < this.horari.getDies(); i++) {
+            for (int j = 0; j < this.horari.getHores(); j++) {
+                for (int k = 0; k < this.horari.getN_aules(); k++) {
+                    if(null != horari.getAssignacioIJK(i,j,k))  System.out.println(horari.getAssignacioIJK(i,j,k).getAssignacioPrintFormat());
+                    else System.out.println("      ---        ");
+                }
+            }
+        }
+        System.out.println("\n");
+    }
+
     public void printHorariIJK(int numPla) throws CloneNotSupportedException {
 
         this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
@@ -362,8 +379,6 @@ public class ControladorDomini implements Cloneable
         return noms;
     }
 
-    
-    
     public int getNumAules(){
         return aules.mida();
     }
