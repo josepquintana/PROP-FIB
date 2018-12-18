@@ -5,9 +5,7 @@ import domini.ControladorDomini;
 import domini.MyException;
 //import dades.ControladorDades;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -30,7 +28,7 @@ public class ControladorPresentacio {
   private VistaGestioAssig vistaGestioAssig;
   private VistaCrearAssig vistaCrearAssig;
 
-//  private VistaConsultarAssig vistaConsultarAssig;
+  private VistaConsultarAssig vistaConsultarAssig;
 
 
 //////////////////////// Constructor y metodos de inicializacion
@@ -51,7 +49,7 @@ public class ControladorPresentacio {
     vistaInfoPE = new VistaInfoPE(this);
     vistaGestioAssig = new VistaGestioAssig(this);
     vistaCrearAssig = new VistaCrearAssig(this);
-//    vistaConsultarAssig = new VistaConsultarAssig(this);
+    vistaConsultarAssig = new VistaConsultarAssig(this);
   }
 
   public void inicialitzarPresentacio() {
@@ -219,13 +217,13 @@ public class ControladorPresentacio {
     vistaGestioAssig.setVisible(false);
     vistaGestioAssig.desactivar();
     this.refrescarAssig();
-//    vistaConsultarAssig.setVisible(true);
-//    vistaConsultarAssig.ferVisible();
+    vistaConsultarAssig.setVisible(true);
+   vistaConsultarAssig.ferVisible();
   }
   
   public void sincronitzacioConsultarAssig_a_GestioAssig(){
-//    vistaConsultarAssig.setVisible(false);
-//    vistaConsultarAssig.desactivar();
+    vistaConsultarAssig.setVisible(false);
+    vistaConsultarAssig.desactivar();
     vistaGestioAssig.setVisible(true);
     vistaGestioAssig.ferVisible();
   }
@@ -234,7 +232,7 @@ public class ControladorPresentacio {
 
 
 
-//////////////////////// Crides al controlador de domini
+//////////////////////// Crides al controlador de dominio
 
 
   public void crearAula(String nom, String capacitat, String laboratori) throws MyException {
@@ -245,20 +243,32 @@ public class ControladorPresentacio {
          ctrlDom.modificarAula(codi, nom, capacitat, laboratori);
   }
   
+  public void modificarAssig(String codi1, String codi2, String nom,String credits,String grups,String subgrups,String nivell,String laboratori,String correq){
+      ctrlDom.modificarAssig(codi1, codi2, nom, credits, grups, subgrups, nivell, laboratori, correq);
+  }
+  
   public void eliminarAula(String codi) throws MyException {
          ctrlDom.eliminarAula(codi);
+  }
+  
+  public void eliminarAssig(String codi) throws MyException {
+         ctrlDom.eliminarAssig(codi);
   }
   
   public String[] getNomAules(){
       return ctrlDom.getNomAules();
   }
   
+  public String[] getCodiAssigs(){
+      return ctrlDom.getCodiAssigs();
+  }
+  
   public int getNumAules(){
       return ctrlDom.getNumAules();
   }
   
-  public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups){
-      ctrlDom.crearAssig(codi, nom, laboratori, credits, nivell, correq, grups);
+  public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups, String subgrups){
+      ctrlDom.crearAssig(codi, nom, laboratori, credits, nivell, correq, grups, subgrups);
   }
 
   public String getCapacitat(String codi){
@@ -269,30 +279,54 @@ public class ControladorPresentacio {
       return ctrlDom.getLab(codi);
   }
   
+  public String getNomAssig(String codi){
+      return ctrlDom.getNomAssig(codi);
+  }
+  public String geCredits(String codi){
+      return ctrlDom.getCredits(codi);
+  }
+  public String getGrups(String codi){
+      return ctrlDom.getGrups(codi);
+  }
+  public String getSubgrups(String codi){
+      return ctrlDom.getSubgrups(codi);
+  }
+  public String getNivell(String codi){
+      return ctrlDom.getNivell(codi);
+  }
+   public String getALab(String codi){
+      return ctrlDom.getALab(codi);
+  }
+   public String getCorreq(String codi){
+      return ctrlDom.getCorreq(codi);
+  }
+  
   public void refrescarAules(){
       vistaConsultarAula = new VistaConsultarAula(this);
       vistaConsultarAula.desactivar();
   }
   
   public void refrescarAssig(){
-//      vistaConsultarAssig = new VistaConsultarAssig(this);
-//      vistaConsultarAssig.desactivar();
+      vistaConsultarAssig = new VistaConsultarAssig(this);
+      vistaConsultarAssig.desactivar();
   }
   
-  public void generarHorari(){
-      ctrlDom.generarHorari();
+  public Boolean generarHorari(){
+      return ctrlDom.generarHorari();
   }
   
   public String getJornadaLectiva(){
-      String horaIni = ctrlDom.getHoraIni();
-      String horaFi  = ctrlDom.getHoraFi();
-      return (horaIni + " " + horaFi);
+      String s1 = ctrlDom.getHoraIni();
+      String s2 = ctrlDom.getHoraFi();
+      String s = s1.concat(s2);
+      return s;
   }
   
   public String getPeriodeLectiu(){
-      String dataIni = ctrlDom.getDataIni();
-      String dataFi  = ctrlDom.getDataFi();
-      return (dataIni + " " + dataFi);
+      String s1 = ctrlDom.getDataIni();
+      String s2 = ctrlDom.getDataFi();
+      String s = s1.concat(s2);
+      return s;
   }
   
   public ArrayList<String>[][] getHorari() throws CloneNotSupportedException, MyException {
