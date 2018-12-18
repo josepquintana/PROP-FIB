@@ -50,6 +50,9 @@ public class ControladorPresentacio {
     vistaGestioAssig = new VistaGestioAssig(this);
     vistaCrearAssig = new VistaCrearAssig(this);
     vistaConsultarAssig = new VistaConsultarAssig(this);
+
+    this.getHorari();
+
   }
 
   public void inicialitzarPresentacio() {
@@ -328,7 +331,10 @@ public class ControladorPresentacio {
   }
   
   public ArrayList<String>[][] getHorari() throws CloneNotSupportedException, MyException {
-      return ctrlDom.getHorari(0);
+      ctrlDom.generateHorariPlaEstudis(0);
+      ArrayList<String>[][] horari = ctrlDom.getHorari(0);
+
+      return horari;
   }
   
   public int getNumPlans(){
