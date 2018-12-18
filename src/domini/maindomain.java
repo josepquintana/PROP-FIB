@@ -41,8 +41,6 @@ public class maindomain
 //            controladorDomini.printHorari(0);
 //        }
 
-
-
         controladorDomini.storeData();
 
     }
