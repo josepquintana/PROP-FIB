@@ -41,8 +41,6 @@ public class maindomain
 //            controladorDomini.printHorari(0);
 //        }
 
-        System.out.println(Serializer.date(controladorDomini.getPeriodeLectiu().getDataFi()));
-
         controladorDomini.storeData();
 
     }

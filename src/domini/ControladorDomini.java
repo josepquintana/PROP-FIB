@@ -128,9 +128,6 @@ public class ControladorDomini implements Cloneable
 
         for (PlaEstudis pe : this.plansDeEstudis.getPlansDeEstudis()) {
             ArrayList<String> assignatures = Serializer.assignatures(pe.getAssignatures(), pe.getNomPla());
-            for (int i = 0; i < assignatures.size(); i++) {
-                System.out.println(assignatures.get(i));
-            }
             controladorDades.saveAssignatures(assignatures);
         }
     }
