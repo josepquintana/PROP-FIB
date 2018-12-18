@@ -35,12 +35,14 @@ public class VistaCrearAssig extends javax.swing.JFrame {
         jLabel5.setEnabled(true);
         jLabel6.setEnabled(true);
         jLabel7.setEnabled(true);
+        jLabel8.setEnabled(true);
         jTextField4.setEnabled(true);
         jTextField5.setEnabled(true);
         jTextField6.setEnabled(true);
         jTextField7.setEnabled(true);
         jTextField8.setEnabled(true);
         jTextField9.setEnabled(true);
+        jTextField10.setEnabled(true);
     }
     
     public void desactivar() {
@@ -53,12 +55,14 @@ public class VistaCrearAssig extends javax.swing.JFrame {
         jLabel5.setEnabled(false);
         jLabel6.setEnabled(false);
         jLabel7.setEnabled(false);
+        jLabel8.setEnabled(false);
         jTextField4.setEnabled(false);
         jTextField5.setEnabled(false);
         jTextField6.setEnabled(false);
         jTextField7.setEnabled(false);
         jTextField8.setEnabled(false);
         jTextField9.setEnabled(false);
+        jTextField10.setEnabled(false);
     }
 
     /**
@@ -86,6 +90,8 @@ public class VistaCrearAssig extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +161,9 @@ public class VistaCrearAssig extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel7.setText("Correquisits");
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel8.setText("SubGrups");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,13 +201,15 @@ public class VistaCrearAssig extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(256, 256, 256)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1))
+                            .addComponent(jCheckBox1)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(183, 183, 183))))
         );
         layout.setVerticalGroup(
@@ -213,7 +224,9 @@ public class VistaCrearAssig extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,14 +275,17 @@ public class VistaCrearAssig extends javax.swing.JFrame {
         String credits = jTextField7.getText();
         String nivell = jTextField8.getText();
         String correq = jTextField9.getText();
-        String grups = jTextField5.getText();
-        CtrlPresentacio.crearAssig(codi, nom, laboratori, credits, nivell, correq, grups);
+        String numgrups = jTextField5.getText();
+        String numsubgrups = jTextField5.getText();
+        System.out.println("codi " + codi + " nom " + nom + " laboratori "+ laboratori + " credits " + credits + " correq " + correq + " numgrups "+ numgrups + " num subgrups "+ numsubgrups);
+        CtrlPresentacio.crearAssig(codi, nom, laboratori, credits, nivell, correq, numgrups, numsubgrups);
         jTextField4.setText("");
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
         jTextField9.setText("");
+        jTextField10.setText("");
         jCheckBox1.setSelected(false);
         CtrlPresentacio.refrescarAssig();
 
@@ -337,6 +353,8 @@ public class VistaCrearAssig extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
