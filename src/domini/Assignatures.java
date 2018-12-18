@@ -147,5 +147,12 @@ public class Assignatures
 //        }
 //    }
 
+    int getIndexAssignatura(String codiAssig) {
+        for(int i = 0; i < this.assignatures.size() ; ++i){
+            if(this.assignatures.get(i).getCodi().equals(codiAssig)) return i;
+        }
+        return -1;
+    }
+
 }
 

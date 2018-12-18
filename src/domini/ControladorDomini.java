@@ -130,6 +130,16 @@ public class ControladorDomini implements Cloneable
         horari.generarHorari(assignatures_shuffled, this.aules);
         this.guardarHorariAlPlaEstudis(numPla);
     }
+    
+    public void modificarHorariPla(int dI,int hI, int aI, int dF, int hF, int numPla) throws CloneNotSupportedException {
+        horari.modificarHorari(dI, hI, aI, dF, hF);
+        this.guardarHorariAlPlaEstudis(numPla);
+    }
+    
+    public void swapHorariPla(int dI,int hI, int aI, int dF, int hF, int aF, int numPla) throws CloneNotSupportedException {
+        horari.swapAssignacions(dI, hI, aI, dF, hF, aF);
+        this.guardarHorariAlPlaEstudis(numPla);
+    }
 
     /**
      * @param numPla

@@ -57,6 +57,51 @@ public class Horari implements Cloneable
         return h;
     }
 
+    public void modificarHorari(int diaI, int horaI,int aulaI, int diaF, int horaF){
+        Assignacio ini = horari[diaI][horaI][aulaI];
+        String s = ini.getCodiAssig();
+        Assignatura assig = assignatures.getAssignatura(s);
+        int g = assig.getIndexGrup(ini.getNumGrup());
+        int a = assignatures.getIndexAssignatura(ini.getCodiAssig());
+        for(int i = 0; i < this.n_aules; ++i){
+            System.out.println(aules.getAula(i).getCodi());
+            if(Restriccions.comprovar(diaF,horaF,i,this.dies,this.hores,this.n_aules, assignatures,aules.getAula(i),g,a,horari)){
+                horari[diaF][horaF][i] = ini;
+                horari[diaI][horaI][aulaI] = null;
+                break;
+
+            }else System.out.println("No pot");
+        }
+    
+    }
+    
+    public void swapAssignacions(int diaA, int horaA,int aulaA, int diaB, int horaB, int aulaB){
+        Assignacio iniA = horari[diaA][horaA][aulaA];
+        horari[diaA][horaA][aulaA] = null;
+        
+        String sA = iniA.getCodiAssig();
+        Assignatura assigA = assignatures.getAssignatura(sA);
+        int gA = assigA.getIndexGrup(iniA.getNumGrup());
+        int aA = assignatures.getIndexAssignatura(iniA.getCodiAssig());
+        
+        Assignacio iniB = horari[diaB][horaB][aulaB];
+        horari[diaB][horaB][aulaB] = null;
+        String sB = iniB.getCodiAssig();
+        Assignatura assigB = assignatures.getAssignatura(sB);
+        int gB = assigB.getIndexGrup(iniB.getNumGrup());
+        int aB = assignatures.getIndexAssignatura(iniB.getCodiAssig());
+        if(Restriccions.comprovar(diaA, horaA, aulaA, this.dies, this.hores, this.n_aules, this.assignatures, this.aules.getAula(aulaB),gB,aB,this.horari) && Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
+            horari[diaB][horaB][aulaB] = iniA;
+            horari[diaA][horaA][aulaA] = iniB;
+            
+        } else{
+            horari[diaA][horaA][aulaA] = iniA;
+            horari[diaB][horaB][aulaB] = iniB;
+        }
+        
+    
+    }
+
     public void generarHorari(Assignatures assignatures, Aules aules) throws CloneNotSupportedException {
         // horari esta ben inicialitzat
         System.out.println(" >> Generating Horari");
