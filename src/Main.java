@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main
 {
@@ -22,8 +23,28 @@ public class Main
         controladorDomini.printHorari(0);
 //        controladorDomini.printHorariAsList(0);
 
-
+        
+        Scanner input = new Scanner(System.in);
+        while(input.nextInt() != -1){
+            int da, ha, aa, db, hb, ab;
+            int swap = input.nextInt();
+            
+            da = input.nextInt();
+            ha = input.nextInt();
+            aa = input.nextInt();
+            db = input.nextInt();
+            hb = input.nextInt();
+            if(swap == 0){
+                controladorDomini.modificarHorariPla(da, ha, aa, db, hb, 0);
+            } else {
+                ab = input.nextInt();
+                controladorDomini.swapHorariPla(da, ha, aa, db, hb, ab,0);
+            }
+            controladorDomini.printHorari(0);
+            
+        }
         controladorDomini.storeData();
+        
     }
 
     private static void printHello() {
