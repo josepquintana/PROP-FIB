@@ -238,7 +238,6 @@ public class ControladorDomini implements Cloneable
      */
     public ArrayList<String>[][] getHorari(int numPla) throws CloneNotSupportedException, MyException {
         this.carregarHorariDePlaEstudis(numPla);
-
         ArrayList<String>[][] horari = Serializer.horari(this.horari.getHorari());
         return horari;
     }
@@ -430,7 +429,6 @@ public class ControladorDomini implements Cloneable
             }
         }
     }
-    
 
     public void eliminarAula(String codi) throws MyException{
         int mida = this.aules.mida();
