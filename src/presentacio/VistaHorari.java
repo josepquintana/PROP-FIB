@@ -14,21 +14,21 @@ public class VistaHorari extends javax.swing.JFrame {
     /**
      * Creates new form VistaHorari
      */
-    public VistaHorari() {
+    public VistaHorari() throws CloneNotSupportedException {
         initComponents();
     }
-    
-    public VistaHorari(ControladorPresentacio CP) {
+
+    public VistaHorari(ControladorPresentacio CP) throws CloneNotSupportedException {
         CtrlPresentacio = CP;
         initComponents();
         this.setLocationRelativeTo(this);
     }
-    
+
     public void ferVisible() {
         jButton1.setEnabled(true);
         jTable1.setEnabled(true);
     }
-    
+
     public void desactivar() {
         jButton1.setEnabled(false);
         jTable1.setEnabled(false);
@@ -40,7 +40,7 @@ public class VistaHorari extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws CloneNotSupportedException {
 
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,12 +55,12 @@ public class VistaHorari extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] = CtrlPresentacio.getHorari(),
-            new String [] {
-                "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres"
-            }
-        ));
+//        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+//            new Object [][] = CtrlPresentacio.getHorari(),
+//            new String [] {
+//                "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres"
+//            }
+//        ));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,7 +100,7 @@ public class VistaHorari extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -123,7 +123,11 @@ public class VistaHorari extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaHorari().setVisible(true);
+                try {
+                    new VistaHorari().setVisible(true);
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

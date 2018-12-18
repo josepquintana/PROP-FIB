@@ -27,14 +27,16 @@ public class ControladorPresentacio {
   private VistaInfoPE vistaInfoPE;
   private VistaGestioAssig vistaGestioAssig;
   private VistaCrearAssig vistaCrearAssig;
-  private VistaConsultarAssig vistaConsultarAssig;
+
+//  private VistaConsultarAssig vistaConsultarAssig;
 
 
 //////////////////////// Constructor y metodos de inicializacion
 
 
-  public ControladorPresentacio() throws IOException {
+  public ControladorPresentacio() throws IOException, CloneNotSupportedException, MyException {
     ctrlDom = new ControladorDomini();
+    ctrlDom.loadData(); // carrega totes les dades dels fitxers "BD"
     vistaPresentacio = new VistaPresentacio(this);
     vistaPrincipal = new VistaPrincipal(this);
     vistaGestioCD = new VistaGestioCD(this);
@@ -47,7 +49,7 @@ public class ControladorPresentacio {
     vistaInfoPE = new VistaInfoPE(this);
     vistaGestioAssig = new VistaGestioAssig(this);
     vistaCrearAssig = new VistaCrearAssig(this);
-    vistaConsultarAssig = new VistaConsultarAssig(this);
+//    vistaConsultarAssig = new VistaConsultarAssig(this);
   }
 
   public void inicialitzarPresentacio() {
@@ -131,6 +133,7 @@ public class ControladorPresentacio {
     vistaCrearAula.setVisible(true);
     vistaCrearAula.ferVisible();
   } 
+
   public void sincronitzacioCrearAula_a_GestioAula() {
     vistaCrearAula.setVisible(false);
     vistaCrearAula.desactivar();
@@ -144,6 +147,7 @@ public class ControladorPresentacio {
     vistaGestioAula.setVisible(true);
     vistaGestioAula.ferVisible();
   }
+
   public void sincronitzacioGestioAula_a_ConsultarAula() {
     vistaGestioAula.setVisible(false);
     vistaGestioAula.desactivar();
@@ -158,12 +162,14 @@ public class ControladorPresentacio {
     vistaPrincipal.setVisible(true);
     vistaPrincipal.ferVisible();
   }
+
   public void sincronitzacioVistaPrincipal_a_VistaHorari(){
     vistaPrincipal.setVisible(false);
     vistaPrincipal.desactivar();
     vistaHorari.setVisible(true);
     vistaHorari.ferVisible();
   }
+
   public void sincronitzacioGestioPE_a_VistaInfoPE(){
     vistaGestioPE.setVisible(false);
     vistaGestioPE.desactivar();
@@ -171,18 +177,21 @@ public class ControladorPresentacio {
     vistaInfoPE.setVisible(true);
     vistaInfoPE.ferVisible();
   }
+
   public void sincronitzacioVistaInfoPE_a_VistaGestioPE(){
     vistaInfoPE.setVisible(false);
     vistaInfoPE.desactivar();
     vistaGestioPE.setVisible(true);
     vistaGestioPE.ferVisible();
   }
+
   public void sincronitzacioVistaGestioAssig_a_VistaGestioPE(){
     vistaGestioAssig.setVisible(false);
     vistaGestioAssig.desactivar();
     vistaGestioPE.setVisible(true);
     vistaGestioPE.ferVisible();
   }
+
   public void sincronitzacioVistaGestioPE_a_VistaGestioAssig(){
     vistaGestioPE.setVisible(false);
     vistaGestioPE.desactivar();
@@ -208,13 +217,13 @@ public class ControladorPresentacio {
     vistaGestioAssig.setVisible(false);
     vistaGestioAssig.desactivar();
     this.refrescarAssig();
-    vistaConsultarAssig.setVisible(true);
-    vistaConsultarAssig.ferVisible();
+//    vistaConsultarAssig.setVisible(true);
+//    vistaConsultarAssig.ferVisible();
   }
   
   public void sincronitzacioConsultarAssig_a_GestioAssig(){
-    vistaConsultarAssig.setVisible(false);
-    vistaConsultarAssig.desactivar();
+//    vistaConsultarAssig.setVisible(false);
+//    vistaConsultarAssig.desactivar();
     vistaGestioAssig.setVisible(true);
     vistaGestioAssig.ferVisible();
   }
@@ -251,7 +260,7 @@ public class ControladorPresentacio {
   }
 
   public String getCapacitat(String codi){
-      return ctrlDom.getCapacitat(codi);
+      return ctrlDom.getCapacitatAula(codi);
   }
   
   public String getLab(String codi){
@@ -286,8 +295,8 @@ public class ControladorPresentacio {
       return s;
   }
   
-  public ArrayList<String>[][] getHorari(){
-      return ctrlDom.getHorari();
+  public ArrayList<String>[][] getHorari() throws CloneNotSupportedException, MyException {
+      return ctrlDom.getHorari(0);
   }
   
   public int getNumPlans(){

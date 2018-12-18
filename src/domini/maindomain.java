@@ -6,6 +6,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -24,8 +25,8 @@ public class maindomain
 
         controladorDomini.generateHorariPlaEstudis(0);
         controladorDomini.printHorari(0);
-//        controladorDomini.printHorariAsList(0);
-
+        
+        ArrayList<String>[][] horari = controladorDomini.getHorari(0);
 
         Scanner input = new Scanner(System.in);
         while(input.nextInt() != -1){
@@ -38,7 +39,6 @@ public class maindomain
             ab = input.nextInt();
             controladorDomini.swapHorariPla(da, ha, aa, db, hb, ab,0);
             controladorDomini.printHorari(0);
-
         }
 
         controladorDomini.storeData();
