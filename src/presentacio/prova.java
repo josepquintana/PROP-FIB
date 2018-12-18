@@ -5,6 +5,8 @@
  */
 package presentacio;
 
+import domini.MyException;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +25,10 @@ public class prova {
                 ctrlPresentacion.inicialitzarPresentacio();
             } catch (IOException ex) {
                 Logger.getLogger(prova.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            } catch (MyException e) {
+                e.printStackTrace();
             }
         }
         });

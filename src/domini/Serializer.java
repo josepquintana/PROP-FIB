@@ -86,4 +86,33 @@ public class Serializer
         return lines;
     }
 
+    protected static ArrayList<String>[][] horari(Assignacio[][][] horari) throws MyException
+    {
+        ArrayList<String>[][] matrix = new ArrayList[horari.length][horari[0].length];
+
+        for (int i = 0; i < horari.length; i++) {
+            for (int j = 0; j < horari[i].length; j++) {
+                matrix[i][j] = new ArrayList<>();
+                for (int k = 0; k < horari[i][j].length; k++) {
+                    if (horari[i][j][k] != null) matrix[i][j].add(assignacio(horari[i][j][k]));
+                    else matrix[i][j].add("      ---        ");
+                }
+            }
+        }
+
+        return matrix;
+    }
+
+    protected static String assignacio(Assignacio asg)
+    {
+        if(asg.isEmpty()) return "[assignacio buida]";
+        String line = "[" + asg.getCodiAula() + ": " + asg.getCodiAssig() + "-" + asg.getNumGrup() + "]";
+        int length = line.length();
+        for (int i = 1; i <= (("[A5S108: PROP-10]").length() - length); i++) {
+            line += " "; // indentation
+        }
+
+        return line;
+    }
+
 }
