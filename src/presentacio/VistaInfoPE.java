@@ -276,6 +276,7 @@ public class VistaInfoPE extends javax.swing.JFrame {
         }
         else try {
             CtrlPresentacio.modificarPla(nom, titulacio, tipus);
+            this.CtrlPresentacio.storePlansDeEstudis();
         } catch (ParseException ex) {
             Logger.getLogger(VistaInfoPE.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -329,7 +329,7 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         String laboratori = jTextField5.getText();
         try {
             CtrlPresentacio.modificarAula(codi, nom, capacitat, laboratori);
-            this.CtrlPresentacio.guardarDades();
+            this.CtrlPresentacio.storeAules();
         } catch (MyException ex) {
             Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -355,7 +355,7 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         String codi = jTextArea1.getText();
         try {
             CtrlPresentacio.eliminarAula(codi);
-            this.CtrlPresentacio.guardarDades();
+            this.CtrlPresentacio.storeAules();
         } catch (MyException ex) {
             Logger.getLogger(VistaConsultarAula.class.getName()).log(Level.SEVERE, null, ex);
         }

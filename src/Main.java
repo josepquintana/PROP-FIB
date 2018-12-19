@@ -1,27 +1,13 @@
-import domini.MyException;
 import presentacio.ControladorPresentacio;
-
-import java.io.IOException;
 
 public class Main
 {
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
-        javax.swing.SwingUtilities.invokeLater (
-                new Runnable() {
-                    public void run() {
-                        ControladorPresentacio ctrlPresentacion = null;
-                        try {
-                            ctrlPresentacion = new ControladorPresentacio();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (CloneNotSupportedException e) {
-                            e.printStackTrace();
-                        } catch (MyException e) {
-                            e.printStackTrace();
-                        }
-                        ctrlPresentacion.inicialitzarPresentacio();
-                    }
-                });
+        javax.swing.SwingUtilities.invokeLater ( () -> {
+            ControladorPresentacio ctrlPresentacion = null;
+            ctrlPresentacion = new ControladorPresentacio();
+            ctrlPresentacion.inicialitzarPresentacio();
+        } );
     }
 }

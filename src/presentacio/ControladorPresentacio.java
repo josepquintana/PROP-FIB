@@ -35,29 +35,33 @@ public class ControladorPresentacio {
 //////////////////////// Constructor y metodos de inicializacion
 
 
-  public ControladorPresentacio() throws IOException, CloneNotSupportedException, MyException {
-    ctrlDom = new ControladorDomini();
-    ctrlDom.loadData(); // carrega totes les dades dels fitxers "BD"
-    vistaPresentacio = new VistaPresentacio(this);
-    vistaPrincipal = new VistaPrincipal(this);
-    vistaGestioCD = new VistaGestioCD(this);
-    vistaGestioAula = new VistaGestioAula(this);
-    vistaCrearAula = new VistaCrearAula(this);
-    vistaGestioCalendari = new VistaGestioCalendari(this);
-    vistaConsultarAula = new VistaConsultarAula(this);
-    vistaHorari = new VistaHorari(this);
-    vistaGestioPE = new VistaGestioPE(this);
-    vistaInfoPE = new VistaInfoPE(this);
-    vistaGestioAssig = new VistaGestioAssig(this);
-    vistaCrearAssig = new VistaCrearAssig(this);
-    vistaConsultarAssig = new VistaConsultarAssig(this);
-    vistaModificarHorari = new VistaModificarHorari(this);
+  public ControladorPresentacio() {
+      try {
+          ctrlDom = new ControladorDomini();
+          this.loadDataDomini();
+      } catch (IOException e) {
+          MyDialog.throwError("No s'ha pogut crear els fitxers de dades necessaris.");
+      }
+      vistaPresentacio = new VistaPresentacio(this);
+      vistaPrincipal = new VistaPrincipal(this);
+      vistaGestioCD = new VistaGestioCD(this);
+      vistaGestioAula = new VistaGestioAula(this);
+      vistaCrearAula = new VistaCrearAula(this);
+      vistaGestioCalendari = new VistaGestioCalendari(this);
+      vistaConsultarAula = new VistaConsultarAula(this);
+      vistaHorari = new VistaHorari(this);
+      vistaGestioPE = new VistaGestioPE(this);
+      vistaInfoPE = new VistaInfoPE(this);
+      vistaGestioAssig = new VistaGestioAssig(this);
+      vistaCrearAssig = new VistaCrearAssig(this);
+      vistaConsultarAssig = new VistaConsultarAssig(this);
+      vistaModificarHorari = new VistaModificarHorari(this);
   }
 
   public void inicialitzarPresentacio() {
-    //ctrlDomini.inicializarControladorDomini();
-    vistaPresentacio.setVisible(true);
-    vistaPresentacio.ferVisible();
+//      this.loadDataDomini(); // carrega totes les dades dels fitxers "BD"
+      vistaPresentacio.setVisible(true);
+      vistaPresentacio.ferVisible();
   }
 
 
@@ -245,9 +249,6 @@ public class ControladorPresentacio {
   }
   
 
-
-
-
 //////////////////////// Crides al controlador de dominio
 
 
@@ -298,22 +299,27 @@ public class ControladorPresentacio {
   public String getNomAssig(String codi){
       return ctrlDom.getNomAssig(codi);
   }
+
   public String geCredits(String codi){
       return ctrlDom.getCredits(codi);
   }
+
   public String getGrups(String codi){
       return ctrlDom.getGrups(codi);
   }
   public String getSubgrups(String codi){
       return ctrlDom.getSubgrups(codi);
   }
+
   public String getNivell(String codi){
       return ctrlDom.getNivell(codi);
   }
-   public String getALab(String codi){
+
+  public String getALab(String codi){
       return ctrlDom.getALab(codi);
   }
-   public String getCorreq(String codi){
+
+  public String getCorreq(String codi){
       return ctrlDom.getCorreq(codi);
   }
   
@@ -348,15 +354,9 @@ public class ControladorPresentacio {
       return (dataIni + " " + dataFi);
   }
   
-  public String[][] getHorari(){
-      String[][] horari = new String[0][0];
-      try {
-          horari = ctrlDom.getHorari(0);
-      } catch (CloneNotSupportedException ex) {
-          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (MyException ex) {
-          MyDialog.throwError("Horari no generat");
-      }
+  public String[][] getHorari() throws MyException, CloneNotSupportedException {
+      String[][] horari;
+      horari = ctrlDom.getHorari(0);
       return  horari;
   }
   
@@ -390,16 +390,52 @@ public class ControladorPresentacio {
   public void afegirPla(String nom, String titulacio, String tipus) throws ParseException{
       ctrlDom.afegirPla(nom, titulacio, tipus);
   }
-  
-  public void guardarDades(){
+
+  public void loadDataDomini() {
       try {
-          this.ctrlDom.storeData();
-      } catch (IOException ex) {
-          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (MyException ex) {
-          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (InterruptedException ex) {
-          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+          this.ctrlDom.loadDataAll();
+      }
+      catch (IOException e) {
+          MyDialog.throwError("Error al llegir dades dels fitxers.");
+      }
+      catch (MyException e) {
+          MyDialog.throwError("Error: " + e.getMessage());
+      }
+  }
+  
+  public void storeCentreDocent(){
+      try {
+          this.ctrlDom.storeDataCentreDocent();
+      }
+      catch (IOException ex) {
+          MyDialog.throwError("Error al guardar dades.");
+      }
+  }
+
+  public void storePlansDeEstudis() {
+      try {
+        this.ctrlDom.storeDataPlansDeEstudis();
+      }
+      catch (IOException | MyException ex) {
+        MyDialog.throwError("Error al guardar dades.");
+      }
+  }
+
+  public void storeAules() {
+      try {
+        this.ctrlDom.storeDataAules();
+      }
+      catch (IOException | InterruptedException ex) {
+        MyDialog.throwError("Error al guardar dades.");
+      }
+  }
+
+  public void storeAssignatures() {
+      try {
+        this.ctrlDom.storeDataAssignatures();
+      }
+      catch (IOException | MyException ex) {
+        MyDialog.throwError("Error al guardar dades.");
       }
   }
   

@@ -81,7 +81,7 @@ public class ControladorDomini implements Cloneable
         return cd;
     }
 
-    public void loadData() throws IOException, MyException, CloneNotSupportedException {
+    public void loadDataAll() throws IOException, MyException {
         String centreDocent = controladorDades.loadCentreDocent();
         ArrayList<String> plansDeEstudis = controladorDades.loadPlansDeEstudis();
         ArrayList<String> aules = controladorDades.loadAules();
@@ -104,23 +104,28 @@ public class ControladorDomini implements Cloneable
             Assignatura assignatura = Parser.assignatura(str);
             this.plansDeEstudis.getPlaEstudis(nomPlaEstudis).afegirAssignaturaAlPlaEstudis(assignatura);
         }
-
     }
 
-    public void storeData() throws IOException, MyException, InterruptedException {
+    public void storeDataCentreDocent() throws IOException {
         String centreDocent = Serializer.centreDocent(this);
         controladorDades.saveCentreDocent(centreDocent);
+    }
 
+    public void storeDataPlansDeEstudis() throws IOException, MyException {
         ArrayList<String> plansDeEstudis = Serializer.plansDeEstudis(this.plansDeEstudis);
         controladorDades.savePlansDeEstudis(plansDeEstudis);
+    }
 
+    public void storeDataAules() throws IOException, InterruptedException {
         ArrayList<String> aules = Serializer.aules(this.aules);
         controladorDades.saveAules(aules);
+    }
 
-        for (PlaEstudis pe : this.plansDeEstudis.getPlansDeEstudis()) {
+    public void storeDataAssignatures() throws IOException, MyException {
+         for (PlaEstudis pe : this.plansDeEstudis.getPlansDeEstudis()) {
             ArrayList<String> assignatures = Serializer.assignatures(pe.getAssignatures(), pe.getNomPla());
             controladorDades.saveAssignatures(assignatures);
-        }
+         }
     }
 
     public boolean generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
@@ -355,7 +360,7 @@ public class ControladorDomini implements Cloneable
         a.setNumSubGrups(Integer.parseInt(subgrups));
     }
 
-    public void modificarAula(String codi, String nom, String capacitat, String laboratori) throws MyException{
+    public void modificarAula(String codi, String nom, String capacitat, String laboratori) {
         int mida = this.aules.mida();
         for (int i = 0; i < mida; ++i){
             if (aules.getAula(i).getCodi().equals(codi)){
@@ -441,7 +446,7 @@ public class ControladorDomini implements Cloneable
         }
     }
     
-    public void eliminarAssig(String codi) throws MyException{
+    public void eliminarAssig(String codi) {
         int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
         for (int i = 0; i < mida; ++i){
             if (this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi().equals(codi)){
@@ -456,9 +461,9 @@ public class ControladorDomini implements Cloneable
         this.aules.afegirAula(a);
     }
 
-    public String getCapacitatAula(String codi){
+    public String getCapacitatAula(String codi) {
         for (int i = 0; i < aules.mida(); ++i){
-           if (aules.getAula(i).getCodi() == codi){
+           if (aules.getAula(i).getCodi().equals(codi)){
                return Integer.toString(aules.getAula(i).getCapacitat());
            }
         }
@@ -466,8 +471,8 @@ public class ControladorDomini implements Cloneable
     }
 
     public String getLab(String codi){
-       for (int i = 0; i < aules.mida(); ++i){
-           if (aules.getAula(i).getCodi() == codi){
+       for (int i = 0; i < aules.mida(); ++i) {
+           if (aules.getAula(i).getCodi().equals(codi)){
                return Boolean.toString(aules.getAula(i).isLab());
            }
        }
@@ -486,8 +491,7 @@ public class ControladorDomini implements Cloneable
         return noms;
     }
     
-    public String[] getCodiAssigs(){
-
+    public String[] getCodiAssigs() {
         int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
         String[] noms;
         noms = new String[mida];
@@ -501,26 +505,32 @@ public class ControladorDomini implements Cloneable
     public String getNomAssig(String codi){
         return this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNom();
     }
+
     public String getCredits(String codi){
         Double s = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getCredits();
         return s.toString();
     }
+
     public String getGrups(String codi){
         int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumGrupsGenerals();
         return String.valueOf(n);
     }
+
     public String getSubgrups(String codi){
         int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumSubGrupsXGrup();
         return String.valueOf(n);
     }
+
     public String getNivell(String codi){
         int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNivell();
         return String.valueOf(n);
     }
-     public String getALab(String codi){
+
+    public String getALab(String codi){
         Boolean n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).teLabAmbPCs();
         return String.valueOf(n);
     }
+
     public String getCorreq(String codi){
         ArrayList<String> s = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getCorrequisits();
         String s2 = "";
@@ -530,7 +540,7 @@ public class ControladorDomini implements Cloneable
             if (i != s.size() - 1)s2 = s2 + " ";
         }
         return s2;
-    } 
+    }
 
     public String getHoraIni(){
         return Serializer.time(this.jornadaLectiva.getHoraIni());

@@ -7,9 +7,6 @@ package presentacio;
 
 import domini.MyException;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Usuari
@@ -24,7 +21,7 @@ public class VistaHorari extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VistaHorari(ControladorPresentacio CP) throws CloneNotSupportedException, MyException {
+    public VistaHorari(ControladorPresentacio CP) {
         CtrlPresentacio = CP;
         initComponents();
         this.setLocationRelativeTo(this);
@@ -81,10 +78,12 @@ public class VistaHorari extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("Consulta");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jButton2.addActionListener(evt -> {
+            jButton2ActionPerformed(evt);
+            try {
                 jButton2ActionPerformed1(evt);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
             }
         });
 
@@ -177,31 +176,29 @@ public class VistaHorari extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
+    private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) throws CloneNotSupportedException {//GEN-FIRST:event_jButton2ActionPerformed1
         int i = Integer.parseInt(jTextField3.getText());
         int j = Integer.parseInt(jTextField4.getText());
-        try{
-        this.horari = this.CtrlPresentacio.getHorari();
-            if(i > this.horari.length || i < 0 || j < 0 || j > this.horari[0].length){
+        try {
+            this.horari = this.CtrlPresentacio.getHorari();
+            if (i > this.horari.length || i < 0 || j < 0 || j > this.horari[0].length){
                 MyDialog.throwError("Rang incorrecte");
-            } else {
+            }
+            else {
                 jList1.setModel(new javax.swing.AbstractListModel<String>() {
                     String[] strings = horari[i][j].split("\\r?\\n");
                     public int getSize() { return strings.length; }
-                    public String getElementAt(int i) { return strings[i]; 
-                    }
-                });
-           }
-        } catch(ArrayIndexOutOfBoundsException  exception) {
-                 
+                    public String getElementAt(int i) { return strings[i]; }
+                } );
+            }
         }
-    
-      
-            //Logger.getLogger(VistaHorari.class.getName()).log(Level.SEVERE, null, ex);
-        
+        catch (MyException e) {
+            MyDialog.throwError("No hi ha cap horari generat.");
+        }
+        catch (ArrayIndexOutOfBoundsException  exception) { /* do nothing */ }
     }//GEN-LAST:event_jButton2ActionPerformed1
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+	
+	    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CtrlPresentacio.sincronitzacioVistaHorari_a_VistaModificarHorari();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -221,13 +218,7 @@ public class VistaHorari extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | javax.swing.UnsupportedLookAndFeelException | IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

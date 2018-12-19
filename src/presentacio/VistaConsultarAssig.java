@@ -571,8 +571,9 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         String codi = jTextArea1.getText();
         try {
             CtrlPresentacio.eliminarAssig(codi);
+            this.CtrlPresentacio.storeAssignatures();
         } catch (MyException ex) {
-            Logger.getLogger(VistaConsultarAssig.class.getName()).log(Level.SEVERE, null, ex);
+            MyDialog.throwError(ex.getMessage());
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -595,6 +596,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         String laboratori = jTextField8.getText();
         String correq = jTextField10.getText();
         CtrlPresentacio.modificarAssig(codi1, codi2, nom, credits, grups, subgrups, nivell, laboratori, correq);
+        this.CtrlPresentacio.storeAssignatures();
         jTextField4.setText("");
         jTextField1.setText("");
         jTextField5.setText("");

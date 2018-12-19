@@ -20,7 +20,7 @@ public class VistaModificarHorari extends javax.swing.JFrame {
         initComponents();
     }
     
-    public VistaModificarHorari(ControladorPresentacio CP) throws CloneNotSupportedException, MyException {
+    public VistaModificarHorari(ControladorPresentacio CP) {
         CtrlPresentacio = CP;
         initComponents();
         this.setLocationRelativeTo(this);

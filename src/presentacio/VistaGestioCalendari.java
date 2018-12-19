@@ -240,6 +240,7 @@ public class VistaGestioCalendari extends javax.swing.JFrame {
             jLabel7.setVisible(false);
                 try {
                     CtrlPresentacio.modificarCalendari(jornada, periode);
+                    this.CtrlPresentacio.storeCentreDocent();
                 } catch (ParseException ex) {
                     Logger.getLogger(VistaGestioCalendari.class.getName()).log(Level.SEVERE, null, ex);
                 }
