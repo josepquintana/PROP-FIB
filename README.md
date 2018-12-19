@@ -15,7 +15,7 @@
 - [x] Classe Restriccions 
 - [ ] El BT es infinit si no pot assignar un grup (ja que no li pot decrementar les horesTeo/Lab i la crida es infinita)
 - [ ] Importar des de fitxer
-- [ ] Guardar tot el que modifiquem
+- [x] Guardar tot el que modifiquem
 - [ ] Implementar setNumGrups
 
 - [ ] Manual d’usuari de l’aplicació -> ha d’explicar com funcionen les funcionalitats (entrar a l’aplicatiu, generar un horari automàticament, modificar-lo, com es crea assignatura, com es borra assignatura,...) -> fer pantallazos de les vistes amb indicacions de com fer les coses. (índex i ben fet)
