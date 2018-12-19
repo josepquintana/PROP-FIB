@@ -354,9 +354,13 @@ public class ControladorPresentacio {
       return (dataIni + " " + dataFi);
   }
   
-  public String[][] getHorari() throws MyException, CloneNotSupportedException {
-      String[][] horari;
-      horari = ctrlDom.getHorari(0);
+  public String[][] getHorari() throws MyException {
+      String[][] horari = new String[0][0];
+      try {
+          horari = ctrlDom.getHorari(0);
+      } catch (CloneNotSupportedException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      }
       return  horari;
   }
   
