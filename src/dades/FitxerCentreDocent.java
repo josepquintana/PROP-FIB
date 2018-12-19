@@ -10,7 +10,10 @@ public class FitxerCentreDocent
     private File file;
 
     public FitxerCentreDocent() throws IOException {
-        String workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
+        String workingDirectory;
+        if(System.getProperty("user.dir").endsWith(File.separator + "bin")) { workingDirectory = Paths.get(".." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString(); }
+        else workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
+
         file = new File(workingDirectory, "FitxerCentreDocent.txt");
         file.createNewFile();
     }

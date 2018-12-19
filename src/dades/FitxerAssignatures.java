@@ -9,7 +9,10 @@ public class FitxerAssignatures
     private static File file;
 
     public FitxerAssignatures() throws IOException {
-        String workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
+        String workingDirectory;
+        if(System.getProperty("user.dir").endsWith(File.separator + "bin")) { workingDirectory = Paths.get(".." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString(); }
+        else workingDirectory = Paths.get("." + File.separator + "fitxersDades").toAbsolutePath().normalize().toString();
+
         file = new File(workingDirectory, "FitxerAssignatures.txt");
         file.createNewFile();
     }
