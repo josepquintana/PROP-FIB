@@ -166,24 +166,26 @@ public class VistaHorari extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
-
- 
         int i = Integer.parseInt(jTextField3.getText());
         int j = Integer.parseInt(jTextField4.getText());
-        
+        try{
         this.horari = this.CtrlPresentacio.getHorari();
-         if(i > this.horari.length || i < 0 || j < 0 || j > this.horari[0].length){
-             ErrorDialog.throwError("Rang incorrecte");
-         } else {
-             jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = horari[i][j].split("\\r?\\n");
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-         }
-        
+            if(i > this.horari.length || i < 0 || j < 0 || j > this.horari[0].length){
+                ErrorDialog.throwError("Rang incorrecte");
+            } else {
+                jList1.setModel(new javax.swing.AbstractListModel<String>() {
+                    String[] strings = horari[i][j].split("\\r?\\n");
+                    public int getSize() { return strings.length; }
+                    public String getElementAt(int i) { return strings[i]; 
+                    }
+                });
+           }
+        } catch(ArrayIndexOutOfBoundsException  exception) {
+                 
+        }
+    
+      
             //Logger.getLogger(VistaHorari.class.getName()).log(Level.SEVERE, null, ex);
-        
         
     }//GEN-LAST:event_jButton2ActionPerformed1
 
