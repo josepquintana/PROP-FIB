@@ -27,6 +27,7 @@ public class ControladorPresentacio {
   private VistaInfoPE vistaInfoPE;
   private VistaGestioAssig vistaGestioAssig;
   private VistaCrearAssig vistaCrearAssig;
+  private VistaModificarHorari vistaModificarHorari;
 
   private VistaConsultarAssig vistaConsultarAssig;
 
@@ -50,7 +51,7 @@ public class ControladorPresentacio {
     vistaGestioAssig = new VistaGestioAssig(this);
     vistaCrearAssig = new VistaCrearAssig(this);
     vistaConsultarAssig = new VistaConsultarAssig(this);
-
+    vistaModificarHorari = new VistaModificarHorari(this);
   }
 
   public void inicialitzarPresentacio() {
@@ -169,6 +170,20 @@ public class ControladorPresentacio {
     vistaPrincipal.desactivar();
     vistaHorari.setVisible(true);
     vistaHorari.ferVisible();
+  }
+  
+  public void sincronitzacioVistaModificarHorari_a_VistaHorari(){
+    vistaModificarHorari.setVisible(false);
+    vistaModificarHorari.desactivar();
+    vistaHorari.setVisible(true);
+    vistaHorari.ferVisible();
+  }
+  
+  public void sincronitzacioVistaHorari_a_VistaModificarHorari(){
+    vistaHorari.setVisible(false);
+    vistaHorari.desactivar();
+    vistaModificarHorari.setVisible(true);
+    vistaModificarHorari.ferVisible();
   }
 
   public void sincronitzacioGestioPE_a_VistaInfoPE(){
@@ -333,15 +348,15 @@ public class ControladorPresentacio {
       return (dataIni + " " + dataFi);
   }
   
-  public String[][] getHorari() throws MyException, CloneNotSupportedException {
+  public String[][] getHorari(){
       String[][] horari = new String[0][0];
-//      try {
+      try {
           horari = ctrlDom.getHorari(0);
-//      } catch (CloneNotSupportedException ex) {
-//          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
-//      } catch (MyException ex) {
-//          MyDialog.throwError("Horari no generat");
-//      }
+      } catch (CloneNotSupportedException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (MyException ex) {
+          MyDialog.throwError("Horari no generat");
+      }
       return  horari;
   }
   
