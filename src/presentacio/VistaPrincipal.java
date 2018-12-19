@@ -181,8 +181,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         boolean generat = false;
         generat = CtrlPresentacio.generarHorari();
 
-        if  (!generat) jLabel1.setVisible(true);
-        else jLabel1.setVisible(false);
+        if  (!generat) {
+            jLabel1.setVisible(true);
+            //llençar missatge no solució
+        
+        }
+        else {
+            jLabel1.setVisible(false);
+            MyDialog.throwMessage("Horari generat");
+                    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

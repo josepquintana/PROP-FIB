@@ -340,7 +340,7 @@ public class ControladorPresentacio {
       } catch (CloneNotSupportedException ex) {
           Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
       } catch (MyException ex) {
-          ErrorDialog.throwError("Horari no generat");
+          MyDialog.throwError("Horari no generat");
       }
       return  horari;
   }
