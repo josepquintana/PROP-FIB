@@ -96,7 +96,7 @@ public class Horari implements Cloneable
     
     }
 
-    public void generarHorari(Assignatures assignatures, Aules aules) throws CloneNotSupportedException {
+    public boolean generarHorari(Assignatures assignatures, Aules aules) throws CloneNotSupportedException {
         // horari esta ben inicialitzat
         System.out.println(" >> Generating Horari");
 
@@ -109,6 +109,7 @@ public class Horari implements Cloneable
         
         } 
         if (!solucio) System.out.println("No hi ha solucio");
+        return solucio;
 
     }
 

@@ -5,6 +5,10 @@
  */
 package presentacio;
 
+import domini.MyException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuari
@@ -174,8 +178,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Boolean generat = CtrlPresentacio.generarHorari();
-        if  (false == generat) jLabel1.setVisible(true);
+        boolean generat = false;
+        generat = CtrlPresentacio.generarHorari();
+
+        if  (!generat) jLabel1.setVisible(true);
         else jLabel1.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

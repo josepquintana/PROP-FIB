@@ -51,8 +51,6 @@ public class ControladorPresentacio {
     vistaCrearAssig = new VistaCrearAssig(this);
     vistaConsultarAssig = new VistaConsultarAssig(this);
 
-//    this.getHorari();
-
   }
 
   public void inicialitzarPresentacio() {
@@ -314,8 +312,13 @@ public class ControladorPresentacio {
       vistaConsultarAssig.desactivar();
   }
   
-  public Boolean generarHorari(){
-      return ctrlDom.generarHorari();
+  public boolean generarHorari() {
+      try {
+          return ctrlDom.generarHorari();
+      } catch (CloneNotSupportedException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return false;
   }
   
   public String getJornadaLectiva(){
@@ -330,11 +333,16 @@ public class ControladorPresentacio {
       return (dataIni + " " + dataFi);
   }
   
-  public ArrayList<String>[][] getHorari() throws CloneNotSupportedException, MyException {
-      ctrlDom.generateHorariPlaEstudis(0);
-      ArrayList<String>[][] horari = ctrlDom.getHorari(0);
-
-      return horari;
+  public String[][] getHorari(){
+      String[][] horari = new String[0][0];
+      try {
+          horari = ctrlDom.getHorari(0);
+      } catch (CloneNotSupportedException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (MyException ex) {
+          ErrorDialog.throwError("Horari no generat");
+      }
+      return  horari;
   }
   
   public int getNumPlans(){

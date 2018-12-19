@@ -104,16 +104,16 @@ public class Serializer
         return lines;
     }
 
-    protected static ArrayList<String>[][] horari(Assignacio[][][] horari) throws MyException
+    protected static String[][] horari(Assignacio[][][] horari) throws MyException
     {
-        ArrayList<String>[][] matrix = new ArrayList[horari.length][horari[0].length];
+        String[][] matrix = new String[horari.length][horari[0].length];
 
         for (int i = 0; i < horari.length; i++) {
             for (int j = 0; j < horari[i].length; j++) {
-                matrix[i][j] = new ArrayList<>();
+                matrix[i][j] = "";
                 for (int k = 0; k < horari[i][j].length; k++) {
-                    if (horari[i][j][k] != null) matrix[i][j].add(assignacio(horari[i][j][k]));
-                    else matrix[i][j].add("      ---        ");
+                    if (horari[i][j][k] != null) matrix[i][j] += (assignacio(horari[i][j][k]) + "\n");
+                    else matrix[i][j] += ("      ---        \n");
                 }
             }
         }

@@ -123,11 +123,12 @@ public class ControladorDomini implements Cloneable
         }
     }
 
-    public void generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException, MyException {
+    public boolean generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
-        horari.generarHorari(this.plansDeEstudis.getPlaEstudis(numPla).getAssignatures(), this.aules);
+        boolean sol = horari.generarHorari(this.plansDeEstudis.getPlaEstudis(numPla).getAssignatures(), this.aules);
         this.guardarHorariAlPlaEstudis(numPla);
-        this.printHorari(0);
+        //this.printHorari(0);
+        return sol;
     }
     
     public void swapHorariPla(int dI,int hI, int aI, int dF, int hF, int aF, int numPla) throws CloneNotSupportedException {
@@ -237,9 +238,9 @@ public class ControladorDomini implements Cloneable
     /**
      * funcio per comunicarse amb la capa de presentacio
      */
-    public ArrayList<String>[][] getHorari(int numPla) throws CloneNotSupportedException, MyException {
+    public String[][] getHorari(int numPla) throws CloneNotSupportedException, MyException {
         this.carregarHorariDePlaEstudis(numPla);
-        ArrayList<String>[][] horari = Serializer.horari(this.horari.getHorari());
+        String[][] horari = Serializer.horari(this.horari.getHorari());
         return horari;
     }
 
@@ -326,8 +327,8 @@ public class ControladorDomini implements Cloneable
 
     //FUNCIONS PER COMUNICAR-SE AMB PRESENTACIÓ
 
-    public Boolean generarHorari() {
-        Boolean generat = false;
+    public boolean generarHorari() throws CloneNotSupportedException{
+        boolean generat = this.generateHorariPlaEstudis(0);
         //es genera l'horari i si s'ha pogut fer es posa el Booleà a true
         return generat;
     }
