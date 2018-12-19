@@ -1,8 +1,8 @@
 # PROP - Generador d’horaris
 
 #### Segon Lliurament: divendres 21 de desembre (lliuraments interactius: a partir del 8 de gener)
-##### Entregar en paper dilluns:
-- Manual usuari
+##### Entregar en paper divendres (ara diu que podem fer-ho en fail):
+- Manual usuari (afegir modificar horari i crear/modificar assignatura)
 - Diagrames uml
 - Relacio de les classes
 - Descripció de l’algorisme i estructures de dades
@@ -18,7 +18,7 @@
 - [x] Guardar tot el que modifiquem
 - [ ] Implementar setNumGrups
 
-- [ ] Manual d’usuari de l’aplicació -> ha d’explicar com funcionen les funcionalitats (entrar a l’aplicatiu, generar un horari automàticament, modificar-lo, com es crea assignatura, com es borra assignatura,...) -> fer pantallazos de les vistes amb indicacions de com fer les coses. (índex i ben fet)
+- [ ] Manual usuari (afegir modificar horari i crear/modificar assignatura)
 - [ ] Impressió dels tres diagrames UML (domini, vistes + controladors presentació, capa dades + controladors dades) separats
 - [ ] Breu descripció de l’algorisme i estructura de dades utilitzats (tornar a fer bé, ja que el nostre era cutre).
 - [ ] Relació de les classes implementades per cada grup -> explicar explícitament a un document
