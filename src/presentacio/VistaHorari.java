@@ -7,9 +7,6 @@ package presentacio;
 
 import domini.MyException;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Usuari
@@ -82,7 +79,11 @@ public class VistaHorari extends javax.swing.JFrame {
         jButton2.setText("Consulta");
         jButton2.addActionListener(evt -> {
             jButton2ActionPerformed(evt);
-            jButton2ActionPerformed1(evt);
+            try {
+                jButton2ActionPerformed1(evt);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
         });
 
         jTextField3.setText("0");
@@ -159,7 +160,7 @@ public class VistaHorari extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
+    private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) throws CloneNotSupportedException {//GEN-FIRST:event_jButton2ActionPerformed1
         int i = Integer.parseInt(jTextField3.getText());
         int j = Integer.parseInt(jTextField4.getText());
         try {
@@ -175,13 +176,10 @@ public class VistaHorari extends javax.swing.JFrame {
                 } );
             }
         }
-        catch (ArrayIndexOutOfBoundsException  exception) { /* do nothing */ }
-        catch (CloneNotSupportedException e1) {
-            e1.printStackTrace();
-        }
         catch (MyException e) {
             MyDialog.throwError("No hi ha cap horari generat.");
         }
+        catch (ArrayIndexOutOfBoundsException  exception) { /* do nothing */ }
     }//GEN-LAST:event_jButton2ActionPerformed1
 
     /**
