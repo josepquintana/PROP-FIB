@@ -363,6 +363,10 @@ public class ControladorPresentacio {
       return (dataIni + " " + dataFi);
   }
   
+  public int getHoraIni(){
+        return this.ctrlDom.getHoraIniInteger();
+  }
+  
   public String[][] getHorari() throws MyException {
       String[][] horari = new String[0][0];
       try {

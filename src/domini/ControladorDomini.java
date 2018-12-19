@@ -246,7 +246,7 @@ public class ControladorDomini implements Cloneable
      */
     public String[][] getHorari(int numPla) throws CloneNotSupportedException, MyException {
         this.carregarHorariDePlaEstudis(numPla);
-        String[][] horari = Serializer.horari(this.horari.getHorari());
+        String[][] horari = Serializer.horari(this.horari.getHorari(), this.aules);
         return horari;
     }
 
@@ -545,6 +545,12 @@ public class ControladorDomini implements Cloneable
 
     public String getHoraIni(){
         return Serializer.time(this.jornadaLectiva.getHoraIni());
+    }
+    
+    public int getHoraIniInteger(){
+        String[] hourMin = this.getHoraIni().split(":");
+        int hour = Integer.parseInt(hourMin[0]);
+        return hour;
     }
     
     public String getHoraFi(){

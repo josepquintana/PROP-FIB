@@ -78,8 +78,7 @@ public class Serializer
         return lines;
     }
 
-    protected static ArrayList<String> assignatures(Assignatures assignatures, String nomPlaEstudis) throws MyException
-    {
+    protected static ArrayList<String> assignatures(Assignatures assignatures, String nomPlaEstudis) throws MyException {
         ArrayList<String> lines = new ArrayList<>();
 
         for (Assignatura assignatura : assignatures.getAssignatures()) {
@@ -104,7 +103,7 @@ public class Serializer
         return lines;
     }
 
-    protected static String[][] horari(Assignacio[][][] horari) throws MyException
+    protected static String[][] horari(Assignacio[][][] horari, Aules aules) throws MyException
     {
         String[][] matrix = new String[horari.length][horari[0].length];
 
@@ -113,7 +112,7 @@ public class Serializer
                 matrix[i][j] = "";
                 for (int k = 0; k < horari[i][j].length; k++) {
                     if (horari[i][j][k] != null) matrix[i][j] += (assignacio(horari[i][j][k]) + "\n");
-                    else matrix[i][j] += ("      ---        \n");
+                    else matrix[i][j] += (aules.getAula(k).getCodi() +"      ---        \n");
                 }
             }
         }
