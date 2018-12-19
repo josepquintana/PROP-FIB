@@ -342,6 +342,15 @@ public class ControladorPresentacio {
       return false;
   }
   
+  public boolean swapHorari(int ia, int ja, int ka, int ib, int jb, int kb){
+      try {
+          return ctrlDom.swapHorariPla(ia, ja, ka, ib, jb, kb, 0);
+      } catch (CloneNotSupportedException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return false;
+  }
+  
   public String getJornadaLectiva(){
       String horaIni = ctrlDom.getHoraIni();
       String horaFi  = ctrlDom.getHoraFi();

@@ -136,9 +136,10 @@ public class ControladorDomini implements Cloneable
         return sol;
     }
     
-    public void swapHorariPla(int dI,int hI, int aI, int dF, int hF, int aF, int numPla) throws CloneNotSupportedException {
-        horari.swapAssignacions(dI, hI, aI, dF, hF, aF);
-        this.guardarHorariAlPlaEstudis(numPla);
+    public boolean swapHorariPla(int dI,int hI, int aI, int dF, int hF, int aF, int numPla) throws CloneNotSupportedException {
+        boolean ok = horari.swapAssignacions(dI, hI, aI, dF, hF, aF);
+        if(ok) this.guardarHorariAlPlaEstudis(numPla);
+        return ok;
     }
 
     /**

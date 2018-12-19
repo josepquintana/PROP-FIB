@@ -57,10 +57,10 @@ public class Horari implements Cloneable
         return h;
     }
     
-    public void swapAssignacions(int diaA, int horaA,int aulaA, int diaB, int horaB, int aulaB){
+    public boolean swapAssignacions(int diaA, int horaA,int aulaA, int diaB, int horaB, int aulaB){
         Assignacio iniA = horari[diaA][horaA][aulaA];
         horari[diaA][horaA][aulaA] = null;
-        
+        boolean ret = false;
         String sA = iniA.getCodiAssig();
         Assignatura assigA = assignatures.getAssignatura(sA);
         int gA = assigA.getIndexGrup(iniA.getNumGrup());
@@ -80,17 +80,20 @@ public class Horari implements Cloneable
             if(Restriccions.comprovar(diaA, horaA, aulaA, this.dies, this.hores, this.n_aules, horesDiaA,this.assignatures, this.aules.getAula(aulaB),gB,aB,this.horari) && Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaB, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
                 horari[diaB][horaB][aulaB] = iniA;
                 horari[diaA][horaA][aulaA] = iniB;
+                return true;
             
             } else{
                 horari[diaA][horaA][aulaA] = iniA;
                 horari[diaB][horaB][aulaB] = iniB;
+                return false;
             }
         }else{
             if(Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaA, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
                 horari[diaB][horaB][aulaB] = iniA;
+                return true;
              }
         }
-        
+        return ret;
        
         
     
