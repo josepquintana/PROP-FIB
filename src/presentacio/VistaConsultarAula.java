@@ -329,14 +329,14 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         String laboratori = jTextField5.getText();
         try {
             CtrlPresentacio.modificarAula(codi, nom, capacitat, laboratori);
+            this.CtrlPresentacio.guardarDades();
         } catch (MyException ex) {
             Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
         }
         jTextField4.setText("");
         jTextField1.setText("");
         jTextField5.setText("");
-        
-        
+              
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -355,6 +355,7 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         String codi = jTextArea1.getText();
         try {
             CtrlPresentacio.eliminarAula(codi);
+            this.CtrlPresentacio.guardarDades();
         } catch (MyException ex) {
             Logger.getLogger(VistaConsultarAula.class.getName()).log(Level.SEVERE, null, ex);
         }

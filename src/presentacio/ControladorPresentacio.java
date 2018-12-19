@@ -376,4 +376,16 @@ public class ControladorPresentacio {
       ctrlDom.afegirPla(nom, titulacio, tipus);
   }
   
+  public void guardarDades(){
+      try {
+          this.ctrlDom.storeData();
+      } catch (IOException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (MyException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (InterruptedException ex) {
+          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+      }
+  }
+  
 }
