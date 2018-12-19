@@ -333,15 +333,15 @@ public class ControladorPresentacio {
       return (dataIni + " " + dataFi);
   }
   
-  public String[][] getHorari(){
+  public String[][] getHorari() throws MyException, CloneNotSupportedException {
       String[][] horari = new String[0][0];
-      try {
+//      try {
           horari = ctrlDom.getHorari(0);
-      } catch (CloneNotSupportedException ex) {
-          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (MyException ex) {
-          MyDialog.throwError("Horari no generat");
-      }
+//      } catch (CloneNotSupportedException ex) {
+//          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+//      } catch (MyException ex) {
+//          MyDialog.throwError("Horari no generat");
+//      }
       return  horari;
   }
   

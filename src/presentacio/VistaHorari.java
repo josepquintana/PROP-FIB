@@ -80,11 +80,9 @@ public class VistaHorari extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("Consulta");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-                jButton2ActionPerformed1(evt);
-            }
+        jButton2.addActionListener(evt -> {
+            jButton2ActionPerformed(evt);
+            jButton2ActionPerformed1(evt);
         });
 
         jTextField3.setText("0");
@@ -164,25 +162,26 @@ public class VistaHorari extends javax.swing.JFrame {
     private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
         int i = Integer.parseInt(jTextField3.getText());
         int j = Integer.parseInt(jTextField4.getText());
-        try{
-        this.horari = this.CtrlPresentacio.getHorari();
-            if(i > this.horari.length || i < 0 || j < 0 || j > this.horari[0].length){
+        try {
+            this.horari = this.CtrlPresentacio.getHorari();
+            if (i > this.horari.length || i < 0 || j < 0 || j > this.horari[0].length){
                 MyDialog.throwError("Rang incorrecte");
-            } else {
+            }
+            else {
                 jList1.setModel(new javax.swing.AbstractListModel<String>() {
                     String[] strings = horari[i][j].split("\\r?\\n");
                     public int getSize() { return strings.length; }
-                    public String getElementAt(int i) { return strings[i]; 
-                    }
-                });
-           }
-        } catch(ArrayIndexOutOfBoundsException  exception) {
-                 
+                    public String getElementAt(int i) { return strings[i]; }
+                } );
+            }
         }
-    
-      
-            //Logger.getLogger(VistaHorari.class.getName()).log(Level.SEVERE, null, ex);
-        
+        catch (ArrayIndexOutOfBoundsException  exception) { /* do nothing */ }
+        catch (CloneNotSupportedException e1) {
+            e1.printStackTrace();
+        }
+        catch (MyException e) {
+            MyDialog.throwError("No hi ha cap horari generat.");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed1
 
     /**
@@ -201,13 +200,7 @@ public class VistaHorari extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | javax.swing.UnsupportedLookAndFeelException | IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VistaHorari.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
