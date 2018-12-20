@@ -170,11 +170,8 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jTextArea5.setRows(5);
         jScrollPane6.setViewportView(jTextArea5);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = CtrlPresentacio.getCodiAssigs();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        this.carregarLlistaAssigs();
+
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -527,6 +524,27 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregarLlistaAssigs() {
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = CtrlPresentacio.getCodiAssigs();
+            public int getSize() {
+                return strings.length;
+            }
+            public String getElementAt(int i) {
+                return strings[i];
+            }
+        } );
+
+        jTextArea1.setText("");
+        jTextArea2.setText("");
+        jTextArea4.setText("");
+        jTextArea3.setText("");
+        jTextArea5.setText("");
+        jTextArea6.setText("");
+        jTextArea7.setText("");
+        jTextArea8.setText("");
+    }
+
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         String codi = jList1.getModel().getElementAt(jList1.locationToIndex(evt.getPoint()));
         String nom = CtrlPresentacio.getNomAssig(codi);
@@ -544,8 +562,6 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jTextArea6.setText(lab);
         jTextArea7.setText(subgrups);
         jTextArea8.setText(correq);
-        
-        
         jTextField1.setText(codi);
         jTextField4.setText(nom);
         jTextField5.setText(credits);
@@ -570,16 +586,14 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // eliminar
         String codi = jTextArea1.getText();
-        try {
-            CtrlPresentacio.eliminarAssig(codi);
-            this.CtrlPresentacio.storeAssignatures();
-        } catch (MyException ex) {
-            MyDialog.throwError(ex.getMessage());
-        }
+        CtrlPresentacio.eliminarAssig(codi);
+        this.CtrlPresentacio.storeAssignatures();
+        this.carregarLlistaAssigs();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         //TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
@@ -588,6 +602,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // modificar
         String codi1 = jTextArea1.getText();
         String codi2 = jTextField1.getText();
         String nom = jTextField4.getText();
@@ -598,6 +613,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         String laboratori = jTextField8.getText();
         String correq = jTextField10.getText();
         CtrlPresentacio.modificarAssig(codi1, codi2, nom, credits, grups, subgrups, nivell, laboratori, correq);
+        this.carregarLlistaAssigs();
         this.CtrlPresentacio.storeAssignatures();
         jTextField4.setText("");
         jTextField1.setText("");

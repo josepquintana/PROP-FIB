@@ -43,7 +43,6 @@ public class Assignatures
         Collections.shuffle(this.assignatures);
     }
 
-
     public boolean existeixAssignatura(Assignatura assig) {
         for (int i = 0; i < this.assignatures.size(); i++) {
             if(this.assignatures.get(i).equals(assig)) return true;
@@ -76,7 +75,7 @@ public class Assignatures
     public boolean eliminarAssignatura(String codi) {
         for(int i = 0; i< assignatures.size(); ++i){
             if(assignatures.get(i).getCodi().equals(codi)) {
-                Assignatura a = new Assignatura(this.assignatures.remove(i));
+                this.assignatures.remove(i);
                 return true;
             }
          }

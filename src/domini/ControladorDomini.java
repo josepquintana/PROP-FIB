@@ -340,25 +340,9 @@ public class ControladorDomini implements Cloneable
     }
 
     // !!!!!
-    public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups, String subgrups){
-        ArrayList<String> c = new ArrayList<>();
-        while (correq != null){
-            int iend = correq.indexOf(" ");
-            String subString;
-            if (iend != -1) {
-                subString= correq.substring(0 , iend);
-                c.add(subString);
-                correq = correq.substring(iend+1, correq.length());
-            }
-            else {
-                subString = correq.substring(0, correq.length());
-                c.add(subString);
-                correq = null;
-            }
-        }
-        Assignatura a = new Assignatura(codi, nom, Double.parseDouble(credits), Integer.parseInt(nivell), c, Boolean.parseBoolean(laboratori));  
-        a.setNumGrups(Integer.parseInt(grups));
-        a.setNumSubGrups(Integer.parseInt(subgrups));
+    public void crearAssig(String line) throws MyException {
+        Assignatura assignatura = Parser.assignatura(line);
+        this.plansDeEstudis.getPlaEstudis(line.split(", ")[1]).afegirAssignaturaAlPlaEstudis(assignatura);
     }
 
     public void modificarAula(String codi, String nom, String capacitat, String laboratori) {
@@ -448,13 +432,7 @@ public class ControladorDomini implements Cloneable
     }
     
     public void eliminarAssig(String codi) {
-        int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
-        for (int i = 0; i < mida; ++i){
-            if (this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi().equals(codi)){
-                System.out.println("Vaig a eliminar assignatura: " + this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi());
-                this.plansDeEstudis.getPlaEstudis(0).getAssignatures().eliminarAssignatura(i);
-            }
-        }
+        this.plansDeEstudis.getPlaEstudis(0).getAssignatures().eliminarAssignatura(codi);
     }
 
     public void crearAula(String nom, String capacitat, String laboratori) throws MyException{
