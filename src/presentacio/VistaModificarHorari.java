@@ -235,7 +235,12 @@ public class VistaModificarHorari extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(dA != -1 && hA != -1 && aA != -1 && dB != -1 && hB != -1 && aB != -1){
-            if(this.CtrlPresentacio.swapHorari(dA, hA, aA, dB, hB, aB)) MyDialog.throwMessage("Horari modificat amb èxit");
+            if(this.CtrlPresentacio.swapHorari(dA, hA, aA, dB, hB, aB)) {
+                MyDialog.throwMessage("Horari modificat amb èxit");
+                this.jButton1ActionPerformed(evt);
+                this.jButton2ActionPerformed(evt);
+                
+            }
             else MyDialog.throwError("No s'ha pogut modificar l'horari");
             
         } else {
