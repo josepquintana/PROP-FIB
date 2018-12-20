@@ -3,6 +3,7 @@ package presentacio;
 import dades.ControladorDades;
 import domini.ControladorDomini;
 import domini.MyException;
+import java.io.File;
 //import dades.ControladorDades;
 import java.io.IOException;
 import java.text.ParseException;
@@ -14,7 +15,6 @@ import java.util.logging.Logger;
 
 public class ControladorPresentacio {
   private ControladorDomini ctrlDom;
-  private ControladorDades ctrlDades;
   private VistaPresentacio vistaPresentacio;
   private VistaPrincipal vistaPrincipal;
   private VistaGestioCD vistaGestioCD;
@@ -38,7 +38,7 @@ public class ControladorPresentacio {
   public ControladorPresentacio() {
       try {
           ctrlDom = new ControladorDomini();
-          this.loadDataDomini();
+          //this.loadDataDomini();
       } catch (IOException e) {
           MyDialog.throwError("No s'ha pogut crear els fitxers de dades necessaris.");
       }
@@ -455,5 +455,61 @@ public class ControladorPresentacio {
         MyDialog.throwError("Error al guardar dades.");
       }
   }
+  
+    public void importarAssignatures(File file){
+        ArrayList<String> assignatures = new ArrayList();
+        try {
+           assignatures = ImportarFitxers.importAssignatures(file);
+           this.ctrlDom.importDataAssignatures(assignatures);
+        } catch (IOException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MyException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void importarAules(File file){
+        ArrayList<String> aules = new ArrayList();
+        try {
+           aules = ImportarFitxers.importAules(file);
+           this.ctrlDom.importDataAules(aules);
+        } catch (IOException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MyException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void importarPlansDeEstudi(File file){
+        ArrayList<String> plans = new ArrayList();
+        try {
+           plans = ImportarFitxers.importPlansDeEstudi(file);
+           this.ctrlDom.importDataPlansDeEstudis(plans);
+        } catch (IOException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MyException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void importarCentreDocent(File file){
+        String centre = "";
+        try {
+           centre = ImportarFitxers.importCentreDocent(file);
+           this.ctrlDom.importDataCentreDocent(centre);
+        } catch (IOException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MyException ex) {
+            //Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void importarTot(File file){
+        this.importarAssignatures(file);
+        this.importarAules(file);
+        this.importarCentreDocent(file);
+        this.importarPlansDeEstudi(file);
+    }
   
 }

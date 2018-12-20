@@ -614,6 +614,31 @@ public class ControladorDomini implements Cloneable
     public String getTipusTitulacio(){
         return this.plansDeEstudis.getPlaEstudis(0).getTitulacio().getTipusTitulacio();
     }
+    
+    
+    public void importDataAssignatures(ArrayList<String> assignatures) throws IOException, MyException {
+        for (String str : assignatures) {
+            String nomPlaEstudis = str.split(", ")[1];
+            Assignatura assignatura = Parser.assignatura(str);
+            this.plansDeEstudis.getPlaEstudis(nomPlaEstudis).afegirAssignaturaAlPlaEstudis(assignatura);
+        }
+    }
+    
+    public void importDataAules(ArrayList<String> aules) throws IOException, MyException {
+        for (String str : aules) {
+             Aula aula = Parser.aula(str);
+             this.aules.afegirAula(aula);
+        }
+    }
+    public void importDataPlansDeEstudis(ArrayList<String> plansDeEstudis) throws IOException, MyException {
+        for (String str : plansDeEstudis) {
+            PlaEstudis plaEstudis = Parser.plaEstudis(str, this.jornadaLectiva);
+            this.plansDeEstudis.afegirPlaEstudis(plaEstudis);
+        }
+    }
+    public void importDataCentreDocent(String centreDocent) throws IOException, MyException {
+        Parser.centreDocent(centreDocent, this);
+    }
 
 }
 

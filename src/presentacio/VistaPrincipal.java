@@ -6,6 +6,7 @@
 package presentacio;
 
 import domini.MyException;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -198,7 +199,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // FALTA EL CODI PER IMPORTAR TOT EL CENTRE DOCENT
+        File file = FileChooser.carregaFitxer();
+        if(file != null) this.CtrlPresentacio.importarTot(file);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
