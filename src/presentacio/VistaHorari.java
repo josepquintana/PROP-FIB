@@ -107,10 +107,13 @@ public class VistaHorari extends javax.swing.JFrame {
         });
 
         jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(222, 222, 222));
 
         jTextField2.setEditable(false);
+        jTextField2.setBackground(new java.awt.Color(222, 222, 222));
 
         jTextField5.setEditable(false);
+        jTextField5.setBackground(new java.awt.Color(222, 222, 222));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
