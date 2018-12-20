@@ -68,7 +68,7 @@ public class PlaEstudis implements Cloneable
         return this.assignatures.existeixAssignatura(a);
     }
 
-    public boolean afegirAssignaturaAlPlaEstudis(Assignatura a) {
+    public boolean afegirAssignaturaAlPlaEstudis(Assignatura a) throws MyException {
         boolean ret = this.assignatures.afegirAssignatura(a);
         if(ret) this.credits += a.getCredits();
         return ret;

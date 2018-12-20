@@ -321,6 +321,7 @@ public class VistaCrearAssig extends javax.swing.JFrame {
         jTextField8.setText("");
         jTextField9.setText("");
         jTextField10.setText("");
+        jTextField11.setText("");
         jCheckBox1.setSelected(false);
         CtrlPresentacio.refrescarAssig();
 

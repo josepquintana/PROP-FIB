@@ -50,18 +50,19 @@ public class Assignatures
         return false;
     }
 
-    public boolean afegirAssignatura(Assignatura a) {
+    public boolean afegirAssignatura(Assignatura a) throws MyException{
         if(existeixAssignatura(a)) {
-            System.out.println(">>> afegirAssignatura(): L'assignatura " + a.getCodi() + " ja existeix al sistema.");
-            return false;
+            throw new MyException("L'assignatura " + a.getCodi() + " ja existeix al sistema.");
         }
-        boolean ret = this.assignatures.add(a);
-        return ret;
+        else {
+            boolean ret = this.assignatures.add(a);
+            return ret;
+        }
     }
 
     public boolean eliminarAssignatura(Assignatura a) {
         boolean ret = this.assignatures.remove(a);
-        if(!ret) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
+//        if(!ret) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
         return ret;
     }
 
