@@ -313,6 +313,7 @@ public class VistaCrearAssig extends javax.swing.JFrame {
         }
 
         CtrlPresentacio.crearAssig(line);
+        this.CtrlPresentacio.storeAssignatures();
 
         jTextField4.setText("");
         jTextField5.setText("");

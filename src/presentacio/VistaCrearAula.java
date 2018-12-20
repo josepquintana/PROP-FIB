@@ -166,6 +166,7 @@ public class VistaCrearAula extends javax.swing.JFrame {
         String laboratori = lab.toString();
         try {
             CtrlPresentacio.crearAula(nom, capacitat, laboratori);
+            this.CtrlPresentacio.storeAules();
         } catch (MyException ex) {
             Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
         }
