@@ -65,13 +65,6 @@ public class Assignatures
         return ret;
     }
 
-    ////// mirar si peta remove()
-    public boolean eliminarAssignatura(int i) {
-        this.assignatures.remove(i);
-        //if(a == null) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
-        return true;
-    }
-    
     public boolean eliminarAssignatura(String codi) {
         boolean removed = false;
         for(int i = 0; i < assignatures.size(); ++i){
