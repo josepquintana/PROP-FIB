@@ -165,6 +165,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel1.setText("Selecciona el codi d'alguna de les assignatures:");
 
+        jTextArea5.setEditable(false);
         jTextArea5.setColumns(20);
         jTextArea5.setRows(5);
         jScrollPane6.setViewportView(jTextArea5);
@@ -182,6 +183,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel8.setText("Nivell");
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
@@ -195,6 +197,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea6.setEditable(false);
         jTextArea6.setColumns(20);
         jTextArea6.setRows(5);
         jScrollPane7.setViewportView(jTextArea6);
@@ -231,6 +234,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane4.setViewportView(jTextArea3);
@@ -250,6 +254,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel12.setText("Nou Nivell");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(1);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -283,6 +288,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jScrollPane5.setViewportView(jTextArea4);
@@ -294,6 +300,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea7.setEditable(false);
         jTextArea7.setColumns(20);
         jTextArea7.setRows(5);
         jScrollPane8.setViewportView(jTextArea7);
@@ -310,6 +317,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel15.setText("Nou Subgrups");
 
+        jTextArea8.setEditable(false);
         jTextArea8.setColumns(20);
         jTextArea8.setRows(5);
         jScrollPane9.setViewportView(jTextArea8);
@@ -349,33 +357,24 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(13, 13, 13))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap(243, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(285, 285, 285)
-                                .addComponent(jLabel2)
-                                .addGap(28, 93, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel10)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel4)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel9)
-                                                .addComponent(jLabel14))
-                                            .addComponent(jLabel16))
-                                        .addGap(41, 41, 41))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(63, 63, 63)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel8))
+                                .addGap(14, 14, 14))
+                            .addComponent(jLabel16))
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
-                                .addGap(87, 87, 87)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,32 +390,25 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
                                         .addGap(254, 254, 254)
                                         .addComponent(jTextField9))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLabel7)
-                                                        .addComponent(jLabel6))
-                                                    .addComponent(jLabel11)
-                                                    .addComponent(jLabel15))
-                                                .addGap(78, 78, 78)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jTextField7)
-                                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel17)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel17)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel11))
+                                        .addGap(78, 78, 78)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTextField7)
+                                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                                            .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
@@ -425,6 +417,9 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -457,52 +452,48 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel2)
-                                .addGap(65, 65, 65)
+                                .addGap(64, 64, 64)
                                 .addComponent(jLabel3)
-                                .addGap(66, 66, 66)
+                                .addGap(67, 67, 67)
                                 .addComponent(jLabel4)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addComponent(jLabel9))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(7, 7, 7)
-                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(7, 7, 7)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15))
-                                .addGap(28, 28, 28)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12))
-                                .addGap(59, 59, 59)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13))
-                                .addGap(38, 38, 38))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14)
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel8)
-                        .addGap(52, 52, 52))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel15))
+                                        .addGap(28, 28, 28))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(41, 41, 41)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(15, 15, 15)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel12))
+                                    .addGap(59, 59, 59)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel13))
+                                    .addGap(38, 38, 38))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabel14)
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel8)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,12 +503,13 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
                                 .addComponent(jLabel17)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel10)
-                        .addGap(65, 65, 65)
+                        .addGap(66, 66, 66)
                         .addComponent(jLabel16)
-                        .addGap(62, 62, 62)))
+                        .addGap(46, 46, 46)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -570,6 +562,15 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jTextArea6.setText(lab);
         jTextArea7.setText(subgrups);
         jTextArea8.setText(correq);
+        jTextField1.setText(codi);
+        jTextField4.setText(nom);
+        jTextField5.setText(credits);
+        jTextField7.setText(grups);
+        jTextField9.setText(subgrups);
+        jTextField6.setText(nivell);
+        jTextField8.setText(lab);
+        jTextField10.setText(correq);
+
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
