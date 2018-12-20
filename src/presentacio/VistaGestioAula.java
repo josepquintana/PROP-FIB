@@ -6,6 +6,8 @@
 
 package presentacio;
 
+import java.io.File;
+
 /**
  *
  * @author Usuari
@@ -122,8 +124,9 @@ public class VistaGestioAula extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // FALTA POSAR EL CODI PER IMPORTAR UNA AULA
-    }//GEN-LAST:event_jButton3ActionPerformed
+        File file = FileChooser.carregaFitxer();
+        if(file != null) this.CtrlPresentacio.importarAules(file);
+        else MyDialog.throwError("El fixter es erroni.");    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         CtrlPresentacio.sincronitzacioGestioAula_a_ConsultarAula();

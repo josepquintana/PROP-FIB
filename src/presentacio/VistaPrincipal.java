@@ -111,11 +111,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButton6.setText("Importar Centre");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        jButton6.addActionListener(evt -> action_ImportCentreDocent(evt));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
@@ -185,12 +181,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         if  (!generat) {
             jLabel1.setVisible(true);
             //llençar missatge no solució
-        
         }
         else {
             jLabel1.setVisible(false);
             MyDialog.throwMessage("Horari generat");
-                    }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -198,10 +193,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         CtrlPresentacio.sincronitzacioVistaPrincipal_a_GestioCD();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void action_ImportCentreDocent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_action_ImportCentreDocent
         File file = FileChooser.carregaFitxer();
         if(file != null) this.CtrlPresentacio.importarTot(file);
-    }//GEN-LAST:event_jButton6ActionPerformed
+        else MyDialog.throwError("El fixter es erroni.");
+    }//GEN-LAST:event_action_ImportCentreDocent
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         CtrlPresentacio.sincronitzacioVistaPrincipal_a_VistaHorari();
@@ -213,8 +209,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
 
     public static void main(String args[]) {
-
-
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -222,22 +216,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | javax.swing.UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException ex) {
             java.util.logging.Logger.getLogger(VistaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaPrincipal().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new VistaPrincipal().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

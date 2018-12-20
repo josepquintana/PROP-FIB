@@ -17,7 +17,8 @@ public class maindomain
     public static void main(String[] args) throws Exception
     {
         printHello();
-//        ControladorDomini controladorDomini = new ControladorDomini();
+
+        ControladorDomini controladorDomini = new ControladorDomini();
 
 //        controladorDomini.loadData();
 //

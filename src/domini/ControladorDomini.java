@@ -492,55 +492,60 @@ public class ControladorDomini implements Cloneable
         return noms;
     }
     
-    public String[] getCodiAssigs() {
-        int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
-        String[] noms;
-        noms = new String[mida];
-
-        for (int i = 0; i < mida; ++i){
-            noms[i] = (this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi());
+    public String[] getCodiAssigs(int numPla) {
+        if (this.existeixPla(numPla)) {
+            int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
+            String[] noms = new String[mida];
+            for (int i = 0; i < mida; ++i) {
+                noms[i] = (this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi());
+            }
+            return noms;
         }
-        return noms;
+        else return null;
     }
     
     public String getNomAssig(String codi){
-        return this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNom();
+        if (existeixPla(0)) return this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNom();
+        return "";
     }
 
     public String getCredits(String codi){
-        Double s = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getCredits();
-        return s.toString();
+        if (existeixPla(0)) return String.valueOf(this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getCredits());
+        return "";
     }
 
     public String getGrups(String codi){
-        int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumGrupsGenerals();
-        return String.valueOf(n);
+        if (existeixPla(0)) return String.valueOf(this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumGrupsGenerals());
+        return "";
     }
 
     public String getSubgrups(String codi){
-        int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumSubGrupsXGrup();
-        return String.valueOf(n);
+        if (existeixPla(0)) return String.valueOf(this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumSubGrupsXGrup());
+        return "";
     }
 
     public String getNivell(String codi){
-        int n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNivell();
-        return String.valueOf(n);
+        if (existeixPla(0)) return String.valueOf(this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNivell());
+        return "";
     }
 
     public String getALab(String codi){
-        Boolean n = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).teLabAmbPCs();
-        return String.valueOf(n);
+        if (existeixPla(0)) return String.valueOf(this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).teLabAmbPCs());
+        return "";
     }
 
     public String getCorreq(String codi){
-        ArrayList<String> s = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getCorrequisits();
-        String s2 = "";
-        for (int i = 0; i < s.size(); ++i){
-            String s3 = s.get(i);
-            s2 = s2.concat(s3);
-            if (i != s.size() - 1)s2 = s2 + " ";
+        if (existeixPla(0)) {
+            ArrayList<String> s = this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getCorrequisits();
+            String s2 = "";
+            for (int i = 0; i < s.size(); ++i) {
+                String s3 = s.get(i);
+                s2 = s2.concat(s3);
+                if (i != s.size() - 1) s2 = s2 + " ";
+            }
+            return s2;
         }
-        return s2;
+        return "";
     }
 
     public String getHoraIni(){
@@ -591,6 +596,11 @@ public class ControladorDomini implements Cloneable
         }
     }
 
+    public boolean existeixPla(int numPla) {
+        if (numPla >= this.plansDeEstudis.getPlansDeEstudis().size()) return false;
+        return true;
+    }
+
     public void afegirPla(String nom, String titulacio, String tipus){
         Titulacio t = new Titulacio(titulacio, tipus);
         PlaEstudis pe = new PlaEstudis(nom, this.jornadaLectiva, t);
@@ -614,9 +624,8 @@ public class ControladorDomini implements Cloneable
     public String getTipusTitulacio(){
         return this.plansDeEstudis.getPlaEstudis(0).getTitulacio().getTipusTitulacio();
     }
-    
-    
-    public void importDataAssignatures(ArrayList<String> assignatures) throws IOException, MyException {
+
+    public void importDataAssignatures(ArrayList<String> assignatures) throws MyException {
         for (String str : assignatures) {
             String nomPlaEstudis = str.split(", ")[1];
             Assignatura assignatura = Parser.assignatura(str);
@@ -624,19 +633,21 @@ public class ControladorDomini implements Cloneable
         }
     }
     
-    public void importDataAules(ArrayList<String> aules) throws IOException, MyException {
+    public void importDataAules(ArrayList<String> aules) throws MyException {
         for (String str : aules) {
              Aula aula = Parser.aula(str);
              this.aules.afegirAula(aula);
         }
     }
-    public void importDataPlansDeEstudis(ArrayList<String> plansDeEstudis) throws IOException, MyException {
+
+    public void importDataPlansDeEstudis(ArrayList<String> plansDeEstudis) throws MyException {
         for (String str : plansDeEstudis) {
             PlaEstudis plaEstudis = Parser.plaEstudis(str, this.jornadaLectiva);
             this.plansDeEstudis.afegirPlaEstudis(plaEstudis);
         }
     }
-    public void importDataCentreDocent(String centreDocent) throws IOException, MyException {
+
+    public void importDataCentreDocent(String centreDocent) {
         Parser.centreDocent(centreDocent, this);
     }
 
