@@ -117,11 +117,8 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = CtrlPresentacio.getNomAules();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        this.carregarLlistaAules();
+
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -314,6 +311,23 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private void carregarLlistaAules() {
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = CtrlPresentacio.getNomAules();
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+
+        jTextArea1.setText("");
+        jTextArea2.setText("");
+        jTextArea3.setText("");
+        jTextField1.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CtrlPresentacio.sincronitzacioConsultarAula_a_GestioAula();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -342,9 +356,7 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         } catch (MyException ex) {
             Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
         }
-        jTextField4.setText("");
-        jTextField1.setText("");
-        jTextField5.setText("");
+        this.carregarLlistaAules();
               
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -368,6 +380,7 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         } catch (MyException ex) {
             Logger.getLogger(VistaConsultarAula.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.carregarLlistaAules();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

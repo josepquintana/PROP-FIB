@@ -66,6 +66,13 @@ public class Aules
         return ret;
     }
 
+    public boolean eliminarAula(String codi) {
+        for (int i = 0; i < this.aules.size(); i++) {
+            if (this.aules.get(i).getCodi().equalsIgnoreCase(codi)) { this.aules.remove(i); return true; }
+        }
+        return false;
+    }
+
     public Aula eliminarAula(int i) throws MyException {
         // This class is never used!
         Aula a = this.aules.remove(i);

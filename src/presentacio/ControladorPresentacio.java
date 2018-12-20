@@ -26,7 +26,7 @@ public class ControladorPresentacio
     private VistaCrearAssig vistaCrearAssig;
     private VistaModificarHorari vistaModificarHorari;
     private VistaConsultarAssig vistaConsultarAssig;
-
+    private String[][] horari;
 
     //////////////////////// Constructor y metodos de inicializacion
 
@@ -340,7 +340,9 @@ public class ControladorPresentacio
 
     public boolean generarHorari() {
       try {
-          return ctrlDom.generarHorari();
+          boolean a = ctrlDom.generarHorari();
+          vistaHorari.carregarLlistaHores();
+          return a;
       } catch (CloneNotSupportedException ex) {
           Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
       }
@@ -372,14 +374,15 @@ public class ControladorPresentacio
         return this.ctrlDom.getHoraIniInteger();
     }
 
-    public String[][] getHorari() throws MyException {
-        String[][] horari = new String[0][0];
+    public String[][] getHorari() {
         try {
             horari = ctrlDom.getHorari(0);
         } catch (CloneNotSupportedException ex) {
             Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MyException e) {
+            MyDialog.throwError(e.getMessage());
         }
-        return  horari;
+        return horari;
     }
 
     public int getNumPlans(){
