@@ -5,7 +5,7 @@ public class Main
     public static void main(String[] args)
     {
         javax.swing.SwingUtilities.invokeLater ( () -> {
-            ControladorPresentacio ctrlPresentacion = null;
+            ControladorPresentacio ctrlPresentacion;
             ctrlPresentacion = new ControladorPresentacio();
             ctrlPresentacion.inicialitzarPresentacio();
         } );
