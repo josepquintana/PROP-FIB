@@ -165,6 +165,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel1.setText("Selecciona el codi d'alguna de les assignatures:");
 
+        jTextArea5.setEditable(false);
         jTextArea5.setColumns(20);
         jTextArea5.setRows(5);
         jScrollPane6.setViewportView(jTextArea5);
@@ -185,6 +186,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel8.setText("Nivell");
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
@@ -198,6 +200,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea6.setEditable(false);
         jTextArea6.setColumns(20);
         jTextArea6.setRows(5);
         jScrollPane7.setViewportView(jTextArea6);
@@ -234,6 +237,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane4.setViewportView(jTextArea3);
@@ -253,6 +257,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel12.setText("Nou Nivell");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(1);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -286,6 +291,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jScrollPane5.setViewportView(jTextArea4);
@@ -297,6 +303,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
             }
         });
 
+        jTextArea7.setEditable(false);
         jTextArea7.setColumns(20);
         jTextArea7.setRows(5);
         jScrollPane8.setViewportView(jTextArea7);
@@ -313,6 +320,7 @@ public class VistaConsultarAssig extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel15.setText("Nou Subgrups");
 
+        jTextArea8.setEditable(false);
         jTextArea8.setColumns(20);
         jTextArea8.setRows(5);
         jScrollPane9.setViewportView(jTextArea8);

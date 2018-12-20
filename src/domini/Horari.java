@@ -59,7 +59,7 @@ public class Horari implements Cloneable
     
     public boolean swapAssignacions(int diaA, int horaA,int aulaA, int diaB, int horaB, int aulaB){
         Assignacio iniA = horari[diaA][horaA][aulaA];
-        horari[diaA][horaA][aulaA] = null;
+
         boolean ret = false;
         String sA = iniA.getCodiAssig();
         Assignatura assigA = assignatures.getAssignatura(sA);
@@ -67,29 +67,45 @@ public class Horari implements Cloneable
         int aA = assignatures.getIndexAssignatura(iniA.getCodiAssig());
         int horesDiaA = (assignatures.getAssignatura(aA).getNumTotalSubgrups()*assignatures.getAssignatura(aA).getSessionsLab()) + (assignatures.getAssignatura(aA).getNumGrupsGenerals()*assignatures.getAssignatura(aA).getSessionsTeoria());
         horesDiaA /= this.dies;
+        if(diaA == diaB && horaA == horaB && aulaA == aulaB) return false;
         if(horari[diaB][horaB][aulaB] != null){
             Assignacio iniB = horari[diaB][horaB][aulaB];
             horari[diaB][horaB][aulaB] = null;
+            horari[diaA][horaA][aulaA] = null;
             String sB = iniB.getCodiAssig();
             Assignatura assigB = assignatures.getAssignatura(sB);
             int gB = assigB.getIndexGrup(iniB.getNumGrup());
             int aB = assignatures.getIndexAssignatura(iniB.getCodiAssig());
-
+            
             int horesDiaB =(assignatures.getAssignatura(aB).getNumTotalSubgrups()*assignatures.getAssignatura(aB).getSessionsLab()) + (assignatures.getAssignatura(aB).getNumGrupsGenerals()*assignatures.getAssignatura(aB).getSessionsTeoria());
             horesDiaB/=this.dies; 
-            if(Restriccions.comprovar(diaA, horaA, aulaA, this.dies, this.hores, this.n_aules, horesDiaA,this.assignatures, this.aules.getAula(aulaB),gB,aB,this.horari) && Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaB, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
-                horari[diaB][horaB][aulaB] = iniA;
-                horari[diaA][horaA][aulaA] = iniB;
+            boolean a = Restriccions.comprovar(diaA, horaA, aulaA, this.dies, this.hores, this.n_aules, horesDiaA,this.assignatures, this.aules.getAula(aulaB),gA,aA,this.horari);
+            boolean b = Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaB, this.assignatures, this.aules.getAula(aulaA),gB,aB,this.horari);
+            if(a && b){
+                int grupA = this.assignatures.getAssignatura(sA).getGrup(gA).getNumGrup();
+                String saulaA = aules.getAula(aulaB).getCodi();
+                int horaIniA = this.hIni + horaB;
+                horari[diaB][horaB][aulaB] = new Assignacio(sA, grupA, saulaA, horaIniA, 1);
+
+                int grupB = this.assignatures.getAssignatura(sB).getGrup(gB).getNumGrup();
+                String saulaB = aules.getAula(aulaA).getCodi();
+                int horaIniB = this.hIni + horaA;
+                horari[diaA][horaA][aulaA] = new Assignacio(sB, grupB, saulaB, horaIniB, 1);
                 return true;
-            
             } else{
+                
                 horari[diaA][horaA][aulaA] = iniA;
                 horari[diaB][horaB][aulaB] = iniB;
                 return false;
             }
         }else{
+            System.out.println("Assig A: " + diaA + " " + horaA + " " + aulaA);
             if(Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaA, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
-                horari[diaB][horaB][aulaB] = iniA;
+                horari[diaA][horaA][aulaA] = null;
+                int grup = this.assignatures.getAssignatura(sA).getGrup(gA).getNumGrup();
+                String aula = aules.getAula(aulaB).getCodi();
+                int horaIni = this.hIni + horaB;
+                horari[diaB][horaB][aulaB] = new Assignacio(sA, grup, aula, horaIni, 1);
                 return true;
              }
         }
