@@ -167,7 +167,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean generat = false;
         generat = CtrlPresentacio.generarHorari();
-
+        CtrlPresentacio.getHorari();
         if  (!generat) {
             MyDialog.throwMessage("No has introduit dades suficients per generar un horari");
         }

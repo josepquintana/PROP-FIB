@@ -261,9 +261,6 @@ public class VistaModificarHorari extends javax.swing.JFrame {
                 } );
             }
         }
-        catch (MyException e) {
-            MyDialog.throwError("No hi ha cap horari generat.");
-        }
         catch (ArrayIndexOutOfBoundsException  exception) { /* do nothing */ }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -282,9 +279,6 @@ public class VistaModificarHorari extends javax.swing.JFrame {
                     public String getElementAt(int i) { return strings[i]; }
                 } );
             }
-        }
-        catch (MyException e) {
-            MyDialog.throwError("No hi ha cap horari generat.");
         }
         catch (ArrayIndexOutOfBoundsException  exception) { /* do nothing */ }
     }//GEN-LAST:event_jButton2ActionPerformed
