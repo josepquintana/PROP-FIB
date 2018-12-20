@@ -9,14 +9,14 @@
 
 ## TO DO
 - [x] Comprovació de totes les restriccions
-- [ ] Falta poder generar horari de 2 plans estudis usant les mateixes aules!
+- [ ] \(opcional) Falta poder generar horari de 2 plans estudis usant les mateixes aules!
 - [x] BT with SubGrup. Sino es pot ferho amb {10, 11, 12, 20, 21, 22}
 - [ ] Capacitats grups -> millorar divisio
 - [x] Classe Restriccions 
 - [ ] El BT es infinit si no pot assignar un grup (ja que no li pot decrementar les horesTeo/Lab i la crida es infinita)
-- [ ] Importar des de fitxer
+- [x] Importar des de fitxer
 - [x] Guardar tot el que modifiquem
-- [ ] Implementar setNumGrups
+- [x] Implementar setNumGrups (modificar Assig)
 
 - [ ] Manual usuari (afegir modificar horari i crear/modificar assignatura)
 - [ ] Impressió dels tres diagrames UML (domini, vistes + controladors presentació, capa dades + controladors dades) separats
