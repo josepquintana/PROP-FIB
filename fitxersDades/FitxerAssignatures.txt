@@ -25,7 +25,7 @@ Assignatura, EngInf EEES, PAR, Paral·lelisme, 6, 6, 300, 7, 4, true, EDA, SO, A
 Assignatura, EngInf EEES, LP, Llenguatges de Programació, 6, 6, 200, 4, 2, false, EDA
 Assignatura, EngInf EEES, TC, Teoria de la Computació, 6, 6, 200, 4, 2, false, EDA, PROP
 Assignatura, EngInf EEES, AA, Aprenentatge Automàtic, 6, 6, 75, 3, 2, false, PE, PROP
-Assignatura, EngInf EEES, SID, Sistemes Intel·ligents Distribuïts, 6, 6, 75, 3, 2, true,IA
+Assignatura, EngInf EEES, SID, Sistemes Intel·ligents Distribuïts, 6, 6, 75, 3, 2, true, IA
 Assignatura, EngInf EEES, ASO, Administració de Sistemes Operatius, 6, 7, 75, 3, 2, true, SO, XC
 Assignatura, EngInf EEES, SI, Seguretat Informàtica, 6, 7, 75, 3, 2, true, SO, XC
 Assignatura, EngInf EEES, XC2, Xarxes de Computadors II, 6, 7, 40, 2, 2, true, XC
