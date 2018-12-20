@@ -99,7 +99,7 @@ public class Horari implements Cloneable
                 return false;
             }
         }else{
-            System.out.println("Assig A: " + diaA + " " + horaA + " " + aulaA);
+            
             if(Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaA, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
                 horari[diaA][horaA][aulaA] = null;
                 int grup = this.assignatures.getAssignatura(sA).getGrup(gA).getNumGrup();
