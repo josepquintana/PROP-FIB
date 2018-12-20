@@ -36,7 +36,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jButton4.setEnabled(true);
         jButton5.setEnabled(true);
         jButton6.setEnabled(true);
-        jLabel1.setVisible(false);
+
     }
     
     public void desactivar() {
@@ -46,7 +46,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jButton4.setEnabled(false);
         jButton5.setEnabled(false);
         jButton6.setEnabled(false);
-        jLabel1.setVisible(false);
+
     }
     
     /**
@@ -64,7 +64,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,9 +74,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Generar Horari");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,11 +108,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButton6.setText("Importar Centre");
-        jButton6.addActionListener(evt -> action_ImportCentreDocent(evt));
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("NO HAS INTRODUIT DADES SUFICIENTS PER GENERAR UN HORARI!");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,14 +135,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(194, 194, 194))))
+                .addContainerGap(679, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,9 +150,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,11 +169,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         generat = CtrlPresentacio.generarHorari();
 
         if  (!generat) {
-            jLabel1.setVisible(true);
-            //llençar missatge no solució
+            MyDialog.throwMessage("No has introduit dades suficients per generar un horari");
         }
         else {
-            jLabel1.setVisible(false);
             MyDialog.throwMessage("Horari generat");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -193,7 +181,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         CtrlPresentacio.sincronitzacioVistaPrincipal_a_GestioCD();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void action_ImportCentreDocent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_action_ImportCentreDocent
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_action_ImportCentreDocent
         File file = FileChooser.carregaFitxer();
         if(file != null) this.CtrlPresentacio.importarTot(file);
         else MyDialog.throwError("El fixter es erroni.");
@@ -230,6 +218,5 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
