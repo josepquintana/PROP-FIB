@@ -318,7 +318,7 @@ public class VistaConsultarAula extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         String codi = jList1.getModel().getElementAt(jList1.locationToIndex(evt.getPoint()));
-        String capacitat = CtrlPresentacio.getCapacitat(codi);
+        String capacitat = CtrlPresentacio.getCapacitatAula(codi);
         String lab = CtrlPresentacio.getLab(codi);
         jTextArea1.setText(codi);
         jTextArea2.setText(capacitat);

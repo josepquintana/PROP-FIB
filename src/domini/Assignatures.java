@@ -73,13 +73,19 @@ public class Assignatures
     }
     
     public boolean eliminarAssignatura(String codi) {
-        for(int i = 0; i< assignatures.size(); ++i){
+        boolean removed = false;
+        for(int i = 0; i < assignatures.size(); ++i){
             if(assignatures.get(i).getCodi().equals(codi)) {
                 this.assignatures.remove(i);
-                return true;
+                removed = true;
             }
-         }
-        return false;
+        }
+
+        for (int i = 0; i < assignatures.size(); i++) {
+            this.assignatures.get(i).eliminarCorrequisitAssignatura(codi);
+        }
+
+        return removed;
     }
 
     public boolean modificarAssignatura(Assignatura a) {

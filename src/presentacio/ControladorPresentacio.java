@@ -254,9 +254,9 @@ public class ControladorPresentacio
          ctrlDom.modificarAula(codi, nom, capacitat, laboratori);
     }
 
-    public void modificarAssig(String codi1, String codi2, String nom,String credits,String grups,String subgrups,String nivell,String laboratori,String correq){
-        ctrlDom.modificarAssig(codi1, codi2, nom, credits, grups, subgrups, nivell, laboratori, correq);
-    }
+//    public void modificarAssig(String codi1, String codi2, String nom,String credits,String grups,String subgrups,String nivell,String laboratori,String correq){
+//        ctrlDom.modificarAssig(codi1, codi2, nom, credits, grups, subgrups, nivell, laboratori, correq);
+//    }
 
     public void eliminarAula(String codi) throws MyException {
          ctrlDom.eliminarAula(codi);
@@ -290,7 +290,7 @@ public class ControladorPresentacio
       return ctrlDom.getNumAules();
     }
 
-    public String getCapacitat(String codi){
+    public String getCapacitatAula(String codi){
       return ctrlDom.getCapacitatAula(codi);
     }
 
@@ -305,6 +305,8 @@ public class ControladorPresentacio
     public String geCredits(String codi){
       return ctrlDom.getCredits(codi);
     }
+
+    public String getCapacitatAssignatura(String codi) { return ctrlDom.getCapacitatAssig(codi); }
 
     public String getGrups(String codi){
       return ctrlDom.getGrups(codi);
