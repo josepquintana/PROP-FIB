@@ -145,7 +145,7 @@ public class Assignatura implements Cloneable
 
     public boolean eliminarCorrequisitAssignatura(String codi) {
         boolean ret = this.correquisits.remove(codi);
-        if(!ret) System.out.println(">>> eliminarRequisitAssignatura(): L'assignatura " + this.codi + " no té " + codi + " com a requisit");
+//        if(!ret) System.out.println(">>> eliminarRequisitAssignatura(): L'assignatura " + this.codi + " no té " + codi + " com a requisit");
         return ret;
     }
 

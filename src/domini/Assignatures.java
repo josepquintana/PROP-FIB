@@ -50,36 +50,36 @@ public class Assignatures
         return false;
     }
 
-    public boolean afegirAssignatura(Assignatura a) {
+    public boolean afegirAssignatura(Assignatura a) throws MyException{
         if(existeixAssignatura(a)) {
-            System.out.println(">>> afegirAssignatura(): L'assignatura " + a.getCodi() + " ja existeix al sistema.");
-            return false;
+            throw new MyException("L'assignatura " + a.getCodi() + " ja existeix al sistema.");
         }
-        boolean ret = this.assignatures.add(a);
-        return ret;
+        else {
+            boolean ret = this.assignatures.add(a);
+            return ret;
+        }
     }
 
     public boolean eliminarAssignatura(Assignatura a) {
         boolean ret = this.assignatures.remove(a);
-        if(!ret) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
+//        if(!ret) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
         return ret;
     }
 
-    ////// mirar si peta remove()
-    public boolean eliminarAssignatura(int i) {
-        this.assignatures.remove(i);
-        //if(a == null) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
-        return true;
-    }
-    
     public boolean eliminarAssignatura(String codi) {
-        for(int i = 0; i< assignatures.size(); ++i){
+        boolean removed = false;
+        for(int i = 0; i < assignatures.size(); ++i){
             if(assignatures.get(i).getCodi().equals(codi)) {
                 this.assignatures.remove(i);
-                return true;
+                removed = true;
             }
-         }
-        return false;
+        }
+
+        for (int i = 0; i < assignatures.size(); i++) {
+            this.assignatures.get(i).eliminarCorrequisitAssignatura(codi);
+        }
+
+        return removed;
     }
 
     public boolean modificarAssignatura(Assignatura a) {

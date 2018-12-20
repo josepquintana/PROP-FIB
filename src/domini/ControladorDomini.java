@@ -365,62 +365,62 @@ public class ControladorDomini implements Cloneable
             }
         }
     }
-    
-    public void modificarAssig(String codi1, String codi2, String nom,String credits,String grups,String subgrups,String nivell,String laboratori,String correq){
-        int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
-        for (int i = 0; i < mida; ++i){
-            if (this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi().equals(codi1)){
-                if ("".equals(codi2)) {
-                }
-                else {
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCodi(codi2);
-                }
-                if ("".equals(nom)) {
-                } else {
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNom(nom);
-                }
-                if ("".equals(credits)) {
-                } else {
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCredits(Double.parseDouble(credits));
-                }
-                if ("".equals(grups)) {
-                } else {//SET NUMGRUPS = grups
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNumGrups(Integer.parseInt(grups));
-                }
-                if ("".equals(subgrups)) {
-                } else {//SET NUMSUBGRUPS = subgrups
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNumSubGrups(Integer.parseInt(subgrups));
-                }
-                if ("".equals(nivell)) {
-                } else {
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNivell(Integer.parseInt(nivell));
-                }
-                if ("".equals(laboratori)) {
-                } else {
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setLabAmbPCs(Boolean.parseBoolean(laboratori));
-                }
-                if ("".equals(correq)) {
-                } else {
-                    ArrayList<String> c = new ArrayList<>();
-                    while (correq != null){
-                        int iend = correq.indexOf(" ");
-                        String subString;
-                        if (iend != -1) {
-                            subString= correq.substring(0 , iend);
-                            c.add(subString);
-                            correq = correq.substring(iend+1, correq.length());
-                        }
-                        else {
-                            subString = correq.substring(0, correq.length());
-                            c.add(subString);
-                            correq = null;
-                        }
-                    }
-                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCorrequisits(c);
-                }
-            }
-        }
-    }
+
+//    public void modificarAssig(String codi1, String codi2, String nom,String credits,String grups,String subgrups,String nivell,String laboratori,String correq){
+//        int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
+//        for (int i = 0; i < mida; ++i){
+//            if (this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi().equals(codi1)){
+//                if ("".equals(codi2)) {
+//                }
+//                else {
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCodi(codi2);
+//                }
+//                if ("".equals(nom)) {
+//                } else {
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNom(nom);
+//                }
+//                if ("".equals(credits)) {
+//                } else {
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCredits(Double.parseDouble(credits));
+//                }
+//                if ("".equals(grups)) {
+//                } else {//SET NUMGRUPS = grups
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNumGrups(Integer.parseInt(grups));
+//                }
+//                if ("".equals(subgrups)) {
+//                } else {//SET NUMSUBGRUPS = subgrups
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNumSubGrups(Integer.parseInt(subgrups));
+//                }
+//                if ("".equals(nivell)) {
+//                } else {
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNivell(Integer.parseInt(nivell));
+//                }
+//                if ("".equals(laboratori)) {
+//                } else {
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setLabAmbPCs(Boolean.parseBoolean(laboratori));
+//                }
+//                if ("".equals(correq)) {
+//                } else {
+//                    ArrayList<String> c = new ArrayList<>();
+//                    while (correq != null){
+//                        int iend = correq.indexOf(" ");
+//                        String subString;
+//                        if (iend != -1) {
+//                            subString= correq.substring(0 , iend);
+//                            c.add(subString);
+//                            correq = correq.substring(iend+1, correq.length());
+//                        }
+//                        else {
+//                            subString = correq.substring(0, correq.length());
+//                            c.add(subString);
+//                            correq = null;
+//                        }
+//                    }
+//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCorrequisits(c);
+//                }
+//            }
+//        }
+//    }
 
     public void eliminarAula(String codi) throws MyException{
         int mida = this.aules.mida();
@@ -492,6 +492,11 @@ public class ControladorDomini implements Cloneable
         return "";
     }
 
+    public String getCapacitatAssig(String codi) {
+        if (existeixPla(0)) return String.valueOf(this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getCapacitatAssignatura());
+        return "";
+    }
+
     public String getGrups(String codi){
         if (existeixPla(0)) return String.valueOf(this.plansDeEstudis.getPlaEstudis(0).getAssignatura(codi).getNumGrupsGenerals());
         return "";
@@ -519,7 +524,7 @@ public class ControladorDomini implements Cloneable
             for (int i = 0; i < s.size(); ++i) {
                 String s3 = s.get(i);
                 s2 = s2.concat(s3);
-                if (i != s.size() - 1) s2 = s2 + " ";
+                if (i != s.size() - 1) s2 = s2 + ", ";
             }
             return s2;
         }

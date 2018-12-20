@@ -272,16 +272,21 @@ public class VistaInfoPE extends javax.swing.JFrame {
         String titulacio = jTextField3.getText();
         String tipus = jTextField4.getText();
         String pre = jTextArea1.getText();
-        if (pre.equals("")) try {
-            CtrlPresentacio.afegirPla(nom, titulacio, tipus);
-        } catch (ParseException ex) {
-            Logger.getLogger(VistaInfoPE.class.getName()).log(Level.SEVERE, null, ex);
+        if (pre.equals("")) {
+            try {
+                CtrlPresentacio.afegirPla(nom, titulacio, tipus);
+                this.CtrlPresentacio.storePlansDeEstudis();
+            } catch (ParseException ex) {
+                Logger.getLogger(VistaInfoPE.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else try {
-            CtrlPresentacio.modificarPla(nom, titulacio, tipus);
-            this.CtrlPresentacio.storePlansDeEstudis();
-        } catch (ParseException ex) {
-            Logger.getLogger(VistaInfoPE.class.getName()).log(Level.SEVERE, null, ex);
+        else {
+            try {
+                CtrlPresentacio.modificarPla(nom, titulacio, tipus);
+                this.CtrlPresentacio.storePlansDeEstudis();
+            } catch (ParseException ex) {
+                Logger.getLogger(VistaInfoPE.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         jTextField4.setText("");
         jTextField1.setText("");
