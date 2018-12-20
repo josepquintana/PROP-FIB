@@ -262,7 +262,15 @@ public class ControladorPresentacio
          ctrlDom.eliminarAula(codi);
     }
 
-    public void eliminarAssig(String codi) throws MyException {
+    public void crearAssig(String line){
+        try {
+            ctrlDom.crearAssig(line);
+        } catch (MyException e) {
+            MyDialog.throwError(e.getMessage());
+        }
+    }
+
+    public void eliminarAssig(String codi) {
          ctrlDom.eliminarAssig(codi);
     }
 
@@ -280,10 +288,6 @@ public class ControladorPresentacio
 
     public int getNumAules(){
       return ctrlDom.getNumAules();
-    }
-
-    public void crearAssig(String codi, String nom, String laboratori, String credits, String nivell, String correq, String grups, String subgrups){
-        ctrlDom.crearAssig(codi, nom, laboratori, credits, nivell, correq, grups, subgrups);
     }
 
     public String getCapacitat(String codi){
