@@ -18,9 +18,9 @@
 - [x] Guardar tot el que modifiquem
 - [x] Implementar setNumGrups (modificar Assig)
 
-- [ ] Manual usuari (afegir modificar horari i crear/modificar assignatura)
+- [x] Manual usuari (afegir modificar horari i crear/modificar assignatura)
 - [ ] Impressió dels tres diagrames UML (domini, vistes + controladors presentació, capa dades + controladors dades) separats
-- [ ] Breu descripció de l’algorisme i estructura de dades utilitzats (tornar a fer bé, ja que el nostre era cutre).
+- [x] Breu descripció de l’algorisme i estructura de dades utilitzats (tornar a fer bé, ja que el nostre era cutre).
 - [ ] Relació de les classes implementades per cada grup -> explicar explícitament a un document
 - [ ] Codi de totes les classes, executables del programa amb jocs de proves.
 
