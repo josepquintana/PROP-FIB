@@ -13,16 +13,16 @@
 - [x] BT with SubGrup. Sino es pot ferho amb {10, 11, 12, 20, 21, 22}
 - [ ] Capacitats grups -> millorar divisio
 - [x] Classe Restriccions 
-- [ ] El BT es infinit si no pot assignar un grup (ja que no li pot decrementar les horesTeo/Lab i la crida es infinita)
+- [x] El BT es infinit si no pot assignar un grup (ja que no li pot decrementar les horesTeo/Lab i la crida es infinita)
 - [x] Importar des de fitxer
 - [x] Guardar tot el que modifiquem
 - [x] Implementar setNumGrups (modificar Assig)
 
 - [x] Manual usuari (afegir modificar horari i crear/modificar assignatura)
-- [ ] Impressió dels tres diagrames UML (domini, vistes + controladors presentació, capa dades + controladors dades) separats
+- [x] Impressió dels tres diagrames UML (domini, vistes + controladors presentació, capa dades + controladors dades) separats
 - [x] Breu descripció de l’algorisme i estructura de dades utilitzats (tornar a fer bé, ja que el nostre era cutre).
-- [ ] Relació de les classes implementades per cada grup -> explicar explícitament a un document
-- [ ] Codi de totes les classes, executables del programa amb jocs de proves.
+- [x] Relació de les classes implementades per cada grup -> explicar explícitament a un document
+- [x] Codi de totes les classes, executables del programa amb jocs de proves.
 
 ## Jocs de proves: 
 #### per cada d’una de les funcionalitats existents s’ha de provar des de l’aplicatiu fent un joc d’assaig.
