@@ -1,7 +1,6 @@
 package domini;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Aules
 {
@@ -14,15 +13,6 @@ public class Aules
     public Aules(ArrayList<Aula> aules) throws CloneNotSupportedException {
         this.aules = new ArrayList<>(aules);
     }
-
-//    public Aules(ArrayList<Aula> aules) throws CloneNotSupportedException {
-//        this.aules = new ArrayList<>();
-//        Iterator<Aula> it = aules.iterator();
-//        while(it.hasNext()) {
-//            // Add a clone of object i
-//            this.aules.add((Aula) it.next().clone());
-//        }
-//    }
 
     public Aules(Aules aules) {
         this.aules = new ArrayList<>();
@@ -52,17 +42,16 @@ public class Aules
 
     public boolean afegirAula(Aula a) throws MyException{
         if(existeixAula(a)) {
-            System.out.println(">>> afegirAula(): L'aula " + a.getCodi() + " ja existeix al sistema");
-            return false;
+            throw new MyException("L'aula " + a.getCodi() + " ja existeix al sistema");
         }
         boolean ret = this.aules.add(a);
-        if(!ret) throw new MyException(">>> Error: Aula no afegida"); // ¿ pot passar ?
+        if(!ret) throw new MyException("Aula no afegida"); // ¿ pot passar ?
         return ret;
     }
 
-    public boolean eliminarAula(Aula a) {
+    public boolean eliminarAula(Aula a) throws MyException {
         boolean ret = this.aules.remove(a);
-        if(!ret) System.out.println(">>> eliminarAula(): L'aula " + a.getCodi() + " no existeix al sistema");
+        if(!ret) throw new MyException("L'aula " + a.getCodi() + " no existeix al sistema");
         return ret;
     }
 
@@ -74,10 +63,9 @@ public class Aules
     }
 
     public Aula eliminarAula(int i) throws MyException {
-        // This class is never used!
         Aula a = this.aules.remove(i);
         if (a == null) {
-            System.out.println("eliminarAula(): L'aula " + this.aules.get(i).getCodi() + " no existeix al sistema");
+            throw new MyException("L'aula " + this.aules.get(i).getCodi() + " no existeix al sistema");
         }
         return a;
     }
@@ -117,10 +105,10 @@ public class Aules
         return this.aules;
     }
 
-   /* public void setAules(ArrayList<Aula> aules) {
+    public void setAules(ArrayList<Aula> aules) {
         this.aules = new ArrayList<>();
         this.aules = aules;
-    }*/
+    }
 
     public int mida() {
         return this.aules.size();
@@ -128,39 +116,6 @@ public class Aules
 
     public boolean esBuit() {
         return this.aules.isEmpty();
-    }
-
-    public void printAulesLong(int indentation) {
-        if (indentation == 1) System.out.println(" Aules: [Long Format]");
-        if (indentation == 3) System.out.println("   Aules: [Long Format]");
-        for (int i = 0; i < this.aules.size(); i++) {
-            this.aules.get(i).printAulaLong(indentation);
-        }
-    }
-
-    public void printAules(int indentation) {                                       //int indentation: blank sapces depend on calling method
-        if (indentation == 1) System.out.print(" Aules:");
-        if (indentation == 3) System.out.print("   Aules:");
-        for (int i = 0; i < this.aules.size(); i++) {
-            if (i % 11 == 0 && indentation == 1) System.out.print("\n  ");          // for indentation purposes (1)
-            if (i % 11 == 0 && indentation == 3) System.out.print("\n    ");        // for indentation purposes (1)
-            System.out.print(this.aules.get(i).getCodi());                          // print codiAula
-            if (i < this.aules.size() - 1) System.out.print(", ");                  // for presentation purposes
-            if (this.aules.get(i).getCodi().length() == 5) System.out.print(" ");   // for indentation purposes
-        }
-        System.out.print("\n");
-    }
-
-    public void printAulesXS(int indentation) {                                     //int indentation: blank sapces depend on calling method
-        if (indentation == 1) System.out.print(" Aules:");
-        if (indentation == 3) System.out.print("   Aules:");
-        for (int i = 0; i < this.aules.size(); i++) {
-            if (i % 11 == 0) System.out.print("\n    ");                            // for indentation purposes
-            System.out.print(this.aules.get(i).getCodi());                          // print codiAula
-            if (i < this.aules.size() - 1) System.out.print(", ");                  // for presentation purposes
-            if (this.aules.get(i).getCodi().length() == 5) System.out.print(" ");   // for indentation purposes
-        }
-        System.out.print("\n");
     }
 
 }

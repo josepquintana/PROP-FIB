@@ -2,17 +2,16 @@ package domini;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Assignatura implements Cloneable
 {
     private String codi;
     private String nom;
-    private double credits;                     // ha de ser multiple de 1.5 !
+    private double credits;                     // multiple de 1.5
     private int nivell;
-    private ArrayList<String> correquisits;     // Comprobar correquisits bidireccionals
-    private ArrayList<Grup> grups;              // {10, 11, 12, 20, 21, 22, 30, 31, 32}
-    private boolean labAmbPCs;                  // Teoria mai PCs, lab maybe!
+    private ArrayList<String> correquisits;
+    private ArrayList<Grup> grups;              // conte grups i subgrups
+    private boolean labAmbPCs;
     private int horesTeo;
     private int horesLab;
 
@@ -46,7 +45,7 @@ public class Assignatura implements Cloneable
         this.credits = credits;
         this.nivell = nivell;
         this.correquisits = new ArrayList<>(correqs);
-        //this.grups = new ArrayList<>(grups);
+        this.grups = new ArrayList<>(grups);
         this.labAmbPCs = ordinadors;
         setSessionsLab();
         setSessionsTeoria();
@@ -65,7 +64,6 @@ public class Assignatura implements Cloneable
     }
 
     public Assignatura(Assignatura a) {
-        // hauria de clone Assignatura
         this.codi = a.getCodi();
         this.nom = a.getNom();
         this.credits = a.getCredits();
@@ -120,32 +118,20 @@ public class Assignatura implements Cloneable
         return false;
     }
 
-    public boolean afegirCorrequisitAssignatura(Assignatura a) throws MyException{
-        if(existeixCorrequisit(a)) {
-            System.out.println(">>> afegirRequisitAssignatura(): L'assignatura " + this.codi + " ja té " + a.getCodi() + "com a requisit");
-            return false;
-        }
-        boolean ret = this.correquisits.add(a.getCodi());
-        if(!ret) throw new MyException(">>> Error: Assig.Requisit no afegit"); // ¿ pot passar ?
-        return ret;
-    }
-
     public boolean afegirCorrequisitAssignatura(String codi) throws MyException{
-        // NO comprova restriccions de existencia!!!!!
         boolean ret = this.correquisits.add(codi);
-        if(!ret) throw new MyException(">>> Error: Assig.Requisit no afegit"); // ¿ pot passar ?
+        if(!ret) throw new MyException("Requisit " + codi + " no afegit a " + this.codi + ".");
         return ret;
     }
 
-    public boolean eliminarCorrequisitAssignatura(Assignatura a) {
+    public boolean eliminarCorrequisitAssignatura(Assignatura a) throws MyException {
         boolean ret = this.correquisits.remove(a.getCodi());
-        if(!ret) System.out.println(">>> eliminarRequisitAssignatura(): L'assignatura " + this.codi + " no té " + a.getCodi() + " com a requisit");
+        if(!ret) throw new MyException ("L'assignatura " + this.codi + " no té " + a.getCodi() + " com a requisit");
         return ret;
     }
 
     public boolean eliminarCorrequisitAssignatura(String codi) {
         boolean ret = this.correquisits.remove(codi);
-//        if(!ret) System.out.println(">>> eliminarRequisitAssignatura(): L'assignatura " + this.codi + " no té " + codi + " com a requisit");
         return ret;
     }
 
@@ -165,11 +151,9 @@ public class Assignatura implements Cloneable
 
     public boolean afegirGrupAssignatura(Grup g) throws MyException{
         if(existeixGrup(g)) {
-            System.out.println(">>> afegirGrupAssignatura(): L'assignatura " + this.codi + " ja té grup " + g.getNumGrup() + " creat.");
-            return false;
+            throw new MyException("L'assignatura " + this.codi + " ja té grup " + g.getNumGrup() + " creat.");
         }
         boolean ret = this.grups.add(g);
-        if(!ret) throw new MyException(">>> Error: Assig.Grup no afegit"); // ¿ pot passar ?
         return ret;
     }
 
@@ -183,15 +167,12 @@ public class Assignatura implements Cloneable
 
     public boolean eliminarGrupAssignatura(int i) {
         this.grups.remove(i);
-//        Grup g = new Grup(this.grups.remove(i));
-//        if(g == null) System.out.println(">>> eliminarGrupAssignatura(): L'assignatura " + this.codi + " no té grup " + g.getNumGrup() + " creat.");
         return true;
     }
 
     public boolean eliminarGrupAssignaturaAmbNum(int numGrup) {
         for (int i = 0; i < this.grups.size(); i++) {
-            if(this.grups.get(i).getNumGrup() == numGrup) this.grups.remove(i);
-            return true;
+            if(this.grups.get(i).getNumGrup() == numGrup) { this.grups.remove(i); return true; }
         }
         return false;
     }
@@ -248,14 +229,6 @@ public class Assignatura implements Cloneable
 
     public void setGrups(ArrayList<Grup> grups) {
         this.grups = new ArrayList<>(grups);
-    }
-
-    public void setNumGrups(int ngrups) {
-
-    }
-
-    public void setNumSubGrups(int nsubgrups) {
-
     }
 
     public void setLabAmbPCs(Boolean PCs) { this.labAmbPCs = PCs; }
@@ -322,8 +295,6 @@ public class Assignatura implements Cloneable
     public int getSessionsTeoria(){
         return this.horesTeo;
     }
-    
-    
 
     public int getSessionsTotals() { return (this.horesTeo + this.horesLab); }
 
@@ -335,56 +306,7 @@ public class Assignatura implements Cloneable
         return c;
     }
 
-    // print methods a eliminar
-  
-    private void printCorrequisits(){
-        for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.print(this.correquisits.get(i));
-            if (i < this.correquisits.size() - 1) System.out.print(", ");
-        }
-    }
-
-    private void printGrups(){
-        for (int i = 0; i < this.grups.size(); i++) {
-            System.out.print(this.grups.get(i).getNumGrup());
-            if (i < this.grups.size() - 1) System.out.print(", ");
-        }
-    }
-
-    public void printAssignaturaLong() {
-        System.out.println("    Assignatura:");
-        System.out.println("     codi   : " + this.codi);
-        System.out.println("     nom    : " + this.nom);
-        System.out.println("     credits: " + this.credits);
-        System.out.println("     nivell : " + this.nivell);
-        System.out.println("     Correquisits:");
-        for (int i = 0; i < this.correquisits.size(); i++) {
-            System.out.println("      CR" + (i+1) + ": codi: " + this.correquisits.get(i));
-            ///BUSCAR NIVELL DEL CORREQUISIT
-        }
-        System.out.println("     Grups:");
-        for (int i = 0; i < this.grups.size(); i++) {
-            this.grups.get(i).printGrupLong();
-//            System.out.println("      G" + (i+1) + ":  num: " + this.grups.get(i).getNumGrup() + "  \t capacitat: " + this.grups.get(i).getCapacitat());
-        }
-    }
-
-    public void printAssignatura() {
-        System.out.print("    " + this.codi + "   \tlvl: " + this.nivell + "\t\tcred: ");
-        if(this.credits == Math.floor(this.credits)) System.out.print((int)this.credits + " \t");
-        else System.out.print(this.credits + "\t");
-        System.out.print("\tnGrups: " + this.grups.size());
-//        System.out.print("\t  nSG/G: " + this.grups.get(0).getQuantsSubGrups());
-        System.out.print("\t  hTeo: " + this.horesTeo);
-        System.out.print("\t  hsLab: " + this.horesLab);
-        if (this.teLabAmbPCs()) System.out.print("\t LAB: PCs    ");
-        else System.out.print("\t LAB: no_PCs");
-        if (this.teGrups()) { System.out.print("\t\t grups: "); this.printGrups(); }
-        if (this.teCorrequisits()) { System.out.print("\t\t correq: "); this.printCorrequisits(); }
-        System.out.print("\n");
-    }
-
-    int getIndexGrup(int numGrup) {
+    protected int getIndexGrup(int numGrup) {
         for(int i = 0; i< this.grups.size();++i){
             if(grups.get(i).getNumGrup() == numGrup) return i;
         }

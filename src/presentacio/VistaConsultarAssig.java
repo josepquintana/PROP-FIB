@@ -1,6 +1,7 @@
 package presentacio;
 
-public class VistaConsultarAssig extends javax.swing.JFrame {
+public class VistaConsultarAssig extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     /**
      * Creates new form VistaConsultarAssig

@@ -42,7 +42,6 @@ public class Aula implements Cloneable
     }
 
     public void setCodi(String codi) {
-        // check if "codi" is valid
         this.codi = codi;
     }
 
@@ -64,15 +63,4 @@ public class Aula implements Cloneable
 
     public boolean isLab() { return this.PCs; }
 
-    public void printAulaLong(int indentation) {
-        System.out.print("\n");
-        if (indentation == 3) System.out.print("  ");
-        System.out.print("  Aula:\n");
-        if (indentation == 3) System.out.print("  ");
-        System.out.println("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat + ", \tPCs: " + this.PCs);
-    }
-
-    public void printAula() {
-        System.out.println("    Codi: " + this.codi + ", \tcapacitat: " + this.capacitat);
-    }
 }

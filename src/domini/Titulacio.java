@@ -1,17 +1,10 @@
 package domini;
 
-import java.util.Iterator;
-
 public class Titulacio implements Cloneable
 {
 
     private String nom;
     private String tipus;
-
-//    public enum tipusTitulacio {
-//        "GRAU",
-//        "MASTER";
-//    }
 
     public Titulacio() {
         this.nom = new String();
@@ -30,7 +23,7 @@ public class Titulacio implements Cloneable
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        Titulacio t = new Titulacio();
+        Titulacio t;
         try {
             t = (Titulacio) super.clone();
         }
@@ -62,13 +55,4 @@ public class Titulacio implements Cloneable
         return false;
     }
 
-    public void printTitulacioLong() {
-        System.out.println("   Titulacio:");
-        System.out.println("    nomTitulacio: " + this.nom);
-        System.out.println("    tipus       : " + this.tipus);
-    }
-
-    public void printTitulacio() {
-        System.out.println("   Titulacio: " + this.nom + " [" + this.tipus + "]");
-    }
 }

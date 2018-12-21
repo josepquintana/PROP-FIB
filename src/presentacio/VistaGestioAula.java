@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package presentacio;
 
 import java.io.File;
 
-/**
- *
- * @author Usuari
- */
-public class VistaGestioAula extends javax.swing.JFrame {
+public class VistaGestioAula extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     /** Creates new form VistaGestioAula */
     public VistaGestioAula() {

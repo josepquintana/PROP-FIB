@@ -1,12 +1,11 @@
 package presentacio;
 
-import domini.MyException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-public class VistaGestioCalendari extends javax.swing.JFrame {
+public class VistaGestioCalendari extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
 
     public VistaGestioCalendari() {

@@ -1,20 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentacio;
 
-import domini.MyException;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
-/**
- *
- * @author Usuari
- */
-public class VistaHorari extends javax.swing.JFrame {
+public class VistaHorari extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     private String[][] horari;
     /**

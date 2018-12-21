@@ -8,8 +8,8 @@ public class Horari implements Cloneable
     private int hIni;
     private Assignacio[][][] horari;
 
-    private Assignatures assignatures;
-    private Aules aules;
+    private Assignatures assignatures;  // temp
+    private Aules aules;                // temp
 
     public Horari() {
         this.hores = 0;
@@ -98,8 +98,7 @@ public class Horari implements Cloneable
                 horari[diaB][horaB][aulaB] = iniB;
                 return false;
             }
-        }else{
-            
+        } else {
             if(Restriccions.comprovar(diaB, horaB, aulaB, this.dies, this.hores, this.n_aules,horesDiaA, this.assignatures, this.aules.getAula(aulaA),gA,aA,this.horari)){
                 horari[diaA][horaA][aulaA] = null;
                 int grup = this.assignatures.getAssignatura(sA).getGrup(gA).getNumGrup();
@@ -110,15 +109,9 @@ public class Horari implements Cloneable
              }
         }
         return ret;
-       
-        
-    
     }
 
-    public boolean generarHorari(Assignatures assignatures, Aules aules) throws CloneNotSupportedException {
-        // horari esta ben inicialitzat
-        System.out.println(" >> Generating Horari");
-
+    public boolean generarHorari(Assignatures assignatures, Aules aules) throws CloneNotSupportedException, MyException {
         this.assignatures = (Assignatures) assignatures.clone();
         this.aules = (Aules) aules.clone();
 
@@ -127,9 +120,8 @@ public class Horari implements Cloneable
             solucio = backtracking(0,0);
         
         } 
-        if (!solucio) System.out.println("No hi ha solucio");
+        if (!solucio) throw new MyException("No hi ha cap solucio possible.");
         return solucio;
-
     }
 
     private boolean backtracking(int g, int a) {
@@ -138,9 +130,6 @@ public class Horari implements Cloneable
         if(g == assignatures.getAssignatura(a).getGrups().size()) return backtracking(0, a+1);
         int horesDia = (assignatures.getAssignatura(a).getNumTotalSubgrups()*assignatures.getAssignatura(a).getSessionsLab()) + (assignatures.getAssignatura(a).getNumGrupsGenerals()*assignatures.getAssignatura(a).getSessionsTeoria());
         horesDia /= this.dies;
-//        System.out.println("Backtracking...     g = " + g + " \t a = " + a);
-//        System.out.println("assig: " + assignatures.getAssignatura(a).getCodi());
-//        System.out.println("horesNA: " + assignatures.getAssignatura(a).getGrup(g).getHoresNoAssignades());
 
         for (int i = 0; i < this.hores; i++) {
             for (int j = 0; j < this.dies; j++) {

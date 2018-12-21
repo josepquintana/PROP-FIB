@@ -96,9 +96,7 @@ public class Parser
             }
         }
 
-        for (int i = 10; i < fields.length; i++) { // requisits
-//            req = cd.getPlaEstudis(nomPla).getAssignatura(s.next()).getCodi();
-            // TO DO: vigilar que no peti per haver posar una assig no valida!
+        for (int i = 10; i < fields.length; i++) {
             a.afegirCorrequisitAssignatura(fields[i]);
         }
 

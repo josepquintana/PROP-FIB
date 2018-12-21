@@ -16,7 +16,6 @@ public class JornadaLectiva implements Cloneable
     public JornadaLectiva(Time horaIni, Time horaFi) {
         this.horaIni = new Time(horaIni.getTime());
         this.horaFi  = new Time(horaFi.getTime());
-        // missing correct time format check (?)
     }
 
     public JornadaLectiva(JornadaLectiva jL) {
@@ -26,7 +25,7 @@ public class JornadaLectiva implements Cloneable
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        JornadaLectiva jL = new JornadaLectiva();
+        JornadaLectiva jL;
         try {
             jL = (JornadaLectiva) super.clone();
 
@@ -46,16 +45,10 @@ public class JornadaLectiva implements Cloneable
 
     public void setHoraIni(Time horaIni) {
         this.horaIni = new Time(horaIni.getTime());
-//        else {
-//            throw new IllegalArgumentException("Incorrect time format");
-//        }
     }
 
     public void setHoraFi(Time horaFi) {
         this.horaFi = new Time(horaFi.getTime());
-//        else {
-//            throw new IllegalArgumentException("Incorrect time format");
-//        }
     }
 
     public Time getHoraIni() {
@@ -66,12 +59,4 @@ public class JornadaLectiva implements Cloneable
         return this.horaFi;
     }
 
-    public void printJornadaLectivaLong() {
-        System.out.println(" horaIni: " + this.horaIni);
-        System.out.println(" horaFi : " + this.horaFi);
-    }
-
-    public void printJornadaLectiva() {
-        System.out.println("   jornadaLectiva: " + this.horaIni + " - " + this.horaFi);
-    }
 }

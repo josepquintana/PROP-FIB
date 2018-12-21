@@ -8,7 +8,6 @@ public class Restriccions
         if (!GrupsCompatiblesHora(i, j, dies, hores, n_aules, assignatures, g, a, horari)) return false;
         if (!AssignaturesCompatibles(i, j, dies, hores, n_aules, assignatures, g, a, horari)) return false;
         if (!HoresCompatibles(i,hores,n_aules,totals,assignatures, a, horari)) return false;
-//        if (!GrupsCompatiblesDia(i, dies, hores, n_aules, assignatures, g, a, horari)) return false;
         return true;
     }
 
@@ -56,31 +55,7 @@ public class Restriccions
         return true;
     }
 
-//    protected static boolean GrupsCompatiblesDia(int i, int dies, int hores, int n_aules, Assignatures assignatures, int g, int a, Assignacio[][][] horari) {
-//        int num_vegades_grup_same = 0;
-//        int ngrups;
-//        if (!assignatures.getAssignatura(a).getGrup(g).isLab()) ngrups = assignatures.getAssignatura(a).getNumGrupsTeoria();
-//        ngrups = assignatures.getAssignatura(a).getNumGrupsLab();
-//
-//        for (int j = 0; j < hores; j++) {
-//            for (int k = 0; k < n_aules; k++) {
-//                if(horari[i][j][k] != null) {
-//                    if (ngrups <= dies || num_vegades_grup_same >= 1) {
-//                        if (GrupJaAssignatAquestaHora(i, j, k, assignatures.getAssignatura(a), g, horari)) return false;
-//                    }
-//                    else {
-//                        if (GrupJaAssignatAquestaHora(i, j, k, assignatures.getAssignatura(a), g, horari)) ++num_vegades_grup_same;
-//                    }
-//                }
-//            }
-//        }
-//
-//
-//
-//    }
-
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     private static boolean GrupJaAssignatAquestaHora(int i, int j, int k, Assignatura assignatura, int g, Assignacio[][][] horari) {
@@ -179,12 +154,6 @@ public class Restriccions
         return ((aula.isLab() && grup.isAmbPCs()) || (!aula.isLab() && !grup.isAmbPCs()));
     }
 
-    // aux methods
-
-    private static int getNumGrupGeneral(int numGrup) {
-        return (numGrup)-(Math.abs(numGrup) % 10);
-    }
-    
     
     protected static boolean restriccionsGenerals(int dies, int hores, int n_aules, Assignatures assignatures, Aules aules){
         if(!restriccioSlots(dies,  hores, n_aules, assignatures)) return false;
@@ -211,6 +180,13 @@ public class Restriccions
             if(!espai) return false;
         }
         return true;
+    }
+
+    /**
+     * aux methods
+     */
+    private static int getNumGrupGeneral(int numGrup) {
+        return (numGrup)-(Math.abs(numGrup) % 10);
     }
 
 }
