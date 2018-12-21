@@ -501,8 +501,8 @@ public class ControladorPresentacio
     public void importarAssignatures(File file){
         ArrayList<String> assignatures;
         try {
-           assignatures = ImportarFitxers.importAssignatures(file);
-           this.ctrlDom.importDataAssignatures(assignatures);
+            assignatures = ImportarFitxers.importAssignatures(file);
+            this.ctrlDom.importDataAssignatures(assignatures);
         } catch (MyException ex) {
             MyDialog.throwError("Error al parsejar el contingut del fixter importat: " + ex.getMessage());
         } catch (IOException e) {

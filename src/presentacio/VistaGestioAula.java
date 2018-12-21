@@ -116,7 +116,10 @@ public class VistaGestioAula extends javax.swing.JFrame
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         File file = FileChooser.carregaFitxer();
-        if(file != null) this.CtrlPresentacio.importarAules(file);
+        if(file != null) {
+            this.CtrlPresentacio.importarAules(file);
+            this.CtrlPresentacio.storeAules();
+        }
         else MyDialog.throwError("El fixter es erroni.");    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

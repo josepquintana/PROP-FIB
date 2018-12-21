@@ -122,7 +122,10 @@ public class VistaGestioAssig extends javax.swing.JFrame
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         File file = FileChooser.carregaFitxer();
-        if(file != null) this.CtrlPresentacio.importarAssignatures(file);
+        if(file != null) {
+            this.CtrlPresentacio.importarAssignatures(file);
+            this.CtrlPresentacio.storeAssignatures();
+        }
         else MyDialog.throwError("El fixter es erroni.");
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -1,2 +1,2 @@
 del FitxerCentreDocent.txt FitxerPlansDeEstudis.txt FitxerAules.txt FitxerAssignatures.txt
-xcopy .\defaults . /E /y
+xcopy .\"dades per defecte" . /E /y

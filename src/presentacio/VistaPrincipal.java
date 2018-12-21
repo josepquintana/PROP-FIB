@@ -167,7 +167,13 @@ public class VistaPrincipal extends javax.swing.JFrame
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_action_ImportCentreDocent
         File file = FileChooser.carregaFitxer();
-        if(file != null) this.CtrlPresentacio.importarTot(file);
+        if(file != null) {
+            this.CtrlPresentacio.importarTot(file);
+            this.CtrlPresentacio.storeCentreDocent();
+            this.CtrlPresentacio.storeAules();
+            this.CtrlPresentacio.storePlansDeEstudis();
+            this.CtrlPresentacio.storeAssignatures();
+        }
         else MyDialog.throwError("El fixter es erroni.");
     }//GEN-LAST:event_action_ImportCentreDocent
 
