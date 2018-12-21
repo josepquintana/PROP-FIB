@@ -244,8 +244,12 @@ public class ControladorPresentacio
      *  Crides al controlador de domini per obtenir les dades necesaries
      */
 
-    public void crearAula(String nom, String capacitat, String laboratori) throws MyException {
-         ctrlDom.crearAula(nom, capacitat, laboratori);
+    public void crearAula(String nom, String capacitat, String laboratori) {
+        try {
+            ctrlDom.crearAula(nom, capacitat, laboratori);
+        } catch (MyException e) {
+            MyDialog.throwError("Error: " + e.getMessage());
+        }
     }
 
     public void modificarAula(String codi, String nom, String capacitat, String laboratori) throws MyException {
