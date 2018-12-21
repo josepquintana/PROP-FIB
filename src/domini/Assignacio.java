@@ -101,11 +101,6 @@ public class Assignacio implements Cloneable
     public String getAssignacioPrintFormat() {
         if(this.isEmpty()) return "[assignacio buida]";
         String str = "[" + this.codiAula + ": " + this.codiAssig + "-" + this.numGrup + "]";
-        int length = str.length();
-        for (int i = 1; i <= (("[A5S108: PROP-10]").length() - length); i++) {
-            str += " "; // indentation
-        }
-
         return str;
     }
 
