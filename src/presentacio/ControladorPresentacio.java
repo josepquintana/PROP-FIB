@@ -33,7 +33,8 @@ public class ControladorPresentacio
             ctrlDom = new ControladorDomini();
             this.loadDataDomini();
         } catch (IOException e) {
-            MyDialog.throwError("No s'ha pogut crear els fitxers de dades necessaris.");
+            MyDialog.throwError("No s'han pogut generar els fitxers de dades necessaris.\n" +
+                                "El directori \".." + File.separator + "fitxersDades\" no s'ha trobat.");
         }
         vistaPresentacio = new VistaPresentacio(this);
         vistaPrincipal = new VistaPrincipal(this);
