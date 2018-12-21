@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentacio;
 
-import domini.MyException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Usuari
- */
-public class VistaInfoPE extends javax.swing.JFrame {
+public class VistaInfoPE extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     /**
      * Creates new form VistaInfoPE
@@ -291,6 +282,9 @@ public class VistaInfoPE extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField1.setText("");
         jTextField3.setText("");
+        this.jTextArea1.setText(nom);
+        this.jTextArea3.setText(titulacio);
+        this.jTextArea4.setText(tipus);
         CtrlPresentacio.refrescarAules();
     }//GEN-LAST:event_jButton2ActionPerformed
 

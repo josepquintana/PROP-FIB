@@ -3,7 +3,7 @@ package domini;
 public class Assignacio implements Cloneable
 {
     private String codiAssig;
-    private int numGrup;    // o numSubGrup
+    private int numGrup;        // numgrup || numSubGrup
     private String codiAula;
     private int horaIni;
     private int durada;
@@ -42,7 +42,7 @@ public class Assignacio implements Cloneable
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        Assignacio asg = new Assignacio();
+        Assignacio asg;
         try {
             asg = (Assignacio) super.clone();
         }
@@ -101,23 +101,7 @@ public class Assignacio implements Cloneable
     public String getAssignacioPrintFormat() {
         if(this.isEmpty()) return "[assignacio buida]";
         String str = "[" + this.codiAula + ": " + this.codiAssig + "-" + this.numGrup + "]";
-        int length = str.length();
-        for (int i = 1; i <= (("[A5S108: PROP-10]").length() - length); i++) {
-            str += " "; // indentation
-        }
-
         return str;
     }
 
-    public void printAssignacioLong() {
-        System.out.println("      Assignacio: " + this.getAssignacioPrintFormat());
-    }
-
-    public void printAssignacio() {
-        System.out.println(this.getAssignacioPrintFormat());
-    }
-
-    public void printAssignacioXS() {
-        System.out.print("[" + this.codiAssig + "-g" + this.numGrup + "]");
-    }
 }

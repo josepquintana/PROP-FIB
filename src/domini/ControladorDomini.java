@@ -12,14 +12,13 @@ import java.util.Date;
 
 public class ControladorDomini implements Cloneable
 {
-    private ControladorDades controladorDades;
-
     private String nomCentre;
     private PeriodeLectiu periodeLectiu;
     private JornadaLectiva jornadaLectiva;
     private Aules aules;
     private PlansDeEstudis plansDeEstudis;
     private Horari horari;
+    private ControladorDades controladorDades;
 
     public ControladorDomini() throws IOException {
         this.controladorDades   = new ControladorDades();
@@ -73,7 +72,6 @@ public class ControladorDomini implements Cloneable
             cd.setAules((Aules) this.getAules().clone());
             cd.setPlansDeEstudis((PlansDeEstudis) this.getPlansDeEstudis().clone());
             cd.setHorari((Horari) this.getHorari().clone());
-//            cd.setControladorDades((ControladorDades) this.getControladorDades().clone());
         }
         catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
@@ -87,8 +85,8 @@ public class ControladorDomini implements Cloneable
         ArrayList<String> aules = controladorDades.loadAules();
         ArrayList<String> assignatures = controladorDades.loadAssignatures();
 
-        Parser.centreDocent(centreDocent, this);
-
+        if(centreDocent != null) Parser.centreDocent(centreDocent, this);
+        
         for (String str : plansDeEstudis) {
             PlaEstudis plaEstudis = Parser.plaEstudis(str, this.jornadaLectiva);
             this.plansDeEstudis.afegirPlaEstudis(plaEstudis);
@@ -128,11 +126,10 @@ public class ControladorDomini implements Cloneable
          }
     }
 
-    public boolean generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException {
+    public boolean generateHorariPlaEstudis(int numPla) throws CloneNotSupportedException, MyException {
         horari = new Horari(this.getPlaEstudis(numPla).getJornadaLectiva(), this.aules.mida());
         boolean sol = horari.generarHorari(this.plansDeEstudis.getPlaEstudis(numPla).getAssignatures(), this.aules);
         this.guardarHorariAlPlaEstudis(numPla);
-        //this.printHorari(0);
         return sol;
     }
     
@@ -161,11 +158,11 @@ public class ControladorDomini implements Cloneable
         this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
     }
 
-    public boolean afegirPlaEstudis(PlaEstudis pe) {
+    public boolean afegirPlaEstudis(PlaEstudis pe) throws MyException {
         return this.plansDeEstudis.afegirPlaEstudis(pe);
     }
 
-    public boolean eliminarPlaEstudis(PlaEstudis pe) {
+    public boolean eliminarPlaEstudis(PlaEstudis pe) throws MyException {
         return this.plansDeEstudis.eliminarPlaEstudis(pe);
     }
 
@@ -238,11 +235,13 @@ public class ControladorDomini implements Cloneable
 
     /**
      * setter method
+     *
      */
     public Horari getHorari() { return this.horari; }
 
     /**
      * funcio per comunicarse amb la capa de presentacio
+     *
      */
     public String[][] getHorari(int numPla) throws CloneNotSupportedException, MyException {
         this.carregarHorariDePlaEstudis(numPla);
@@ -254,92 +253,16 @@ public class ControladorDomini implements Cloneable
         return controladorDades;
     }
 
-    // Funcions temporals que no PRESENTAREM!!
-
-    public void printCentreDocent() throws MyException {
-        System.out.println("\n> CentreDocent:");
-        System.out.println(" nomCentre: " + this.nomCentre);
-        this.periodeLectiu.printPeriodeLectiu();
-        this.jornadaLectiva.printJornadaLectivaLong();
-        this.aules.printAules(1);
-        this.plansDeEstudis.printPlansDeEstudis();
-        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
-    }
-
-    private String getDia(int i) {
-        if (i == 0) return ("\n\n  >>>>>                                              D   I   L   L   U   N   S                                             <<<<<\n");
-        if (i == 1) return ("\n\n  >>>>>                                              D   I   M   A   R   T   S                                             <<<<<\n");
-        if (i == 2) return ("\n\n  >>>>>                                            D   I   M   E   C   R   E   S                                           <<<<<\n");
-        if (i == 3) return ("\n\n  >>>>>                                                D   I   J   O   U   S                                               <<<<<\n");
-        if (i == 4) return ("\n\n  >>>>>                                          D   I   V   E   N   D   R   E   S                                         <<<<<\n");
-        return "Error";
-    }
-
-    private String getHora(int j) {
-        String str = "  ";
-        if (horari.getHIni() + j  < 10) str += " ";
-        str += (horari.getHIni() + j) + " - ";
-        if (horari.getHIni() + j + 1 < 10) str += " ";
-        str += ((horari.getHIni() + j + 1) + "h :  ");
-        return str;
-    }
-
-    public void printHorari(int numPla) throws CloneNotSupportedException, MyException {
-
-        this.carregarHorariDePlaEstudis(numPla);
-
-        for (int i = 0; i < this.horari.getDies(); i++) {
-            System.out.println(getDia(i));
-            for (int j = 0; j < this.horari.getHores(); j++) {
-                System.out.print(getHora(j));
-                for (int k = 0; k < this.horari.getN_aules(); k++) {
-                    if(null != horari.getAssignacioIJK(i,j,k))  System.out.print(horari.getAssignacioIJK(i,j,k).getAssignacioPrintFormat());
-                    else System.out.print("      ---        ");
-                    System.out.print("\t");
-                }
-                System.out.print("\n");
-            }
-            System.out.print("\n");
-        }
-        System.out.println("\n");
-    }
-
-    public void printHorariAsList(int numPla) throws CloneNotSupportedException {
-
-        this.horari = (Horari) this.plansDeEstudis.getPlaEstudis(numPla).getHorari().clone();
-
-        int used_aules = 0;
-
-        for (int i = 0; i < this.horari.getDies(); i++) {
-            for (int j = 0; j < this.horari.getHores(); j++) {
-                for (int k = 0; k < this.horari.getN_aules(); k++) {
-                    System.out.print("Horari[" + i + "][" + j + "][" + k + "] \t = ");
-                    if(null != horari.getAssignacioIJK(i,j,k)) { horari.getAssignacioIJK(i,j,k).printAssignacio(); used_aules++; }
-                    else System.out.println("[none]");
-                }
-            }
-        }
-        System.out.println("\n\n");
-        printUsedAules(used_aules);
-        System.out.println("\n\n");
-    }
-
-    public void printUsedAules(int ua) {
-
-        System.out.println("Assigned " + ua + "/" + (this.aules.mida()*this.horari.getHores()*5) + " of possible [dia][hora][aula].");
-
-    }
-
-
-    //FUNCIONS PER COMUNICAR-SE AMB PRESENTACIÓ
-
-    public boolean generarHorari() throws CloneNotSupportedException{
+    /**
+     *
+     * FUNCIONS PER COMUNICAR-SE AMB PRESENTACIÓ
+     *
+     */
+    public boolean generarHorari() throws CloneNotSupportedException, MyException {
         boolean generat = this.generateHorariPlaEstudis(0);
-        //es genera l'horari i si s'ha pogut fer es posa el Booleà a true
         return generat;
     }
 
-    // !!!!!
     public void crearAssig(String line) throws MyException {
         Assignatura assignatura = Parser.assignatura(line);
         this.plansDeEstudis.getPlaEstudis(line.split(", ")[1]).afegirAssignaturaAlPlaEstudis(assignatura);
@@ -366,63 +289,7 @@ public class ControladorDomini implements Cloneable
         }
     }
 
-//    public void modificarAssig(String codi1, String codi2, String nom,String credits,String grups,String subgrups,String nivell,String laboratori,String correq){
-//        int mida = this.plansDeEstudis.getPlaEstudis(0).quantesAssignatures();
-//        for (int i = 0; i < mida; ++i){
-//            if (this.plansDeEstudis.getPlaEstudis(0).getAssignatures().getAssignatura(i).getCodi().equals(codi1)){
-//                if ("".equals(codi2)) {
-//                }
-//                else {
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCodi(codi2);
-//                }
-//                if ("".equals(nom)) {
-//                } else {
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNom(nom);
-//                }
-//                if ("".equals(credits)) {
-//                } else {
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCredits(Double.parseDouble(credits));
-//                }
-//                if ("".equals(grups)) {
-//                } else {//SET NUMGRUPS = grups
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNumGrups(Integer.parseInt(grups));
-//                }
-//                if ("".equals(subgrups)) {
-//                } else {//SET NUMSUBGRUPS = subgrups
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNumSubGrups(Integer.parseInt(subgrups));
-//                }
-//                if ("".equals(nivell)) {
-//                } else {
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setNivell(Integer.parseInt(nivell));
-//                }
-//                if ("".equals(laboratori)) {
-//                } else {
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setLabAmbPCs(Boolean.parseBoolean(laboratori));
-//                }
-//                if ("".equals(correq)) {
-//                } else {
-//                    ArrayList<String> c = new ArrayList<>();
-//                    while (correq != null){
-//                        int iend = correq.indexOf(" ");
-//                        String subString;
-//                        if (iend != -1) {
-//                            subString= correq.substring(0 , iend);
-//                            c.add(subString);
-//                            correq = correq.substring(iend+1, correq.length());
-//                        }
-//                        else {
-//                            subString = correq.substring(0, correq.length());
-//                            c.add(subString);
-//                            correq = null;
-//                        }
-//                    }
-//                    this.plansDeEstudis.getPlaEstudis(0).getAssignatura(i).setCorrequisits(c);
-//                }
-//            }
-//        }
-//    }
-
-    public void eliminarAula(String codi) throws MyException {
+    public void eliminarAula(String codi)  {
         this.aules.eliminarAula(codi);
     }
     
@@ -454,7 +321,6 @@ public class ControladorDomini implements Cloneable
     }
 
     public String[] getNomAules(){
-
         int mida = this.aules.mida();
         String[] noms;
         noms = new String[mida];
@@ -549,13 +415,11 @@ public class ControladorDomini implements Cloneable
     }
 
     public void modificarCalendari(String jornada, String periode) throws ParseException{
-        String s1 = null, s2 = null, s3 = null, s4 = null;
+        String s1, s2, s3, s4;
         DateFormat formatter = new SimpleDateFormat("HH:mm");
         DateFormat formatter2 = new SimpleDateFormat("dd/MM/yy");
-        Time t1 = null;
-        Time t2 = null;
-        Date d1 = null;
-        Date d2 = null;
+        Time t1, t2;
+        Date d1, d2;
         if (!"".equals(jornada)){
             s1 = jornada.substring(0, 5);
             s2 = jornada.substring(6, 11);
@@ -579,7 +443,7 @@ public class ControladorDomini implements Cloneable
         return true;
     }
 
-    public void afegirPla(String nom, String titulacio, String tipus){
+    public void afegirPla(String nom, String titulacio, String tipus) throws MyException {
         Titulacio t = new Titulacio(titulacio, tipus);
         PlaEstudis pe = new PlaEstudis(nom, this.jornadaLectiva, t);
         this.plansDeEstudis.afegirPlaEstudis(pe);
@@ -626,7 +490,7 @@ public class ControladorDomini implements Cloneable
     }
 
     public void importDataCentreDocent(String centreDocent) {
-        Parser.centreDocent(centreDocent, this);
+        if(centreDocent != null) Parser.centreDocent(centreDocent, this);
     }
 
 }

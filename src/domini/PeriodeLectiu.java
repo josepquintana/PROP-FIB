@@ -53,9 +53,4 @@ public class PeriodeLectiu implements Cloneable
         return dataFi;
     }
 
-    public void printPeriodeLectiu() {
-        System.out.println(" dataIni: " + this.getDataIni());
-        System.out.println(" dataFi : " + this.getDataFi());
-    }
-
 }

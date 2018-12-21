@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentacio;
 
 import domini.MyException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Usuari
- */
-public class VistaCrearAula extends javax.swing.JFrame {
+public class VistaCrearAula extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     /**
      * Creates new form VistaCrearAula
@@ -164,17 +155,12 @@ public class VistaCrearAula extends javax.swing.JFrame {
         String capacitat = jTextField2.getText();
         Boolean lab = jCheckBox1.isSelected();
         String laboratori = lab.toString();
-        try {
-            CtrlPresentacio.crearAula(nom, capacitat, laboratori);
-            this.CtrlPresentacio.storeAules();
-        } catch (MyException ex) {
-            Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CtrlPresentacio.crearAula(nom, capacitat, laboratori);
+        this.CtrlPresentacio.storeAules();
         jTextField2.setText("");
         jTextField1.setText("");
         jCheckBox1.setSelected(false);
         CtrlPresentacio.refrescarAules();
-                
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

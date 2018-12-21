@@ -16,8 +16,7 @@ public class Assignatures
         this.assignatures = new ArrayList<>();
         Iterator<Assignatura> it = assignatures.iterator();
         while(it.hasNext()) {
-            // Add a clone of object it
-            this.assignatures.add((Assignatura) it.next().clone());
+            this.assignatures.add((Assignatura) it.next().clone()); // Add a clone of object it
         }
     }
 
@@ -62,7 +61,6 @@ public class Assignatures
 
     public boolean eliminarAssignatura(Assignatura a) {
         boolean ret = this.assignatures.remove(a);
-//        if(!ret) System.out.println(">>> eliminarAssignatura(): L'assignatura " + a.getCodi() + " no existeix al sistema");
         return ret;
     }
 
@@ -80,11 +78,6 @@ public class Assignatures
         }
 
         return removed;
-    }
-
-    public boolean modificarAssignatura(Assignatura a) {
-        // no es pot -> s'ha de eliminar i crear amb els nous parametres
-        return false;
     }
 
     public Assignatura getAssignatura(int i) {
@@ -114,37 +107,6 @@ public class Assignatures
         this.assignatures = new ArrayList<>();
         this.assignatures = assignatures;
     }
-
-    public void printAssignaturesLong() {
-        System.out.println("   Assignatures [Long Format]:");
-        for (int i = 0; i < this.assignatures.size(); i++) {
-            this.assignatures.get(i).printAssignaturaLong();
-        }
-    }
-
-    public void printAssignatures() {
-        System.out.println("   Assignatures:");
-        for (int i = 0; i < this.assignatures.size(); i++) {
-            this.assignatures.get(i).printAssignatura();
-        }
-    }
-
-    public void printAssignaturesXS() {
-        System.out.print("   Assignatures: [" + this.assignatures.size() + "]");
-        for (int i = 0; i < this.assignatures.size(); i++) {
-            if (i % 11 == 0) System.out.print("\n    ");                                // for indentation purposes
-            System.out.print(this.assignatures.get(i).getCodi() + "-[" + this.assignatures.get(i).getGrups().size() + "]");   // print codiAssignatura + nGrups
-            if (i < this.assignatures.size() - 1) System.out.print(", ");               // for presentation purposes
-        }
-        System.out.print("\n");
-    }
-
-//    public void printAssignaturesGSG() {
-//        System.out.println("   Assignatures: [" + this.assignatures.size() + "]");
-//        for (int i = 0; i < this.assignatures.size(); i++) {
-//            this.assignatures.get(i).printAssignaturaGSG();
-//        }
-//    }
 
     int getIndexAssignatura(String codiAssig) {
         for(int i = 0; i < this.assignatures.size() ; ++i){

@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentacio;
 
 import domini.MyException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Usuari
- */
-public class VistaConsultarAula extends javax.swing.JFrame {
+public class VistaConsultarAula extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     /**
      * Creates new form VistaConsultarAula
@@ -350,12 +341,8 @@ public class VistaConsultarAula extends javax.swing.JFrame {
         String nom = jTextField1.getText();
         String capacitat = jTextField4.getText();
         String laboratori = jTextField5.getText();
-        try {
-            CtrlPresentacio.modificarAula(codi, nom, capacitat, laboratori);
-            this.CtrlPresentacio.storeAules();
-        } catch (MyException ex) {
-            Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CtrlPresentacio.modificarAula(codi, nom, capacitat, laboratori);
+        this.CtrlPresentacio.storeAules();
         this.carregarLlistaAules();
               
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -374,12 +361,8 @@ public class VistaConsultarAula extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String codi = jTextArea1.getText();
-        try {
-            CtrlPresentacio.eliminarAula(codi);
-            this.CtrlPresentacio.storeAules();
-        } catch (MyException ex) {
-            Logger.getLogger(VistaConsultarAula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CtrlPresentacio.eliminarAula(codi);
+        this.CtrlPresentacio.storeAules();
         this.carregarLlistaAules();
     }//GEN-LAST:event_jButton3ActionPerformed
 

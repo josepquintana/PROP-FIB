@@ -1,20 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentacio;
 
-import domini.MyException;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author Usuari
- */
-public class VistaPrincipal extends javax.swing.JFrame {
+public class VistaPrincipal extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     /**
      * Creates new form VistaPrincipal
@@ -167,13 +156,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean generat = false;
         generat = CtrlPresentacio.generarHorari();
+        if(generat) MyDialog.throwMessage("Horari generat correctament.");
         CtrlPresentacio.getHorari();
-        if  (!generat) {
-            MyDialog.throwMessage("No has introduit dades suficients per generar un horari");
-        }
-        else {
-            MyDialog.throwMessage("Horari generat");
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -183,7 +167,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_action_ImportCentreDocent
         File file = FileChooser.carregaFitxer();
-        if(file != null) this.CtrlPresentacio.importarTot(file);
+        if(file != null) {
+            this.CtrlPresentacio.importarTot(file);
+            this.CtrlPresentacio.storeCentreDocent();
+            this.CtrlPresentacio.storeAules();
+            this.CtrlPresentacio.storePlansDeEstudis();
+            this.CtrlPresentacio.storeAssignatures();
+        }
         else MyDialog.throwError("El fixter es erroni.");
     }//GEN-LAST:event_action_ImportCentreDocent
 

@@ -28,15 +28,13 @@ public class ControladorPresentacio
     private VistaConsultarAssig vistaConsultarAssig;
     private String[][] horari;
 
-    //////////////////////// Constructor y metodos de inicializacion
-
-
     public ControladorPresentacio() {
         try {
             ctrlDom = new ControladorDomini();
             this.loadDataDomini();
         } catch (IOException e) {
-            MyDialog.throwError("No s'ha pogut crear els fitxers de dades necessaris.");
+            MyDialog.throwError("No s'han pogut generar els fitxers de dades necessaris.\n" +
+                                "El directori \".." + File.separator + "fitxersDades\" no s'ha trobat.");
         }
         vistaPresentacio = new VistaPresentacio(this);
         vistaPrincipal = new VistaPrincipal(this);
@@ -59,9 +57,9 @@ public class ControladorPresentacio
         vistaPresentacio.ferVisible();
     }
 
-
-    //////////////////////// Metodos de sincronizacion entre vistas
-
+    /**
+     * Metodes de sincronitzacio entre vistes
+     */
 
     public void sincronitzacioVistaPresentacio_a_Principal() {
         vistaPresentacio.setVisible(false);
@@ -242,23 +240,23 @@ public class ControladorPresentacio
         vistaGestioAssig.ferVisible();
     }
 
+    /**
+     *  Crides al controlador de domini per obtenir les dades necesaries
+     */
 
-    //////////////////////// Crides al controlador de dominio
-
-
-    public void crearAula(String nom, String capacitat, String laboratori) throws MyException {
-         ctrlDom.crearAula(nom, capacitat, laboratori);
+    public void crearAula(String nom, String capacitat, String laboratori) {
+        try {
+            ctrlDom.crearAula(nom, capacitat, laboratori);
+        } catch (MyException e) {
+            MyDialog.throwError("Error: " + e.getMessage());
+        }
     }
 
-    public void modificarAula(String codi, String nom, String capacitat, String laboratori) throws MyException {
+    public void modificarAula(String codi, String nom, String capacitat, String laboratori) {
          ctrlDom.modificarAula(codi, nom, capacitat, laboratori);
     }
 
-//    public void modificarAssig(String codi1, String codi2, String nom,String credits,String grups,String subgrups,String nivell,String laboratori,String correq){
-//        ctrlDom.modificarAssig(codi1, codi2, nom, credits, grups, subgrups, nivell, laboratori, correq);
-//    }
-
-    public void eliminarAula(String codi) throws MyException {
+    public void eliminarAula(String codi) {
          ctrlDom.eliminarAula(codi);
     }
 
@@ -266,7 +264,7 @@ public class ControladorPresentacio
         try {
             ctrlDom.crearAssig(line);
         } catch (MyException e) {
-            MyDialog.throwError(e.getMessage());
+            MyDialog.throwError("Error: " + e.getMessage());
         }
     }
 
@@ -275,7 +273,7 @@ public class ControladorPresentacio
     }
 
     public String[] getNomAules(){
-      return ctrlDom.getNomAules();
+        return ctrlDom.getNomAules();
     }
 
     public String[] getCodiAssigs() {
@@ -287,45 +285,45 @@ public class ControladorPresentacio
     }
 
     public int getNumAules(){
-      return ctrlDom.getNumAules();
+        return ctrlDom.getNumAules();
     }
 
     public String getCapacitatAula(String codi){
-      return ctrlDom.getCapacitatAula(codi);
+        return ctrlDom.getCapacitatAula(codi);
     }
 
     public String getLab(String codi){
-      return ctrlDom.getLab(codi);
+        return ctrlDom.getLab(codi);
     }
 
     public String getNomAssig(String codi){
-      return ctrlDom.getNomAssig(codi);
+        return ctrlDom.getNomAssig(codi);
     }
 
     public String geCredits(String codi){
-      return ctrlDom.getCredits(codi);
+        return ctrlDom.getCredits(codi);
     }
 
     public String getCapacitatAssignatura(String codi) { return ctrlDom.getCapacitatAssig(codi); }
 
     public String getGrups(String codi){
-      return ctrlDom.getGrups(codi);
+        return ctrlDom.getGrups(codi);
     }
 
     public String getSubgrups(String codi){
-      return ctrlDom.getSubgrups(codi);
+        return ctrlDom.getSubgrups(codi);
     }
 
     public String getNivell(String codi){
-      return ctrlDom.getNivell(codi);
+        return ctrlDom.getNivell(codi);
     }
 
     public String getALab(String codi){
-      return ctrlDom.getALab(codi);
+        return ctrlDom.getALab(codi);
     }
 
     public String getCorreq(String codi){
-      return ctrlDom.getCorreq(codi);
+        return ctrlDom.getCorreq(codi);
     }
 
     public void refrescarAules(){
@@ -339,14 +337,16 @@ public class ControladorPresentacio
     }
 
     public boolean generarHorari() {
-      try {
-          boolean a = ctrlDom.generarHorari();
-          vistaHorari.carregarLlistaHores();
-          return a;
-      } catch (CloneNotSupportedException ex) {
-          Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
-      }
-      return false;
+        try {
+            boolean a = ctrlDom.generarHorari();
+            vistaHorari.carregarLlistaHores();
+            return a;
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(ControladorPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MyException e) {
+            MyDialog.throwError(e.getMessage());
+        }
+        return false;
     }
 
     public boolean swapHorari(int ia, int ja, int ka, int ib, int jb, int kb){
@@ -386,7 +386,7 @@ public class ControladorPresentacio
     }
 
     public int getNumPlans(){
-      return ctrlDom.getPlansDeEstudis().mida();
+        return ctrlDom.getPlansDeEstudis().mida();
     }
 
     public String getNomPla(){
@@ -413,7 +413,11 @@ public class ControladorPresentacio
     }
 
     public void afegirPla(String nom, String titulacio, String tipus) throws ParseException{
-        ctrlDom.afegirPla(nom, titulacio, tipus);
+        try {
+            ctrlDom.afegirPla(nom, titulacio, tipus);
+        } catch (MyException e) {
+            MyDialog.throwError(e.getMessage());
+        }
     }
 
     public void loadDataDomini() {
@@ -497,8 +501,8 @@ public class ControladorPresentacio
     public void importarAssignatures(File file){
         ArrayList<String> assignatures;
         try {
-           assignatures = ImportarFitxers.importAssignatures(file);
-           this.ctrlDom.importDataAssignatures(assignatures);
+            assignatures = ImportarFitxers.importAssignatures(file);
+            this.ctrlDom.importDataAssignatures(assignatures);
         } catch (MyException ex) {
             MyDialog.throwError("Error al parsejar el contingut del fixter importat: " + ex.getMessage());
         } catch (IOException e) {

@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package presentacio;
 
 import java.io.File;
 
-/**
- *
- * @author Usuari
- */
-public class VistaGestioAula extends javax.swing.JFrame {
+public class VistaGestioAula extends javax.swing.JFrame
+{
     private ControladorPresentacio CtrlPresentacio;
     /** Creates new form VistaGestioAula */
     public VistaGestioAula() {
@@ -125,7 +116,10 @@ public class VistaGestioAula extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         File file = FileChooser.carregaFitxer();
-        if(file != null) this.CtrlPresentacio.importarAules(file);
+        if(file != null) {
+            this.CtrlPresentacio.importarAules(file);
+            this.CtrlPresentacio.storeAules();
+        }
         else MyDialog.throwError("El fixter es erroni.");    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

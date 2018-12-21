@@ -132,11 +132,4 @@ public class Grup implements Cloneable
         ambPCs = labAmbPC;
     }
 
-    public void printGrupLong() {
-        if (this.isLab) {
-            System.out.println("       GrupL: " + this.numGrup + " " + this.isLab + " " + this.horesTeoria + " " + this.horesLab + " " + this.ambPCs);
-        }
-        else System.out.println("      GrupT: " + this.numGrup + " " + this.isLab + " " + this.horesTeoria + " " + this.horesLab + " " + this.ambPCs);
-    }
-
 }

@@ -42,18 +42,17 @@ public class PlansDeEstudis {
         return false;
     }
 
-    public boolean afegirPlaEstudis(PlaEstudis pe) {
+    public boolean afegirPlaEstudis(PlaEstudis pe) throws MyException{
         if(existeixPlaEstudis(pe)) {
-            System.out.println(">>> afegirPlaEstudis(): El Pla d'Estudis " + pe.getNomPla() + " ja existeix al sistema");
-            return false;
+            throw new MyException("El Pla d'Estudis " + pe.getNomPla() + " ja existeix al sistema");
         }
         boolean ret = this.plansDeEstudis.add(pe);
         return ret;
     }
 
-    public boolean eliminarPlaEstudis(PlaEstudis pe) {
+    public boolean eliminarPlaEstudis(PlaEstudis pe) throws MyException{
         boolean ret = this.plansDeEstudis.remove(pe);
-        if(!ret) System.out.println(">>> eliminarPlaEstudis(): El Pla d'Estudis " + pe.getNomPla() + " no existeix al sistema");
+        if(!ret) throw new MyException("El Pla d'Estudis " + pe.getNomPla() + " no existeix al sistema");
         return ret;
     }
 
@@ -83,27 +82,6 @@ public class PlansDeEstudis {
 
     public boolean esBuit() {
         return this.plansDeEstudis.isEmpty();
-    }
-
-    public void printPlansDeEstudisLong() {
-        System.out.println(" Plans de Estudi: [Long Format]");
-        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudisLong(i+1);
-        }
-    }
-
-    public void printPlansDeEstudis() {
-        System.out.println(" PlansDeEstudis:");
-        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudis(i+1);
-        }
-    }
-
-    public void printPlansDeEstudisXS() {
-        System.out.println(" PlansDeEstudis:");
-        for (int i = 0; i < this.plansDeEstudis.size(); i++) {
-            this.plansDeEstudis.get(i).printPlaEstudisXS(i+1);
-        }
     }
 
 }
