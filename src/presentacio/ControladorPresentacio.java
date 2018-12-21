@@ -252,7 +252,7 @@ public class ControladorPresentacio
         }
     }
 
-    public void modificarAula(String codi, String nom, String capacitat, String laboratori) throws MyException {
+    public void modificarAula(String codi, String nom, String capacitat, String laboratori) {
          ctrlDom.modificarAula(codi, nom, capacitat, laboratori);
     }
 

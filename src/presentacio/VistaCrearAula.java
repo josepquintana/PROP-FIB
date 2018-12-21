@@ -155,17 +155,12 @@ public class VistaCrearAula extends javax.swing.JFrame
         String capacitat = jTextField2.getText();
         Boolean lab = jCheckBox1.isSelected();
         String laboratori = lab.toString();
-        try {
-            CtrlPresentacio.crearAula(nom, capacitat, laboratori);
-            this.CtrlPresentacio.storeAules();
-        } catch (MyException ex) {
-            Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CtrlPresentacio.crearAula(nom, capacitat, laboratori);
+        this.CtrlPresentacio.storeAules();
         jTextField2.setText("");
         jTextField1.setText("");
         jCheckBox1.setSelected(false);
         CtrlPresentacio.refrescarAules();
-                
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
