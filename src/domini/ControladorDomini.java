@@ -85,8 +85,8 @@ public class ControladorDomini implements Cloneable
         ArrayList<String> aules = controladorDades.loadAules();
         ArrayList<String> assignatures = controladorDades.loadAssignatures();
 
-        Parser.centreDocent(centreDocent, this);
-
+        if(centreDocent != null) Parser.centreDocent(centreDocent, this);
+        
         for (String str : plansDeEstudis) {
             PlaEstudis plaEstudis = Parser.plaEstudis(str, this.jornadaLectiva);
             this.plansDeEstudis.afegirPlaEstudis(plaEstudis);
@@ -252,7 +252,6 @@ public class ControladorDomini implements Cloneable
     public ControladorDades getControladorDades() {
         return controladorDades;
     }
-
 
     /**
      *
@@ -491,7 +490,7 @@ public class ControladorDomini implements Cloneable
     }
 
     public void importDataCentreDocent(String centreDocent) {
-        Parser.centreDocent(centreDocent, this);
+        if(centreDocent != null) Parser.centreDocent(centreDocent, this);
     }
 
 }
