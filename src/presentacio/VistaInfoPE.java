@@ -282,6 +282,9 @@ public class VistaInfoPE extends javax.swing.JFrame
         jTextField4.setText("");
         jTextField1.setText("");
         jTextField3.setText("");
+        this.jTextArea1.setText(nom);
+        this.jTextArea3.setText(titulacio);
+        this.jTextArea4.setText(tipus);
         CtrlPresentacio.refrescarAules();
     }//GEN-LAST:event_jButton2ActionPerformed
 
