@@ -42,7 +42,7 @@ public class Assignacio implements Cloneable
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        Assignacio asg = new Assignacio();
+        Assignacio asg;
         try {
             asg = (Assignacio) super.clone();
         }
