@@ -341,12 +341,8 @@ public class VistaConsultarAula extends javax.swing.JFrame
         String nom = jTextField1.getText();
         String capacitat = jTextField4.getText();
         String laboratori = jTextField5.getText();
-        try {
-            CtrlPresentacio.modificarAula(codi, nom, capacitat, laboratori);
-            this.CtrlPresentacio.storeAules();
-        } catch (MyException ex) {
-            Logger.getLogger(VistaCrearAula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CtrlPresentacio.modificarAula(codi, nom, capacitat, laboratori);
+        this.CtrlPresentacio.storeAules();
         this.carregarLlistaAules();
               
     }//GEN-LAST:event_jButton2ActionPerformed
