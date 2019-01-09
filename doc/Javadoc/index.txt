@@ -1,0 +1,1 @@
+En aquest directori hi ha els documents generats per Javadoc i tres carpetes amb la documentacio generada per Javadoc de la capa de presentacio, la capa de domini i la capa de dades
